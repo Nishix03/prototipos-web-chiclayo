@@ -16,11 +16,13 @@ import sharp from 'sharp';
 import { validarNegocio } from './validar.js';
 import { html, crudo, escapar } from './componentes/html.js';
 import { textoLegibleSobre } from './contraste.js';
+import { soles } from './dinero.js';
 
 const CORE_COMPONENTES = fileURLToPath(new URL('./componentes/index.js', import.meta.url));
 
 const MARCA_HEAD = /<!--\s*@head\s*-->/;
 const MARCA_COMPONENTE = /<!--\s*@componente\s+([\w-]+)\s*-->/g;
+const MARCA_IMAGEN_OG = '@imagen-og'; // la reemplaza ogAbsoluta al final del build
 
 const TIPO_SCHEMA = {
   ejemplo: 'LocalBusiness',
@@ -129,7 +131,23 @@ function datosEstructurados(negocio, urlPagina) {
     ),
   };
   if (negocio.redes) datos.sameAs = Object.values(negocio.redes);
+  // La imagen OG absoluta solo se conoce al final del build (lleva hash): ogAbsoluta la pone
+  datos.image = MARCA_IMAGEN_OG;
+  Object.assign(datos, extrasPorRubro(negocio, urlPagina));
+  // Nunca review ni aggregateRating: las reseñas de una demo no son reales
   return datos;
+}
+
+/** Propiedades de schema.org que solo tienen sentido en ciertos rubros. */
+function extrasPorRubro(negocio, urlPagina) {
+  if (negocio.rubro !== 'restaurante') return {};
+  const precios = negocio.carta.flatMap((c) => c.platos.map((p) => p.precio));
+  return {
+    servesCuisine: negocio.cocina,
+    priceRange: `${soles(Math.min(...precios))} – ${soles(Math.max(...precios))}`,
+    hasMenu: `${urlPagina}#carta`,
+    acceptsReservations: Boolean(negocio.reservas),
+  };
 }
 
 /** JSON seguro dentro de <script>: un "</script>" en los datos no puede cerrar la etiqueta. */
@@ -147,7 +165,7 @@ function favicon(nombre, marca) {
 
 function cabecera(negocio, urlPagina) {
   const { tema, imagenes } = negocio;
-  const titulo = `${negocio.nombre} · ${negocio.ubicacion.ciudad}`;
+  const titulo = negocio.tituloSeo ?? `${negocio.nombre} · ${negocio.ubicacion.ciudad}`;
   const imagenOg = imagenes.og ?? imagenes.hero;
 
   return html`
@@ -260,10 +278,14 @@ export function prerenderNegocio({ sitio }) {
     generateBundle(_, paquete) {
       for (const archivo of Object.values(paquete)) {
         if (archivo.type !== 'asset' || !archivo.fileName.endsWith('.html')) continue;
-        archivo.source = String(archivo.source).replace(
+        let fuente = String(archivo.source).replace(
           /(<meta property="og:image" content=")(\/[^"]+)"/,
           (_, inicio, ruta) => `${inicio}${new URL(ruta, sitio).href}"`,
         );
+        // La misma URL absoluta va como "image" del JSON-LD
+        const og = fuente.match(/<meta property="og:image" content="([^"]+)"/)?.[1];
+        if (og) fuente = fuente.replace(`"image":"${MARCA_IMAGEN_OG}"`, `"image":"${og}"`);
+        archivo.source = fuente;
       }
     },
   };

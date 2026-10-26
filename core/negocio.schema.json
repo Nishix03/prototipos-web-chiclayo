@@ -37,6 +37,12 @@
       "maxLength": 160,
       "description": "Meta description: lo que Google y WhatsApp muestran bajo el título. Entre 50 y 160 caracteres."
     },
+    "tituloSeo": {
+      "type": "string",
+      "minLength": 20,
+      "maxLength": 60,
+      "description": "Opcional: el <title> para Google, con lo que la gente busca (\"Restaurante norteño en Chiclayo\"). Si falta: nombre · ciudad."
+    },
     "contacto": {
       "type": "object",
       "required": ["whatsapp"],

@@ -4,9 +4,14 @@
   "description": "Base común + carta, menú del día, pedidos y reservas.",
   "type": "object",
   "allOf": [{ "$ref": "../core/negocio.schema.json" }],
-  "required": ["textos", "menuDelDia", "carta", "pedidos", "reservas"],
+  "required": ["cocina", "textos", "menuDelDia", "carta", "pedidos", "reservas"],
   "properties": {
     "rubro": { "const": "restaurante" },
+    "cocina": {
+      "type": "string",
+      "maxLength": 60,
+      "description": "Tipo de cocina para Google (servesCuisine), p. ej. \"Peruana norteña\"."
+    },
     "textos": {
       "type": "object",
       "description": "Textos de la página que cambian con cada restaurante.",

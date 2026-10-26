@@ -5,6 +5,8 @@
   "nombre": "Sabores del Norte · Demo",
   "eslogan": "Cocina lambayecana en Chiclayo",
   "descripcion": "Demo de restaurante norteño en Chiclayo: carta con precios, menú del día y pedidos o reservas por WhatsApp. Datos ficticios.",
+  "tituloSeo": "Sabores del Norte (demo) · Restaurante norteño en Chiclayo",
+  "cocina": "Peruana norteña",
   "textos": {
     "titular": "Arroz con pato, cabrito y ceviche: cocina lambayecana en Chiclayo",
     "bajada": "Elige tus platos, mira el total al instante y envía el pedido por WhatsApp. Delivery dentro de Chiclayo o recojo en el local.",
