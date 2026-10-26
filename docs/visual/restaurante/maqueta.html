@@ -1,0 +1,875 @@
+<!doctype html>
+<html lang="es-PE">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Maqueta · Sabores del Norte (demo)</title>
+    <!--
+      MAQUETA ESTÁTICA de la planificación visual (paso 5). No es el sitio: sirve para
+      aprobar dirección visual, composición y la función estrella antes de construir.
+      Las fuentes salen de Google Fonts solo aquí; en el sitio irán autoalojadas.
+    -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Newsreader:ital,opsz,wght@0,6..72,400..700;1,6..72,400..600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --papel: #efebe2;
+        --papel-oscuro: #e3ddd0;
+        --ticket: #fbfaf6;
+        --tinta: #1a1714;
+        --gris: #5e5850;
+        --rojo: #b42318;
+        --aji: #f4b400;
+        --regla: color-mix(in oklch, var(--tinta) 25%, var(--papel));
+        --abierto: #1e6b3f; /* 5.46:1 sobre papel */
+        --sobre-marca: #fff; /* 6.57:1 sobre el rojo */
+        --marca-presionada: color-mix(in oklch, var(--rojo) 85%, black);
+        --foco: var(--rojo); /* 5.53:1 sobre papel */
+        color-scheme: light; /* diseño de papel: sin modo oscuro, y el navegador no lo invierte */
+        --titulos: 'Archivo', system-ui, sans-serif;
+        --texto: 'Newsreader', Georgia, serif;
+        --margen: clamp(1rem, 0.5rem + 2.5vw, 2.5rem);
+        --curva: cubic-bezier(0.165, 0.84, 0.44, 1); /* ease-out-quart */
+      }
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+      }
+      body {
+        background: var(--papel);
+        color: var(--tinta);
+        font-family: var(--texto);
+        font-size: 1.0625rem;
+        line-height: 1.65;
+        -webkit-font-smoothing: antialiased;
+      }
+      img {
+        display: block;
+        max-width: 100%;
+        height: auto;
+      }
+      button {
+        font: inherit;
+        color: inherit;
+        cursor: pointer;
+      }
+      :focus-visible {
+        outline: 3px solid var(--foco);
+        outline-offset: 3px;
+      }
+      /* Superficies oscuras (aviso, barra): el foco pasa a ají, 9.67:1 sobre tinta */
+      .aviso,
+      .barra {
+        --foco: var(--aji);
+      }
+      .contenedor {
+        width: min(100% - 2 * var(--margen), 78rem);
+        margin-inline: auto;
+      }
+
+      .aviso {
+        padding: 0.4rem var(--margen);
+        background: var(--tinta);
+        color: var(--papel);
+        font: 500 0.8125rem/1.4 var(--titulos);
+        text-align: center;
+      }
+
+      /* ── Cabecera del diario ── */
+      .cabecera {
+        padding-top: clamp(0.75rem, 2vw, 1.5rem);
+      }
+      .cabecera__nombre {
+        font-family: var(--titulos);
+        font-weight: 900;
+        font-stretch: 62%;
+        font-size: clamp(3.4rem, 15.6vw, 9rem);
+        line-height: 0.8;
+        letter-spacing: -0.01em;
+        color: var(--rojo);
+        text-wrap: nowrap;
+      }
+      .cabecera__nombre small {
+        display: block;
+        margin-top: 0.35em;
+        font-size: 0.16em;
+        font-weight: 600;
+        font-stretch: 100%;
+        letter-spacing: 0;
+        color: var(--tinta);
+      }
+      .fecha {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 0.25rem 1rem;
+        margin-top: 0.75rem;
+        padding-block: 0.45rem;
+        border-block: 2px solid var(--tinta);
+        font: 600 0.875rem/1.3 var(--titulos);
+      }
+      .fecha a {
+        color: inherit;
+        text-underline-offset: 0.2em;
+      }
+      .abierto {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        color: var(--abierto);
+      }
+      @media (max-width: 59.99rem) {
+        .solo-ancho {
+          display: none;
+        }
+      }
+      .abierto::before {
+        content: '';
+        width: 0.55rem;
+        height: 0.55rem;
+        border-radius: 50%;
+        background: currentColor;
+      }
+
+      /* ── Portada ── */
+      .portada {
+        display: grid;
+        gap: 1.25rem;
+        padding-block: 1.25rem 2.5rem;
+      }
+      .foto-portada img {
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        object-fit: cover;
+      }
+      figcaption {
+        margin-top: 0.35rem;
+        color: var(--gris);
+        font-size: 0.875rem;
+        font-style: italic;
+        line-height: 1.4;
+      }
+      .titular {
+        font-family: var(--titulos);
+        font-weight: 800;
+        font-stretch: 72%;
+        font-size: clamp(2.35rem, 1.4rem + 4.4vw, 4.9rem);
+        line-height: 0.94;
+        letter-spacing: -0.005em;
+        text-wrap: balance;
+      }
+      .bajada {
+        max-width: 38ch;
+        margin-top: 0.85rem;
+        font-size: clamp(1.125rem, 1rem + 0.4vw, 1.3rem);
+        line-height: 1.5;
+      }
+      .acciones {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        margin-top: 1.25rem;
+      }
+      .boton {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        min-height: 48px;
+        padding: 0.7rem 1.3rem;
+        border: 2px solid var(--tinta);
+        border-radius: 2px;
+        background: transparent;
+        font: 700 1rem/1 var(--titulos);
+        text-decoration: none;
+        color: var(--tinta);
+        transition:
+          transform 100ms var(--curva),
+          background-color 150ms ease;
+      }
+      .boton:active {
+        transform: scale(0.97);
+      }
+      .boton--principal {
+        border-color: var(--rojo);
+        background: var(--rojo);
+        color: var(--sobre-marca);
+      }
+      @media (hover: hover) and (pointer: fine) {
+        .boton--principal:hover {
+          background: var(--marca-presionada);
+        }
+        .boton:not(.boton--principal):hover {
+          background: var(--papel-oscuro);
+        }
+      }
+
+      /* Menú de hoy: la columna lateral de la portada */
+      .menu-hoy {
+        position: relative;
+        padding: 1rem 1rem 1.1rem;
+        border: 2px solid var(--tinta);
+        background: var(--papel);
+      }
+      .menu-hoy h2 {
+        padding-right: 4.5rem; /* espacio para el sello del precio */
+        font: 800 1.5rem/1 var(--titulos);
+        font-stretch: 75%;
+      }
+      .menu-hoy p.cuando {
+        padding-right: 4.5rem;
+      }
+      .menu-hoy p.cuando {
+        margin-top: 0.2rem;
+        color: var(--gris);
+        font: 600 0.875rem/1.3 var(--titulos);
+      }
+      .menu-hoy dl {
+        margin-top: 0.75rem;
+      }
+      .menu-hoy dt {
+        margin-top: 0.6rem;
+        font: 700 0.875rem/1.2 var(--titulos);
+      }
+      .menu-hoy dd {
+        font-size: 1rem;
+        line-height: 1.45;
+      }
+      .sello-precio {
+        position: absolute;
+        top: -0.9rem;
+        right: 0.8rem;
+        display: grid;
+        place-items: center;
+        width: 4.6rem;
+        aspect-ratio: 1;
+        border-radius: 50%;
+        background: var(--aji);
+        color: var(--tinta);
+        font: 900 1.45rem/0.9 var(--titulos);
+        font-stretch: 70%;
+        text-align: center;
+        rotate: -8deg;
+      }
+      .sello-precio span {
+        display: block;
+        font-size: 0.55em;
+        font-weight: 700;
+      }
+
+      .mas-pedido h2 {
+        padding-bottom: 0.35rem;
+        border-bottom: 2px solid var(--tinta);
+        font: 800 1.5rem/1 var(--titulos);
+        font-stretch: 75%;
+      }
+      .mas-pedido ol {
+        padding: 0;
+        list-style: none;
+      }
+      .mas-pedido li {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 0.15rem 0.75rem;
+        padding-block: 0.7rem;
+        border-bottom: 1px solid var(--regla);
+      }
+      .mas-pedido .nombre {
+        font: 700 1.05rem/1.2 var(--titulos);
+      }
+      .mas-pedido .precio {
+        font: 700 1.05rem/1.2 var(--titulos);
+        font-variant-numeric: tabular-nums;
+      }
+      .mas-pedido p {
+        grid-column: 1 / -1;
+        color: var(--gris);
+        font-size: 0.95rem;
+        line-height: 1.4;
+      }
+
+      /* Composición. Va después de las reglas base para que las anule sin pelear por especificidad. */
+      @media (max-width: 59.99rem) {
+        /* Celular: foto (comida en la primera pantalla) → titular → botones → menú de hoy */
+        .titular {
+          font-size: clamp(2.1rem, 1.2rem + 4.4vw, 3rem);
+        }
+        .acciones .boton {
+          flex: 1 1 auto;
+          padding-inline: 0.9rem;
+          font-size: 0.95rem;
+        }
+        .menu-hoy {
+          margin-top: 1rem;
+        }
+        .foto-portada figcaption {
+          display: none; /* el crédito sigue en "Créditos fotográficos" del pie */
+        }
+      }
+      @media (min-width: 60rem) {
+        /* Escritorio: portada de diario en tres columnas + franja "De la casa" debajo */
+        .portada {
+          grid-template-columns: 17rem minmax(0, 1.15fr) minmax(0, 1fr);
+          grid-template-areas:
+            'menu nota foto'
+            'casa casa casa';
+          gap: 0;
+        }
+        .menu-hoy {
+          grid-area: menu;
+          align-self: start;
+          margin: 1rem 1.75rem 0 0;
+          padding: 1.1rem 1rem;
+        }
+        .nota-principal {
+          grid-area: nota;
+          padding-inline: 1.75rem;
+          border-left: 1px solid var(--regla);
+        }
+        .foto-portada {
+          grid-area: foto;
+        }
+        .foto-portada img {
+          aspect-ratio: 4 / 5;
+          max-height: 36rem;
+        }
+        .mas-pedido {
+          grid-area: casa;
+          margin-top: 2rem;
+        }
+        .mas-pedido ol {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+        }
+        .mas-pedido li {
+          padding-inline: 1.5rem;
+          border-bottom: 0;
+        }
+        .mas-pedido li:first-child {
+          padding-left: 0;
+        }
+        .mas-pedido li + li {
+          border-left: 1px solid var(--regla);
+        }
+      }
+
+      /* ── Carta: la función estrella ── */
+      .carta {
+        padding-block: 2.5rem 7rem;
+        border-top: 2px solid var(--tinta);
+      }
+      .carta__titulo {
+        font: 800 clamp(2rem, 1.4rem + 2.6vw, 3.25rem) / 0.95 var(--titulos);
+        font-stretch: 72%;
+      }
+      .carta__intro {
+        margin-top: 0.4rem;
+        color: var(--gris);
+      }
+      .filtros {
+        position: sticky;
+        top: 0;
+        z-index: 2;
+        display: flex;
+        gap: 0.5rem;
+        margin: 1rem calc(-1 * var(--margen)) 0;
+        padding: 0.6rem var(--margen);
+        overflow-x: auto;
+        background: var(--papel);
+        border-bottom: 1px solid var(--regla);
+        scrollbar-width: none;
+      }
+      .filtros button {
+        flex: none;
+        min-height: 44px;
+        padding: 0.45rem 0.9rem;
+        border: 2px solid var(--tinta);
+        border-radius: 2px;
+        background: transparent;
+        font: 700 0.9375rem/1 var(--titulos);
+      }
+      .filtros [aria-pressed='true'] {
+        background: var(--tinta);
+        color: var(--papel);
+      }
+      .categoria h3 {
+        margin-top: 1.75rem;
+        padding-bottom: 0.3rem;
+        border-bottom: 1px solid var(--tinta);
+        font: 800 1.35rem/1 var(--titulos);
+        font-stretch: 80%;
+      }
+      .platos {
+        padding: 0;
+        list-style: none;
+      }
+      .plato {
+        display: grid;
+        grid-template-columns: 6rem 1fr;
+        gap: 0.9rem;
+        padding-block: 1rem;
+        border-bottom: 1px solid var(--regla);
+      }
+      .plato img {
+        width: 6rem;
+        aspect-ratio: 1;
+        object-fit: cover;
+        outline: 1px solid rgb(0 0 0 / 0.08);
+        outline-offset: -1px;
+      }
+      .plato__cabeza {
+        display: flex;
+        justify-content: space-between;
+        gap: 0.75rem;
+        font: 700 1.1rem/1.2 var(--titulos);
+      }
+      .plato__precio {
+        font-variant-numeric: tabular-nums;
+        white-space: nowrap;
+      }
+      .plato p {
+        margin-top: 0.2rem;
+        color: var(--gris);
+        font-size: 0.975rem;
+        line-height: 1.45;
+      }
+      .etiqueta {
+        display: inline-block;
+        margin-top: 0.35rem;
+        margin-right: 0.35rem;
+        padding: 0.05rem 0.4rem;
+        border: 1px solid var(--gris);
+        color: var(--gris);
+        font: 600 0.75rem/1.4 var(--titulos);
+      }
+      .cantidad {
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+        margin-top: 0.6rem;
+      }
+      .cantidad button {
+        display: grid;
+        place-items: center;
+        width: 44px;
+        height: 44px;
+        border: 2px solid var(--tinta);
+        border-radius: 2px;
+        background: transparent;
+        font: 800 1.35rem/1 var(--titulos);
+      }
+      .cantidad .agregar {
+        width: auto;
+        padding-inline: 0.9rem;
+        font-size: 0.95rem;
+      }
+      .cantidad output {
+        min-width: 2.2rem;
+        text-align: center;
+        font: 800 1.15rem/1 var(--titulos);
+        font-variant-numeric: tabular-nums;
+      }
+      @media (min-width: 48rem) {
+        .categoria .platos {
+          columns: 2;
+          column-gap: 2.5rem;
+          column-rule: 1px solid var(--regla);
+        }
+        .plato {
+          break-inside: avoid;
+        }
+        .plato,
+        .plato img {
+          grid-template-columns: 7.5rem 1fr;
+        }
+        .plato img {
+          width: 7.5rem;
+        }
+      }
+
+      /* Barra de pedido: aparece al agregar el primer plato */
+      .barra {
+        position: fixed;
+        inset: auto 0 0;
+        z-index: 5;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        padding: 0.7rem var(--margen) calc(0.7rem + env(safe-area-inset-bottom));
+        background: var(--tinta);
+        color: var(--papel);
+        font: 700 1rem/1.2 var(--titulos);
+        font-variant-numeric: tabular-nums;
+        transition: transform 250ms var(--curva);
+      }
+      .barra[hidden] {
+        display: flex;
+        transform: translateY(110%);
+      }
+      .barra .boton {
+        border-color: var(--aji);
+        background: var(--aji);
+        color: var(--tinta);
+      }
+
+      /* La comanda (momento firma) */
+      .comanda {
+        position: fixed;
+        inset: auto 0 0;
+        z-index: 6;
+        max-height: 88vh;
+        overflow: auto;
+        margin-inline: auto;
+        width: min(100%, 28rem);
+        padding: 1.25rem 1.25rem 1.5rem;
+        border: 0;
+        background: var(--ticket);
+        color: var(--tinta);
+        box-shadow: 0 -12px 40px rgb(26 23 20 / 0.25);
+        /* perforación del papel de la comanda */
+        background-image: radial-gradient(
+          circle at 8px 0,
+          var(--papel-oscuro) 4px,
+          transparent 4.5px
+        );
+        background-size: 16px 10px;
+        background-repeat: repeat-x;
+        padding-top: 1.6rem;
+      }
+      .comanda h2 {
+        font: 800 1.6rem/1 var(--titulos);
+        font-stretch: 75%;
+      }
+      .comanda .linea {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 0 0.5rem;
+        padding-block: 0.55rem;
+        border-bottom: 1px dashed var(--regla);
+        font: 600 1rem/1.25 var(--titulos);
+        font-variant-numeric: tabular-nums;
+        animation: imprimir 200ms var(--curva) both;
+      }
+      .comanda .linea:nth-child(2) {
+        animation-delay: 60ms;
+      }
+      .comanda .linea:nth-child(3) {
+        animation-delay: 120ms;
+      }
+      @keyframes imprimir {
+        from {
+          opacity: 0;
+          transform: translateY(-8px);
+        }
+      }
+      .comanda .linea .cantidad {
+        grid-column: 1 / -1;
+        margin-top: 0.35rem;
+      }
+      .comanda .total {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 0.75rem;
+        font: 900 1.4rem/1 var(--titulos);
+        font-stretch: 75%;
+        font-variant-numeric: tabular-nums;
+      }
+      .comanda fieldset {
+        margin-top: 1rem;
+        padding: 0;
+        border: 0;
+      }
+      .comanda legend,
+      .comanda label {
+        font: 700 0.95rem/1.3 var(--titulos);
+      }
+      .opciones {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.5rem;
+        margin-top: 0.4rem;
+      }
+      .opciones label {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        min-height: 44px;
+        padding: 0.4rem 0.7rem;
+        border: 2px solid var(--tinta);
+        border-radius: 2px;
+      }
+      .opciones label:has(input:checked) {
+        background: var(--tinta);
+        color: var(--papel);
+      }
+      .comanda input[type='text'] {
+        width: 100%;
+        min-height: 44px;
+        margin-top: 0.3rem;
+        padding: 0.5rem 0.65rem;
+        border: 2px solid var(--regla);
+        border-radius: 2px;
+        background: #fff;
+        font: 1rem var(--texto);
+      }
+      .comanda .campo {
+        margin-top: 0.85rem;
+      }
+      .opcional {
+        color: var(--gris);
+        font-weight: 400;
+      }
+      .comanda .enviar {
+        width: 100%;
+        margin-top: 1.1rem;
+      }
+      .cerrar {
+        position: absolute;
+        top: 1.1rem;
+        right: 0.9rem;
+        width: 44px;
+        height: 44px;
+        border: 0;
+        background: transparent;
+        font: 400 1.75rem/1 var(--titulos);
+      }
+      .velo {
+        position: fixed;
+        inset: 0;
+        z-index: 5;
+        background: rgb(26 23 20 / 0.45);
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .boton,
+        .barra {
+          transition: none;
+        }
+        .comanda .linea {
+          animation: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <p class="aviso">Demo: nombre, precios y reseñas son ficticios.</p>
+
+    <header class="cabecera contenedor">
+      <p class="cabecera__nombre">
+        Sabores del Norte
+        <small>Cocina lambayecana en Chiclayo · Demo</small>
+      </p>
+      <div class="fecha">
+        <a href="#menu-hoy">Menú de hoy: S/ 18</a>
+        <span class="abierto">Abierto ahora, cierra a las 16:30</span>
+        <span class="solo-ancho">Delivery y recojo por WhatsApp</span>
+      </div>
+    </header>
+
+    <main>
+      <section class="portada contenedor" aria-labelledby="titular">
+        <figure class="foto-portada">
+          <img
+            src="../../../restaurante/img/hero.webp"
+            alt="Ceviche de pescado con cebolla roja en un plato hondo"
+            width="1600"
+            height="1100"
+          />
+          <figcaption>Ceviche de pescado, S/ 35. Foto: Yogma, CC BY 2.0.</figcaption>
+        </figure>
+        <article class="nota-principal">
+          <h1 class="titular" id="titular">
+            Arroz con pato, cabrito y ceviche: cocina lambayecana en Chiclayo
+          </h1>
+          <p class="bajada">
+            Elige tus platos, mira el total al instante y envía el pedido por WhatsApp. Delivery
+            dentro de Chiclayo o recojo en el local.
+          </p>
+          <div class="acciones">
+            <a class="boton boton--principal" href="#carta">Armar mi pedido</a>
+            <a class="boton" href="#reservas">Reservar mesa</a>
+          </div>
+        </article>
+
+        <aside class="menu-hoy" aria-labelledby="menu-hoy">
+          <p class="sello-precio" aria-hidden="true">S/ 18 <span>todo</span></p>
+          <h2 id="menu-hoy">Menú de hoy</h2>
+          <p class="cuando">De martes a viernes, de 12:00 a 15:30</p>
+          <dl>
+            <dt>Entrada</dt>
+            <dd>Causa de pollo o sopa de la casa</dd>
+            <dt>Fondo</dt>
+            <dd>Arroz con pato o seco de res con frejoles</dd>
+            <dt>Incluye</dt>
+            <dd>Refresco del día. Todo por S/ 18.</dd>
+          </dl>
+        </aside>
+
+        <aside class="mas-pedido" aria-labelledby="mas-pedido">
+          <h2 id="mas-pedido">De la casa</h2>
+          <ol>
+            <li>
+              <span class="nombre">Arroz con pato</span><span class="precio">S/ 38</span>
+              <p>Arroz verde al culantro, sarsa y papa a la huancaína.</p>
+            </li>
+            <li>
+              <span class="nombre">Ceviche de pescado</span><span class="precio">S/ 35</span>
+              <p>Pescado del día en limón y ají limo, con choclo y camote.</p>
+            </li>
+            <li>
+              <span class="nombre">Seco de cabrito</span><span class="precio">S/ 40</span>
+              <p>Guisado en chicha de jora y culantro, con frejoles.</p>
+            </li>
+          </ol>
+        </aside>
+      </section>
+
+      <section class="carta contenedor" id="carta" aria-labelledby="carta-titulo">
+        <h2 class="carta__titulo" id="carta-titulo">La carta</h2>
+        <p class="carta__intro">
+          Marca lo que quieres, ajusta las cantidades y envía tu pedido por WhatsApp.
+        </p>
+        <div class="filtros" role="group" aria-label="Filtrar la carta">
+          <button aria-pressed="true">Todo</button>
+          <button aria-pressed="false">Entradas</button>
+          <button aria-pressed="false">Marinos</button>
+          <button aria-pressed="false">Fondos</button>
+          <button aria-pressed="false">Postres y bebidas</button>
+        </div>
+
+        <div class="categoria">
+          <h3>Marinos</h3>
+          <ul class="platos">
+            <li class="plato">
+              <img src="../../../restaurante/img/ceviche.webp" alt="" width="900" height="675" />
+              <div>
+                <div class="plato__cabeza">
+                  <span>Ceviche de pescado</span><span class="plato__precio">S/ 35</span>
+                </div>
+                <p>Pescado del día en limón, cebolla roja y ají limo, con choclo y camote.</p>
+                <span class="etiqueta">De la casa</span><span class="etiqueta">Picante</span>
+                <div class="cantidad">
+                  <button aria-label="Quitar un ceviche de pescado">−</button>
+                  <output>2</output>
+                  <button aria-label="Agregar un ceviche de pescado">+</button>
+                </div>
+              </div>
+            </li>
+            <li class="plato">
+              <img src="../../../restaurante/img/jalea.webp" alt="" width="900" height="675" />
+              <div>
+                <div class="plato__cabeza">
+                  <span>Jalea mixta</span><span class="plato__precio">S/ 45</span>
+                </div>
+                <p>Pescado y mariscos fritos con yuca, sarsa criolla y salsa tártara.</p>
+                <span class="etiqueta">Para compartir</span>
+                <div class="cantidad">
+                  <button class="agregar">+ Agregar</button>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="categoria">
+          <h3>Fondos</h3>
+          <ul class="platos">
+            <li class="plato">
+              <img
+                src="../../../restaurante/img/arroz-con-pato.webp"
+                alt=""
+                width="900"
+                height="675"
+              />
+              <div>
+                <div class="plato__cabeza">
+                  <span>Arroz con pato</span><span class="plato__precio">S/ 38</span>
+                </div>
+                <p>
+                  Arroz verde al culantro con pato a la chiclayana, sarsa y papa a la huancaína.
+                </p>
+                <span class="etiqueta">De la casa</span>
+                <div class="cantidad">
+                  <button aria-label="Quitar un arroz con pato">−</button>
+                  <output>1</output>
+                  <button aria-label="Agregar un arroz con pato">+</button>
+                </div>
+              </div>
+            </li>
+            <li class="plato">
+              <img src="../../../restaurante/img/cabrito.webp" alt="" width="900" height="675" />
+              <div>
+                <div class="plato__cabeza">
+                  <span>Seco de cabrito</span><span class="plato__precio">S/ 40</span>
+                </div>
+                <p>Cabrito guisado en chicha de jora y culantro, con frejoles y arroz.</p>
+                <div class="cantidad">
+                  <button class="agregar">+ Agregar</button>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </section>
+    </main>
+
+    <div class="barra" role="region" aria-label="Tu pedido" hidden>
+      <span>3 platos · S/ 108</span>
+      <a class="boton" href="#comanda">Ver mi pedido</a>
+    </div>
+
+    <!-- Estado "comanda abierta" (se muestra con ?comanda en la URL para la captura) -->
+    <div class="velo" hidden></div>
+    <section class="comanda" id="comanda" hidden aria-labelledby="comanda-titulo">
+      <button class="cerrar" aria-label="Cerrar tu pedido">×</button>
+      <h2 id="comanda-titulo">Tu pedido</h2>
+      <div class="lineas">
+        <div class="linea">
+          <span>Ceviche de pescado</span><span>S/ 70</span>
+          <div class="cantidad">
+            <button aria-label="Quitar un ceviche de pescado">−</button><output>2</output
+            ><button aria-label="Agregar un ceviche de pescado">+</button>
+          </div>
+        </div>
+        <div class="linea">
+          <span>Arroz con pato</span><span>S/ 38</span>
+          <div class="cantidad">
+            <button aria-label="Quitar un arroz con pato">−</button><output>1</output
+            ><button aria-label="Agregar un arroz con pato">+</button>
+          </div>
+        </div>
+      </div>
+      <p class="total"><span>Total</span><span>S/ 108</span></p>
+      <fieldset>
+        <legend>¿Cómo lo recibes?</legend>
+        <div class="opciones">
+          <label><input type="radio" name="entrega" checked /> Delivery</label>
+          <label><input type="radio" name="entrega" /> Recojo</label>
+        </div>
+      </fieldset>
+      <div class="campo">
+        <label for="direccion">Dirección de entrega</label>
+        <input type="text" id="direccion" value="Calle Ejemplo 456, Chiclayo" />
+      </div>
+      <div class="campo">
+        <label for="nota">Nota para la cocina <span class="opcional">(opcional)</span></label>
+        <input type="text" id="nota" placeholder="Por ejemplo: sin cebolla" />
+      </div>
+      <a class="boton boton--principal enviar" href="#">Enviar pedido por WhatsApp</a>
+    </section>
+
+    <script>
+      // Estados para las capturas: ?pedido (barra con 3 platos) y ?comanda (comanda abierta)
+      if (/pedido|comanda/.test(location.search)) document.querySelector('.barra').hidden = false;
+      if (location.search.includes('comanda')) {
+        document.querySelector('.velo').hidden = false;
+        document.querySelector('.comanda').hidden = false;
+      }
+    </script>
+  </body>
+</html>
