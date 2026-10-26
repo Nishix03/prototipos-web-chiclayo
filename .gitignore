@@ -1,0 +1,7 @@
+node_modules/
+dist/
+.lighthouse/
+graphify-out/cache/
+*.log
+.DS_Store
+Thumbs.db

@@ -1,0 +1,37 @@
+{
+  "name": "prototipos-web-chiclayo",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Prototipos web por rubro para negocios de Chiclayo, sobre un núcleo común",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "a11y": "node scripts/a11y.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nishix03/prototipos-web-chiclayo.git"
+  },
+  "homepage": "https://nishix03.github.io/prototipos-web-chiclayo/",
+  "engines": {
+    "node": ">=22"
+  },
+  "devDependencies": {
+    "@axe-core/cli": "^4.14.0",
+    "@eslint/js": "^10.0.1",
+    "ajv": "^8.20.0",
+    "ajv-formats": "^3.0.1",
+    "eslint": "^10.13.0",
+    "eslint-config-prettier": "^10.1.8",
+    "globals": "^17.13.0",
+    "prettier": "^3.9.10",
+    "sharp": "^0.35.5",
+    "vite": "^8.3.5",
+    "vite-plugin-image-optimizer": "^2.0.3"
+  }
+}
