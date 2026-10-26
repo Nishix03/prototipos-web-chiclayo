@@ -1,0 +1,71 @@
+.formulario {
+  display: grid;
+  gap: var(--espacio-4);
+  max-width: 34rem;
+}
+
+.campo {
+  display: grid;
+  gap: var(--espacio-1);
+}
+
+.campo__etiqueta {
+  font-weight: 600;
+}
+
+.campo__opcional,
+.campo__ayuda {
+  color: var(--color-texto-suave);
+  font-size: var(--texto-sm);
+  font-weight: 400;
+}
+
+.campo input,
+.campo select,
+.campo textarea {
+  width: 100%;
+  min-height: var(--tamano-tactil);
+  padding: var(--espacio-2) var(--espacio-3);
+  border: 2px solid var(--color-borde);
+  border-radius: var(--radio-sm);
+  background: var(--color-fondo);
+  /* 16px como mínimo: con menos, iOS hace zoom al tocar el campo */
+  font-size: max(1rem, var(--texto-base));
+}
+
+.campo input:focus-visible,
+.campo select:focus-visible,
+.campo textarea:focus-visible {
+  border-color: var(--color-foco);
+  outline-offset: 1px;
+}
+
+.campo [aria-invalid='true'] {
+  border-color: var(--color-cerrado);
+}
+
+.campo__error {
+  color: var(--color-cerrado);
+  font-size: var(--texto-sm);
+  font-weight: 600;
+}
+
+.campo__error::before {
+  content: '⚠ ';
+}
+
+.formulario__estado:empty {
+  display: none;
+}
+
+.formulario__estado {
+  padding: var(--espacio-3);
+  border-radius: var(--radio-sm);
+  background: color-mix(in oklch, var(--color-abierto) 10%, var(--color-fondo));
+  color: var(--color-abierto);
+  font-weight: 600;
+}
+
+.formulario .boton {
+  justify-self: start;
+}
