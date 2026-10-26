@@ -1,7 +1,6 @@
 // Prueba de teclado E2E del restaurante (ADR 006).
 // Todo se hace como lo haría alguien sin mouse: Tab, Shift+Tab, Enter, Espacio y Escape.
 import { test, expect } from '@playwright/test';
-import { mensajePedido } from '../../restaurante/pedido.js';
 import {
   tabularHasta,
   recorridoConTab,
@@ -138,21 +137,16 @@ test('pedido completo solo con teclado: agregar, abrir comanda, Escape, enviar',
     'Abrimos WhatsApp con tu pedido listo. Solo falta que lo envíes.',
   );
 
-  // 7. El mensaje de WhatsApp es exactamente el que arma pedido.js
-  const pedido = new Map([
-    [
-      'ceviche',
-      { plato: { id: 'ceviche', nombre: 'Ceviche de pescado', precio: 35 }, cantidad: 2 },
-    ],
-    [
-      'arroz-con-pato',
-      { plato: { id: 'arroz-con-pato', nombre: 'Arroz con pato', precio: 38 }, cantidad: 1 },
-    ],
-  ]);
-  const esperado = mensajePedido(pedido, {
-    entrega: 'delivery',
-    direccion: 'Calle Ejemplo 456, Chiclayo',
-  });
+  // 7. El mensaje de WhatsApp, como texto literal y al número de las demos.
+  //    (Intl separa "S/" del número con un espacio no separable, U+00A0.)
+  const esperado = [
+    'Hola, quiero pedir:',
+    '• 2x Ceviche de pescado (S/ 70)',
+    '• 1x Arroz con pato (S/ 38)',
+    'Total: S/ 108',
+    'Entrega: Delivery',
+    'Dirección: Calle Ejemplo 456, Chiclayo',
+  ].join('\n');
   const [url] = await abiertas();
   expect(url).toBe(`https://wa.me/51995258351?text=${encodeURIComponent(esperado)}`);
 });
@@ -211,7 +205,13 @@ test('reserva con teclado: un lunes da error claro, un martes abre WhatsApp', as
   await fecha.fill('2026-11-10'); // martes
   await page.locator('#reserva-nombre').press('Enter');
   const [url] = await abiertas();
-  expect(decodeURIComponent(url)).toContain('Hola, quiero reservar una mesa:');
-  expect(decodeURIComponent(url)).toContain('• Fecha: 10/11/2026');
-  expect(decodeURIComponent(url)).toContain('• Personas: 4');
+  // Texto literal (no recalculado con el código de la página): es lo que leerá el dueño
+  const esperado = [
+    'Hola, quiero reservar una mesa:',
+    '• Fecha: 10/11/2026',
+    '• Hora: 13:00',
+    '• Personas: 4',
+    '• Nombre para la reserva: Cliente de prueba',
+  ].join('\n');
+  expect(url).toBe(`https://wa.me/51995258351?text=${encodeURIComponent(esperado)}`);
 });
