@@ -14,6 +14,11 @@
   margin: 0;
 }
 
+/* Lo oculto con el atributo hidden se queda oculto aunque una clase le dé display: grid */
+[hidden] {
+  display: none !important;
+}
+
 html {
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;

@@ -7,7 +7,7 @@ import { html } from './html.js';
 export function avisoDemo() {
   return html`
     <aside class="aviso-demo" aria-label="Aviso de demostración">
-      <p>Sitio de demostración: nombre, reseñas y datos de contacto son ficticios.</p>
+      <p>Sitio de demostración: el nombre, los precios, las reseñas y el contacto son ficticios.</p>
     </aside>
   `;
 }

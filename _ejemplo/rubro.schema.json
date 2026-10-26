@@ -2,6 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "Negocio · ejemplo",
   "description": "Esquema de esta página: la base común sin campos propios. Al copiar _ejemplo/ para un rubro nuevo, aquí se agregan sus campos (carta, servicios…) bajo properties.",
+  "type": "object",
   "allOf": [{ "$ref": "../core/negocio.schema.json" }],
   "properties": {
     "rubro": { "const": "ejemplo" }

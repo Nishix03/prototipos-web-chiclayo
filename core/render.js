@@ -167,7 +167,8 @@ function cabecera(negocio, urlPagina) {
     <meta name="twitter:card" content="summary_large_image" />
 
     <style>
-      :root {
+      /* :root:root gana a los :root de los CSS que se cargan después (más especificidad) */
+      :root:root {
         --color-marca: ${tema.marca};
         --color-sobre-marca: ${textoLegibleSobre(tema.marca)};
         --color-acento: ${tema.acento};
