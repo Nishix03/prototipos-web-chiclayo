@@ -171,6 +171,7 @@ function cabecera(negocio, urlPagina) {
         --color-marca: ${tema.marca};
         --color-sobre-marca: ${textoLegibleSobre(tema.marca)};
         --color-acento: ${tema.acento};
+        --color-sobre-acento: ${textoLegibleSobre(tema.acento)};
         --color-fondo: ${tema.fondo};
         --color-texto: ${tema.texto};
       }

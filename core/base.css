@@ -56,6 +56,7 @@ h3,
 h4 {
   font-family: var(--fuente-titulos);
   font-weight: var(--peso-titulos);
+  font-stretch: var(--ancho-titulos);
   line-height: var(--interlineado-titulos);
   text-wrap: balance;
 }
@@ -155,7 +156,7 @@ a {
   min-height: var(--tamano-tactil);
   padding: var(--espacio-3) var(--espacio-5);
   border: 2px solid transparent;
-  border-radius: var(--radio-pildora);
+  border-radius: var(--radio-boton);
   font-weight: 600;
   line-height: 1.2;
   text-decoration: none;
