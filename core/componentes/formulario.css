@@ -26,7 +26,8 @@
   width: 100%;
   min-height: var(--tamano-tactil);
   padding: var(--espacio-2) var(--espacio-3);
-  border: 2px solid var(--color-borde);
+  /* El borde delimita el control: 3:1 como mínimo (WCAG 1.4.11); --color-borde no llega */
+  border: 2px solid var(--color-texto-suave);
   border-radius: var(--radio-sm);
   background: var(--color-fondo);
   /* 16px como mínimo: con menos, iOS hace zoom al tocar el campo */

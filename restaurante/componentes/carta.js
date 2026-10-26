@@ -82,26 +82,30 @@ export function carta(negocio) {
         </p>
       </noscript>
 
-      <div class="filtros" role="group" aria-label="Filtrar la carta" data-filtros hidden>
-        <button type="button" aria-pressed="true" data-filtro="todo">Todo</button>
+      <!-- Los filtros son sticky dentro de este cuerpo: se sueltan al terminar la última
+           categoría, no al terminar la sección (que tiene margen abajo) -->
+      <div class="carta__cuerpo">
+        <div class="filtros" role="group" aria-label="Filtrar la carta" data-filtros hidden>
+          <button type="button" aria-pressed="true" data-filtro="todo">Todo</button>
+          ${categorias.map(
+            (c) =>
+              html`<button type="button" aria-pressed="false" data-filtro="${c.id}">
+                ${c.nombre}
+              </button>`,
+          )}
+        </div>
+
         ${categorias.map(
-          (c) =>
-            html`<button type="button" aria-pressed="false" data-filtro="${c.id}">
-              ${c.nombre}
-            </button>`,
+          (c) => html`
+            <section class="categoria" data-categoria="${c.id}" aria-labelledby="categoria-${c.id}">
+              <h3 class="categoria__titulo" id="categoria-${c.id}">${c.nombre}</h3>
+              <ul class="platos" role="list">
+                ${c.platos.map(plato)}
+              </ul>
+            </section>
+          `,
         )}
       </div>
-
-      ${categorias.map(
-        (c) => html`
-          <section class="categoria" data-categoria="${c.id}" aria-labelledby="categoria-${c.id}">
-            <h3 class="categoria__titulo" id="categoria-${c.id}">${c.nombre}</h3>
-            <ul class="platos" role="list">
-              ${c.platos.map(plato)}
-            </ul>
-          </section>
-        `,
-      )}
     </section>
   `;
 }

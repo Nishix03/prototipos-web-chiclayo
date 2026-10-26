@@ -765,6 +765,10 @@ html:has(body.con-pedido) {
   cursor: pointer;
 }
 
+.opcion input {
+  accent-color: var(--color-acento); /* sin el azul del sistema */
+}
+
 .opcion:has(input:checked) {
   background: var(--color-texto);
   color: var(--color-fondo);
