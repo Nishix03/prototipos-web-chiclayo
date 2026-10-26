@@ -222,7 +222,7 @@ html:has(body.con-pedido) {
   }
 }
 
-/* Menú de hoy: la columna lateral con su sello de precio */
+/* Menú del día: la columna lateral con su sello de precio */
 .menu-hoy {
   position: relative;
   padding: var(--espacio-4);

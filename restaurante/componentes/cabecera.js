@@ -19,7 +19,7 @@ export function cabecera(negocio) {
         <span class="cabecera__lema">${eslogan}${sufijo ? ` · ${sufijo}` : ''}</span>
       </p>
       <div class="fecha">
-        <a href="#menu-hoy">Menú de hoy: ${soles(menuDelDia.precio)}</a>
+        <a href="#menu-hoy">Menú del día: ${soles(menuDelDia.precio)}</a>
         ${estadoHorario()}
         <span class="fecha__extra">${entrega} por WhatsApp</span>
       </div>

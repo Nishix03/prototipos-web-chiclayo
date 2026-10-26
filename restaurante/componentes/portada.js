@@ -9,7 +9,8 @@ function menuHoy({ dias, horario, precio, entradas, fondos, incluye }) {
   return html`
     <aside class="menu-hoy" id="menu-hoy" aria-labelledby="menu-hoy-titulo">
       <p class="menu-hoy__sello" aria-hidden="true">${soles(precio)}</p>
-      <h2 class="menu-hoy__titulo" id="menu-hoy-titulo">Menú de hoy</h2>
+      <!-- "del día" y no "de hoy": el menú no se sirve todos los días (copy-proof-check) -->
+      <h2 class="menu-hoy__titulo" id="menu-hoy-titulo">Menú del día</h2>
       <p class="menu-hoy__cuando">${dias}, de ${horario.replace(' – ', ' a ')}</p>
       <dl class="menu-hoy__lista">
         <dt>${entradas.length > 1 ? 'Entradas (elige una)' : 'Entrada'}</dt>

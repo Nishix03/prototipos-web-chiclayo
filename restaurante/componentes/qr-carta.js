@@ -31,7 +31,7 @@ export function qrCarta(negocio, { urlPagina }) {
       </div>
       <div class="qr-carta__texto">
         <h2 id="qr-titulo">La carta en tu mesa</h2>
-        <p>Escanea el código con la cámara del celular y pide desde la mesa.</p>
+        <p>Escanea el código con la cámara del celular y mira la carta desde tu mesa.</p>
         <a class="boton boton--secundario" href="${descarga}" download="qr-carta.svg">
           Descargar el QR para imprimir
         </a>
