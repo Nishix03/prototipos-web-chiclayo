@@ -1,0 +1,673 @@
+/*
+ * Maqueta del hero vivo · «La olla manda» con la pizarra de C (brief: ../restaurante-inmersivo.md).
+ * Usa el núcleo tal cual y los tokens del paso 3; aquí solo va la forma de esta dirección.
+ */
+@import '../../../core/core.css';
+@import './tokens.css';
+
+body {
+  background: var(--color-fondo);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-variation-settings: normal;
+  text-wrap: balance;
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-foco);
+  outline-offset: 3px;
+}
+
+/* ── Cabecera ── */
+.cabecera__fila {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--espacio-4);
+  padding-block: var(--espacio-3);
+}
+
+.cabecera__nombre {
+  font-family: var(--fuente-titulos);
+  font-weight: 800;
+  font-size: var(--texto-lg);
+  line-height: 1;
+}
+
+.cabecera__nombre span {
+  margin-left: var(--espacio-1);
+  padding: 0.1em 0.45em;
+  border-radius: var(--radio-pildora);
+  background: var(--color-texto);
+  color: var(--color-fondo);
+  font-size: 0.7em;
+  vertical-align: 0.15em;
+}
+
+.cabecera nav {
+  display: flex;
+  gap: var(--espacio-2);
+}
+
+/* En celular basta «Carta»: el menú del día ya tiene su botón en la portada */
+@media (max-width: 30rem) {
+  .cabecera nav a + a {
+    display: none;
+  }
+}
+
+.cabecera nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tamano-tactil);
+  padding-inline: var(--espacio-3);
+  font-family: var(--fuente-titulos);
+  font-weight: 700;
+  color: var(--color-texto);
+  text-decoration: none;
+}
+
+/* ── Portada ── */
+.portada {
+  display: grid;
+  gap: var(--espacio-4);
+  width: min(100% - 2 * var(--margen-lateral), var(--ancho-contenido));
+  margin-inline: auto;
+  padding-block: var(--espacio-2) var(--espacio-seccion);
+}
+
+.portada__texto {
+  display: grid;
+  gap: var(--espacio-3); /* 16 px en escritorio, más abajo */
+  align-content: center;
+}
+
+/* Celular: la olla arriba (orden visual), el titular primero en el DOM (orden de lectura) */
+.olla {
+  order: -1;
+  position: relative;
+  aspect-ratio: 1;
+  width: min(66%, 14rem); /* 360×780: la olla y «Armar mi pedido» caben sin bajar */
+  margin-inline: auto;
+}
+
+.olla__poster,
+.olla canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.olla canvas {
+  opacity: 0;
+  transition: opacity var(--duracion-pesada) var(--curva-salida);
+}
+
+.olla[data-viva] canvas {
+  opacity: 1;
+}
+
+.olla[data-viva] .olla__poster {
+  visibility: hidden;
+  transition: visibility 0s var(--duracion-pesada);
+}
+
+/* Vapor: 5 bocanadas que suben desde la boca de la olla y se abren (solo transform y opacity).
+   Se espesa al acercarse el menú del día (--vapor) y se aparta cuando la cámara se asoma (--giro). */
+.olla__vapor,
+.olla__brasa {
+  z-index: 1; /* encima del póster y del canvas */
+}
+
+.olla__vapor {
+  position: absolute;
+  left: 30%;
+  top: 4%;
+  width: 40%;
+  height: 40%; /* la base toca el borde de la olla: el vapor sale de adentro */
+  pointer-events: none;
+  opacity: calc((0.75 + var(--vapor, 0) * 0.25) * (1 - var(--giro, 0) * 0.8));
+}
+
+.olla__vapor span {
+  position: absolute;
+  bottom: 0;
+  left: calc(50% - 32%);
+  width: 64%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgb(255 250 242 / 0.7) 0%,
+    rgb(255 250 242 / 0.25) 40%,
+    transparent 70%
+  );
+  opacity: 0;
+  animation: vapor-sube 4.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
+}
+
+.olla__vapor span:nth-child(2) {
+  animation-delay: -0.9s;
+  --deriva: -18%;
+}
+.olla__vapor span:nth-child(3) {
+  animation-delay: -1.8s;
+  --deriva: 14%;
+}
+.olla__vapor span:nth-child(4) {
+  animation-delay: -2.7s;
+  --deriva: -8%;
+}
+.olla__vapor span:nth-child(5) {
+  animation-delay: -3.6s;
+  --deriva: 20%;
+}
+
+@keyframes vapor-sube {
+  0% {
+    opacity: 0;
+    transform: translateY(18%) scale(0.5);
+  }
+  18% {
+    opacity: 0.85;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(var(--deriva, 6%), -95%) scale(1.5);
+  }
+}
+
+/* Brillo de la brasa: late con irregularidad y se aviva con el cursor (--avivar) */
+.olla__brasa {
+  position: absolute;
+  left: 24%;
+  top: 72%;
+  width: 52%;
+  height: 20%;
+  border-radius: 50%;
+  background: radial-gradient(
+    closest-side,
+    rgb(255 140 40 / 0.55),
+    rgb(255 106 31 / 0.18) 55%,
+    transparent
+  );
+  pointer-events: none;
+  opacity: calc(0.55 + var(--avivar, 0) * 0.45);
+}
+
+.olla__brasa::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: inherit;
+  animation:
+    brasa-late 2.3s steps(1, end) infinite,
+    brasa-respira 1.7s ease-in-out infinite alternate;
+}
+
+/* Fuera de pantalla no se anima nada (maqueta.js pone data-fuera) */
+.olla[data-fuera] .olla__vapor span,
+.olla[data-fuera] .olla__brasa::after {
+  animation-play-state: paused;
+}
+
+@keyframes brasa-respira {
+  to {
+    transform: scale(1.08);
+  }
+}
+
+@keyframes brasa-late {
+  0%,
+  100% {
+    opacity: 0.5;
+  }
+  20% {
+    opacity: 0.8;
+  }
+  35% {
+    opacity: 0.6;
+  }
+  60% {
+    opacity: 0.95;
+  }
+  80% {
+    opacity: 0.65;
+  }
+}
+
+.estado {
+  justify-self: start;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--espacio-2);
+  padding: var(--espacio-1) var(--espacio-3);
+  border-radius: var(--radio-pildora);
+  background: var(--color-superficie);
+  color: var(--color-abierto);
+  font-family: var(--fuente-titulos);
+  font-weight: 700;
+  font-size: var(--texto-sm);
+}
+
+.estado__punto {
+  width: 0.55em;
+  height: 0.55em;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.titular {
+  font-size: var(--texto-display);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  max-width: 14ch;
+}
+
+.bajada {
+  max-width: 36ch;
+  font-size: var(--texto-lg);
+}
+
+.boton {
+  border-radius: var(--radio-boton);
+  font-family: var(--fuente-titulos);
+  font-weight: 700;
+}
+
+/* Barro sobre adobe da 2.72:1: el borde de hollín hace visible el botón (WCAG 1.4.11) */
+.boton--principal {
+  background: var(--color-marca);
+  color: var(--color-sobre-marca);
+  border: 2px solid var(--color-texto);
+  box-shadow: 0 3px 0 var(--color-texto);
+  transition:
+    transform var(--duracion-rapida) var(--curva-salida),
+    box-shadow var(--duracion-rapida) var(--curva-salida);
+}
+
+.boton--principal:hover {
+  background: var(--color-marca-presionada);
+}
+
+.boton--principal:active {
+  transform: translateY(3px);
+  box-shadow: 0 0 0 var(--color-texto);
+}
+
+.boton--secundario {
+  background: transparent;
+  color: var(--color-texto);
+  border: 2px solid var(--color-texto);
+}
+
+.boton--secundario:hover {
+  background: var(--color-superficie);
+}
+
+@media (min-width: 60rem) {
+  .portada {
+    grid-template-columns: repeat(12, 1fr);
+    gap: var(--hueco-grilla);
+    min-height: min(52rem, calc(100svh - 7rem));
+    align-items: center;
+  }
+
+  .portada__texto {
+    grid-column: 1 / span 6;
+    gap: var(--espacio-4);
+  }
+
+  .olla {
+    order: 0;
+    grid-column: 7 / span 6;
+    width: 100%;
+    max-width: 40rem;
+    margin: 0;
+  }
+}
+
+/* ── Pizarra (de la dirección C): menú del día y carta ── */
+.pizarra {
+  border: var(--marco-pizarra);
+  border-radius: var(--radio-pizarra);
+  background: var(--color-pizarra);
+  color: var(--color-tiza);
+  box-shadow: var(--sombra-pizarra);
+  padding: var(--espacio-6) var(--espacio-5);
+  --color-foco: var(--color-foco-pizarra);
+}
+
+.pizarra h2,
+.pizarra h3,
+.pizarra h4 {
+  color: var(--color-tiza);
+}
+
+.pizarra-seccion {
+  padding-block: var(--espacio-seccion) 0;
+}
+
+.pizarra__cabeza {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--espacio-3);
+}
+
+.pizarra__titulo {
+  font-size: var(--texto-3xl);
+}
+
+.pizarra__precio {
+  font-family: var(--fuente-titulos);
+  font-weight: 800;
+  font-size: var(--texto-3xl);
+  color: var(--color-acento);
+  line-height: 1;
+}
+
+.pizarra__intro {
+  margin-top: var(--espacio-3);
+  color: var(--color-tiza-suave);
+  max-width: var(--ancho-lectura);
+}
+
+.pizarra__columnas {
+  display: grid;
+  gap: var(--espacio-5);
+  margin-top: var(--espacio-6);
+}
+
+.pizarra__columnas h3 {
+  font-size: var(--texto-xl);
+  border-bottom: 2px dashed color-mix(in oklch, var(--color-tiza) 40%, transparent);
+  padding-bottom: var(--espacio-2);
+}
+
+.pizarra__columnas h3 span {
+  font-family: var(--fuente-texto);
+  font-weight: 400;
+  font-size: var(--texto-base);
+  color: var(--color-tiza-suave);
+}
+
+.pizarra__columnas ul {
+  margin-top: var(--espacio-3);
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: var(--espacio-2);
+  font-size: var(--texto-lg);
+}
+
+@media (min-width: 48rem) {
+  .pizarra__columnas {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.carta-seccion {
+  padding-block: var(--espacio-seccion);
+}
+
+.carta-seccion > .contenedor:first-child {
+  margin-bottom: var(--espacio-5);
+}
+
+.seccion__titulo {
+  font-size: var(--texto-3xl);
+}
+
+.categoria + .categoria {
+  margin-top: var(--espacio-7);
+}
+
+.categoria > h3 {
+  font-size: var(--texto-2xl);
+  color: var(--color-acento);
+}
+
+.platos {
+  display: grid;
+  gap: var(--espacio-4);
+  margin-top: var(--espacio-4);
+  padding: 0;
+  list-style: none;
+}
+
+.plato {
+  display: grid;
+  grid-template-columns: 5.5rem 1fr;
+  grid-template-areas:
+    'foto texto'
+    'precio boton';
+  gap: var(--espacio-3) var(--espacio-4);
+  align-items: center;
+  padding-bottom: var(--espacio-4);
+  border-bottom: 1px solid color-mix(in oklch, var(--color-tiza) 25%, transparent);
+}
+
+.plato img {
+  grid-area: foto;
+  width: 5.5rem;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: var(--radio-sm);
+}
+
+.plato > div {
+  grid-area: texto;
+}
+
+.plato h4 {
+  font-size: var(--texto-lg);
+}
+
+.plato p {
+  color: var(--color-tiza-suave);
+  font-size: var(--texto-sm);
+}
+
+.plato .plato__precio {
+  grid-area: precio;
+  font-family: var(--fuente-titulos);
+  font-weight: 800;
+  font-size: var(--texto-xl);
+  color: var(--color-acento);
+  font-variant-numeric: tabular-nums;
+}
+
+.plato__agregar {
+  grid-area: boton;
+  justify-self: end;
+  background: var(--color-acento);
+  color: var(--color-sobre-acento);
+  border: 0;
+  transition: transform var(--duracion-rapida) var(--curva-salida);
+}
+
+.plato__agregar:hover {
+  background: color-mix(in oklch, var(--color-acento) 85%, white);
+}
+
+.plato__agregar:active {
+  transform: scale(0.97);
+}
+
+@media (min-width: 48rem) {
+  .platos {
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: var(--espacio-7);
+  }
+
+  .plato {
+    grid-template-columns: 7rem 1fr auto;
+    grid-template-areas:
+      'foto texto precio'
+      'foto texto boton';
+  }
+
+  .plato img {
+    width: 7rem;
+  }
+}
+
+/* ── Barra del pedido y comanda ── */
+.barra-pedido {
+  position: fixed;
+  inset: auto var(--espacio-3) var(--espacio-3);
+  z-index: var(--capa-flotante);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--espacio-3);
+  max-width: 36rem;
+  margin-inline: auto;
+  padding: var(--espacio-2) var(--espacio-2) var(--espacio-2) var(--espacio-5);
+  border-radius: var(--radio-pildora);
+  background: var(--color-texto);
+  color: var(--color-superficie);
+  box-shadow: var(--sombra-lg);
+  --color-foco: var(--color-acento);
+}
+
+.barra-pedido__resumen {
+  font-family: var(--fuente-titulos);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums; /* el total no cambia de ancho al sumar platos */
+}
+
+.barra-pedido[data-latido] {
+  animation: latido var(--duracion-media) var(--curva-salida);
+}
+
+@keyframes latido {
+  50% {
+    transform: scale(1.04);
+  }
+}
+
+.plato-volador {
+  position: fixed;
+  z-index: calc(var(--capa-flotante) + 1);
+  pointer-events: none;
+  border-radius: var(--radio-sm);
+  box-shadow: var(--sombra-md);
+}
+
+.comanda {
+  width: min(100% - 2rem, 28rem);
+  max-height: min(85svh, 40rem);
+  margin: auto auto var(--espacio-4);
+  padding: var(--espacio-6) var(--espacio-5);
+  border: 0;
+  border-radius: var(--radio-lg) var(--radio-lg) var(--radio-md) var(--radio-md);
+  background: var(--color-superficie);
+  color: var(--color-texto);
+  box-shadow: var(--sombra-lg);
+  /* Borde dentado del ticket */
+  -webkit-mask: radial-gradient(circle 6px at 50% 100%, #0000 98%, #000) 0 0 / 16px 100%;
+  mask: radial-gradient(circle 6px at 50% 100%, #0000 98%, #000) 0 0 / 16px 100%;
+}
+
+.comanda::backdrop {
+  background: color-mix(in oklch, var(--color-texto) 55%, transparent);
+}
+
+.comanda h2 {
+  font-size: var(--texto-2xl);
+}
+
+.comanda__lineas {
+  margin-block: var(--espacio-5);
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: var(--espacio-2);
+  font-variant-numeric: tabular-nums;
+}
+
+.comanda__lineas li {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--espacio-4);
+  padding-bottom: var(--espacio-2);
+  border-bottom: 1px dashed var(--color-texto-suave);
+}
+
+/* El ticket se imprime: cada línea baja de la impresora, una tras otra (60 ms) */
+.comanda[open] .comanda__lineas li {
+  animation: imprimir var(--duracion-media) var(--curva-salida) backwards;
+  animation-delay: calc(var(--i, 0) * 60ms + 120ms);
+}
+
+@keyframes imprimir {
+  from {
+    opacity: 0;
+    transform: translateY(-0.5rem);
+  }
+}
+
+.comanda__total {
+  font-family: var(--fuente-titulos);
+  font-weight: 800;
+  font-size: var(--texto-xl);
+}
+
+.comanda__nota {
+  margin-block: var(--espacio-3) var(--espacio-5);
+  color: var(--color-texto-suave);
+  font-size: var(--texto-sm);
+}
+
+/* View Transition: la barra se convierte en la comanda (y vuelve) */
+::view-transition-group(pedido) {
+  animation-duration: 300ms;
+  animation-timing-function: var(--curva-salida);
+}
+
+::view-transition-old(pedido),
+::view-transition-new(pedido) {
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ── Movimiento reducido: nada se mueve, todo está en su sitio ── */
+@media (prefers-reduced-motion: reduce) {
+  .olla canvas,
+  .boton--principal,
+  .plato__agregar {
+    transition: none;
+  }
+
+  .barra-pedido[data-latido],
+  .comanda[open] .comanda__lineas li,
+  .olla__brasa::after {
+    animation: none;
+  }
+
+  /* Vapor quieto: dos bocanadas fijas, para que la olla no se vea fría */
+  .olla__vapor span {
+    animation: none;
+    opacity: 0.45;
+    transform: translateY(-30%) scale(0.9);
+  }
+
+  .olla__vapor span:nth-child(n + 3) {
+    display: none;
+  }
+
+  .olla__vapor span:nth-child(2) {
+    transform: translate(-12%, -70%) scale(1.2);
+    opacity: 0.3;
+  }
+}

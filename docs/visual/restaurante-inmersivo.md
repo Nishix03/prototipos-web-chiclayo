@@ -1,6 +1,6 @@
 # Brief visual · Restaurante v2 inmersivo («Sabores del Norte · Demo»)
 
-- **Estado:** pasos 1 y 2 hechos. **Falta que Iván elija una de las 3 direcciones.** Los pasos 3 a 6 empiezan después.
+- **Estado:** dirección elegida por Iván: A con la pizarra de C (ver el final del paso 2). **Pasos 3 a 6 hechos; espera tu aprobación del hero vivo y la decisión del ADR 008 (móvil con 3D: 86).**
 - **Fecha:** 2026-10-26
 - **Identidad de partida:** «Fuego y barro», la cocina de leña de una picantería ([identidad.md](identidad.md)).
 - **Alcance:** solo cambia la capa de presentación de la v1 ([restaurante.md](restaurante.md)).
@@ -242,4 +242,230 @@ Contraste medido sobre los hex propuestos (texto normal ≥ 4.5:1). El paso 3 lo
 
 **C es la alternativa** si quieres más personalidad gráfica y menos «producto». **B es la más vistosa en video,** pero es la que más probablemente te obligue a la decisión del ADR 008 (aceptar 85 o aligerar).
 
-**Elige una (A, B o C) o una mezcla explícita.** Por ejemplo, la tipografía de C con la escena de A. Con tu elección sigo con el paso 3 (sistema visual).
+### Elección de Iván (2026-10-26)
+
+**A «La olla manda», con un cambio:** la carta y el menú del día usan **la pizarra verde de C**, adaptada a la paleta y la tipografía de A.
+
+- **Sí:** el verde de pizarra como superficie de la carta y del menú del día, con la grilla que acomoda los bloques de C.
+- **No:** Bungee. Toda la página usa Bricolage Grotesque y Literata.
+- **El resto es A:** fondo adobe, la olla 3D en el hero, el ritmo pesado y generoso, y las 3 coreografías de A.
+
+---
+
+## Paso 3 · Sistema visual
+
+**Skills usadas:**
+
+- **`ui-ux-pro-max`:** su sistema de diseño genérico para «restaurante» proponía rojo rosado con Playfair Display. Contradice la dirección que ya elegiste, así que no se adoptó. Sí se tomaron sus reglas de ritmo: escalonado de 300 a 450 ms y rebote (`back.out`) solo fuera del contenido denso. También su regla de Three.js de liberar las texturas.
+- **`design:design-system`:** se usan los nombres del núcleo (`--color-marca`, `--color-fondo`…) y solo se agregan los que faltan (pizarra, tiza, marco, curvas de movimiento). Los colores no quedan como valores sueltos en los componentes.
+
+Los tokens están en [restaurante-inmersivo/tokens.css](restaurante-inmersivo/tokens.css).
+
+### Paleta y contraste (medido)
+
+| Token                              | Hex                    | Uso                  | Contraste                                  |
+| ---------------------------------- | ---------------------- | -------------------- | ------------------------------------------ |
+| `--color-fondo`                    | `#d6a27a`              | adobe                | —                                          |
+| `--color-texto`                    | `#22150e`              | hollín               | 7.88:1 sobre adobe                         |
+| `--color-texto-suave`              | `#4a2f1f`              | bajadas, notas       | 5.42:1 sobre adobe                         |
+| `--color-marca`                    | `#9c4a26`              | botón principal      | texto `#fff7ee` 5.78:1                     |
+| `--color-acento`                   | `#f2b705`              | precios, «Agregar»   | hollín encima 9.78:1; sobre pizarra 5.88:1 |
+| `--color-superficie`               | `#e8e1d9`              | fichas, comanda      | hollín 13.71:1                             |
+| `--color-pizarra` / `--color-tiza` | `#2c4336` / `#e8e1d9`  | carta y menú del día | 8.25:1                                     |
+| `--color-foco`                     | hollín; ají en pizarra | anillo de foco       | 7.88:1 / 5.88:1                            |
+
+**Hallazgos del paso 3:**
+
+1. **El verde y el rojo de estado del núcleo dan ~3:1 sobre adobe**, menos que 4.5:1. «Abierto ahora» va siempre sobre una ficha de ceniza (5.3:1).
+2. **El barro sobre adobe da 2.72:1.** Un botón de barro no se distingue del fondo por sí solo (WCAG 1.4.11), así que lleva borde y sombra de hollín.
+3. **El anillo de foco no puede ser barro.** Es hollín y, sobre la pizarra, ají.
+
+### Tipografía
+
+- **Titulares:** Bricolage Grotesque, peso 600–800, con ancho y tamaño óptico fijos en el archivo recortado.
+- **Texto:** Literata, peso 400–700.
+- **Peso:** con `npm run fuentes`, 26 + 26 KB = 52 KB, menos que los 67 KB de la v1.
+- **Escala fluida:** razón ~1.25 en celular y ~1.333 en escritorio. El titular va de 34 px a 360 a 88 px a 1280.
+- **Interlineado:** 1 en titulares y 1.65 en texto.
+
+### Grilla, formas y sombras
+
+- **Grilla:** 4 columnas en celular y 12 desde 60rem. Hueco fluido de 16 a 32 px. Contenido de 76rem.
+- **Radios:**
+  - barro con curvas generosas: 8 / 16 / 32 px, y botones en píldora;
+  - la pizarra lleva radio de 6 px y un marco recto de madera de algarrobo (10 px, `#5b3520`).
+- **Sombras teñidas de hollín, nunca gris neutro.** La pizarra combina una línea interior clara con una sombra media.
+
+---
+
+## Paso 4 · Guion de movimiento
+
+**Skills usadas:**
+
+- **Diseñan:** `web-animation-design` y el catálogo de efectos de `crear-web-como-servicio`.
+  - Reglas aplicadas: ease-out para lo que entra, ease-in-out para lo que ya está en pantalla, interfaz bajo 300 ms y sin animación en acciones de teclado.
+  - Con movimiento reducido no se anima nada, incluida la opacidad.
+- **Pulen después:** `emil-design-engineering` y `make-interfaces-feel-better`, al construir el rubro (como pide el plan).
+
+| #   | Elemento                                                     | Disparador                                                 | Duración                               | Curva                                    | Movimiento reducido                    |
+| --- | ------------------------------------------------------------ | ---------------------------------------------------------- | -------------------------------------- | ---------------------------------------- | -------------------------------------- |
+| 1   | **Olla gira y la cámara se asoma** (coreografía 1)           | scroll del primer 60 % de pantalla (ScrollTrigger `scrub`) | ligada al scroll, inercia de ~200 ms   | lerp en la escena                        | sin 3D: queda el póster                |
+| 2   | **Títulos que se arman** palabra por palabra (coreografía 2) | el título entra al 85 % de la pantalla, una vez            | 500 ms + 70 ms entre palabras          | `power4.out` (ease-out-quint)            | sin animación: el título ya está       |
+| 3   | **Capas de la pizarra suben** (coreografía 3)                | la pizarra entra al 80 %, una vez                          | 500 ms + 120 ms entre capas            | `power4.out`                             | sin animación                          |
+| 4   | Vapor (5 bocanadas, CSS)                                     | continuo; se pausa fuera de pantalla                       | 4.4 s cada una, desfasadas             | ease-out-quad                            | 2 bocanadas quietas                    |
+| 5   | Brillo de la brasa (CSS)                                     | continuo; se aviva con el cursor o el dedo                 | late irregular de 2.3 s; respira 1.7 s | `steps` / ease-in-out                    | brillo fijo                            |
+| 6   | **El plato cae a la barra**                                  | clic o toque en «Agregar» (con teclado no)                 | 520 ms                                 | X ease-out-quad; Y sube y cae acelerando | sin vuelo: el total cambia en la barra |
+| 7   | Latido de la barra                                           | llega un plato                                             | 250 ms                                 | ease-out-quart                           | ninguno                                |
+| 8   | **La barra se convierte en la comanda** (View Transition)    | «Ver mi pedido» / Escape / «Volver»                        | 300 ms                                 | ease-out-quart                           | se abre sin transición                 |
+| 9   | El ticket se imprime                                         | se abre la comanda                                         | 250 ms por línea, 60 ms entre líneas   | ease-out-quart                           | sin animación                          |
+| 10  | Póster → escena 3D                                           | la escena dibujó su primer cuadro                          | 500 ms                                 | fundido de `opacity`                     | no ocurre                              |
+| 11  | Botón presionado                                             | `:active`                                                  | 150 ms                                 | ease-out-quart                           | ninguno                                |
+
+**Plan de carga del 3D (ADR 008):**
+
+1. El HTML trae la imagen fija de la olla (WebP con `srcset`, `fetchpriority="high"`). Es el LCP.
+2. Con `load` y un momento libre (`requestIdleCallback`) llegan `coreografias.js` (GSAP) y `escena.js` (Three.js), cada uno con `import()`.
+3. Antes de pedir Three.js se revisa si hay movimiento reducido, ahorro de datos, `deviceMemory` menor a 4 o falta WebGL2. En cualquiera de esos casos no se descarga.
+4. Los shaders se compilan con `compileAsync`. El canvas aparece con un fundido cuando dibujó su primer cuadro.
+5. La escena se redibuja solo cuando el scroll o el cursor la cambian. El vapor y la brasa son CSS, que mueve el compositor.
+6. El bucle se pausa con `IntersectionObserver` y con la pestaña oculta.
+
+---
+
+## Paso 5 · Hero vivo
+
+Archivos: [restaurante-inmersivo/](restaurante-inmersivo/).
+
+- **`index.html`:** el contenido real de `negocio.json` (titular, menú del día y 4 platos con sus fotos y precios).
+- **`escena.js`:** la olla torneada en código (`LatheGeometry`, sin modelo descargado), con textura de barro paleteado generada en un canvas, más leña y brasas.
+- **`coreografias.js`:** las 3 coreografías.
+- **`maqueta.js`:** el pedido mínimo, el vuelo del plato, la View Transition y la carga diferida.
+- **`generar-poster.mjs`:** genera la imagen fija desde la misma escena y **falla si pesa más que la foto actual**.
+- **`grabar.mjs`:** graba el recorrido, comprueba que «Armar mi pedido» quede en la primera pantalla y pasa Axe.
+
+**Verla en tu navegador** (desde la carpeta del repo, en WSL):
+
+```bash
+npm run maqueta:build && npm run maqueta:preview
+```
+
+Abre **http://localhost:5181/** en Chrome o Edge de Windows. Con `npm run maqueta` (servidor de desarrollo) es **http://localhost:5180/**.
+
+- **Para ver cada parte:** baja despacio por la portada para ver girar la olla, pasa el cursor sobre las brasas y agrega 2 o 3 platos.
+- **`?3d=0`:** fuerza la imagen fija.
+- **Movimiento reducido:** con «Efectos de animación» desactivado en Windows se ve la versión quieta.
+
+**Video del recorrido** (Playwright, 25 a 33 s). Muestra la portada, el giro de la olla, el menú del día, la carta, 3 platos cayendo a la barra y la comanda:
+
+- [recorrido a 360 px](restaurante-inmersivo/video/recorrido-360.mp4)
+- [recorrido a 1440 px](restaurante-inmersivo/video/recorrido-1440.mp4)
+
+> El video se grabó en Chromium **sin GPU**: el 3D se dibuja por software, así que se ve con menos cuadros por segundo y con cortes a mitad del scroll que no tendría un celular real. Para juzgar la fluidez, mira la página en tu navegador.
+
+| Celular 360 px                                                             | Escritorio 1440 px                                                         |
+| -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
+| ![Portada a 360 px](restaurante-inmersivo/capturas/hero-360.png)           | ![Portada a 1440 px](restaurante-inmersivo/capturas/hero-1440.png)         |
+| ![Carta en pizarra a 360 px](restaurante-inmersivo/capturas/carta-360.png) | ![Giro de la olla a 1440 px](restaurante-inmersivo/capturas/giro-1440.png) |
+| ![Comanda a 360 px](restaurante-inmersivo/capturas/comanda-360.png)        | ![Carta a 1440 px](restaurante-inmersivo/capturas/carta-1440.png)          |
+
+---
+
+## Paso 6 · Revisión experta
+
+### `design:design-critique`
+
+**¿Un dueño recordaría esta página mañana?** Sí. La olla de barro humeando sobre un fondo adobe, más la carta en pizarra verde con precios en ají, no se parecen a ninguna web de restaurante de Chiclayo ni a las referencias del paso 1.
+
+| Hallazgo                                                                                    | Gravedad | Corrección aplicada                                                                                                                              |
+| ------------------------------------------------------------------------------------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
+| A 360×780, «Armar mi pedido» quedaba **27 px bajo el pliegue**; la v1 lo mostraba sin bajar | 🟡       | Olla de 14rem en celular, titular de 34 px y separación de 12 px. Ahora termina en y = 776 de 780, y `grabar.mjs` lo comprueba en cada grabación |
+| El vapor flotaba separado de la boca de la olla                                             | 🟡       | Las bocanadas nacen pegadas al borde y suben desde ahí                                                                                           |
+| En escritorio la olla se veía chica y baja en su columna                                    | 🟢       | Cámara más cerca: la olla llena la columna                                                                                                       |
+| La leña y las brasas se ven algo plásticas                                                  | 🟢       | Pendiente para el pulido al construir (no bloquea la aprobación)                                                                                 |
+
+### `audit-as-design-eng`
+
+**Adaptación de la auditoría:**
+
+- **Modo oscuro:** no aplica, por decisión de diseño de la v1 (`color-scheme: light`, diseño «de papel»).
+- **El informe:** va en este brief, no en una carpeta `reviews/`.
+
+| Hallazgo                                                                                                                              | Gravedad | Corrección                                |
+| ------------------------------------------------------------------------------------------------------------------------------------- | -------- | ----------------------------------------- |
+| El canvas y la imagen fija tenían el adobe escrito a mano. Con otro `tema` en `negocio.json` se verían como un recuadro de otro color | 🔴       | Los dos leen `--color-fondo` de la página |
+| «Agregar» no tenía estado hover                                                                                                       | 🟡       | Ají más claro al pasar el cursor          |
+| El total de la barra cambiaba de ancho al sumar platos                                                                                | 🟢       | Cifras tabulares en precios y total       |
+| El fondo de la comanda estaba en `rgb()` suelto                                                                                       | 🟢       | `color-mix` sobre `--color-texto`         |
+
+**Lo que ya estaba bien:**
+
+- Foco visible en las dos superficies (hollín y ají).
+- Radios coherentes: píldora en controles, curvas de barro y marco recto en la pizarra.
+- Animaciones solo con `transform` y `opacity`.
+- Movimiento reducido cubierto en todos los elementos.
+
+### `audit-as-perf-eng`
+
+**Adaptación:** la auditoría está pensada para una app de escritorio y aquí se aplica a una página.
+
+- **Memoria:** no crece. Las copias del plato volador se borran al aterrizar, los observadores se crean una vez y no hay listas que aumenten.
+- **Corregido:** el vapor y la brasa (CSS infinito) seguían animándose fuera de pantalla. Ahora se pausan con `IntersectionObserver`.
+
+**Cómo se llegó al costo actual (Lighthouse móvil, mediana de 5, build + preview):**
+
+| Versión de la escena                                          | Rendimiento | TBT     | Qué cambió                                                                 |
+| ------------------------------------------------------------- | ----------- | ------- | -------------------------------------------------------------------------- |
+| Vapor de partículas WebGL, render continuo, material Standard | 70          | 5030 ms | —                                                                          |
+| + 30 cuadros/s y menos píxeles en celular                     | 70          | 5327 ms | nada: cada cuadro en software ya dura > 50 ms                              |
+| Vapor y brasa en CSS, render solo cuando algo cambia          | 76          | 1233 ms | el bucle ya no dibuja si la escena está quieta                             |
+| + material Lambert, texturas a la mitad, un shader menos      | 81          | 766 ms  | lo que queda es compilar el primer cuadro y evaluar Three.js               |
+| + correcciones del paso 6 (versión final)                     | **86**      | 535 ms  | cámara, vapor pegado a la olla, animaciones CSS pausadas fuera de pantalla |
+
+### Medición final del ADR 008 (Lighthouse 12, mediana de 5, build + preview)
+
+|                         | Rendimiento | Accesibilidad | Buenas prácticas | SEO | LCP    | CLS   | TBT    | Peso   |
+| ----------------------- | ----------- | ------------- | ---------------- | --- | ------ | ----- | ------ | ------ |
+| Móvil, sin 3D (antes)   | 100         | 100           | 96               | 92  | 1.66 s | 0.003 | 9 ms   | 354 KB |
+| Móvil, con 3D (después) | **86**      | 100           | 96               | 92  | 1.66 s | 0.003 | 535 ms | 488 KB |
+| Escritorio, sin 3D      | 100         | 100           | 96               | 92  | 0.35 s | 0.002 | 0 ms   | 349 KB |
+| Escritorio, con 3D      | 98          | 100           | 96               | 92  | 0.35 s | 0.002 | 138 ms | 482 KB |
+
+Referencia: el restaurante v1 tenía un LCP móvil de 2.41 s. La imagen fija de la olla pesa 9.3, 15.1 y 21.8 KB en sus 3 tamaños, frente a 35.2, 59.9 y 110.8 KB de la foto actual.
+
+**Lo que bajan esos números y no pasa en el sitio real:**
+
+- **Buenas prácticas 96:** la maqueta no tiene favicon y eso da un error 404. En el sitio real lo pone `render.js`.
+- **SEO 92:** el servidor de vista previa contesta `robots.txt` con el HTML.
+
+### Decisión del ADR 008 (regla 7): el rendimiento móvil con 3D queda bajo 90
+
+**Lo que dicen los números:**
+
+- **La imagen fija cumple:** el LCP es igual con y sin 3D, y mejor que el de la v1 (2.41 s).
+- **Lo que baja la nota es el TBT:** compilar los shaders y dibujar el primer cuadro **sin GPU**, con el CPU 4× más lento que simula Lighthouse.
+- **Por qué es pesimista:** en un celular real con GPU esa compilación toma una fracción de eso. Aun así, la nota de Lighthouse es la que pide el checklist.
+
+**Opciones, para que decidas:**
+
+1. **Aceptar 86 en móvil.** Es un punto sobre los 85 que preveía el ADR. Escritorio queda en 98.
+2. **Aligerar más.** Por ejemplo:
+   - cargar la escena con el primer scroll o toque en vez de con el primer momento libre, porque hasta entonces la olla quieta es idéntica a la imagen fija;
+   - o simplificar la leña y las brasas a una sola malla.
+
+   Lo primero dejaría a Lighthouse en ~100, el mismo resultado que sin 3D, **porque Lighthouse no hace scroll**: el número dejaría de medir el costo del 3D. Ese costo se pagaría una vez, al primer scroll. Lo segundo, calculo, bajaría unos 100–200 ms de TBT y podría acercarse a 90, pero no está medido.
+
+**Recomendación: la opción 1 (aceptar 86).**
+
+- Con GPU el costo real es mucho menor.
+- La opción de cargar al primer scroll mejora el número sin mejorar la experiencia: solo deja de medirla.
+
+Decides tú.
+
+---
+
+**Pendiente de tu aprobación:**
+
+- **El hero vivo:** mira el video y la página en movimiento, no solo las capturas.
+- **La opción del ADR 008.**
+
+**Pregunta para cuando se construya:** los colores del tema viven en `negocio.json` (`tema`), y pediste que `negocio.json` no cambie. Para construir esta dirección hay que cambiar ahí `marca`, `acento`, `fondo` y `texto`. ¿Lo autorizas, o prefieres que el CSS del rubro los pise sin tocar `negocio.json`?

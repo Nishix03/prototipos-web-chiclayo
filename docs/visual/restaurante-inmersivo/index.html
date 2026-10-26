@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="es-PE">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light" />
+    <meta name="theme-color" content="#d6a27a" />
+    <title>Maqueta · Sabores del Norte (demo) · La olla manda</title>
+    <meta
+      name="description"
+      content="Maqueta del hero vivo del restaurante v2: olla de barro 3D, carta en pizarra y armar pedido."
+    />
+    <script>
+      document.documentElement.classList.add('js');
+    </script>
+    <!-- La fuente del titular y el póster (LCP) se piden junto con el CSS -->
+    <link
+      rel="preload"
+      href="./fuentes/bricolage-titulos.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link rel="stylesheet" href="./maqueta.css" />
+  </head>
+  <body>
+    <a class="salto-contenido" href="#carta">Saltar a la carta</a>
+
+    <p class="aviso-demo" role="note">
+      Sitio de demostración: el nombre, los precios, las reseñas y el contacto son ficticios.
+    </p>
+
+    <header class="cabecera">
+      <div class="cabecera__fila contenedor">
+        <p class="cabecera__nombre" translate="no">Sabores del Norte <span>Demo</span></p>
+        <nav aria-label="Secciones">
+          <a href="#carta">Carta</a>
+          <a href="#menu-del-dia">Menú del día</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="contenido">
+      <section class="portada" aria-labelledby="titular" data-portada>
+        <div class="portada__texto">
+          <p class="estado">
+            <span class="estado__punto" aria-hidden="true"></span> Abierto ahora · hasta las 16:30
+          </p>
+          <h1 class="titular" id="titular">
+            Arroz con pato, cabrito y ceviche: cocina lambayecana en Chiclayo
+          </h1>
+          <p class="bajada">
+            Elige tus platos, mira el total al instante y envía el pedido por WhatsApp. Delivery
+            dentro de Chiclayo o recojo en el local.
+          </p>
+          <div class="grupo-botones">
+            <a class="boton boton--principal" href="#carta">Armar mi pedido</a>
+            <a class="boton boton--secundario" href="#menu-del-dia">Menú del día: S/ 18</a>
+          </div>
+        </div>
+
+        <figure class="olla" data-olla>
+          <!-- LCP: imagen fija de la misma escena. El canvas se monta encima después (ADR 008) -->
+          <img
+            class="olla__poster"
+            src="./poster/olla-960.webp"
+            srcset="
+              ./poster/olla-640.webp   640w,
+              ./poster/olla-960.webp   960w,
+              ./poster/olla-1280.webp 1280w
+            "
+            sizes="(min-width: 60rem) 44vw, 92vw"
+            width="1280"
+            height="1280"
+            alt="Ilustración 3D de una olla de barro humeante sobre brasas de algarrobo"
+            fetchpriority="high"
+            decoding="async"
+          />
+          <!-- Vapor y brillo: CSS encima del póster y del canvas, se ven igual en los dos -->
+          <div class="olla__brasa" aria-hidden="true"></div>
+          <div class="olla__vapor" aria-hidden="true">
+            <span></span><span></span><span></span><span></span><span></span>
+          </div>
+          <figcaption class="solo-lector">
+            Ilustración generada en 3D, no es una foto del local.
+          </figcaption>
+        </figure>
+      </section>
+
+      <section class="pizarra-seccion" id="menu-del-dia" aria-labelledby="titulo-menu">
+        <div class="pizarra contenedor">
+          <div class="pizarra__cabeza">
+            <h2 class="pizarra__titulo" id="titulo-menu" data-armar>Menú del día</h2>
+            <p class="pizarra__precio"><span class="solo-lector">Precio: </span>S/ 18</p>
+          </div>
+          <p class="pizarra__intro">
+            De martes a viernes, de 12:00 a 15:30: entrada, fondo y refresco por S/ 18.
+          </p>
+          <div class="pizarra__columnas">
+            <div data-capa>
+              <h3>Entrada <span>(elige una)</span></h3>
+              <ul>
+                <li>Causa de pollo</li>
+                <li>Sopa de la casa</li>
+              </ul>
+            </div>
+            <div data-capa>
+              <h3>Fondo <span>(elige uno)</span></h3>
+              <ul>
+                <li>Arroz con pato</li>
+                <li>Seco de res con frejoles</li>
+              </ul>
+            </div>
+            <div data-capa>
+              <h3>Incluye</h3>
+              <ul>
+                <li>Refresco del día</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="carta-seccion" id="carta" aria-labelledby="titulo-carta">
+        <div class="contenedor">
+          <h2 class="seccion__titulo" id="titulo-carta" data-armar>La carta</h2>
+          <p class="seccion__intro">
+            Marca lo que quieres, ajusta las cantidades y envía tu pedido por WhatsApp.
+          </p>
+        </div>
+        <div class="pizarra contenedor">
+          <section class="categoria" aria-labelledby="cat-fondos" data-capa>
+            <h3 id="cat-fondos">Fondos</h3>
+            <ul class="platos">
+              <li
+                class="plato"
+                data-plato="arroz-con-pato"
+                data-nombre="Arroz con pato"
+                data-precio="38"
+              >
+                <img
+                  src="../../../restaurante/img/arroz-con-pato.webp"
+                  alt=""
+                  width="160"
+                  height="120"
+                  loading="lazy"
+                />
+                <div>
+                  <h4>Arroz con pato</h4>
+                  <p>
+                    Arroz verde al culantro con pato a la chiclayana, sarsa y papa a la huancaína.
+                  </p>
+                </div>
+                <p class="plato__precio">S/ 38</p>
+                <button class="boton plato__agregar" type="button" data-agregar>
+                  Agregar <span class="solo-lector">Arroz con pato</span>
+                </button>
+              </li>
+              <li class="plato" data-plato="cabrito" data-nombre="Seco de cabrito" data-precio="40">
+                <img
+                  src="../../../restaurante/img/cabrito.webp"
+                  alt=""
+                  width="160"
+                  height="120"
+                  loading="lazy"
+                />
+                <div>
+                  <h4>Seco de cabrito</h4>
+                  <p>Cabrito guisado en chicha de jora y culantro, con frejoles y arroz.</p>
+                </div>
+                <p class="plato__precio">S/ 40</p>
+                <button class="boton plato__agregar" type="button" data-agregar>
+                  Agregar <span class="solo-lector">Seco de cabrito</span>
+                </button>
+              </li>
+            </ul>
+          </section>
+          <section class="categoria" aria-labelledby="cat-marinos" data-capa>
+            <h3 id="cat-marinos">Marinos</h3>
+            <ul class="platos">
+              <li
+                class="plato"
+                data-plato="ceviche"
+                data-nombre="Ceviche de pescado"
+                data-precio="35"
+              >
+                <img
+                  src="../../../restaurante/img/ceviche.webp"
+                  alt=""
+                  width="160"
+                  height="120"
+                  loading="lazy"
+                />
+                <div>
+                  <h4>Ceviche de pescado</h4>
+                  <p>Pescado del día en limón, cebolla roja y ají limo, con choclo y camote.</p>
+                </div>
+                <p class="plato__precio">S/ 35</p>
+                <button class="boton plato__agregar" type="button" data-agregar>
+                  Agregar <span class="solo-lector">Ceviche de pescado</span>
+                </button>
+              </li>
+            </ul>
+          </section>
+          <section class="categoria" aria-labelledby="cat-entradas" data-capa>
+            <h3 id="cat-entradas">Entradas</h3>
+            <ul class="platos">
+              <li class="plato" data-plato="causa" data-nombre="Causa de pollo" data-precio="18">
+                <img
+                  src="../../../restaurante/img/causa.webp"
+                  alt=""
+                  width="160"
+                  height="120"
+                  loading="lazy"
+                />
+                <div>
+                  <h4>Causa de pollo</h4>
+                  <p>Papa amarilla prensada con ají, rellena de pollo, palta y aceituna.</p>
+                </div>
+                <p class="plato__precio">S/ 18</p>
+                <button class="boton plato__agregar" type="button" data-agregar>
+                  Agregar <span class="solo-lector">Causa de pollo</span>
+                </button>
+              </li>
+            </ul>
+          </section>
+        </div>
+      </section>
+    </main>
+
+    <aside class="barra-pedido" aria-label="Tu pedido" data-barra hidden>
+      <p class="barra-pedido__resumen" aria-live="polite" data-resumen>Sin platos</p>
+      <button class="boton boton--principal" type="button" data-abrir-comanda>Ver mi pedido</button>
+    </aside>
+
+    <dialog class="comanda" aria-labelledby="titulo-comanda" data-comanda>
+      <h2 id="titulo-comanda">Tu pedido</h2>
+      <ol class="comanda__lineas" data-lineas></ol>
+      <p class="comanda__total" data-total></p>
+      <p class="comanda__nota">
+        Maqueta: aquí van la entrega y el envío por WhatsApp de la v1, que no cambian.
+      </p>
+      <button class="boton boton--secundario" type="button" data-cerrar-comanda>
+        Volver a la carta
+      </button>
+    </dialog>
+
+    <script type="module" src="./maqueta.js"></script>
+  </body>
+</html>
