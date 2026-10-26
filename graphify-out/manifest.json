@@ -1,0 +1,200 @@
+{
+  ".github/workflows/deploy.yml": {
+    "mtime": 1792985855.0,
+    "seen": 1792986144.2584808,
+    "ast_hash": "70e6be9188292d4889608adaee66dc74",
+    "semantic_hash": "70e6be9188292d4889608adaee66dc74"
+  },
+  "_ejemplo/app.js": {
+    "mtime": 1792985855.0,
+    "seen": 1792986144.258493,
+    "ast_hash": "8fed287c4473614f3cab26e3ff8fa521",
+    "semantic_hash": "8fed287c4473614f3cab26e3ff8fa521"
+  },
+  "_ejemplo/negocio.json": {
+    "mtime": 1792985855.0,
+    "seen": 1792986144.2584991,
+    "ast_hash": "16c7140a2ab385b85e3dfed7b0460041",
+    "semantic_hash": "16c7140a2ab385b85e3dfed7b0460041"
+  },
+  "core/cliente.js": {
+    "mtime": 1792985855.0,
+    "seen": 1792986144.2585027,
+    "ast_hash": "4f4b8e5a6877a0909e123e59189a5445",
+    "semantic_hash": "4f4b8e5a6877a0909e123e59189a5445"
+  },
+  "core/componentes/aviso-demo.js": {
+    "mtime": 1792985855.0,
+    "seen": 1792986144.2585058,
+    "ast_hash": "399fb5c6f7828ce48290d1feff35a787",
+    "semantic_hash": "399fb5c6f7828ce48290d1feff35a787"
+  },
+  "core/componentes/boton-flotante.js": {
+    "mtime": 1792985855.0,
+    "seen": 1792986144.2585082,
+    "ast_hash": "e71276fdce49c23ceca7b5d2efb883b3",
+    "semantic_hash": "e71276fdce49c23ceca7b5d2efb883b3"
+  },
+  "core/componentes/footer.js": {
+    "mtime": 1792985855.0,
+    "seen": 1792986144.2585113,
+    "ast_hash": "3176e4e63fc1c18626335fadc3789c9e",
+    "semantic_hash": "3176e4e63fc1c18626335fadc3789c9e"
+  },
+  "core/componentes/galeria.js": {
+    "mtime": 1792985855.0,
+    "seen": 1792986144.258514,
+    "ast_hash": "1c25ed081e973e98f681e604dbf76cdb",
+    "semantic_hash": "1c25ed081e973e98f681e604dbf76cdb"
+  },
+  "core/componentes/hero.js": {
+    "mtime": 1792985855.0,
+    "seen": 1792986144.258517,
+    "ast_hash": "8282aaec243538c7aca1602634887ed2",
+    "semantic_hash": "8282aaec243538c7aca1602634887ed2"
+  },
+  "core/componentes/html.js": {
+    "mtime": 1792985855.0,
+    "seen": 1792986144.25852,
+    "ast_hash": "9cc0079cc8d736cc14ae2bcd12dfd489",
+    "semantic_hash": "9cc0079cc8d736cc14ae2bcd12dfd489"
+  },
+  "core/componentes/iconos.js": {
+    "mtime": 1792985855.0,
+    "seen": 1792986144.2585225,
+    "ast_hash": "d77e196e630e0e25ef3491bf2715cd1a",
+    "semantic_hash": "d77e196e630e0e25ef3491bf2715cd1a"
+  },
+  "core/componentes/imagen.js": {
+    "mtime": 1792985855.0,
+    "seen": 1792986144.2585258,
+    "ast_hash": "d0630a9d49ff3bfa9be3a2b47587579b",
+    "semantic_hash": "d0630a9d49ff3bfa9be3a2b47587579b"
+  },
+  "core/componentes/index.js": {
+    "mtime": 1792985855.0,
+    "seen": 1792986144.2585287,
+    "ast_hash": "971c1820b8baef32827198ddca8330b0",
+    "semantic_hash": "971c1820b8baef32827198ddca8330b0"
+  },
+  "core/componentes/mapa.js": {
+    "mtime": 1792985855.0,
+    "seen": 1792986144.2585316,
+    "ast_hash": "a1d18bdf98bfb43ba89d928e2e77a097",
+    "semantic_hash": "a1d18bdf98bfb43ba89d928e2e77a097"
+  },
+  "core/componentes/resenas.js": {
+    "mtime": 1792985855.0,
+    "seen": 1792986144.2585342,
+    "ast_hash": "bf2c9bdc73a6de2de33643eee6b899a9",
+    "semantic_hash": "bf2c9bdc73a6de2de33643eee6b899a9"
+  },
+  "core/contraste.js": {
+    "mtime": 1792985855.0,
+    "seen": 1792986144.258537,
+    "ast_hash": "55f36d4deb5e9ce473f90a4b630b9e5c",
+    "semantic_hash": "55f36d4deb5e9ce473f90a4b630b9e5c"
+  },
+  "core/horario.js": {
+    "mtime": 1792985855.0,
+    "seen": 1792986144.25854,
+    "ast_hash": "f168422289792f4f9d13972e85003574",
+    "semantic_hash": "f168422289792f4f9d13972e85003574"
+  },
+  "core/negocio.schema.json": {
+    "mtime": 1792985855.0,
+    "seen": 1792986144.2585428,
+    "ast_hash": "d5f8d48fb0acc3c4bfecffa792089cc0",
+    "semantic_hash": "d5f8d48fb0acc3c4bfecffa792089cc0"
+  },
+  "core/render.js": {
+    "mtime": 1792985855.0,
+    "seen": 1792986144.2585456,
+    "ast_hash": "3e458ce6d5b0e3e6fdd6f1d65163ddd8",
+    "semantic_hash": "3e458ce6d5b0e3e6fdd6f1d65163ddd8"
+  },
+  "core/validar.js": {
+    "mtime": 1792985855.0,
+    "seen": 1792986144.2585485,
+    "ast_hash": "8e3c87d47e3284984f9c31d628cc0932",
+    "semantic_hash": "8e3c87d47e3284984f9c31d628cc0932"
+  },
+  "core/whatsapp.js": {
+    "mtime": 1792985855.0,
+    "seen": 1792986144.2585514,
+    "ast_hash": "51a4349aa4e6a25a3c6c253975add76f",
+    "semantic_hash": "51a4349aa4e6a25a3c6c253975add76f"
+  },
+  "eslint.config.js": {
+    "mtime": 1792985855.0,
+    "seen": 1792986144.2585537,
+    "ast_hash": "85b1fe0c05c3e9cd59eaa2941b5ff2bb",
+    "semantic_hash": "85b1fe0c05c3e9cd59eaa2941b5ff2bb"
+  },
+  "package.json": {
+    "mtime": 1792985855.0,
+    "seen": 1792986144.258557,
+    "ast_hash": "de5123803e8bfcd62f506579dbf86cad",
+    "semantic_hash": "de5123803e8bfcd62f506579dbf86cad"
+  },
+  "scripts/a11y.js": {
+    "mtime": 1792985855.0,
+    "seen": 1792986144.2585597,
+    "ast_hash": "5cfaea455feedc77275e87249f9a080f",
+    "semantic_hash": "5cfaea455feedc77275e87249f9a080f"
+  },
+  "vite.config.js": {
+    "mtime": 1792985855.0,
+    "seen": 1792986144.2585626,
+    "ast_hash": "56ddbac1b4ef3e9ebc210725a7d00f27",
+    "semantic_hash": "56ddbac1b4ef3e9ebc210725a7d00f27"
+  },
+  "README.md": {
+    "mtime": 1792985855.0,
+    "seen": 1792986144.2585652,
+    "ast_hash": "efa2ca1d698194111e07419e65aacf88",
+    "semantic_hash": "efa2ca1d698194111e07419e65aacf88"
+  },
+  "_ejemplo/index.html": {
+    "mtime": 1792985855.0,
+    "seen": 1792986144.2585683,
+    "ast_hash": "c2f1a95b15f863cbe791e53331ff96bc",
+    "semantic_hash": "c2f1a95b15f863cbe791e53331ff96bc"
+  },
+  "docs/PLAN.md": {
+    "mtime": 1792985855.0,
+    "seen": 1792986144.2585707,
+    "ast_hash": "ea57838c472af16b9932c0cf1e8db3f1",
+    "semantic_hash": "ea57838c472af16b9932c0cf1e8db3f1"
+  },
+  "docs/decisiones/000-plantilla.md": {
+    "mtime": 1792985855.0,
+    "seen": 1792986144.2585733,
+    "ast_hash": "a97546bb41c62bda42b0ff2060efa414",
+    "semantic_hash": "a97546bb41c62bda42b0ff2060efa414"
+  },
+  "docs/decisiones/001-vite-en-vez-de-live-server.md": {
+    "mtime": 1792985855.0,
+    "seen": 1792986144.258576,
+    "ast_hash": "321a194e59d612200be9b9efe094a4e5",
+    "semantic_hash": "321a194e59d612200be9b9efe094a4e5"
+  },
+  "docs/decisiones/002-prerender-en-vez-de-render-en-navegador.md": {
+    "mtime": 1792985855.0,
+    "seen": 1792986144.2585788,
+    "ast_hash": "0f4a806518e51a1561231b364d756b6a",
+    "semantic_hash": "0f4a806518e51a1561231b364d756b6a"
+  },
+  "docs/decisiones/003-optimizacion-de-imagenes.md": {
+    "mtime": 1792985855.0,
+    "seen": 1792986144.2585814,
+    "ast_hash": "e570095481723cb9796d9aca0882e8c6",
+    "semantic_hash": "e570095481723cb9796d9aca0882e8c6"
+  },
+  "index.html": {
+    "mtime": 1792985855.0,
+    "seen": 1792986144.2585843,
+    "ast_hash": "4abf95b74802327a613446973ffe81a7",
+    "semantic_hash": "4abf95b74802327a613446973ffe81a7"
+  }
+}

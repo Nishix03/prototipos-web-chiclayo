@@ -1,0 +1,59 @@
+# Publica el sitio en GitHub Pages en cada push a main.
+# Requisito (una vez): Settings → Pages → Source: "GitHub Actions".
+
+name: Publicar en GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  pull_request: # en los PR solo verifica (lint + build), no publica
+  workflow_dispatch: # botón "Run workflow" para publicar a mano
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Si llegan dos push seguidos, se publica solo el último
+concurrency:
+  group: pages-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  construir:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Instalar dependencias
+        run: npm ci
+
+      - name: Revisar código
+        run: |
+          npm run lint
+          npm run format:check
+
+      # Si un negocio.json no cumple el esquema, el build falla aquí y no se publica nada
+      - name: Construir
+        run: npm run build
+
+      - uses: actions/upload-pages-artifact@v4
+        if: github.event_name != 'pull_request'
+        with:
+          path: dist
+
+  publicar:
+    if: github.event_name != 'pull_request'
+    needs: construir
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.despliegue.outputs.page_url }}
+    steps:
+      - id: despliegue
+        uses: actions/deploy-pages@v4

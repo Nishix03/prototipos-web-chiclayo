@@ -1,0 +1,55 @@
+.resenas__lista {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+  gap: var(--espacio-5);
+  padding: 0;
+  list-style: none;
+}
+
+/* Container query: la tarjeta se adapta al ancho que tiene, no al de la pantalla */
+.resena {
+  container-type: inline-size;
+  padding: var(--espacio-5);
+  background: var(--color-fondo);
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio-md);
+}
+
+.resena__estrellas {
+  display: flex;
+  gap: 2px;
+  margin-bottom: var(--espacio-3);
+  color: var(--color-acento);
+}
+
+.resena__estrellas svg {
+  width: 1.1rem;
+  height: 1.1rem;
+}
+
+.resena__estrellas .vacia {
+  color: var(--color-borde);
+}
+
+.resena__texto {
+  font-size: var(--texto-base);
+}
+
+.resena__autor {
+  margin-top: var(--espacio-3);
+  color: var(--color-texto-suave);
+  font-size: var(--texto-sm);
+  font-weight: 600;
+}
+
+@container (min-width: 24rem) {
+  .resena__texto {
+    font-size: var(--texto-lg);
+  }
+}
+
+.resenas__fuente {
+  margin-top: var(--espacio-5);
+  color: var(--color-texto-suave);
+  font-size: var(--texto-sm);
+}

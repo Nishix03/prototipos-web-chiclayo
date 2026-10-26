@@ -1,0 +1,14 @@
+.galeria__rejilla {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 16rem), 1fr));
+  gap: var(--espacio-4);
+  padding: 0;
+  list-style: none;
+}
+
+.galeria__item img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: var(--radio-md);
+}

@@ -1,0 +1,60 @@
+.hero {
+  padding-block: var(--espacio-6) var(--espacio-seccion);
+}
+
+.hero__rejilla {
+  display: grid;
+  gap: var(--espacio-6);
+  align-items: center;
+}
+
+.hero__titulo {
+  max-width: 14ch;
+}
+
+.hero__eslogan {
+  max-width: 40ch;
+  color: var(--color-texto-suave);
+  font-size: var(--texto-lg);
+}
+
+.hero .grupo-botones {
+  margin-top: var(--espacio-5);
+}
+
+.hero__media img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: var(--radio-lg);
+  box-shadow: var(--sombra-lg);
+}
+
+@media (min-width: 56rem) {
+  .hero {
+    padding-top: var(--espacio-8);
+  }
+
+  .hero__rejilla {
+    grid-template-columns: 1.1fr 1fr;
+    gap: var(--espacio-8);
+  }
+}
+
+/* ── Indicador de horario (lo usan el hero y el mapa) ── */
+.estado-horario__punto {
+  width: 0.6em;
+  height: 0.6em;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.estado-horario[data-abierto='true'] {
+  color: var(--color-abierto);
+  background: color-mix(in oklch, var(--color-abierto) 10%, var(--color-fondo));
+}
+
+.estado-horario[data-abierto='false'] {
+  color: var(--color-cerrado);
+  background: color-mix(in oklch, var(--color-cerrado) 10%, var(--color-fondo));
+}

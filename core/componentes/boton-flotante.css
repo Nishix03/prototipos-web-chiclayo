@@ -1,0 +1,43 @@
+.boton-flotante {
+  position: fixed;
+  right: max(var(--espacio-4), env(safe-area-inset-right));
+  bottom: max(var(--espacio-4), env(safe-area-inset-bottom));
+  z-index: var(--capa-flotante);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--espacio-2);
+  min-width: 56px;
+  min-height: 56px;
+  padding: var(--espacio-3);
+  border-radius: var(--radio-pildora);
+  background: var(--color-whatsapp);
+  color: #fff;
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: var(--sombra-lg);
+  transition: transform var(--duracion-rapida) var(--curva-salida);
+}
+
+.boton-flotante:hover {
+  transform: scale(1.05);
+}
+
+.boton-flotante svg {
+  width: 28px;
+  height: 28px;
+}
+
+.boton-flotante__texto {
+  display: none;
+}
+
+@media (min-width: 48rem) {
+  .boton-flotante {
+    padding-inline: var(--espacio-4) var(--espacio-5);
+  }
+
+  .boton-flotante__texto {
+    display: inline;
+  }
+}

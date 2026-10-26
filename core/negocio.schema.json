@@ -1,0 +1,198 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nishix03.github.io/prototipos-web-chiclayo/negocio.schema.json",
+  "title": "Negocio",
+  "description": "Todo lo que cambia entre un negocio y otro. Es la única fuente de verdad: VS Code la usa para autocompletar y el build (ajv) para validar.",
+  "type": "object",
+  "required": [
+    "demo",
+    "rubro",
+    "nombre",
+    "eslogan",
+    "descripcion",
+    "contacto",
+    "ubicacion",
+    "horario",
+    "tema",
+    "imagenes"
+  ],
+  "properties": {
+    "$schema": { "type": "string" },
+    "demo": {
+      "type": "boolean",
+      "description": "true si los datos son de demostración. La página muestra un aviso visible y nunca presenta el contenido como real."
+    },
+    "rubro": {
+      "enum": ["ejemplo", "restaurante", "spa", "barberia", "veterinaria", "dental", "gimnasio"]
+    },
+    "nombre": { "type": "string", "minLength": 2, "maxLength": 60 },
+    "eslogan": {
+      "type": "string",
+      "minLength": 5,
+      "maxLength": 90,
+      "description": "Frase corta bajo el nombre en el hero."
+    },
+    "descripcion": {
+      "type": "string",
+      "minLength": 50,
+      "maxLength": 160,
+      "description": "Meta description: lo que Google y WhatsApp muestran bajo el título. Entre 50 y 160 caracteres."
+    },
+    "contacto": {
+      "type": "object",
+      "required": ["whatsapp"],
+      "additionalProperties": false,
+      "properties": {
+        "whatsapp": {
+          "type": "string",
+          "pattern": "^9[0-9]{8}$",
+          "description": "Celular peruano de 9 dígitos sin espacios ni +51, por ejemplo 987654321."
+        },
+        "telefono": {
+          "type": "string",
+          "pattern": "^[0-9]{6,9}$",
+          "description": "Teléfono para llamadas (enlace tel:). Opcional."
+        },
+        "mensajeWhatsapp": {
+          "type": "string",
+          "maxLength": 200,
+          "description": "Mensaje que ya viene escrito al tocar el botón de WhatsApp."
+        },
+        "correo": { "type": "string", "format": "email" }
+      }
+    },
+    "ubicacion": {
+      "type": "object",
+      "required": ["direccion", "distrito", "ciudad", "region", "lat", "lng"],
+      "additionalProperties": false,
+      "properties": {
+        "direccion": { "type": "string", "minLength": 5 },
+        "referencia": {
+          "type": "string",
+          "description": "Cómo llegar en palabras de la gente: 'a media cuadra del parque principal'."
+        },
+        "distrito": { "type": "string" },
+        "ciudad": { "type": "string" },
+        "region": { "type": "string" },
+        "lat": { "type": "number", "minimum": -90, "maximum": 90 },
+        "lng": { "type": "number", "minimum": -180, "maximum": 180 }
+      }
+    },
+    "horario": {
+      "type": "object",
+      "description": "Rangos de atención por día en hora de Lima. Un día sin rangos ([]) está cerrado. Un rango que cruza la medianoche (['18:00', '02:00']) es válido.",
+      "required": ["lun", "mar", "mie", "jue", "vie", "sab", "dom"],
+      "additionalProperties": false,
+      "properties": {
+        "lun": { "$ref": "#/$defs/rangosDia" },
+        "mar": { "$ref": "#/$defs/rangosDia" },
+        "mie": { "$ref": "#/$defs/rangosDia" },
+        "jue": { "$ref": "#/$defs/rangosDia" },
+        "vie": { "$ref": "#/$defs/rangosDia" },
+        "sab": { "$ref": "#/$defs/rangosDia" },
+        "dom": { "$ref": "#/$defs/rangosDia" }
+      }
+    },
+    "tema": {
+      "type": "object",
+      "description": "Paleta del negocio. Sobrescribe los tokens de core/tokens.css. El build rechaza combinaciones con contraste insuficiente.",
+      "required": ["marca", "acento", "fondo", "texto"],
+      "additionalProperties": false,
+      "properties": {
+        "marca": { "$ref": "#/$defs/colorHex" },
+        "acento": { "$ref": "#/$defs/colorHex" },
+        "fondo": { "$ref": "#/$defs/colorHex" },
+        "texto": { "$ref": "#/$defs/colorHex" }
+      }
+    },
+    "imagenes": {
+      "type": "object",
+      "required": ["hero"],
+      "additionalProperties": false,
+      "properties": {
+        "hero": { "$ref": "#/$defs/imagen" },
+        "galeria": {
+          "type": "array",
+          "maxItems": 12,
+          "items": { "$ref": "#/$defs/imagen" }
+        },
+        "og": {
+          "$ref": "#/$defs/imagen",
+          "description": "Imagen de vista previa al compartir el enlace (1200×630). Si falta, se usa la del hero."
+        }
+      }
+    },
+    "resenas": {
+      "type": "object",
+      "required": ["fuente", "items"],
+      "additionalProperties": false,
+      "properties": {
+        "fuente": {
+          "type": "string",
+          "description": "De dónde salen las reseñas, por ejemplo 'Google Maps, publicadas con permiso del negocio' o 'Reseñas de demostración'."
+        },
+        "items": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 5,
+          "items": {
+            "type": "object",
+            "required": ["texto", "autor", "estrellas"],
+            "additionalProperties": false,
+            "properties": {
+              "texto": { "type": "string", "minLength": 10, "maxLength": 240 },
+              "autor": { "type": "string" },
+              "estrellas": { "type": "integer", "minimum": 1, "maximum": 5 }
+            }
+          }
+        }
+      }
+    },
+    "redes": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "instagram": { "type": "string", "format": "uri" },
+        "facebook": { "type": "string", "format": "uri" },
+        "tiktok": { "type": "string", "format": "uri" }
+      }
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "hora": {
+      "type": "string",
+      "pattern": "^([01][0-9]|2[0-3]):[0-5][0-9]$"
+    },
+    "rangosDia": {
+      "type": "array",
+      "maxItems": 3,
+      "items": {
+        "type": "array",
+        "prefixItems": [{ "$ref": "#/$defs/hora" }, { "$ref": "#/$defs/hora" }],
+        "minItems": 2,
+        "maxItems": 2
+      }
+    },
+    "colorHex": {
+      "type": "string",
+      "pattern": "^#[0-9a-fA-F]{6}$"
+    },
+    "imagen": {
+      "type": "object",
+      "required": ["src", "alt"],
+      "additionalProperties": false,
+      "properties": {
+        "src": {
+          "type": "string",
+          "pattern": "^img/.+\\.(webp|avif)$",
+          "description": "Ruta dentro de la carpeta img/ de la página. Solo WebP o AVIF."
+        },
+        "alt": {
+          "type": "string",
+          "description": "Texto alternativo: describe la foto para quien no la ve. Vacío solo si es decorativa."
+        }
+      }
+    }
+  }
+}
