@@ -1,0 +1,7 @@
+.aviso-demo {
+  padding: var(--espacio-2) var(--margen-lateral);
+  background: var(--color-texto);
+  color: var(--color-fondo);
+  font-size: var(--texto-sm);
+  text-align: center;
+}

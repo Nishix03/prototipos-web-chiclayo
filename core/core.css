@@ -1,0 +1,13 @@
+/*
+ * Punto de entrada de los estilos compartidos. Cada página lo enlaza antes de su estilo.css.
+ * Vite junta todos los @import en un solo archivo minificado al construir.
+ */
+@import './tokens.css';
+@import './base.css';
+@import './componentes/aviso-demo.css';
+@import './componentes/hero.css';
+@import './componentes/galeria.css';
+@import './componentes/resenas.css';
+@import './componentes/mapa.css';
+@import './componentes/footer.css';
+@import './componentes/boton-flotante.css';
