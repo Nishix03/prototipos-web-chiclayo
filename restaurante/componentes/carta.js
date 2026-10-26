@@ -10,7 +10,8 @@ const ETIQUETA = {
 
 /**
  * Un plato. Nombre, descripción y precio están siempre en el HTML; los controles de cantidad
- * salen ocultos y carrito.js los muestra (sin JavaScript no habría cómo armar el pedido).
+ * solo se muestran si hay JavaScript (clase .js en <html>, ver estilo.css): sin JS no habría
+ * cómo armar el pedido. Ocupan su espacio desde el primer pintado, así no empujan la página.
  * Los data-* llevan lo que el carrito necesita, para no repetir la carta en otra isla de datos.
  */
 function plato(p) {
@@ -36,7 +37,7 @@ function plato(p) {
               </p>`
             : ''
         }
-        <div class="cantidad" data-cantidad hidden>
+        <div class="cantidad" data-cantidad>
           <button
             class="boton boton--secundario cantidad__agregar"
             type="button"
@@ -85,7 +86,7 @@ export function carta(negocio) {
       <!-- Los filtros son sticky dentro de este cuerpo: se sueltan al terminar la última
            categoría, no al terminar la sección (que tiene margen abajo) -->
       <div class="carta__cuerpo">
-        <div class="filtros" role="group" aria-label="Filtrar la carta" data-filtros hidden>
+        <div class="filtros" role="group" aria-label="Filtrar la carta" data-filtros>
           <button type="button" aria-pressed="true" data-filtro="todo">Todo</button>
           ${categorias.map(
             (c) =>

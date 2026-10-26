@@ -265,6 +265,7 @@
   "imagenes": {
     "hero": {
       "src": "img/hero.webp",
+      "variantes": ["img/hero-640.webp", "img/hero-960.webp"],
       "alt": "Ceviche de pescado con cebolla roja en un plato hondo",
       "credito": {
         "titulo": "Best Ceviche Ever (Lima, Peru)",

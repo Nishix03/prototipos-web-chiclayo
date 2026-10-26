@@ -65,7 +65,9 @@ export function portada(negocio) {
           <a class="boton boton--secundario" href="#reservas">Reservar mesa</a>
         </div>
       </div>
-      <figure class="portada__foto">${imagen(imagenes.hero, { prioridad: true })}</figure>
+      <figure class="portada__foto">
+        ${imagen(imagenes.hero, { prioridad: true, sizes: '(min-width: 60rem) 32vw, 92vw' })}
+      </figure>
       ${menuHoy(menuDelDia)} ${deLaCasa(carta)}
     </section>
   `;

@@ -23,7 +23,8 @@ function qrSvg(texto) {
 export function qrCarta(negocio, { urlPagina }) {
   const url = `${urlPagina}#carta`;
   const svg = qrSvg(url);
-  const descarga = `data:image/svg+xml,${encodeURIComponent(svg)}`;
+  // El enlace de descarga lo arma qr-cliente.js con este mismo SVG: copiarlo aquí como
+  // data URI duplicaba 11 KB del HTML (presupuesto de LCP). Sin JS el enlace no se muestra.
   return html`
     <section class="qr-carta contenedor" aria-labelledby="qr-titulo">
       <div class="qr-carta__codigo" role="img" aria-label="Código QR que abre la carta">
@@ -32,7 +33,7 @@ export function qrCarta(negocio, { urlPagina }) {
       <div class="qr-carta__texto">
         <h2 id="qr-titulo">La carta en tu mesa</h2>
         <p>Escanea el código con la cámara del celular y mira la carta desde tu mesa.</p>
-        <a class="boton boton--secundario" href="${descarga}" download="qr-carta.svg">
+        <a class="boton boton--secundario" data-descargar-qr download="qr-carta.svg">
           Descargar el QR para imprimir
         </a>
       </div>

@@ -5,15 +5,34 @@
  * donde separan columnas. Los colores llegan de negocio.json (tema); aquí van los tokens que
  * cambian la forma y la tipografía.
  */
+/* Fuentes: ~148 KB en latín. Archivo con eje de ancho (la identidad del concepto); Newsreader
+   solo con eje de peso (58 KB en vez de 132 KB con tamaño óptico) y sin cursiva propia (147 KB):
+   los pies de foto usan la cursiva que sintetiza el navegador. Presupuesto de LCP del plan. */
 @import '@fontsource-variable/archivo/wdth.css';
-@import '@fontsource-variable/newsreader/opsz.css';
-@import '@fontsource-variable/newsreader/opsz-italic.css';
+@import '@fontsource-variable/newsreader/wght.css';
 @import '../core/core.css';
+
+/*
+ * Respaldo mientras llega Archivo: Arial reducida para que ocupe casi lo mismo que la
+ * condensada. Así el cambio de fuente no reacomoda líneas ni empuja la página (CLS).
+ */
+@font-face {
+  font-family: 'Archivo respaldo';
+  src: local('Arial Narrow'), local('ArialNarrow'), local('Arial'), local('Roboto');
+  size-adjust: 76%;
+}
+
+/* Controles que solo funcionan con JavaScript: con .js ocupan su lugar desde el inicio */
+html:not(.js) [data-cantidad],
+html:not(.js) [data-filtros],
+html:not(.js) [data-descargar-qr] {
+  display: none;
+}
 
 :root {
   color-scheme: light; /* diseño de papel: sin modo oscuro, y el navegador no lo invierte */
 
-  --fuente-titulos: 'Archivo Variable', 'Arial Narrow', system-ui, sans-serif;
+  --fuente-titulos: 'Archivo Variable', 'Archivo respaldo', sans-serif;
   --fuente-texto: 'Newsreader Variable', Georgia, serif;
   --peso-titulos: 800;
   --ancho-titulos: 72%;
@@ -45,10 +64,6 @@
 .barra-pedido,
 .pie {
   --color-foco: var(--color-acento);
-}
-
-body {
-  font-optical-sizing: auto;
 }
 
 /* Lo fijo (filtros arriba, barra de pedido abajo) no debe tapar el elemento enfocado */

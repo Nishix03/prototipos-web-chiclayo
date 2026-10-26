@@ -36,7 +36,6 @@ export function iniciarCarrito() {
     const { plato: id, nombre, precio } = li.dataset;
     itemPorId.set(id, li);
     pedido.set(id, { plato: { id, nombre, precio: Number(precio) }, cantidad: 0 });
-    li.querySelector('[data-cantidad]').hidden = false; // con JS, el plato se puede pedir
   });
 
   // ── Pintar ────────────────────────────────────────────────
@@ -224,7 +223,6 @@ export function iniciarCarrito() {
   // El filtro elegido queda en la URL (?categoria=marinos): se puede compartir o recargar.
   const filtros = document.querySelector('[data-filtros]');
   const categorias = [...document.querySelectorAll('[data-categoria]')];
-  filtros.hidden = false;
 
   function filtrar(filtro) {
     const existe = filtro === 'todo' || categorias.some((c) => c.dataset.categoria === filtro);
