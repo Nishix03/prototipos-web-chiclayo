@@ -1,6 +1,6 @@
 # Brief visual · Restaurante («Sabores del Norte · Demo»)
 
-- **Estado:** esperando aprobación de Iván. No se escribe código del rubro hasta entonces.
+- **Estado:** aprobado por Iván el 2026-10-26 (concepto, sin Three.js ni GSAP, y los 4 tokens con valor neutro en el núcleo). Construido en `restaurante/`; los cambios posteriores a la aprobación están al final.
 - **Fecha:** 2026-10-26
 - **Maqueta:** [restaurante/maqueta.html](restaurante/maqueta.html) (HTML estático; se ve con `npx vite` o cualquier servidor local desde la raíz del repo)
 
@@ -151,3 +151,19 @@ Iteraciones antes de llegar aquí:
 1. **Concepto y arquetipo:** diario popular (Archivo condensada + Newsreader, rojo de imprenta + ají) en vez del broadsheet crema y terracota.
 2. **Sin Three.js ni GSAP** en este rubro; el momento firma es la comanda.
 3. **Cambios al núcleo** que salen de `design-system`: `--radio-boton`, `--texto-display`, `--ancho-titulos`, `--color-sobre-acento`.
+
+## Cambios después de la aprobación
+
+Al construir, con `audit-suite` ya activo, se invocaron de verdad `web-animation-design` y `make-interfaces-feel-better` sobre el guion de la comanda, y las etapas de calidad cambiaron algunos detalles:
+
+| Qué                      | Antes (brief)                          | Ahora                                                                     | Por qué                                                                                                                |
+| ------------------------ | -------------------------------------- | ------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
+| Animación de entrada     | Cabecera y titular entran al cargar    | **Sin animación al cargar**                                               | make-interfaces-feel-better: saltar la animación en la primera carga; además, un titular con opacidad 0 retrasa el LCP |
+| Abrir la comanda         | translateY 16 px + opacidad, 250 ms    | translateY(100 %) → 0, 300 ms, ease-out-quart (transición, interrumpible) | web-animation-design: duración acorde a la distancia                                                                   |
+| Cerrar la comanda        | 200 ms                                 | Opacidad + 24 px, 200 ms                                                  | make-interfaces-feel-better: salidas más suaves que las entradas                                                       |
+| Líneas que se imprimen   | Escalonado de 60 ms                    | 100 ms, solo las 4 primeras                                               | make-interfaces-feel-better                                                                                            |
+| Movimiento reducido      | Solo cambian colores                   | No se anima nada, ni color                                                | web-animation-design: sin excepciones                                                                                  |
+| «Menú de hoy»            | Título del recuadro                    | **«Menú del día»**                                                        | copy-proof-check: el menú es de martes a viernes                                                                       |
+| Pie de la foto del local | «Así es el comedor donde te esperamos» | «Foto de referencia: aquí irá una foto del comedor del negocio»           | copy-proof-check: es una foto de stock de otro lugar                                                                   |
+| Envío con pedido vacío   | Botón deshabilitado                    | Botón activo que avisa y lleva a «Volver a la carta»                      | web-design-guidelines: un botón deshabilitado no se enfoca ni explica nada                                             |
+| Fuentes                  | Newsreader con tamaño óptico y cursiva | Newsreader solo con peso, sin cursiva propia (~148 KB en vez de ~370 KB)  | Presupuesto de LCP                                                                                                     |
