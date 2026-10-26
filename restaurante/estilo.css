@@ -1,7 +1,893 @@
 /*
- * Estilos de esta página. Es el único CSS que enlaza el index.html: primero importa el
- * núcleo y luego, debajo, van los ajustes propios. Así el orden (núcleo → página) está
- * garantizado y lo de la página siempre gana.
- * _ejemplo usa el núcleo tal cual: es la plantilla para copiar al crear un rubro.
+ * Restaurante · «la carta como portada del diario del día» (brief: docs/visual/restaurante.md).
+ * Arquetipo 09 de crear-web-como-servicio llevado al diario popular peruano: titulares en
+ * grotesca condensada, tinta roja de imprenta, amarillo ají como resaltador y filetes solo
+ * donde separan columnas. Los colores llegan de negocio.json (tema); aquí van los tokens que
+ * cambian la forma y la tipografía.
  */
+@import '@fontsource-variable/archivo/wdth.css';
+@import '@fontsource-variable/newsreader/opsz.css';
+@import '@fontsource-variable/newsreader/opsz-italic.css';
 @import '../core/core.css';
+
+:root {
+  color-scheme: light; /* diseño de papel: sin modo oscuro, y el navegador no lo invierte */
+
+  --fuente-titulos: 'Archivo Variable', 'Arial Narrow', system-ui, sans-serif;
+  --fuente-texto: 'Newsreader Variable', Georgia, serif;
+  --peso-titulos: 800;
+  --ancho-titulos: 72%;
+  --interlineado-texto: 1.65; /* serif: un poco más de aire que una sans */
+  --interlineado-titulos: 0.95;
+  --texto-display: clamp(2.1rem, 1.2rem + 4.4vw, 4.4rem);
+  --texto-cabecera: clamp(3.4rem, 15.6vw, 9rem);
+
+  --color-texto-suave: #5e5850; /* gris de columna: 5.91:1 sobre papel */
+  --color-borde: color-mix(in oklch, var(--color-texto) 25%, var(--color-fondo));
+  --color-abierto: #1e6b3f; /* 5.46:1 sobre papel */
+  --color-marca-presionada: color-mix(in oklch, var(--color-marca) 85%, black);
+
+  --radio-boton: 2px; /* botones como sellos */
+  --radio-sm: 2px;
+  --radio-md: 0;
+  --radio-lg: 0;
+  --sombra-sm: none;
+  --sombra-md: none;
+  --sombra-lg: none;
+  --sombra-comanda: 0 -12px 40px rgb(26 23 20 / 0.25); /* la única pieza que flota */
+
+  /* Movimiento (brief, paso 4): ease-out-quart para lo que entra */
+  --curva-impresion: cubic-bezier(0.165, 0.84, 0.44, 1);
+  --ancho-contenido: 78rem;
+}
+
+/* Superficies oscuras: el foco pasa a ají (9.67:1 sobre tinta) */
+.aviso-demo,
+.barra-pedido,
+.pie {
+  --color-foco: var(--color-acento);
+}
+
+body {
+  font-optical-sizing: auto;
+}
+
+.aviso-demo {
+  font-family: var(--fuente-titulos);
+  font-weight: 500;
+}
+
+.precio {
+  font-family: var(--fuente-titulos);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+/* ── Botones y controles: misma voz tipográfica que los titulares ── */
+.boton {
+  border: 2px solid var(--color-texto);
+  font-family: var(--fuente-titulos);
+  font-weight: 700;
+  font-stretch: 87%;
+  white-space: nowrap;
+  transition: background-color var(--duracion-rapida) ease;
+}
+
+.boton:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+.boton:active {
+  transform: scale(0.97);
+  transition: transform 100ms var(--curva-impresion);
+}
+
+.boton--principal {
+  border-color: var(--color-marca);
+}
+
+.boton--secundario {
+  color: var(--color-texto);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .boton--principal:hover {
+    background: var(--color-marca-presionada);
+  }
+
+  .boton--secundario:hover {
+    background: var(--color-superficie);
+  }
+}
+
+/* ── Cabecera del diario ── */
+.cabecera {
+  padding-top: clamp(0.75rem, 2vw, 1.5rem);
+}
+
+.cabecera__nombre {
+  font-family: var(--fuente-titulos);
+  font-size: var(--texto-cabecera);
+  font-weight: 900;
+  font-stretch: 62%;
+  line-height: 0.8;
+  letter-spacing: -0.01em;
+  color: var(--color-marca);
+  white-space: nowrap;
+}
+
+.cabecera__lema {
+  display: block;
+  margin-top: 0.35em;
+  font-size: max(0.16em, 0.8125rem);
+  font-weight: 600;
+  font-stretch: 100%;
+  letter-spacing: 0;
+  line-height: 1.3;
+  white-space: normal;
+  color: var(--color-texto);
+}
+
+.fecha {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--espacio-1) var(--espacio-4);
+  margin-top: var(--espacio-3);
+  padding-block: var(--espacio-2);
+  border-block: 2px solid var(--color-texto);
+  font-family: var(--fuente-titulos);
+  font-size: var(--texto-sm);
+  font-weight: 600;
+}
+
+.fecha a {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tamano-tactil);
+  color: inherit;
+}
+
+.fecha .estado-horario {
+  padding: 0;
+  background: none;
+  font-size: inherit;
+}
+
+@media (max-width: 59.99rem) {
+  .fecha__extra {
+    display: none;
+  }
+}
+
+/* ── Portada ── */
+.portada {
+  display: grid;
+  gap: var(--espacio-5);
+  padding-block: var(--espacio-5) var(--espacio-7);
+}
+
+.portada__foto img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  outline: 1px solid rgb(0 0 0 / 0.08);
+  outline-offset: -1px;
+}
+
+.titular {
+  font-size: var(--texto-display);
+  letter-spacing: -0.005em;
+}
+
+.bajada {
+  max-width: 38ch;
+  margin-top: var(--espacio-3);
+  font-size: var(--texto-lg);
+  line-height: 1.5;
+}
+
+.portada .grupo-botones {
+  margin-top: var(--espacio-5);
+}
+
+@media (max-width: 59.99rem) {
+  /* Margen derecho: el botón flotante de WhatsApp (siempre visible) no tapa "Reservar mesa" */
+  .portada .grupo-botones {
+    flex-wrap: nowrap;
+    margin-right: 4.25rem;
+  }
+
+  .portada .grupo-botones .boton {
+    flex: 1 1 auto;
+    padding-inline: var(--espacio-2);
+    font-size: var(--texto-sm);
+  }
+}
+
+/* Menú de hoy: la columna lateral con su sello de precio */
+.menu-hoy {
+  position: relative;
+  padding: var(--espacio-4);
+  border: 2px solid var(--color-texto);
+}
+
+.menu-hoy__titulo,
+.menu-hoy__cuando {
+  padding-right: 4.5rem; /* espacio para el sello */
+}
+
+.menu-hoy__titulo {
+  font-size: 1.5rem;
+}
+
+.menu-hoy__lista dd {
+  line-height: 1.4;
+}
+
+.menu-hoy__cuando {
+  margin-top: var(--espacio-1);
+  color: var(--color-texto-suave);
+  font-family: var(--fuente-titulos);
+  font-size: var(--texto-sm);
+  font-weight: 600;
+}
+
+.menu-hoy__lista dt {
+  margin-top: var(--espacio-3);
+  font-family: var(--fuente-titulos);
+  font-size: var(--texto-sm);
+  font-weight: 700;
+}
+
+.menu-hoy__sello {
+  position: absolute;
+  top: -0.9rem;
+  right: 0.8rem;
+  display: grid;
+  place-items: center;
+  width: 4.6rem;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--color-acento);
+  color: var(--color-sobre-acento);
+  font-family: var(--fuente-titulos);
+  font-size: 1.3rem;
+  font-weight: 900;
+  font-stretch: 70%;
+  rotate: -8deg;
+}
+
+/* De la casa: la fila de "más noticias" */
+.de-la-casa__titulo {
+  padding-bottom: var(--espacio-2);
+  border-bottom: 2px solid var(--color-texto);
+  font-size: var(--texto-xl);
+}
+
+.de-la-casa__lista {
+  padding: 0;
+  list-style: none;
+}
+
+.de-la-casa__lista li {
+  padding-block: var(--espacio-3);
+  border-bottom: 1px solid var(--color-borde);
+}
+
+.de-la-casa__enlace {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--espacio-3);
+  min-height: var(--tamano-tactil);
+  align-items: center;
+  font-family: var(--fuente-titulos);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.de-la-casa__nombre {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+}
+
+.de-la-casa__lista p {
+  color: var(--color-texto-suave);
+  font-size: var(--texto-sm);
+  line-height: 1.45;
+}
+
+@media (min-width: 60rem) {
+  .portada {
+    grid-template-columns: 18.5rem minmax(0, 1.15fr) minmax(0, 1fr);
+    grid-template-areas:
+      'menu nota foto'
+      'casa casa casa';
+    gap: 0;
+  }
+
+  .menu-hoy {
+    grid-area: menu;
+    align-self: start;
+    margin: var(--espacio-4) var(--espacio-6) 0 0;
+  }
+
+  .portada__nota {
+    grid-area: nota;
+    padding-inline: var(--espacio-6);
+    border-left: 1px solid var(--color-borde);
+  }
+
+  .portada__foto {
+    grid-area: foto;
+  }
+
+  .portada__foto img {
+    aspect-ratio: 4 / 5;
+    max-height: 36rem;
+  }
+
+  .de-la-casa {
+    grid-area: casa;
+    margin-top: var(--espacio-6);
+  }
+
+  .de-la-casa__lista {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .de-la-casa__lista li {
+    padding-inline: var(--espacio-5);
+    border-bottom: 0;
+  }
+
+  .de-la-casa__lista li:first-child {
+    padding-left: 0;
+  }
+
+  .de-la-casa__lista li + li {
+    border-left: 1px solid var(--color-borde);
+  }
+}
+
+/* ── Carta: la función estrella ── */
+.carta {
+  padding-block: var(--espacio-7);
+  border-top: 2px solid var(--color-texto);
+}
+
+.carta__titulo,
+.reservas__titulo,
+.el-local__titulo {
+  font-size: var(--texto-2xl);
+}
+
+.carta__intro {
+  margin-top: var(--espacio-2);
+  color: var(--color-texto-suave);
+}
+
+.carta__sin-js {
+  margin-top: var(--espacio-4);
+  padding: var(--espacio-3);
+  border: 2px solid var(--color-texto);
+}
+
+.filtros {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  display: flex;
+  gap: var(--espacio-2);
+  margin: var(--espacio-4) calc(-1 * var(--margen-lateral)) 0;
+  padding: var(--espacio-2) var(--margen-lateral);
+  overflow-x: auto;
+  border-bottom: 1px solid var(--color-borde);
+  background: var(--color-fondo);
+  scrollbar-width: none;
+}
+
+.filtros button {
+  flex: none;
+  min-height: var(--tamano-tactil);
+  padding: var(--espacio-2) var(--espacio-4);
+  border: 2px solid var(--color-texto);
+  border-radius: var(--radio-boton);
+  background: transparent;
+  font-family: var(--fuente-titulos);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.filtros [aria-pressed='true'] {
+  background: var(--color-texto);
+  color: var(--color-fondo);
+}
+
+.categoria__titulo {
+  margin-top: var(--espacio-6);
+  padding-bottom: var(--espacio-1);
+  border-bottom: 1px solid var(--color-texto);
+  font-size: var(--texto-lg);
+  font-stretch: 80%;
+}
+
+.platos {
+  padding: 0;
+  list-style: none;
+}
+
+.plato {
+  display: grid;
+  grid-template-columns: 6rem 1fr;
+  gap: var(--espacio-4);
+  padding-block: var(--espacio-4);
+  border-bottom: 1px solid var(--color-borde);
+  break-inside: avoid;
+  scroll-margin-top: 5rem; /* que el ancla #plato-x no quede bajo los filtros */
+}
+
+.plato img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  outline: 1px solid rgb(0 0 0 / 0.08);
+  outline-offset: -1px;
+}
+
+.plato__cabeza {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--espacio-3);
+  font-size: var(--texto-base);
+  font-stretch: 100%;
+  line-height: 1.2;
+}
+
+.plato__descripcion {
+  margin-top: var(--espacio-1);
+  color: var(--color-texto-suave);
+  font-size: var(--texto-sm);
+  line-height: 1.45;
+}
+
+.plato__etiquetas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--espacio-1);
+  margin-top: var(--espacio-2);
+}
+
+.sello-texto {
+  padding: 0 var(--espacio-2);
+  border: 1px solid var(--color-texto-suave);
+  color: var(--color-texto-suave);
+  font-family: var(--fuente-titulos);
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.cantidad {
+  margin-top: var(--espacio-3);
+}
+
+.cantidad__agregar {
+  min-height: var(--tamano-tactil);
+  padding-inline: var(--espacio-4);
+}
+
+.cantidad__control {
+  display: flex;
+  align-items: center;
+  gap: var(--espacio-1);
+}
+
+.cantidad__control[hidden],
+.cantidad__agregar[hidden] {
+  display: none;
+}
+
+.cantidad__boton {
+  display: grid;
+  place-items: center;
+  width: var(--tamano-tactil);
+  height: var(--tamano-tactil);
+  border: 2px solid var(--color-texto);
+  border-radius: var(--radio-boton);
+  background: transparent;
+  font-family: var(--fuente-titulos);
+  font-size: 1.35rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.cantidad__boton:active {
+  transform: scale(0.97);
+}
+
+.cantidad__valor {
+  min-width: 2.2rem;
+  font-family: var(--fuente-titulos);
+  font-size: var(--texto-lg);
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  text-align: center;
+}
+
+.plato--en-pedido .plato__nombre {
+  text-decoration: underline;
+  text-decoration-color: var(--color-acento);
+  text-decoration-thickness: 0.25em;
+  text-underline-offset: -0.1em;
+  text-decoration-skip-ink: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .plato img {
+    transition: transform var(--duracion-media) ease;
+  }
+
+  .plato:hover img {
+    transform: scale(1.03);
+  }
+}
+
+@media (min-width: 48rem) {
+  .categoria .platos {
+    columns: 2;
+    column-gap: var(--espacio-7);
+    column-rule: 1px solid var(--color-borde);
+  }
+
+  .plato {
+    grid-template-columns: 7.5rem 1fr;
+  }
+}
+
+/* ── Barra de pedido ── */
+.barra-pedido {
+  position: fixed;
+  inset: auto 0 0;
+  z-index: var(--capa-flotante);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--espacio-4);
+  padding: var(--espacio-3) var(--margen-lateral)
+    calc(var(--espacio-3) + env(safe-area-inset-bottom));
+  background: var(--color-texto);
+  color: var(--color-fondo);
+  font-family: var(--fuente-titulos);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  transition:
+    transform var(--duracion-media) var(--curva-impresion),
+    visibility 0s;
+}
+
+/* Oculta pero animable: visibility la saca del orden de tabulación y del lector.
+   (No se usa el atributo hidden: display: none no se puede animar.) */
+.barra-pedido:not(.barra-pedido--visible) {
+  visibility: hidden;
+  transform: translateY(110%);
+  transition:
+    transform var(--duracion-media) var(--curva-impresion),
+    visibility 0s var(--duracion-media);
+}
+
+.barra-pedido__boton {
+  border-color: var(--color-acento);
+  background: var(--color-acento);
+  color: var(--color-sobre-acento);
+}
+
+/* Con pedido, el botón flotante de WhatsApp sube para no tapar la barra */
+.con-pedido .boton-flotante {
+  bottom: calc(4.75rem + env(safe-area-inset-bottom));
+}
+
+.con-pedido .pie {
+  padding-bottom: calc(var(--espacio-8) + 5rem);
+}
+
+/* ── La comanda (momento firma) ── */
+.comanda {
+  width: min(100%, 30rem);
+  max-width: 100%;
+  max-height: 90dvh;
+  margin: auto auto 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--color-texto);
+  overflow: visible;
+  transition:
+    transform 300ms var(--curva-impresion),
+    opacity 300ms var(--curva-impresion);
+}
+
+@starting-style {
+  .comanda[open] {
+    transform: translateY(100%);
+  }
+}
+
+.comanda::backdrop {
+  background: rgb(26 23 20 / 0.45);
+  transition: opacity 300ms var(--curva-impresion);
+}
+
+@starting-style {
+  .comanda[open]::backdrop {
+    opacity: 0;
+  }
+}
+
+/* Salida más suave que la entrada: desplazamiento corto + opacidad, 200 ms */
+.comanda--cerrando {
+  transform: translateY(24px);
+  opacity: 0;
+  transition:
+    transform 200ms var(--curva-impresion),
+    opacity 200ms var(--curva-impresion);
+}
+
+.comanda--cerrando::backdrop {
+  opacity: 0;
+  transition-duration: 200ms;
+}
+
+.comanda__papel {
+  position: relative;
+  display: grid;
+  gap: var(--espacio-4);
+  max-height: 90dvh;
+  overflow: auto;
+  padding: var(--espacio-6) var(--espacio-5) calc(var(--espacio-5) + env(safe-area-inset-bottom));
+  background-color: #fbfaf6;
+  /* perforación del papel de la comanda */
+  background-image: radial-gradient(circle at 8px 0, var(--color-borde) 4px, transparent 4.5px);
+  background-size: 16px 10px;
+  background-repeat: repeat-x;
+  box-shadow: var(--sombra-comanda);
+}
+
+.comanda__titulo {
+  font-size: var(--texto-xl);
+}
+
+.comanda__cerrar {
+  position: absolute;
+  top: var(--espacio-4);
+  right: var(--espacio-3);
+  width: var(--tamano-tactil);
+  height: var(--tamano-tactil);
+  border: 0;
+  background: transparent;
+  font-size: 1.75rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.comanda__lineas {
+  padding: 0;
+  list-style: none;
+}
+
+.linea {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0 var(--espacio-2);
+  padding-block: var(--espacio-2);
+  border-bottom: 1px dashed var(--color-borde);
+  font-family: var(--fuente-titulos);
+  font-weight: 600;
+}
+
+.linea .cantidad__control {
+  grid-column: 1 / -1;
+  margin-top: var(--espacio-1);
+}
+
+.linea--imprimir {
+  animation: imprimir 200ms var(--curva-impresion) var(--retraso, 0ms) both;
+}
+
+@keyframes imprimir {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+}
+
+.comanda__total {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--fuente-titulos);
+  font-size: var(--texto-xl);
+  font-weight: 900;
+  font-stretch: 75%;
+}
+
+.comanda__entrega {
+  padding: 0;
+  border: 0;
+}
+
+.comanda__entrega legend {
+  font-family: var(--fuente-titulos);
+  font-weight: 700;
+}
+
+.opciones {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--espacio-2);
+  margin-top: var(--espacio-2);
+}
+
+.opcion {
+  display: flex;
+  align-items: center;
+  gap: var(--espacio-2);
+  min-height: var(--tamano-tactil);
+  padding: var(--espacio-2) var(--espacio-3);
+  border: 2px solid var(--color-texto);
+  border-radius: var(--radio-boton);
+  font-family: var(--fuente-titulos);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.opcion:has(input:checked) {
+  background: var(--color-texto);
+  color: var(--color-fondo);
+}
+
+.opcion:has(input:focus-visible) {
+  outline: 3px solid var(--color-foco);
+  outline-offset: 3px;
+}
+
+.comanda__nota-delivery {
+  margin-top: var(--espacio-2);
+  color: var(--color-texto-suave);
+  font-size: var(--texto-sm);
+}
+
+.comanda .campo input {
+  background: #fff;
+}
+
+.campo__etiqueta,
+.comanda__entrega legend {
+  font-family: var(--fuente-titulos);
+  font-weight: 700;
+}
+
+.comanda__enviar {
+  width: 100%;
+}
+
+.comanda__enviar:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.comanda__vacia {
+  display: grid;
+  gap: var(--espacio-3);
+  justify-items: start;
+}
+
+/* ── Reservas ── */
+.reservas {
+  display: grid;
+  gap: var(--espacio-5);
+  padding-block: var(--espacio-7);
+  border-top: 2px solid var(--color-texto);
+}
+
+.reservas__texto p {
+  max-width: 34ch;
+  margin-top: var(--espacio-2);
+  color: var(--color-texto-suave);
+}
+
+@media (min-width: 60rem) {
+  .reservas {
+    grid-template-columns: 1fr 1.4fr;
+    gap: var(--espacio-8);
+  }
+}
+
+/* ── El local: reportaje gráfico ── */
+.el-local {
+  padding-block: var(--espacio-7);
+  border-top: 2px solid var(--color-texto);
+}
+
+.el-local figure {
+  margin-top: var(--espacio-4);
+}
+
+.el-local img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+.el-local figcaption,
+.qr-carta p {
+  margin-top: var(--espacio-2);
+  color: var(--color-texto-suave);
+  font-style: italic;
+}
+
+/* ── Núcleo con estilo de diario ── */
+.resenas {
+  border-top: 2px solid var(--color-texto);
+  background: none;
+}
+
+.resena {
+  border: 0;
+  border-top: 1px solid var(--color-texto);
+  background: none;
+  padding-inline: 0;
+}
+
+.resena__texto {
+  font-style: italic;
+}
+
+.mapa {
+  border-top: 2px solid var(--color-texto);
+}
+
+/* ── QR de la carta ── */
+.qr-carta {
+  display: grid;
+  grid-template-columns: 8rem 1fr;
+  gap: var(--espacio-5);
+  align-items: center;
+  padding-block: var(--espacio-6);
+  border-top: 2px solid var(--color-texto);
+}
+
+.qr-carta h2 {
+  font-size: var(--texto-xl);
+}
+
+.qr-carta .boton {
+  margin-top: var(--espacio-3);
+}
+
+/* ── Movimiento reducido: nada se mueve (brief, paso 4) ── */
+@media (prefers-reduced-motion: reduce) {
+  .boton,
+  .boton:active,
+  .cantidad__boton:active,
+  .plato img,
+  .barra-pedido,
+  .barra-pedido:not(.barra-pedido--visible),
+  .comanda,
+  .comanda::backdrop,
+  .comanda--cerrando {
+    transition: none;
+  }
+
+  .boton:active,
+  .cantidad__boton:active,
+  .plato:hover img {
+    transform: none;
+  }
+
+  .linea--imprimir {
+    animation: none;
+  }
+}

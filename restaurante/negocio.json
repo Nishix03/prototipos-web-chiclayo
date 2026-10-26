@@ -42,10 +42,10 @@
     "dom": [["12:00", "16:30"]]
   },
   "tema": {
-    "marca": "#9a3412",
-    "acento": "#b45309",
-    "fondo": "#f6f1e7",
-    "texto": "#1c1917"
+    "marca": "#b42318",
+    "acento": "#f4b400",
+    "fondo": "#efebe2",
+    "texto": "#1a1714"
   },
   "menuDelDia": {
     "dias": "De martes a viernes",

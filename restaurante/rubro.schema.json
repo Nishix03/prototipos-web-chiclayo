@@ -2,6 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "Negocio · restaurante",
   "description": "Base común + carta, menú del día, pedidos y reservas.",
+  "type": "object",
   "allOf": [{ "$ref": "../core/negocio.schema.json" }],
   "required": ["textos", "menuDelDia", "carta", "pedidos", "reservas"],
   "properties": {
