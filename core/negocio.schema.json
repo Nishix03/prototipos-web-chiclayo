@@ -1,8 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://nishix03.github.io/prototipos-web-chiclayo/negocio.schema.json",
-  "title": "Negocio",
-  "description": "Todo lo que cambia entre un negocio y otro. Es la única fuente de verdad: VS Code la usa para autocompletar y el build (ajv) para validar.",
+  "title": "Negocio (base común)",
+  "description": "Campos que comparten todos los rubros. No se usa sola: el rubro.schema.json de cada página la extiende con allOf y cierra el objeto con unevaluatedProperties (ver ADR 005).",
   "type": "object",
   "required": [
     "demo",
@@ -158,8 +157,13 @@
       }
     }
   },
-  "additionalProperties": false,
   "$defs": {
+    "precio": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 10000,
+      "description": "Precio en soles (S/). En demos, siempre ficticio."
+    },
     "hora": {
       "type": "string",
       "pattern": "^([01][0-9]|2[0-3]):[0-5][0-9]$"
@@ -191,7 +195,24 @@
         "alt": {
           "type": "string",
           "description": "Texto alternativo: describe la foto para quien no la ve. Vacío solo si es decorativa."
-        }
+        },
+        "credito": { "$ref": "#/$defs/credito" }
+      }
+    },
+    "credito": {
+      "type": "object",
+      "description": "Atribución de una foto de stock (Openverse). La página la lista sola en 'Créditos fotográficos'.",
+      "required": ["titulo", "autor", "licencia", "urlFuente"],
+      "additionalProperties": false,
+      "properties": {
+        "titulo": { "type": "string" },
+        "autor": { "type": "string" },
+        "licencia": {
+          "enum": ["cc0", "pdm", "by", "by-sa"],
+          "description": "Solo licencias de uso comercial. Nunca by-nc (la web es para un negocio)."
+        },
+        "version": { "type": "string" },
+        "urlFuente": { "type": "string", "format": "uri" }
       }
     }
   }
