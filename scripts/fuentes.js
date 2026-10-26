@@ -43,6 +43,23 @@ const FUENTES = [
     salida: 'newsreader-texto.woff2',
     ejes: { wght: { min: 400, max: 700 } },
   },
+  // Maqueta de la v2 inmersiva (brief en revisión): mismo texto que restaurante/, otra carpeta
+  {
+    carpeta: 'restaurante',
+    destino: 'docs/visual/restaurante-inmersivo/fuentes',
+    paquete: 'bricolage-grotesque',
+    entrada: 'files/bricolage-grotesque-latin-standard-normal.woff2',
+    salida: 'bricolage-titulos.woff2',
+    ejes: { wght: { min: 600, max: 800 }, wdth: 88, opsz: 48 },
+  },
+  {
+    carpeta: 'restaurante',
+    destino: 'docs/visual/restaurante-inmersivo/fuentes',
+    paquete: 'literata',
+    entrada: 'files/literata-latin-wght-normal.woff2',
+    salida: 'literata-texto.woff2',
+    ejes: { wght: { min: 400, max: 700 } },
+  },
 ];
 
 function fallar(mensaje) {
@@ -88,16 +105,19 @@ function revisarCobertura(carpeta) {
 
 for (const carpeta of new Set(FUENTES.map((f) => f.carpeta))) revisarCobertura(carpeta);
 
-for (const { carpeta, paquete, entrada, salida, ejes } of FUENTES) {
+for (const fuente of FUENTES) {
+  const { carpeta, paquete, entrada, salida, ejes } = fuente;
   const original = readFileSync(fontsource(paquete, entrada));
   const recortada = await subsetFont(original, ESPANOL, {
     targetFormat: 'woff2',
     variationAxes: ejes,
   });
-  const destino = resolve(raiz, carpeta, 'fuentes');
+  // `destino` es opcional: por defecto, <carpeta>/fuentes
+  const relativo = fuente.destino ?? join(carpeta, 'fuentes');
+  const destino = resolve(raiz, relativo);
   mkdirSync(destino, { recursive: true });
   writeFileSync(join(destino, salida), recortada);
   copyFileSync(fontsource(paquete, 'LICENSE'), join(destino, `OFL-${paquete}.txt`));
   const kb = (n) => `${(n / 1024).toFixed(1)} KB`;
-  console.log(`✔ ${carpeta}/fuentes/${salida}: ${kb(original.length)} → ${kb(recortada.length)}`);
+  console.log(`✔ ${relativo}/${salida}: ${kb(original.length)} → ${kb(recortada.length)}`);
 }
