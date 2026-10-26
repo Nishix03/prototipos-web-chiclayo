@@ -26,11 +26,18 @@ function etiquetaDe(control) {
   return label ? label.firstChild.textContent.trim() : control.name;
 }
 
+// La fecha de un <input type="date"> no tiene zona: se formatea en UTC para no correr el día
+const formatoFecha = new Intl.DateTimeFormat('es-PE', {
+  day: '2-digit',
+  month: '2-digit',
+  year: 'numeric',
+  timeZone: 'UTC',
+});
+
 function valorLegible(control) {
   if (control.tagName === 'SELECT') return control.value ? control.selectedOptions[0].text : '';
   if (control.type === 'date' && control.value) {
-    const [a, m, d] = control.value.split('-');
-    return `${d}/${m}/${a}`;
+    return formatoFecha.format(new Date(`${control.value}T00:00:00Z`));
   }
   return control.value.trim();
 }

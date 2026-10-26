@@ -23,7 +23,6 @@ export function iniciarCarrito() {
   const vacia = $('[data-vacia]');
   const total = $('[data-total]');
   const form = $('#form-comanda');
-  const enviar = form.querySelector('[type="submit"]');
 
   // Un solo anuncio para lectores de pantalla, en vez de uno por contador
   const anuncio = Object.assign(document.createElement('p'), { className: 'solo-lector' });
@@ -86,7 +85,6 @@ export function iniciarCarrito() {
     if (nuevo) lista.querySelector(`[data-id="${nuevo}"]`)?.classList.add('linea--imprimir');
     total.textContent = soles(totalSoles(pedido));
     vacia.hidden = actuales.length > 0;
-    enviar.disabled = actuales.length === 0;
   }
 
   function pintarBarra() {
@@ -208,20 +206,49 @@ export function iniciarCarrito() {
   form.addEventListener('change', (e) => e.target.name === 'entrega' && pintarEntrega());
   pintarEntrega();
 
+  // Pedido vacío: el botón de envío sigue habilitado (un botón deshabilitado no se puede
+  // enfocar ni explica por qué). Al pulsarlo, se avisa y el foco va a "Volver a la carta".
+  // Fase de captura: corre antes que la validación de core/formulario-whatsapp.js.
+  form.addEventListener(
+    'submit',
+    (e) => {
+      if (totalPlatos(pedido) > 0) return;
+      e.preventDefault();
+      e.stopImmediatePropagation();
+      vacia.querySelector('button').focus();
+    },
+    true,
+  );
+
   // ── Filtros de la carta (Array.filter sobre las categorías) ──
+  // El filtro elegido queda en la URL (?categoria=marinos): se puede compartir o recargar.
   const filtros = document.querySelector('[data-filtros]');
   const categorias = [...document.querySelectorAll('[data-categoria]')];
   filtros.hidden = false;
+
+  function filtrar(filtro) {
+    const existe = filtro === 'todo' || categorias.some((c) => c.dataset.categoria === filtro);
+    const elegido = existe ? filtro : 'todo';
+    filtros
+      .querySelectorAll('[data-filtro]')
+      .forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.filtro === elegido)));
+    const visibles = categorias.filter(
+      (c) => elegido === 'todo' || c.dataset.categoria === elegido,
+    );
+    categorias.forEach((c) => (c.hidden = !visibles.includes(c)));
+    return elegido;
+  }
+
   filtros.addEventListener('click', (e) => {
     const boton = e.target.closest('[data-filtro]');
     if (!boton) return;
-    const filtro = boton.dataset.filtro;
-    filtros
-      .querySelectorAll('[data-filtro]')
-      .forEach((b) => b.setAttribute('aria-pressed', String(b === boton)));
-    const visibles = categorias.filter((c) => filtro === 'todo' || c.dataset.categoria === filtro);
-    categorias.forEach((c) => (c.hidden = !visibles.includes(c)));
+    const elegido = filtrar(boton.dataset.filtro);
+    const url = new URL(location.href);
+    if (elegido === 'todo') url.searchParams.delete('categoria');
+    else url.searchParams.set('categoria', elegido);
+    history.replaceState(null, '', url);
   });
+  filtrar(new URLSearchParams(location.search).get('categoria') ?? 'todo');
 
   return {
     mensaje: (f) =>

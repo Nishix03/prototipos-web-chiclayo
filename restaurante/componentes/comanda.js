@@ -73,6 +73,7 @@ export function comanda(negocio) {
           id: 'nota',
           etiqueta: 'Nota para la cocina',
           ayuda: 'Por ejemplo: sin cebolla, o sin ají.',
+          atributos: { autocomplete: 'off' },
         })}
 
         <p class="formulario__estado" role="status" aria-live="polite"></p>

@@ -15,7 +15,7 @@ export function cabecera(negocio) {
   return html`
     <header class="cabecera contenedor">
       <p class="cabecera__nombre">
-        ${marca}
+        <span translate="no">${marca}</span>
         <span class="cabecera__lema">${eslogan}${sufijo ? ` · ${sufijo}` : ''}</span>
       </p>
       <div class="fecha">

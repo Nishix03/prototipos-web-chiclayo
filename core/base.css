@@ -54,6 +54,15 @@ select {
   color: inherit;
 }
 
+/* Toques rápidos sin el retraso del doble toque para zoom, y sin el destello gris de iOS */
+a,
+button,
+label,
+summary {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
 /* ── Tipografía ── */
 h1,
 h2,

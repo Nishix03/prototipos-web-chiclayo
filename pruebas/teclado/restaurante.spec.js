@@ -168,8 +168,12 @@ test('quitar todo desde la comanda deja el estado vacío y el foco no se pierde'
   await tabularHasta(page, page.locator('.linea [data-accion="quitar"]'));
   await page.keyboard.press('Enter');
   await expect(page.locator('[data-vacia]')).toBeVisible();
-  await expect(page.locator('[data-vacia] button')).toBeFocused();
-  await expect(page.locator('.comanda__enviar')).toBeDisabled();
+  const volver = page.locator('[data-vacia] button');
+  await expect(volver).toBeFocused();
+  // Enviar sigue enfocable; con el pedido vacío no abre WhatsApp y devuelve el foco a "Volver"
+  await tabularHasta(page, page.locator('.comanda__enviar'));
+  await page.keyboard.press('Enter');
+  await expect(volver).toBeFocused();
   await page.keyboard.press('Enter'); // "Volver a la carta" cierra la comanda
   await expect(page.locator('[data-comanda]')).toHaveJSProperty('open', false);
 });
@@ -182,6 +186,11 @@ test('filtros de la carta con teclado', async ({ page }) => {
   await expect(marinos).toHaveAttribute('aria-pressed', 'true');
   await expect(page.locator('[data-categoria="fondos"]')).toBeHidden();
   await expect(page.locator('[data-categoria="marinos"]')).toBeVisible();
+  // El filtro queda en la URL y sobrevive a una recarga
+  await expect(page).toHaveURL(/\?categoria=marinos/);
+  await page.reload();
+  await expect(page.locator('[data-filtro="marinos"]')).toHaveAttribute('aria-pressed', 'true');
+  await expect(page.locator('[data-categoria="fondos"]')).toBeHidden();
 });
 
 test('reserva con teclado: un lunes da error claro, un martes abre WhatsApp', async ({ page }) => {

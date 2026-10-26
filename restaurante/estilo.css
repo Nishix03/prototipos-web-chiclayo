@@ -52,6 +52,15 @@ body {
   font-optical-sizing: auto;
 }
 
+/* Lo fijo (filtros arriba, barra de pedido abajo) no debe tapar el elemento enfocado */
+html {
+  scroll-padding-top: 5rem;
+}
+
+html:has(body.con-pedido) {
+  scroll-padding-bottom: 6rem;
+}
+
 .aviso-demo {
   font-family: var(--fuente-titulos);
   font-weight: 500;
@@ -509,6 +518,13 @@ body {
   transform: scale(0.97);
 }
 
+@media (hover: hover) and (pointer: fine) {
+  .cantidad__boton:hover,
+  .filtros button[aria-pressed='false']:hover {
+    background: var(--color-superficie);
+  }
+}
+
 .cantidad__valor {
   min-width: 2.2rem;
   font-family: var(--fuente-titulos);
@@ -647,6 +663,7 @@ body {
   gap: var(--espacio-4);
   max-height: 90dvh;
   overflow: auto;
+  overscroll-behavior: contain; /* al llegar al final de la comanda no se desplaza la página */
   padding: var(--espacio-6) var(--espacio-5) calc(var(--espacio-5) + env(safe-area-inset-bottom));
   background-color: #fbfaf6;
   /* perforación del papel de la comanda */
