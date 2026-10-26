@@ -5,12 +5,28 @@
  * donde separan columnas. Los colores llegan de negocio.json (tema); aquí van los tokens que
  * cambian la forma y la tipografía.
  */
-/* Fuentes: ~148 KB en latín. Archivo con eje de ancho (la identidad del concepto); Newsreader
-   solo con eje de peso (58 KB en vez de 132 KB con tamaño óptico) y sin cursiva propia (147 KB):
-   los pies de foto usan la cursiva que sintetiza el navegador. Presupuesto de LCP del plan. */
-@import '@fontsource-variable/archivo/wdth.css';
-@import '@fontsource-variable/newsreader/wght.css';
 @import '../core/core.css';
+
+/* Fuentes: ~67 KB en vez de ~148 KB. `npm run fuentes` las recorta a los caracteres del
+   español y al tramo de cada eje que se usa aquí (Archivo: peso 500–900, ancho 62–100 %;
+   Newsreader: peso 400–700). Sin cursiva propia: los pies de foto usan la que sintetiza el
+   navegador. Presupuesto de LCP del plan. Licencia OFL junto a cada archivo. */
+@font-face {
+  font-family: 'Archivo Variable';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 500 900;
+  font-stretch: 62% 100%;
+  src: url('./fuentes/archivo-titulos.woff2') format('woff2-variations');
+}
+
+@font-face {
+  font-family: 'Newsreader Variable';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400 700;
+  src: url('./fuentes/newsreader-texto.woff2') format('woff2-variations');
+}
 
 /*
  * Respaldo mientras llega Archivo: Arial reducida para que ocupe casi lo mismo que la

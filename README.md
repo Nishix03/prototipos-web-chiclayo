@@ -26,6 +26,7 @@ Prototipos web para negocios locales (restaurante, spa, barbería, veterinaria, 
 | `npm run test:teclado`                               | Construye y prueba cada página solo con teclado (Playwright, ADR 006), con la hora de Lima simulada |
 | `npm run fotos -- buscar "<consulta>"`               | Busca fotos en Openverse con licencia permitida (cc0, by, by-sa)                                    |
 | `npm run fotos -- bajar <id> <carpeta>/img/<nombre>` | Descarga la foto en WebP tras verificar su licencia y escribe su `credito`                          |
+| `npm run fuentes`                                    | Recorta las fuentes de cada rubro a los caracteres del español y a los pesos que usa                |
 
 ## Cómo funciona
 

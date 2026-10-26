@@ -13,7 +13,8 @@
     "format:check": "prettier --check .",
     "a11y": "vite build && node scripts/a11y.js",
     "fotos": "node scripts/fotos.js",
-    "test:teclado": "vite build && playwright test pruebas/teclado"
+    "test:teclado": "vite build && playwright test pruebas/teclado",
+    "fuentes": "node scripts/fuentes.js"
   },
   "repository": {
     "type": "git",
@@ -36,6 +37,7 @@
     "prettier": "^3.9.10",
     "qrcode": "^1.5.4",
     "sharp": "^0.35.5",
+    "subset-font": "^2.9.0",
     "vite": "^8.3.5",
     "vite-plugin-image-optimizer": "^2.0.3"
   },
