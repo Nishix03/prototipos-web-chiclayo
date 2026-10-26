@@ -146,22 +146,44 @@ export function iniciarCarrito() {
   });
 
   // ── Comanda: abrir y cerrar ───────────────────────────────
+  // El cierre es animado y por eso asíncrono: si se reabre a mitad de camino, hay que
+  // cancelar el cierre pendiente (su transitionend y su temporizador), o cerraría la
+  // comanda recién abierta. La prueba de teclado E2E encontró justo ese error.
+  let cierrePendiente = null;
+
+  function cancelarCierre() {
+    cierrePendiente?.abort();
+    cierrePendiente = null;
+    dialogo.classList.remove('comanda--cerrando');
+  }
+
   function abrir() {
+    cancelarCierre();
     pintarComanda();
     lista.querySelectorAll('.linea').forEach((li, i) => {
       li.classList.add('linea--imprimir');
       li.style.setProperty('--retraso', `${Math.min(i, MAX_ESCALONADAS) * ESCALONADO_MS}ms`);
     });
-    dialogo.classList.remove('comanda--cerrando');
-    dialogo.showModal();
+    if (!dialogo.open) dialogo.showModal();
   }
 
   function cerrar() {
-    if (!dialogo.open) return;
+    if (!dialogo.open || cierrePendiente) return;
     if (movimientoReducido()) return dialogo.close();
+    const control = new AbortController();
+    cierrePendiente = control;
+    // Termina por transitionend o por el temporizador, lo que llegue primero; abort()
+    // cancela al otro para que no cierre después una comanda reabierta
+    const terminar = () => {
+      if (control.signal.aborted) return;
+      control.abort();
+      cierrePendiente = null;
+      dialogo.close();
+    };
     dialogo.classList.add('comanda--cerrando');
-    dialogo.addEventListener('transitionend', () => dialogo.close(), { once: true });
-    setTimeout(() => dialogo.open && dialogo.close(), 400); // por si no llega transitionend
+    dialogo.addEventListener('transitionend', terminar, { once: true, signal: control.signal });
+    const respaldo = setTimeout(terminar, 400); // por si no llega transitionend
+    control.signal.addEventListener('abort', () => clearTimeout(respaldo));
   }
 
   barra.querySelector('[data-abrir-comanda]').addEventListener('click', abrir);
