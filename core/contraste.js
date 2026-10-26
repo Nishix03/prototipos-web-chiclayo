@@ -2,6 +2,7 @@
 // Funciones puras: corren igual en Node (build) y en el navegador.
 
 export const CONTRASTE_MINIMO = 4.5; // texto normal, nivel AA
+export const CONTRASTE_NO_TEXTO = 3; // bordes de foco, íconos (WCAG 1.4.11)
 
 function luminancia(hex) {
   const canales = [1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16) / 255);

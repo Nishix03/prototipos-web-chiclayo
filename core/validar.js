@@ -6,7 +6,7 @@
 import { readFileSync } from 'node:fs';
 import Ajv2020 from 'ajv/dist/2020.js';
 import addFormats from 'ajv-formats';
-import { contraste, CONTRASTE_MINIMO } from './contraste.js';
+import { contraste, textoLegibleSobre, CONTRASTE_MINIMO, CONTRASTE_NO_TEXTO } from './contraste.js';
 
 const esquema = JSON.parse(readFileSync(new URL('./negocio.schema.json', import.meta.url), 'utf8'));
 
@@ -54,14 +54,18 @@ export function validarNegocio(negocio) {
     return validarEsquema.errors.map((e) => `${e.instancePath || '(raíz)'}: ${traducir(e)}`);
   }
 
-  const errores = [];
-  const { fondo, texto } = negocio.tema;
-  const ratio = contraste(texto, fondo);
-  if (ratio < CONTRASTE_MINIMO) {
-    errores.push(
-      `/tema: el texto ${texto} sobre el fondo ${fondo} tiene contraste ${ratio.toFixed(2)}:1; ` +
-        `WCAG AA pide al menos ${CONTRASTE_MINIMO}:1`,
+  const { marca, fondo, texto } = negocio.tema;
+  const pares = [
+    // [descripción, color de texto, color de fondo, mínimo]
+    ['el texto sobre el fondo', texto, fondo, CONTRASTE_MINIMO],
+    ['el texto de los botones sobre la marca', textoLegibleSobre(marca), marca, CONTRASTE_MINIMO],
+    ['el borde de foco (marca) sobre el fondo', marca, fondo, CONTRASTE_NO_TEXTO],
+  ];
+  return pares
+    .map(([que, a, b, minimo]) => [que, a, b, minimo, contraste(a, b)])
+    .filter(([, , , minimo, ratio]) => ratio < minimo)
+    .map(
+      ([que, a, b, minimo, ratio]) =>
+        `/tema: ${que} (${a} / ${b}) tiene contraste ${ratio.toFixed(2)}:1; WCAG AA pide ${minimo}:1`,
     );
-  }
-  return errores;
 }
