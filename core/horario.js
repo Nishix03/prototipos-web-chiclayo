@@ -53,6 +53,27 @@ export const formatoHora = (hhmm) => hhmm.replace(/^0/, '');
 const diaAnterior = (dia) => DIAS[(DIAS.indexOf(dia) + 6) % 7];
 const diaSiguiente = (dia, n = 1) => DIAS[(DIAS.indexOf(dia) + n) % 7];
 
+/** '2026-11-03' → 'mar'. La fecha de un <input type="date"> no tiene zona horaria. */
+export function diaDeFecha(fechaIso) {
+  const [a, m, d] = fechaIso.split('-').map(Number);
+  return DIAS[new Date(Date.UTC(a, m - 1, d)).getUTCDay()];
+}
+
+/** Hoy en Lima como 'AAAA-MM-DD' (para el min de un <input type="date">). */
+export function hoyEnLima(fecha = new Date()) {
+  return new Intl.DateTimeFormat('en-CA', { timeZone: ZONA }).format(fecha);
+}
+
+/** ¿El negocio atiende ese día a esa hora? Considera los rangos que cruzan la medianoche. */
+export function atiendeA(horario, dia, hhmm) {
+  const m = aMinutos(hhmm);
+  return horario[dia].some(([inicio, fin]) => {
+    const a = aMinutos(inicio);
+    const b = aMinutos(fin);
+    return b > a ? m >= a && m < b : m >= a;
+  });
+}
+
 /**
  * ¿Está abierto en este momento?
  * Un rango cuyo cierre es menor o igual que su apertura cruza la medianoche ('18:00'–'02:00').
