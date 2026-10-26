@@ -74,30 +74,62 @@ Guarda todo lo que cambia entre negocios: nombre, eslogan, teléfono de WhatsApp
 
 Cada rubro empieza con un brief visual que tú apruebas, y no se escribe código hasta entonces. Es el paso que hace un estudio de diseño antes de construir: decide cómo debe verse y moverse la página, y lo prueba con una maqueta. Las 8 etapas de calidad aseguran que sea correcta; esta etapa asegura que sea vistosa.
 
-[embedded content: planificación visual · 6 pasos y tu aprobación]
+&#91;embedded content: planificación visual · 6 pasos y tu aprobación\]
 
 Si pides cambios, el brief vuelve al paso que corresponda; la maqueta del hero se rehace hasta que la apruebes.
 
 | Paso | Skills | Entregable |
 | --- | --- | --- |
-| 1. Referencias reales | `anti-ui-slop`, guía de nicho de `crear-web-como-servicio` | Las 3 mejores webs reales del rubro con lo que hacen bien y qué espera ver el cliente de ese negocio |
-| 2. Concepto y dirección de arte | `frontend-design`, arquetipos de `crear-web-como-servicio` | El concepto en una frase ("la carta como portada de periódico"), el arquetipo elegido y por qué, y el momento firma de la página |
+| 1. Referencias | `anti-ui-slop`, guía de nicho de `crear-web-como-servicio`, búsqueda web | Las 3 mejores webs reales del rubro y 5 referencias de inmersión (sitios premiados por su movimiento o 3D, de cualquier rubro), con la técnica que se toma de cada una |
+| 2. Tres direcciones | `frontend-design`, arquetipos y catálogo de efectos de `crear-web-como-servicio` | 3 direcciones claramente distintas, cada una con concepto en una frase, arquetipo, momento firma 3D, paleta, par tipográfico y lenguaje de movimiento. **Tú eliges una** |
 | 3. Sistema visual | `ui-ux-pro-max`, `design-system` | Paleta con contraste verificado, par tipográfico con escala fluida, grid, radios y sombras, como tokens del rubro |
-| 4. Guion de movimiento | `web-animation-design`, `emil-design-engineering`, `make-interfaces-feel-better`, catálogo de efectos de `crear-web-como-servicio` | Tabla de cada animación: elemento, disparador, duración, curva y versión con movimiento reducido, más el presupuesto de rendimiento |
-| 5. Maqueta del hero | `frontend-design` | Hero y función estrella en HTML estático, con capturas a 360 px y 1440 px de ancho |
-| 6. Revisión experta | `audit-as-design-eng`, `design-critique` | Veredicto (aprobar, aprobar con cambios o rehacer) y las correcciones aplicadas antes de mostrártelo |
+| 4. Guion de movimiento | `web-animation-design` y catálogo de efectos (diseñan); `emil-design-engineering` y `make-interfaces-feel-better` (pulen después) | Tabla de cada animación: elemento, disparador, duración, curva y versión reducida, más el plan de carga del 3D |
+| 5. Hero vivo | `frontend-design` | Hero con el 3D real, la función estrella y las coreografías de scroll funcionando; video de Playwright a 360 y 1440 px, capturas y la página abierta en tu navegador |
+| 6. Revisión experta | `design-critique`, `audit-as-design-eng`, `audit-as-perf-eng` | Veredicto con la pregunta "¿un dueño recordaría esta página mañana?", peso y costo del 3D medidos, y las correcciones aplicadas |
 
 Todo queda en `docs/visual/<rubro>.md` con sus capturas. Claude Code se detiene ahí y te pide aprobación.
 
-**Tu revisión, en 5 segundos:** mira las capturas como si fueras el dueño del negocio. Si no te dan ganas de tocar el botón principal, no está aprobado. Cuando puedas, muéstralas también a una persona externa.
+**Tu revisión, en dos paradas:** después del paso 2 eliges una de las 3 direcciones; después del paso 6 apruebas el hero vivo mirando el video y la página en movimiento, nunca solo capturas fijas, porque una captura no muestra el movimiento. La prueba es la misma: si como dueño del negocio no te dan ganas de tocar el botón principal, o no recordarías la página mañana, no está aprobado.
 
 ### Reglas de movimiento y efectos
 
-- **Cada animación tiene un propósito:** guía la mirada, explica un cambio o confirma una acción. La rapidez va antes que el espectáculo.
-- **Interfaz:** entre 150 y 300 ms, curva ease-out para lo que entra; solo se animan `transform` y `opacity`; nunca `transition: all`.
-- **GSAP permitido** para las animaciones ligadas al scroll; CSS moderno para todo lo demás.
-- **Un solo momento 3D por página, en el hero,** con Three.js: carga después del contenido y se reemplaza por una imagen fija en celulares de gama baja y con movimiento reducido.
-- **Presupuesto:** LCP menor a 2.5 s en 4G, CLS menor a 0.1 y 90 o más en rendimiento de Lighthouse móvil. Si un efecto rompe el presupuesto, se quita el efecto.
+**Inmersión mínima, obligatoria en cada prototipo** (cambio del 26 de octubre: la primera versión del restaurante salió correcta pero plana, porque ninguna etapa exigía que impresionara):
+
+- **Un momento firma en el hero:** escena 3D con Three.js o un shader WebGL, propio del rubro, que reacciona al scroll o al cursor.
+- **Al menos 3 coreografías ligadas al scroll** con GSAP ScrollTrigger: revelados, capas en parallax, texto que se arma.
+- **Microinteracciones en la función estrella** (por ejemplo, el plato vuela a la comanda y el ticket se imprime).
+- **View Transitions** entre estados: pasos de formularios, abrir y cerrar la comanda.
+
+**Las auditorías corrigen, no borran.** `make-interfaces-feel-better`, `emil-design-engineering`, `audit-as-design-eng` y `accessibility-review` pueden pedir que un efecto sea más rápido, tenga versión reducida o no tape contenido, pero no eliminarlo. Un efecto solo se quita si rompe el presupuesto medido, y queda escrito.
+
+**Reglas de interfaz:** cada animación tiene un propósito; en botones y estados, entre 150 y 300 ms con ease-out; solo se animan `transform` y `opacity`; nunca `transition: all`.
+
+**Presupuesto con 3D (ADR 008):**
+
+- Se mantienen LCP menor a 2.5 s en 4G, CLS menor a 0.1 y 90 o más en las 4 categorías de Lighthouse.
+- El LCP es un póster: imagen fija AVIF o WebP de la misma escena 3D.
+- El 3D carga con `import()` dinámico después del primer pintado, con modelos glTF comprimidos (Draco o meshopt), y se pausa cuando el hero sale de pantalla.
+- Se queda el póster si hay movimiento reducido, ahorro de datos, poca memoria (`deviceMemory` menor a 4) o no hay WebGL2.
+- Si el rendimiento móvil baja de 90 por el 3D, Claude Code se detiene y te muestra dos opciones con números: aceptar 85 o aligerar la escena. Decides tú.
+
+### Identidad por rubro
+
+Cada prototipo tiene un concepto, un momento firma y un ritmo que ningún otro repite; la matriz vive en `docs/visual/identidad.md` y es el punto de partida del paso 2.
+
+| Rubro | Concepto | Momento firma | Lenguaje de movimiento | Color de partida |
+| --- | --- | --- | --- | --- |
+| Restaurante | "Fuego y barro": la cocina de leña de una picantería | Olla de barro o plato 3D con vapor de partículas que gira con el scroll | Cálido y generoso: los platos caen a la comanda, el ticket se imprime | Terracota, carbón, crema |
+| Barbería | "La silla de noche": cromo y luz dorada | Poste de barbero 3D ligado al scroll y un reflejo de navaja que recorre los títulos | Cortes secos, como un filo | Negro, dorado |
+| Clínica dental | "Calma clínica" | Diente o sonrisa de vidrio con refracción suave y luz que respira | Lento y preciso: el cuestionario avanza como un recorrido | Blanco, menta |
+| Spa / Estética | "Agua quieta" | Shader de ondas de agua sobre la imagen del hero | Muy lento, al ritmo de la respiración | Verde salvia, arena |
+| Veterinaria | "Juego y urgencia" | Mascota low-poly que sigue al cursor o al dedo | Rebotes juguetones; la barra de urgencias late | Turquesa, naranja |
+| Gimnasio | "Neón y pulso" | Pesa rusa 3D ligada al scroll y tipografía cinética | Rápido e intenso; cuenta regresiva que se voltea | Negro, verde lima neón |
+
+Nada de personajes, logos ni marcas reales en las escenas.
+
+### Imágenes
+
+Las fotos de stock de Openverse son el punto más débil de las demos. Decisión: imágenes generadas con IA mediante la vía de `crear-web-como-servicio` (clave de OpenAI en `.env`, nunca en el repo), con una dirección de arte por rubro y marcadas como ilustrativas en los créditos; mientras no haya clave, el póster renderizado del 3D ocupa el hero. Con clientes reales, siempre fotos reales tomadas en la visita.
 
 ## Calidad y diseño de vanguardia
 
@@ -137,6 +169,7 @@ Dos skills aportan el motor para construir y vender: `crear-web-como-servicio` p
 | `crear-web-como-servicio` (IA) | Asistente de chat con Gemini, lector de documentos o fotos, calculadoras interactivas y captura de contactos, con la clave guardada solo en el servidor | Fase siguiente, como upgrade vendible junto al chatbot de WhatsApp |
 | `crear-web-como-servicio` (venta) | Guía de nicho, argumento de venta y paso de demo a cliente; el contenido de demo siempre marcado como demo | Fase 4, visitas a prospectos |
 | `crear-web-micro-saas` | Recetas de herramientas que corren en el navegador sin servidor: generador de QR, calculadoras | QR de la carta (restaurante) y calculadora de IMC (gimnasio); más adelante, un posible proyecto propio de micro SaaS |
+| web-artifacts-builder | Prototipos interactivos con React, Tailwind y shadcn/ui en un solo archivo HTML | Fase 5: pantallas del panel del negocio y herramientas de venta como un cotizador; nunca en las demos públicas |
 
 **Decisiones que cambian por estas skills:**
 
@@ -161,12 +194,13 @@ Aprendes por observación guiada: cada decisión queda escrita en el repositorio
 | 2. Primeros 3 | Componentes reutilizables, estado en el cliente (carrito), formularios accesibles, flujo con ramas y PR | Crear tú un componente nuevo, por ejemplo "promoción del día" |
 | 3. Siguientes 3 | Refactor y reutilización, rendimiento con Lighthouse, SEO técnico y datos estructurados | Subir un prototipo de 85 a 95+ en Lighthouse |
 | 4. Demos reales | CI/CD con GitHub Actions, dominios propios, trabajo con clientes | Publicar una demo para un prospecto sin ayuda |
+| 5. Panel del negocio | Componentes React con props y estado, hooks, TypeScript, CSS utility-first con Tailwind, autenticación | Reescribir el indicador "Abierto ahora" como componente React y compararlo con tu versión sin framework |
 
 ### Bitácora de arquitectura en Notion
 
 La bitácora se construye sobre tus Apuntes de Estudio: cada concepto nuevo arranca enlazando la nota que ya tienes y termina mostrando dónde vive en el repo.
 
-[embedded content: conexión entre tus apuntes y el proyecto · 5 ejemplos]
+&#91;embedded content: conexión entre tus apuntes y el proyecto · 5 ejemplos\]
 
 Dos de esas notas están sin terminar (NPM en progreso, Git/GitHub por hacer): el proyecto las completa con práctica real.
 
@@ -208,7 +242,7 @@ Objetivo: que el cliente vea la carta con fotos y reserve o pida en menos de un 
 | Plato del día / menú | Campo `menuDelDia` en el JSON; el dueño lo cambia y se actualiza solo |
 | Código QR de la carta | Imagen QR que apunta a la web, para imprimir en las mesas |
 
-**Estilo:** fotos grandes de comida, colores cálidos (terracota, crema), tipografía con carácter para los títulos.
+**Identidad:** "Fuego y barro" (ver *Identidad por rubro*). La versión 1, con dirección de periódico, queda como base funcional: carrito, comanda, reservas y pruebas. La versión 2 rehace solo la presentación con la planificación visual revisada.
 
 **Upgrade de chatbot:** bot de WhatsApp que toma reservas y pedidos solo y responde horario y ubicación.
 
@@ -228,7 +262,7 @@ Objetivo: transmitir calma y confianza, mostrar precios claros y llevar a agenda
 | Comparador antes/después | Dos imágenes superpuestas y un `<input type="range">` que mueve el corte |
 | Paquetes regalo | Tarjeta "Regala una experiencia" con mensaje de WhatsApp prellenado |
 
-**Estilo:** tonos suaves (verde salvia, arena, blanco), mucho espacio en blanco, tipografía serif elegante en títulos.
+**Identidad:** "Agua quieta" (ver *Identidad por rubro*): mucho espacio en blanco y serif elegante en títulos.
 
 **Upgrade de chatbot:** bot que agenda, confirma y envía recordatorio el día anterior.
 
@@ -248,7 +282,7 @@ Objetivo: mostrar el estilo de los cortes y que el cliente reserve con su barber
 | Tiempo de espera estimado | Texto que el dueño actualiza en el JSON ("Hoy: sin espera"); fase 2 lo controla el bot |
 | Programa de fidelidad | Tarjeta "Tu 6.º corte gratis" explicada (sin lógica, solo informativa en fase 1) |
 
-**Estilo:** fondo oscuro, acentos dorados o rojos, tipografía condensada y fuerte, fotos en blanco y negro.
+**Identidad:** "La silla de noche" (ver *Identidad por rubro*): tipografía condensada y fuerte, fotos en blanco y negro.
 
 **Upgrade de chatbot:** bot de reservas con cola de turnos por barbero.
 
@@ -268,7 +302,7 @@ Objetivo: que un dueño preocupado encuentre en segundos cómo comunicarse por u
 | Ficha de servicios con precios "desde" | Tarjetas desde el array `servicios` |
 | Consejos de cuidado | 3–4 artículos cortos (ayudan a aparecer en Google) |
 
-**Estilo:** colores frescos (turquesa, blanco, toques de naranja), ilustraciones o fotos de mascotas, tono cercano.
+**Identidad:** "Juego y urgencia" (ver *Identidad por rubro*): tono cercano y la urgencia siempre a la vista.
 
 **Upgrade de chatbot:** bot que responde fuera de horario, clasifica si es urgencia y avisa al veterinario de turno.
 
@@ -289,7 +323,7 @@ Objetivo: quitar el miedo y la duda (¿cuánto cuesta?, ¿duele?) y convertir vi
 | Credenciales | Nombre del doctor y número de colegiatura (COP), que da confianza |
 | Agendar evaluación | Formulario a WhatsApp que incluye el resultado del cuestionario |
 
-**Estilo:** blanco limpio, azul o verde menta, fotos reales del consultorio, tono tranquilizador.
+**Identidad:** "Calma clínica" (ver *Identidad por rubro*): tono tranquilizador y fotos del consultorio cuando las haya.
 
 **Upgrade de chatbot:** bot de citas con recordatorios y respuestas a preguntas frecuentes (precios, seguros, formas de pago).
 
@@ -309,7 +343,7 @@ Objetivo: motivar, mostrar planes y horarios de clases sin tener que preguntar, 
 | Promoción con cuenta regresiva | Fecha de fin en el JSON; contador en vivo con `setInterval` |
 | Clase de prueba | Formulario (nombre, objetivo, horario preferido) enviado a WhatsApp |
 
-**Estilo:** fondo oscuro, un color neón (verde lima o naranja), tipografía gruesa en mayúsculas, fotos de gente entrenando.
+**Identidad:** "Neón y pulso" (ver *Identidad por rubro*): tipografía gruesa en mayúsculas y gente entrenando.
 
 **Upgrade de chatbot:** bot que responde precios y horarios, inscribe a clases de prueba y recuerda el vencimiento de la membresía.
 
@@ -317,17 +351,18 @@ Objetivo: motivar, mostrar planes y horarios de clases sin tener que preguntar, 
 
 Se empieza por el núcleo compartido y por los 3 rubros con más prospectos de prioridad Alta; los otros 3 reutilizan casi todos los componentes.
 
-[embedded content: hoja de ruta · 4 fases, 3 controles]
+&#91;embedded content: hoja de ruta · 4 fases, 3 controles\]
 
 Cada fase pasa a la siguiente solo cuando cumple su control (los rombos).
 
 ### Checklist de "terminado" para cada prototipo
 
-- [ ] Su brief visual se aprobó antes de construir, y se ve bien en un celular de 360 px de ancho y en escritorio
+- [ ] Elegiste su dirección entre 3, aprobaste su hero vivo en video, y se ve bien en un celular de 360 px de ancho y en escritorio
+- [ ] Cumple la inmersión mínima: momento firma 3D con póster de respaldo, 3 coreografías de scroll y microinteracciones en la función estrella
 - [ ] Todo el contenido sale de `negocio.json` (cambiar de negocio = cambiar el JSON)
 - [ ] La función estrella funciona y termina en un mensaje de WhatsApp correcto
 - [ ] "Abierto ahora" coincide con el horario real
-- [ ] 90 o más en las 4 categorías de Lighthouse
+- [ ] 90 o más en las 4 categorías de Lighthouse, LCP menor a 2.5 s y CLS menor a 0.1 (o la excepción del ADR 008 aprobada por ti)
 - [ ] 0 violaciones en Axe, incluida la prueba de teclado
 - [ ] Pasó `design-critique`, `web-design-guidelines` y el control final de `anti-ui-slop`
 - [ ] Textos sin afirmaciones inventadas (`copy-proof-check`)
@@ -337,3 +372,23 @@ Cada fase pasa a la siguiente solo cuando cumple su control (los rombos).
 ### Siguiente fase: chatbots
 
 Cuando un negocio ya usa su web, el chatbot reemplaza los enlaces de WhatsApp por respuestas automáticas. Esa fase necesita backend y la planificamos aparte.
+
+### Fase 5: panel del negocio con React y Tailwind
+
+React y Tailwind entran en la Fase 5, junto a los chatbots, y no en las demos. La decisión queda escrita en el ADR 007 (el 006 es la prueba de teclado).
+
+**Por qué no en las demos.** Lo profesional de una demo sale de la planificación visual y de las 8 etapas de calidad, no del framework. React envía más JavaScript al celular del cliente y choca con el prerender (ADR 002) y con el presupuesto de LCP menor a 2.5 s en 4G. Tus tokens de `core/tokens.css` ya cumplen el papel que tendría Tailwind, y las demos marcan 100 en Lighthouse.
+
+**Dónde sí.** En aplicaciones con mucho estado e interacción, que usa una persona con sesión iniciada y donde el SEO no importa:
+
+| Pieza | Qué hace | Por qué React y Tailwind |
+| --- | --- | --- |
+| Editor de `negocio.json` | Formulario para armar una demo sin tocar el JSON, con vista previa en vivo; valida con el mismo `negocio.schema.json` | Decenas de campos que dependen entre sí: justo lo que React ordena bien |
+| Panel del dueño | El dueño cambia el menú del día, el horario o el tiempo de espera sin pedírtelo | Sostiene la cuota de mantenimiento mensual |
+| Panel del chatbot | Conversaciones, reservas y pedidos que tomó el bot | Lo necesita la fase de chatbots |
+
+**Stack de la fase:** React con TypeScript sobre Vite (que ya conoces), Tailwind CSS y componentes shadcn/ui. Se publica en Hostinger, junto al backend del chatbot.
+
+**Cómo entra `web-artifacts-builder`.** Prototipa cada pantalla del panel como una página interactiva de un solo archivo, para validarla contigo o con un dueño antes de construirla en el repo. También sirve para herramientas de venta en la visita, como un cotizador. Sus scripts son de bash: se usa desde WSL.
+
+**Control para entrar:** terminar la Fase 4 con al menos un cliente que pague mantenimiento, para que el panel tenga un usuario real desde el primer día.
