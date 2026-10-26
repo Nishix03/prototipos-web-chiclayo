@@ -5,7 +5,6 @@ const NOMBRE_RED = { instagram: 'Instagram', facebook: 'Facebook', tiktok: 'TikT
 
 const LICENCIAS = {
   cc0: ['CC0', 'https://creativecommons.org/publicdomain/zero/1.0/'],
-  pdm: ['Dominio público', 'https://creativecommons.org/publicdomain/mark/1.0/'],
   by: ['CC BY', 'https://creativecommons.org/licenses/by/{v}/'],
   'by-sa': ['CC BY-SA', 'https://creativecommons.org/licenses/by-sa/{v}/'],
 };

@@ -208,8 +208,8 @@
         "titulo": { "type": "string" },
         "autor": { "type": "string" },
         "licencia": {
-          "enum": ["cc0", "pdm", "by", "by-sa"],
-          "description": "Solo licencias de uso comercial. Nunca by-nc (la web es para un negocio)."
+          "enum": ["cc0", "by", "by-sa"],
+          "description": "Única lista de licencias permitidas: la usan el build y scripts/fotos.js. Nada NC (no comercial) ni ND (sin derivadas): la web es de un negocio y las fotos se recortan."
         },
         "version": { "type": "string" },
         "urlFuente": { "type": "string", "format": "uri" }

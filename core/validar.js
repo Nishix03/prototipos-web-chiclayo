@@ -18,7 +18,8 @@ const leerJson = (archivo) => JSON.parse(readFileSync(archivo, 'utf8'));
 
 /** Compila el esquema de una página. Se compila en cada llamada para ver cambios en `npm run dev`. */
 function compilar(archivoEsquema, raiz) {
-  const ajv = new Ajv2020({ allErrors: true });
+  // verbose: incluye en cada error el valor que falló (para decir qué licencia se rechazó)
+  const ajv = new Ajv2020({ allErrors: true, verbose: true });
   addFormats(ajv);
   ajv.addSchema(leerJson(archivoBase), `${URI_RAIZ}core/negocio.schema.json`);
   const ruta = relative(raiz, archivoEsquema).split('\\').join('/');
@@ -39,6 +40,13 @@ function traducir(error) {
     case 'type':
       return `debe ser de tipo ${p.type}`;
     case 'enum':
+      if (error.instancePath.endsWith('/credito/licencia')) {
+        return (
+          `licencia "${error.data}" no permitida en una web de negocio. ` +
+          `Solo se aceptan: ${p.allowedValues.join(', ')}. ` +
+          'Nada NC (no comercial) ni ND (sin derivadas): busca otra foto.'
+        );
+      }
       return `debe ser uno de: ${p.allowedValues.join(', ')}`;
     case 'pattern':
       return `no tiene el formato esperado (${p.pattern})`;
