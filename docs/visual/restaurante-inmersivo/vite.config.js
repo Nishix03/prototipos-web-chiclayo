@@ -12,7 +12,7 @@ const repo = resolve(aqui, '../../..');
 export default defineConfig({
   root: aqui,
   base: './',
-  server: { port: 5180, host: true, fs: { allow: [repo] } },
-  preview: { port: 5181, host: true },
+  server: { port: 5180, host: true, strictPort: true, fs: { allow: [repo] } },
+  preview: { port: 5181, host: true, strictPort: true }, // todas las interfaces: se abre desde Windows
   build: { outDir: resolve(repo, '.maqueta'), emptyOutDir: true },
 });
