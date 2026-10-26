@@ -22,12 +22,12 @@ export function comanda(negocio) {
   `;
 
   return html`
-    <div class="barra-pedido" data-barra>
+    <aside class="barra-pedido" data-barra aria-label="Tu pedido">
       <p class="barra-pedido__resumen" data-resumen></p>
       <button class="boton barra-pedido__boton" type="button" data-abrir-comanda>
         Ver mi pedido
       </button>
-    </div>
+    </aside>
 
     <dialog class="comanda" aria-labelledby="comanda-titulo" data-comanda>
       <form
