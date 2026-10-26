@@ -36,5 +36,9 @@
     "sharp": "^0.35.5",
     "vite": "^8.3.5",
     "vite-plugin-image-optimizer": "^2.0.3"
+  },
+  "dependencies": {
+    "@fontsource-variable/archivo": "^5.3.0",
+    "@fontsource-variable/newsreader": "^5.3.0"
   }
 }
