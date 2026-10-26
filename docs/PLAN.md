@@ -23,7 +23,7 @@ Un solo repositorio con un núcleo compartido y una carpeta por rubro; cada demo
 | Estructura | HTML5 semántico | Lo dominas y Google lo indexa bien |
 | Estilos | CSS moderno: variables como design tokens, Grid, `clamp()` para tipografía fluida, container queries | Lo que usan los equipos profesionales hoy, sin framework |
 | Lógica | JavaScript ES6+ con módulos (`import`/`export`), sin framework | Practicas DOM y ES6 sin capas que oculten cómo funciona |
-| Build | Vite (vía npm) | Servidor de desarrollo con recarga instantánea; en producción minifica y optimiza imágenes |
+| Build | Vite (vía npm) | Servidor de desarrollo con recarga instantánea; en producción minifica; las imágenes se optimizan con vite-plugin-image-optimizer + sharp (ADR 003) |
 | Datos | `negocio.json` convertido en HTML al construir (prerender con Vite) | Personalizar sin tocar código |
 | Calidad de código | Prettier + ESLint | Código consistente, errores detectados antes de publicar |
 | Despliegue | GitHub Actions → GitHub Pages | Cada `git push` a `main` se publica solo: tu primer pipeline CI/CD |
@@ -70,6 +70,35 @@ Guarda todo lo que cambia entre negocios: nombre, eslogan, teléfono de WhatsApp
 - Etiquetas `<title>`, `meta description` y Open Graph para que el enlace se vea bien al compartirlo por WhatsApp.
 - Contraste y tamaños de texto legibles; botones de al menos 44 px de alto.
 
+## Planificación visual
+
+Cada rubro empieza con un brief visual que tú apruebas, y no se escribe código hasta entonces. Es el paso que hace un estudio de diseño antes de construir: decide cómo debe verse y moverse la página, y lo prueba con una maqueta. Las 8 etapas de calidad aseguran que sea correcta; esta etapa asegura que sea vistosa.
+
+[embedded content: planificación visual · 6 pasos y tu aprobación]
+
+Si pides cambios, el brief vuelve al paso que corresponda; la maqueta del hero se rehace hasta que la apruebes.
+
+| Paso | Skills | Entregable |
+| --- | --- | --- |
+| 1. Referencias reales | `anti-ui-slop`, guía de nicho de `crear-web-como-servicio` | Las 3 mejores webs reales del rubro con lo que hacen bien y qué espera ver el cliente de ese negocio |
+| 2. Concepto y dirección de arte | `frontend-design`, arquetipos de `crear-web-como-servicio` | El concepto en una frase ("la carta como portada de periódico"), el arquetipo elegido y por qué, y el momento firma de la página |
+| 3. Sistema visual | `ui-ux-pro-max`, `design-system` | Paleta con contraste verificado, par tipográfico con escala fluida, grid, radios y sombras, como tokens del rubro |
+| 4. Guion de movimiento | `web-animation-design`, `emil-design-engineering`, `make-interfaces-feel-better`, catálogo de efectos de `crear-web-como-servicio` | Tabla de cada animación: elemento, disparador, duración, curva y versión con movimiento reducido, más el presupuesto de rendimiento |
+| 5. Maqueta del hero | `frontend-design` | Hero y función estrella en HTML estático, con capturas a 360 px y 1440 px de ancho |
+| 6. Revisión experta | `audit-as-design-eng`, `design-critique` | Veredicto (aprobar, aprobar con cambios o rehacer) y las correcciones aplicadas antes de mostrártelo |
+
+Todo queda en `docs/visual/<rubro>.md` con sus capturas. Claude Code se detiene ahí y te pide aprobación.
+
+**Tu revisión, en 5 segundos:** mira las capturas como si fueras el dueño del negocio. Si no te dan ganas de tocar el botón principal, no está aprobado. Cuando puedas, muéstralas también a una persona externa.
+
+### Reglas de movimiento y efectos
+
+- **Cada animación tiene un propósito:** guía la mirada, explica un cambio o confirma una acción. La rapidez va antes que el espectáculo.
+- **Interfaz:** entre 150 y 300 ms, curva ease-out para lo que entra; solo se animan `transform` y `opacity`; nunca `transition: all`.
+- **GSAP permitido** para las animaciones ligadas al scroll; CSS moderno para todo lo demás.
+- **Un solo momento 3D por página, en el hero,** con Three.js: carga después del contenido y se reemplaza por una imagen fija en celulares de gama baja y con movimiento reducido.
+- **Presupuesto:** LCP menor a 2.5 s en 4G, CLS menor a 0.1 y 90 o más en rendimiento de Lighthouse móvil. Si un efecto rompe el presupuesto, se quita el efecto.
+
 ## Calidad y diseño de vanguardia
 
 Cada prototipo pasa por ocho etapas con skills especializadas, en este orden, antes de darse por terminado: primero los textos, luego el diseño y al final las auditorías.
@@ -90,7 +119,7 @@ Axe necesita conectar su servidor una sola vez con `mcp-setup` y una cuenta de D
 **Técnicas de vanguardia que usarán los prototipos:**
 
 - Tipografía fluida con `clamp()`: se adapta sola del celular al escritorio.
-- Animaciones al hacer scroll con CSS (scroll-driven animations), siempre respetando `prefers-reduced-motion`.
+- Animaciones al hacer scroll con CSS (scroll-driven animations) o GSAP, según las reglas de movimiento de la planificación visual, siempre respetando `prefers-reduced-motion`.
 - View Transitions API para pasar entre pasos de los formularios con suavidad.
 - Container queries: las tarjetas se adaptan al espacio que tienen, no solo al tamaño de la pantalla.
 - Imágenes en AVIF/WebP con `srcset`, para cargar rápido en datos móviles.
@@ -294,7 +323,7 @@ Cada fase pasa a la siguiente solo cuando cumple su control (los rombos).
 
 ### Checklist de "terminado" para cada prototipo
 
-- [ ] Se ve bien en un celular de 360 px de ancho y en escritorio
+- [ ] Su brief visual se aprobó antes de construir, y se ve bien en un celular de 360 px de ancho y en escritorio
 - [ ] Todo el contenido sale de `negocio.json` (cambiar de negocio = cambiar el JSON)
 - [ ] La función estrella funciona y termina en un mensaje de WhatsApp correcto
 - [ ] "Abierto ahora" coincide con el horario real
