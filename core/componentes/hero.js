@@ -3,11 +3,14 @@ import { iconos } from './iconos.js';
 import { enlaceWhatsapp } from '../whatsapp.js';
 import { imagen } from './imagen.js';
 
-/** Indicador "Abierto ahora / Cerrado". Sale oculto: horario.js lo rellena y lo muestra. */
+/**
+ * Indicador "Abierto ahora / Cerrado". Ocupa su espacio desde el inicio pero es invisible
+ * hasta que horario.js lo rellena (ver hero.css): así no empuja la página al aparecer.
+ */
 export const estadoHorario = () => html`
-  <p class="estado-horario etiqueta" data-estado-horario hidden>
+  <p class="estado-horario etiqueta" data-estado-horario>
     <span class="estado-horario__punto" aria-hidden="true"></span>
-    <span data-estado-texto></span>
+    <span data-estado-texto>&nbsp;</span>
   </p>
 `;
 

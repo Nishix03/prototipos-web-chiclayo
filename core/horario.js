@@ -159,7 +159,6 @@ export function iniciarIndicadorHorario() {
     indicadores.forEach((el) => {
       el.querySelector('[data-estado-texto]').textContent = textoEstado(estado);
       el.dataset.abierto = String(estado.abierto);
-      el.hidden = false;
     });
   };
   actualizar();

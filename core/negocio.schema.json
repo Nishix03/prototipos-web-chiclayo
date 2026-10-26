@@ -202,6 +202,12 @@
           "type": "string",
           "description": "Texto alternativo: describe la foto para quien no la ve. Vacío solo si es decorativa."
         },
+        "variantes": {
+          "type": "array",
+          "maxItems": 4,
+          "description": "Opcional: la misma foto más pequeña (p. ej. img/hero-960.webp) para que el celular no descargue la versión de escritorio. render.js mide su ancho y arma el srcset.",
+          "items": { "type": "string", "pattern": "^img/.+\\.(webp|avif)$" }
+        },
         "credito": { "$ref": "#/$defs/credito" }
       }
     },

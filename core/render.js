@@ -72,11 +72,18 @@ async function medirImagenes(negocio, carpeta) {
     if (Array.isArray(valor)) return Promise.all(valor.map(recorrer));
     if (!valor || typeof valor !== 'object') return valor;
     if (esImagen(valor)) {
-      const ruta = join(carpeta, valor.src);
-      if (!existsSync(ruta)) throw new Error(`No existe la imagen ${ruta}`);
-      const { width, height } = await sharp(ruta).metadata();
+      const medir = async (src) => {
+        const ruta = join(carpeta, src);
+        if (!existsSync(ruta)) throw new Error(`No existe la imagen ${ruta}`);
+        return sharp(ruta).metadata();
+      };
+      const { width, height } = await medir(valor.src);
       if (valor.credito) creditos.set(valor.src, valor.credito);
-      return { ...valor, ancho: width, alto: height };
+      // Variantes más pequeñas de la misma foto → [{ src, ancho }] para el srcset
+      const variantes = await Promise.all(
+        (valor.variantes ?? []).map(async (src) => ({ src, ancho: (await medir(src)).width })),
+      );
+      return { ...valor, ancho: width, alto: height, variantes };
     }
     const copia = {};
     for (const [clave, hijo] of Object.entries(valor)) copia[clave] = await recorrer(hijo);
@@ -169,6 +176,11 @@ function cabecera(negocio, urlPagina) {
   const imagenOg = imagenes.og ?? imagenes.hero;
 
   return html`
+    <!-- Antes de pintar: marca que hay JavaScript, para que el CSS reserve desde el inicio
+         el espacio de lo que app.js va a mostrar (sin saltos de diseño, CLS) -->
+    <script>
+      document.documentElement.classList.add('js');
+    </script>
     <title>${titulo}</title>
     <meta name="description" content="${negocio.descripcion}" />
     <link rel="canonical" href="${urlPagina}" />
