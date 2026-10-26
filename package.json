@@ -11,7 +11,7 @@
     "lint": "eslint .",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "a11y": "node scripts/a11y.js"
+    "a11y": "vite build && node scripts/a11y.js"
   },
   "repository": {
     "type": "git",
