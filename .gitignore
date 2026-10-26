@@ -5,3 +5,6 @@ graphify-out/cache/
 *.log
 .DS_Store
 Thumbs.db
+
+# Perfiles temporales que Lighthouse crea al correr en WSL
+/C:*

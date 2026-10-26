@@ -13,7 +13,7 @@ import { dirname, join, relative } from 'node:path';
 import sharp from 'sharp';
 import { validarNegocio } from './validar.js';
 import { componentes, avisoDemo } from './componentes/index.js';
-import { html, crudo } from './componentes/html.js';
+import { html, crudo, escapar } from './componentes/html.js';
 import { textoLegibleSobre } from './contraste.js';
 
 const MARCA_HEAD = /<!--\s*@head\s*-->/;
@@ -99,6 +99,16 @@ function datosEstructurados(negocio, urlPagina) {
 /** JSON seguro dentro de <script>: un "</script>" en los datos no puede cerrar la etiqueta. */
 const jsonEnScript = (valor) => JSON.stringify(valor).replace(/</g, '\\u003c');
 
+/** Favicon SVG embebido: la inicial del negocio sobre su color de marca, sin archivo aparte. */
+function favicon(nombre, marca) {
+  const svg =
+    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">` +
+    `<rect width="64" height="64" rx="14" fill="${marca}"/>` +
+    `<text x="32" y="44" text-anchor="middle" font-family="system-ui,sans-serif" font-size="36" font-weight="700" fill="${textoLegibleSobre(marca)}">${escapar(nombre.trim()[0].toUpperCase())}</text>` +
+    `</svg>`;
+  return `data:image/svg+xml,${encodeURIComponent(svg)}`;
+}
+
 function cabecera(negocio, urlPagina) {
   const { tema, imagenes } = negocio;
   const titulo = `${negocio.nombre} · ${negocio.ubicacion.ciudad}`;
@@ -109,6 +119,7 @@ function cabecera(negocio, urlPagina) {
     <meta name="description" content="${negocio.descripcion}" />
     <link rel="canonical" href="${urlPagina}" />
     <meta name="theme-color" content="${tema.marca}" />
+    <link rel="icon" href="${favicon(negocio.nombre, tema.marca)}" />
 
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="es_PE" />
