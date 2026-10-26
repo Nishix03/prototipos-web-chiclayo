@@ -54,7 +54,8 @@ export function portada(negocio) {
   const { textos, imagenes, menuDelDia, carta } = negocio;
   return html`
     <section class="portada contenedor" aria-labelledby="titular">
-      <figure class="portada__foto">${imagen(imagenes.hero, { prioridad: true })}</figure>
+      <!-- El titular va primero en el DOM (un lector de pantalla lo lee antes que la foto);
+           en celular la foto sube solo visualmente con order: -1 -->
       <div class="portada__nota">
         <h1 class="titular" id="titular">${textos.titular}</h1>
         <p class="bajada">${textos.bajada}</p>
@@ -63,6 +64,7 @@ export function portada(negocio) {
           <a class="boton boton--secundario" href="#reservas">Reservar mesa</a>
         </div>
       </div>
+      <figure class="portada__foto">${imagen(imagenes.hero, { prioridad: true })}</figure>
       ${menuHoy(menuDelDia)} ${deLaCasa(carta)}
     </section>
   `;

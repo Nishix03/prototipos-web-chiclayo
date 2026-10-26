@@ -59,6 +59,12 @@
   list-style: none;
 }
 
+/* Enlaces en línea, pero con al menos 24 px de alto para tocarlos (WCAG 2.5.8) */
+.pie__creditos a {
+  display: inline-block;
+  padding-block: 0.3rem;
+}
+
 @media (min-width: 48rem) {
   .pie__rejilla {
     grid-template-columns: 1fr auto;

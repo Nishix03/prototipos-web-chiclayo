@@ -20,11 +20,10 @@
   --interlineado-texto: 1.65; /* serif: un poco más de aire que una sans */
   --interlineado-titulos: 0.95;
   --texto-display: clamp(2.1rem, 1.2rem + 4.4vw, 4.4rem);
-  --texto-cabecera: clamp(3.4rem, 15.6vw, 9rem);
+  --texto-cabecera: clamp(2.5rem, 14vw, 9rem); /* en una línea desde 360 px */
 
   --color-texto-suave: #5e5850; /* gris de columna: 5.91:1 sobre papel */
   --color-borde: color-mix(in oklch, var(--color-texto) 25%, var(--color-fondo));
-  --color-abierto: #1e6b3f; /* 5.46:1 sobre papel */
   --color-marca-presionada: color-mix(in oklch, var(--color-marca) 85%, black);
 
   --radio-boton: 2px; /* botones como sellos */
@@ -79,7 +78,6 @@ html:has(body.con-pedido) {
   font-family: var(--fuente-titulos);
   font-weight: 700;
   font-stretch: 87%;
-  white-space: nowrap;
   transition: background-color var(--duracion-rapida) ease;
 }
 
@@ -124,7 +122,7 @@ html:has(body.con-pedido) {
   line-height: 0.8;
   letter-spacing: -0.01em;
   color: var(--color-marca);
-  white-space: nowrap;
+  text-wrap: balance; /* en una línea desde 360 px; bajo eso se parte en dos (reflow 1.4.10) */
 }
 
 .cabecera__lema {
@@ -179,6 +177,12 @@ html:has(body.con-pedido) {
   padding-block: var(--espacio-5) var(--espacio-7);
 }
 
+@media (max-width: 59.99rem) {
+  .portada__foto {
+    order: -1; /* comida en la primera pantalla del celular */
+  }
+}
+
 .portada__foto img {
   width: 100%;
   aspect-ratio: 16 / 9;
@@ -205,8 +209,8 @@ html:has(body.con-pedido) {
 
 @media (max-width: 59.99rem) {
   /* Margen derecho: el botón flotante de WhatsApp (siempre visible) no tapa "Reservar mesa" */
+  /* Desde 360 px caben en una fila; más angosto, pasan a dos filas en vez de desbordar */
   .portada .grupo-botones {
-    flex-wrap: nowrap;
     margin-right: 4.25rem;
   }
 
@@ -214,6 +218,7 @@ html:has(body.con-pedido) {
     flex: 1 1 auto;
     padding-inline: var(--espacio-2);
     font-size: var(--texto-sm);
+    white-space: nowrap;
   }
 }
 
