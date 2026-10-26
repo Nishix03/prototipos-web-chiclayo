@@ -22,7 +22,7 @@
   /* Estados: siempre acompañados de texto o ícono, nunca solo color */
   --color-abierto: #1e7b46;
   --color-cerrado: #a3332b;
-  --color-whatsapp: #1f8f4e; /* verde de WhatsApp oscurecido para contraste AA con texto blanco */
+  --color-whatsapp: #1a7f45; /* verde de WhatsApp oscurecido: 5.04:1 con texto blanco (AA) */
 
   /* ── Tipografía ── */
   --fuente-texto: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;

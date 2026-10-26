@@ -6,8 +6,8 @@ import { html } from './html.js';
  */
 export function avisoDemo() {
   return html`
-    <div class="aviso-demo" role="note">
+    <aside class="aviso-demo" aria-label="Aviso de demostración">
       <p>Sitio de demostración: nombre, reseñas y datos de contacto son ficticios.</p>
-    </div>
+    </aside>
   `;
 }

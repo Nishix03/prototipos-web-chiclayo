@@ -2,10 +2,14 @@ import { html } from './html.js';
 import { iconos } from './iconos.js';
 
 const estrellas = (n) => html`
-  <p class="resena__estrellas" aria-label="${n} de 5 estrellas">
+  <p class="resena__estrellas">
+    <span class="solo-lector">${n} de 5 estrellas</span>
     ${Array.from(
       { length: 5 },
-      (_, i) => html`<span class="${i < n ? 'llena' : 'vacia'}">${iconos.estrella}</span>`,
+      (_, i) =>
+        html`<span class="${i < n ? 'llena' : 'vacia'}" aria-hidden="true"
+          >${iconos.estrella}</span
+        >`,
     )}
   </p>
 `;
