@@ -5,13 +5,15 @@
 
 import { enlaceWhatsapp, mensajeConDatos } from './whatsapp.js';
 
+// Cada error dice cómo arreglarlo; los de rango usan el límite real del campo (min/max)
 const MENSAJES = {
-  valueMissing: 'Completa este dato para continuar.',
-  rangeUnderflow: 'Elige un valor mayor.',
-  rangeOverflow: 'Elige un valor menor.',
-  typeMismatch: 'Revisa el formato.',
-  patternMismatch: 'Revisa el formato.',
+  valueMissing: () => 'Completa este dato para continuar.',
+  rangeUnderflow: (c) => `Ingresa un número desde ${c.min}.`,
+  rangeOverflow: (c) => `Ingresa un número hasta ${c.max}.`,
+  typeMismatch: () => 'Revisa el formato.',
+  patternMismatch: () => 'Revisa el formato.',
 };
+const CONFIRMACION = 'Abrimos WhatsApp con tu mensaje listo. Solo falta que lo envíes.';
 
 /** Teléfono de WhatsApp del negocio, desde la isla de datos que escribe render.js. */
 export function telefonoNegocio() {
@@ -60,7 +62,7 @@ export function validar(form) {
     const motivo = Object.keys(MENSAJES).find((m) => control.validity[m]);
     const texto = control.validity.customError
       ? control.validationMessage
-      : (MENSAJES[motivo] ?? '');
+      : (MENSAJES[motivo]?.(control) ?? '');
     mostrarError(control, control.validity.valid ? '' : texto);
     if (!control.validity.valid && !primero) primero = control;
   }
@@ -68,11 +70,15 @@ export function validar(form) {
   return !primero;
 }
 
-/** Abre WhatsApp en otra pestaña y avisa en la región de estado del formulario. */
+/**
+ * Abre WhatsApp en otra pestaña y avisa en la región de estado del formulario.
+ * Cada formulario puede decir su propia confirmación con data-confirmacion
+ * ("…con tu pedido listo", "…con tu reserva lista").
+ */
 export function abrirWhatsapp(mensaje, form) {
   window.open(enlaceWhatsapp(telefonoNegocio(), mensaje), '_blank', 'noopener');
   const estado = form?.querySelector('.formulario__estado');
-  if (estado) estado.textContent = 'Abrimos WhatsApp con tu mensaje listo. Solo falta enviarlo.';
+  if (estado) estado.textContent = form.dataset.confirmacion ?? CONFIRMACION;
 }
 
 /**

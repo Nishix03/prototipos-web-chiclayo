@@ -23,7 +23,7 @@ export function comanda(negocio) {
 
   return html`
     <div class="barra-pedido" data-barra>
-      <p class="barra-pedido__resumen" data-resumen aria-live="polite"></p>
+      <p class="barra-pedido__resumen" data-resumen></p>
       <button class="boton barra-pedido__boton" type="button" data-abrir-comanda>
         Ver mi pedido
       </button>
@@ -35,6 +35,7 @@ export function comanda(negocio) {
         id="form-comanda"
         data-whatsapp
         data-saludo="Hola, quiero pedir:"
+        data-confirmacion="Abrimos WhatsApp con tu pedido listo. Solo falta que lo envíes."
         novalidate
       >
         <button
@@ -49,7 +50,7 @@ export function comanda(negocio) {
 
         <ul class="comanda__lineas" role="list" data-lineas></ul>
         <div class="comanda__vacia" data-vacia hidden>
-          <p>Tu pedido está vacío.</p>
+          <p>Tu pedido está vacío. Agrega platos desde la carta.</p>
           <button class="boton boton--secundario" type="button" data-cerrar-comanda>
             Volver a la carta
           </button>

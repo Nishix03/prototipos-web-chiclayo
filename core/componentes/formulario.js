@@ -58,10 +58,26 @@ export function campo({
  * @param {string} f.id
  * @param {string} f.saludo  primera línea del mensaje, p. ej. "Hola, quiero reservar una mesa:"
  * @param {string} f.boton  texto del botón de envío
+ * @param {string} [f.confirmacion]  aviso tras abrir WhatsApp (por defecto, uno genérico)
  */
-export function formularioWhatsapp({ id, saludo, boton, telefono, campos, clase = '' }) {
+export function formularioWhatsapp({
+  id,
+  saludo,
+  boton,
+  telefono,
+  campos,
+  confirmacion,
+  clase = '',
+}) {
   return html`
-    <form class="formulario ${clase}" id="${id}" data-whatsapp data-saludo="${saludo}" novalidate>
+    <form
+      class="formulario ${clase}"
+      id="${id}"
+      data-whatsapp
+      data-saludo="${saludo}"
+      ${confirmacion ? html`data-confirmacion="${confirmacion}"` : ''}
+      novalidate
+    >
       ${campos}
       <p class="formulario__estado" role="status" aria-live="polite"></p>
       <button class="boton boton--principal" type="submit">${boton}</button>

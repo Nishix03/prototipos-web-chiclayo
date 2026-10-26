@@ -110,10 +110,12 @@ export function iniciarCarrito() {
     pintarPlato(id);
     pintarBarra();
     if (dialogo.open) pintarComanda(antes === 0 ? id : null);
-    anuncio.textContent =
-      delta > 0
-        ? `Agregaste ${linea.plato.nombre}. ${resumen.textContent}.`
-        : `Quitaste ${linea.plato.nombre}. ${resumen.textContent}.`;
+    // Texto para leer en voz alta: sin "·" ni "S/", que el lector de pantalla pronuncia mal
+    const verbo = delta > 0 ? 'Agregaste' : 'Quitaste';
+    const n = totalPlatos(pedido);
+    anuncio.textContent = n
+      ? `${verbo} un ${linea.plato.nombre}. Llevas ${textoPlatos(n)}, ${totalSoles(pedido)} soles.`
+      : `${verbo} un ${linea.plato.nombre}. Tu pedido está vacío.`;
   }
 
   // ── Eventos (un solo listener por zona: delegación) ───────

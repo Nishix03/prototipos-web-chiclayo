@@ -47,6 +47,9 @@ const aMinutos = (hhmm) => {
   return h * 60 + m;
 };
 
+/** 'lun' → 'lunes' */
+export const nombreDia = (dia) => NOMBRE_DIA[dia];
+
 /** '09:00' → '9:00', como se escribe en Perú. */
 export const formatoHora = (hhmm) => hhmm.replace(/^0/, '');
 
