@@ -1,0 +1,7 @@
+/*
+ * Estilos de esta página. Es el único CSS que enlaza el index.html: primero importa el
+ * núcleo y luego, debajo, van los ajustes propios. Así el orden (núcleo → página) está
+ * garantizado y lo de la página siempre gana.
+ * _ejemplo usa el núcleo tal cual: es la plantilla para copiar al crear un rubro.
+ */
+@import '../core/core.css';
