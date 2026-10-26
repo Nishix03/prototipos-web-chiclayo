@@ -59,6 +59,11 @@ async function buscar(consulta) {
     );
   }
   if (descartadas) console.log(`\n(${descartadas} descartadas por licencia no permitida)`);
+  if (!validas.length) {
+    console.log(
+      `Ninguna foto con licencia ${PERMITIDAS.join(', ')} para "${consulta}". Prueba otra búsqueda.`,
+    );
+  }
 }
 
 async function bajar(id, destino, opciones) {
