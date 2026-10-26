@@ -12,7 +12,8 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "a11y": "vite build && node scripts/a11y.js",
-    "fotos": "node scripts/fotos.js"
+    "fotos": "node scripts/fotos.js",
+    "test:teclado": "vite build && playwright test pruebas/teclado"
   },
   "repository": {
     "type": "git",
