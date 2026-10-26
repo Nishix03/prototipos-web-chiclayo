@@ -1,0 +1,81 @@
+{
+  "$schema": "../core/negocio.schema.json",
+  "demo": true,
+  "rubro": "ejemplo",
+  "nombre": "Negocio Demo",
+  "eslogan": "Página de prueba del núcleo compartido: todo sale de negocio.json",
+  "descripcion": "Prototipo de demostración en Chiclayo generado desde negocio.json: horario en hora de Lima, contacto por WhatsApp, reseñas y mapa.",
+  "contacto": {
+    "whatsapp": "900000000",
+    "mensajeWhatsapp": "Hola, vi la página de demostración y quiero más información."
+  },
+  "ubicacion": {
+    "direccion": "Av. de Ejemplo 123",
+    "referencia": "Dirección ficticia; el mapa apunta al centro de Chiclayo",
+    "distrito": "Chiclayo",
+    "ciudad": "Chiclayo",
+    "region": "Lambayeque",
+    "lat": -6.7714,
+    "lng": -79.8409
+  },
+  "horario": {
+    "lun": [
+      ["09:00", "13:00"],
+      ["15:00", "19:00"]
+    ],
+    "mar": [
+      ["09:00", "13:00"],
+      ["15:00", "19:00"]
+    ],
+    "mie": [
+      ["09:00", "13:00"],
+      ["15:00", "19:00"]
+    ],
+    "jue": [
+      ["09:00", "13:00"],
+      ["15:00", "19:00"]
+    ],
+    "vie": [
+      ["09:00", "13:00"],
+      ["15:00", "19:00"]
+    ],
+    "sab": [["09:00", "14:00"]],
+    "dom": []
+  },
+  "tema": {
+    "marca": "#1f5f8b",
+    "acento": "#c2410c",
+    "fondo": "#fbfaf7",
+    "texto": "#1d1d1b"
+  },
+  "imagenes": {
+    "hero": { "src": "img/hero.webp", "alt": "Imagen de relleno con un degradado azul y naranja" },
+    "galeria": [
+      { "src": "img/galeria-1.webp", "alt": "Imagen de relleno 1 en tonos azules" },
+      { "src": "img/galeria-2.webp", "alt": "Imagen de relleno 2 en tonos naranjas" },
+      { "src": "img/galeria-3.webp", "alt": "Imagen de relleno 3 en tonos verdes" },
+      { "src": "img/galeria-4.webp", "alt": "Imagen de relleno 4 en tonos morados" }
+    ],
+    "og": { "src": "img/og.webp", "alt": "Negocio Demo, Chiclayo" }
+  },
+  "resenas": {
+    "fuente": "Reseñas de demostración: textos de ejemplo, no son opiniones reales.",
+    "items": [
+      {
+        "texto": "Texto de ejemplo para una reseña corta: así se ve una opinión de tres líneas en la tarjeta.",
+        "autor": "Cliente de demostración 1",
+        "estrellas": 5
+      },
+      {
+        "texto": "Otra reseña de prueba, un poco más larga, para comprobar cómo se acomodan tarjetas de distinto alto en la rejilla.",
+        "autor": "Cliente de demostración 2",
+        "estrellas": 4
+      },
+      {
+        "texto": "Tercera reseña de ejemplo.",
+        "autor": "Cliente de demostración 3",
+        "estrellas": 5
+      }
+    ]
+  }
+}
