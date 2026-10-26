@@ -14,6 +14,11 @@
   margin: 0;
 }
 
+/* Lo oculto con el atributo hidden se queda oculto aunque una clase le dé display: grid */
+[hidden] {
+  display: none !important;
+}
+
 html {
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
@@ -49,6 +54,15 @@ select {
   color: inherit;
 }
 
+/* Toques rápidos sin el retraso del doble toque para zoom, y sin el destello gris de iOS */
+a,
+button,
+label,
+summary {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
 /* ── Tipografía ── */
 h1,
 h2,
@@ -56,6 +70,7 @@ h3,
 h4 {
   font-family: var(--fuente-titulos);
   font-weight: var(--peso-titulos);
+  font-stretch: var(--ancho-titulos);
   line-height: var(--interlineado-titulos);
   text-wrap: balance;
 }
@@ -155,7 +170,7 @@ a {
   min-height: var(--tamano-tactil);
   padding: var(--espacio-3) var(--espacio-5);
   border: 2px solid transparent;
-  border-radius: var(--radio-pildora);
+  border-radius: var(--radio-boton);
   font-weight: 600;
   line-height: 1.2;
   text-decoration: none;
@@ -230,5 +245,37 @@ a {
 
   .boton:hover {
     transform: none;
+  }
+}
+
+/*
+ * Aparición al hacer scroll, solo con CSS (scroll-driven animations).
+ * El elemento siempre es visible por defecto: la animación se añade solo si el navegador la
+ * soporta. Con movimiento reducido se queda en un fundido, sin desplazamiento.
+ */
+@keyframes revelar {
+  from {
+    opacity: 0;
+    translate: 0 1.5rem;
+  }
+}
+
+@keyframes revelar-sin-movimiento {
+  from {
+    opacity: 0;
+  }
+}
+
+@supports (animation-timeline: view()) {
+  .revelar {
+    animation: revelar linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 60%;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .revelar {
+      animation-name: revelar-sin-movimiento;
+    }
   }
 }

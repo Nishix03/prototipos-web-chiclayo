@@ -3,7 +3,34 @@ import { enlaceWhatsapp } from '../whatsapp.js';
 
 const NOMBRE_RED = { instagram: 'Instagram', facebook: 'Facebook', tiktok: 'TikTok' };
 
-export function footer(negocio) {
+const LICENCIAS = {
+  cc0: ['CC0', 'https://creativecommons.org/publicdomain/zero/1.0/'],
+  by: ['CC BY', 'https://creativecommons.org/licenses/by/{v}/'],
+  'by-sa': ['CC BY-SA', 'https://creativecommons.org/licenses/by-sa/{v}/'],
+};
+
+/** Lista de atribuciones que exigen las licencias Creative Commons de las fotos de stock. */
+function creditosFotos(creditos) {
+  if (!creditos.length) return '';
+  return html`
+    <details class="pie__creditos">
+      <summary>Créditos fotográficos</summary>
+      <ul role="list">
+        ${creditos.map(({ titulo, autor, licencia, version = '4.0', urlFuente }) => {
+          const [nombreLicencia, urlLicencia] = LICENCIAS[licencia];
+          return html`<li>
+            <a href="${urlFuente}" target="_blank" rel="noopener">${titulo}</a>, de ${autor} ·
+            <a href="${urlLicencia.replace('{v}', version)}" target="_blank" rel="noopener"
+              >${nombreLicencia}${licencia.startsWith('by') ? ` ${version}` : ''}</a
+            >
+          </li>`;
+        })}
+      </ul>
+    </details>
+  `;
+}
+
+export function footer(negocio, { creditos = [] } = {}) {
   const { nombre, contacto, ubicacion, redes = {}, demo } = negocio;
   const anio = new Date().getFullYear(); // se fija al construir
 
@@ -31,6 +58,7 @@ export function footer(negocio) {
       </div>
       <div class="contenedor pie__legal">
         <p>© ${anio} ${nombre}${demo ? ' · Sitio de demostración con datos ficticios' : ''}</p>
+        ${creditosFotos(creditos)}
       </div>
     </footer>
   `;

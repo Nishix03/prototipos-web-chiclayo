@@ -1,0 +1,323 @@
+{
+  "$schema": "./rubro.schema.json",
+  "demo": true,
+  "rubro": "restaurante",
+  "nombre": "Sabores del Norte · Demo",
+  "eslogan": "Cocina lambayecana en Chiclayo",
+  "descripcion": "Demo de restaurante norteño en Chiclayo: carta con precios, menú del día y pedidos o reservas por WhatsApp. Datos ficticios.",
+  "tituloSeo": "Sabores del Norte (demo) · Restaurante norteño en Chiclayo",
+  "cocina": "Peruana norteña",
+  "textos": {
+    "titular": "Arroz con pato, cabrito y ceviche: cocina lambayecana en Chiclayo",
+    "bajada": "Elige tus platos, mira el total al instante y envía el pedido por WhatsApp. Delivery dentro de Chiclayo o recojo en el local.",
+    "introMenu": "De martes a viernes, de 12:00 a 15:30: entrada, fondo y refresco por S/ 18.",
+    "introCarta": "Marca lo que quieres, ajusta las cantidades y envía tu pedido por WhatsApp.",
+    "introReserva": "Cuéntanos la fecha, la hora y cuántos vienen. Reservamos mesa para grupos de hasta 12 personas.",
+    "introGaleria": "Foto de referencia: aquí irá una foto del comedor del negocio."
+  },
+  "contacto": {
+    "whatsapp": "995258351",
+    "mensajeWhatsapp": "Hola, vi la página de Sabores del Norte (demo) y tengo una consulta."
+  },
+  "ubicacion": {
+    "direccion": "Av. de Ejemplo 123",
+    "referencia": "Dirección ficticia; el mapa apunta al centro de Chiclayo",
+    "distrito": "Chiclayo",
+    "ciudad": "Chiclayo",
+    "region": "Lambayeque",
+    "lat": -6.7714,
+    "lng": -79.8409
+  },
+  "horario": {
+    "lun": [],
+    "mar": [["12:00", "16:30"]],
+    "mie": [["12:00", "16:30"]],
+    "jue": [["12:00", "16:30"]],
+    "vie": [
+      ["12:00", "16:30"],
+      ["19:00", "23:00"]
+    ],
+    "sab": [
+      ["12:00", "16:30"],
+      ["19:00", "23:00"]
+    ],
+    "dom": [["12:00", "16:30"]]
+  },
+  "tema": {
+    "marca": "#b42318",
+    "acento": "#f4b400",
+    "fondo": "#efebe2",
+    "texto": "#1a1714"
+  },
+  "menuDelDia": {
+    "dias": "De martes a viernes",
+    "horario": "12:00 – 15:30",
+    "precio": 18,
+    "entradas": ["Causa de pollo", "Sopa de la casa"],
+    "fondos": ["Arroz con pato", "Seco de res con frejoles"],
+    "incluye": "Refresco del día"
+  },
+  "carta": [
+    {
+      "id": "entradas",
+      "nombre": "Entradas",
+      "platos": [
+        {
+          "id": "causa",
+          "nombre": "Causa de pollo",
+          "descripcion": "Papa amarilla prensada con ají, rellena de pollo, palta y aceituna.",
+          "precio": 18,
+          "foto": {
+            "src": "img/causa.webp",
+            "alt": "Causa de papa amarilla con relleno de pollo y aceitunas",
+            "credito": {
+              "titulo": "Causa limeña",
+              "autor": "noeliarcado",
+              "licencia": "by-sa",
+              "version": "2.0",
+              "urlFuente": "https://www.flickr.com/photos/132420112@N06/41405719262"
+            }
+          }
+        },
+        {
+          "id": "tiradito",
+          "nombre": "Tiradito en crema de ají amarillo",
+          "descripcion": "Láminas de pescado fresco en crema de ají amarillo, con choclo y camote.",
+          "precio": 32,
+          "etiquetas": ["picante"],
+          "foto": {
+            "src": "img/tiradito.webp",
+            "alt": "Tiradito de pescado bañado en crema de ají amarillo con choclo y camote",
+            "credito": {
+              "titulo": "Tiradito",
+              "autor": "Manuel González Olaechea",
+              "licencia": "by",
+              "version": "3.0",
+              "urlFuente": "https://commons.wikimedia.org/w/index.php?curid=11368057"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "marinos",
+      "nombre": "Marinos",
+      "platos": [
+        {
+          "id": "ceviche",
+          "nombre": "Ceviche de pescado",
+          "descripcion": "Pescado del día en limón, cebolla roja y ají limo, con choclo y camote.",
+          "precio": 35,
+          "etiquetas": ["de la casa", "picante"],
+          "foto": {
+            "src": "img/ceviche.webp",
+            "alt": "Ceviche de pescado con cebolla roja y choclo en un plato blanco",
+            "credito": {
+              "titulo": "Peruvian seafood dish in Miami",
+              "autor": "ShashiBellamkonda",
+              "licencia": "by",
+              "version": "2.0",
+              "urlFuente": "https://www.flickr.com/photos/35899785@N00/2345474733"
+            }
+          }
+        },
+        {
+          "id": "jalea",
+          "nombre": "Jalea mixta",
+          "descripcion": "Pescado y mariscos fritos con yuca, sarsa criolla y salsa tártara.",
+          "precio": 45,
+          "etiquetas": ["para compartir"],
+          "foto": {
+            "src": "img/jalea.webp",
+            "alt": "Jalea de mariscos fritos con sarsa criolla y limón",
+            "credito": {
+              "titulo": "Jalea mixta 25042010",
+              "autor": "Dtarazona",
+              "licencia": "by-sa",
+              "version": "4.0",
+              "urlFuente": "https://commons.wikimedia.org/w/index.php?curid=10188310"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "fondos",
+      "nombre": "Fondos",
+      "platos": [
+        {
+          "id": "arroz-con-pato",
+          "nombre": "Arroz con pato",
+          "descripcion": "Arroz verde al culantro con pato a la chiclayana, sarsa y papa a la huancaína.",
+          "precio": 38,
+          "etiquetas": ["de la casa"],
+          "foto": {
+            "src": "img/arroz-con-pato.webp",
+            "alt": "Arroz verde con pato, papa a la huancaína y ensalada",
+            "credito": {
+              "titulo": "Arroz con pato - Rice with duck",
+              "autor": "Martin Garcia from Lima, Peru",
+              "licencia": "by",
+              "version": "2.0",
+              "urlFuente": "https://commons.wikimedia.org/wiki/File:Arroz_con_pato_-_Rice_with_duck.jpg"
+            }
+          }
+        },
+        {
+          "id": "cabrito",
+          "nombre": "Seco de cabrito",
+          "descripcion": "Cabrito guisado en chicha de jora y culantro, con frejoles y arroz.",
+          "precio": 40,
+          "foto": {
+            "src": "img/cabrito.webp",
+            "alt": "Seco de cabrito con frejoles y arroz blanco",
+            "credito": {
+              "titulo": "Seco de Cabrito",
+              "autor": "Véronique Debord-Lazaro from Tours, France",
+              "licencia": "by-sa",
+              "version": "2.0",
+              "urlFuente": "https://commons.wikimedia.org/w/index.php?curid=74785707"
+            }
+          }
+        },
+        {
+          "id": "lomo-saltado",
+          "nombre": "Lomo saltado",
+          "descripcion": "Lomo al wok con cebolla, tomate y ají amarillo, papas fritas y arroz.",
+          "precio": 36,
+          "foto": {
+            "src": "img/lomo-saltado.webp",
+            "alt": "Lomo saltado con papas fritas, arroz y culantro",
+            "credito": {
+              "titulo": "Lomo Saltado - Lima, Peru Miraflores (Tiendecita Blanca)",
+              "autor": "Chasqui (Luis Tamayo)",
+              "licencia": "by-sa",
+              "version": "2.0",
+              "urlFuente": "https://commons.wikimedia.org/w/index.php?curid=26914438"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "postres-bebidas",
+      "nombre": "Postres y bebidas",
+      "platos": [
+        {
+          "id": "picarones",
+          "nombre": "Picarones",
+          "descripcion": "Masa de zapallo y camote frita, con miel de chancaca.",
+          "precio": 12,
+          "foto": {
+            "src": "img/picarones.webp",
+            "alt": "Dos picarones bañados en miel de chancaca",
+            "credito": {
+              "titulo": "Que ricos picarones!",
+              "autor": "G M",
+              "licencia": "by",
+              "version": "2.0",
+              "urlFuente": "https://commons.wikimedia.org/w/index.php?curid=32205906"
+            }
+          }
+        },
+        {
+          "id": "chicha-morada",
+          "nombre": "Chicha morada (jarra)",
+          "descripcion": "Maíz morado hervido con piña, canela y clavo. Jarra de un litro.",
+          "precio": 15,
+          "foto": {
+            "src": "img/chicha-morada.webp",
+            "alt": "Jarra de chicha morada con una rodaja de limón",
+            "credito": {
+              "titulo": "Chicha Morada 2017",
+              "autor": "young shanahan from Bogotá, Colombia",
+              "licencia": "by",
+              "version": "2.0",
+              "urlFuente": "https://commons.wikimedia.org/w/index.php?curid=74246103"
+            }
+          }
+        },
+        {
+          "id": "pisco-sour",
+          "nombre": "Pisco sour",
+          "descripcion": "Pisco, limón, jarabe de goma, clara de huevo y amargo de angostura.",
+          "precio": 18,
+          "foto": {
+            "src": "img/pisco-sour.webp",
+            "alt": "Copa de pisco sour con espuma",
+            "credito": {
+              "titulo": "Pisco sour 20100613b",
+              "autor": "Dtarazona",
+              "licencia": "by-sa",
+              "version": "4.0",
+              "urlFuente": "https://commons.wikimedia.org/w/index.php?curid=11004717"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "pedidos": {
+    "entrega": ["delivery", "recojo"],
+    "notaDelivery": "Delivery dentro de Chiclayo; el costo de envío se confirma por WhatsApp."
+  },
+  "reservas": { "maxPersonas": 12 },
+  "imagenes": {
+    "hero": {
+      "src": "img/hero.webp",
+      "variantes": ["img/hero-640.webp", "img/hero-960.webp"],
+      "alt": "Ceviche de pescado con cebolla roja en un plato hondo",
+      "credito": {
+        "titulo": "Best Ceviche Ever (Lima, Peru)",
+        "autor": "Yogma",
+        "licencia": "by",
+        "version": "2.0",
+        "urlFuente": "https://commons.wikimedia.org/w/index.php?curid=26798837"
+      }
+    },
+    "galeria": [
+      {
+        "src": "img/local.webp",
+        "alt": "Comedor con mesas de madera, sillas altas y una lámpara de araña",
+        "credito": {
+          "titulo": "St. Lawrence restaurant interior dining area view",
+          "autor": "Premeditated Chaos",
+          "licencia": "by-sa",
+          "version": "4.0",
+          "urlFuente": "https://commons.wikimedia.org/w/index.php?curid=91032253"
+        }
+      }
+    ],
+    "og": {
+      "src": "img/og.webp",
+      "alt": "Ceviche de pescado de Sabores del Norte (demo)",
+      "credito": {
+        "titulo": "Best Ceviche Ever (Lima, Peru)",
+        "autor": "Yogma",
+        "licencia": "by",
+        "version": "2.0",
+        "urlFuente": "https://commons.wikimedia.org/w/index.php?curid=26798837"
+      }
+    }
+  },
+  "resenas": {
+    "fuente": "Reseñas de demostración: textos de ejemplo, no son opiniones reales.",
+    "items": [
+      {
+        "texto": "Reseña de ejemplo: pedimos arroz con pato y jalea para compartir, y llegó caliente.",
+        "autor": "Cliente de demostración 1",
+        "estrellas": 5
+      },
+      {
+        "texto": "Reseña de ejemplo: reservamos para 8 por WhatsApp y nos tenían la mesa lista.",
+        "autor": "Cliente de demostración 2",
+        "estrellas": 5
+      },
+      {
+        "texto": "Reseña de ejemplo: el menú del día rinde; el cabrito es para volver.",
+        "autor": "Cliente de demostración 3",
+        "estrellas": 4
+      }
+    ]
+  }
+}

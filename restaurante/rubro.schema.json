@@ -1,0 +1,108 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Negocio · restaurante",
+  "description": "Base común + carta, menú del día, pedidos y reservas.",
+  "type": "object",
+  "allOf": [{ "$ref": "../core/negocio.schema.json" }],
+  "required": ["cocina", "textos", "menuDelDia", "carta", "pedidos", "reservas"],
+  "properties": {
+    "rubro": { "const": "restaurante" },
+    "cocina": {
+      "type": "string",
+      "maxLength": 60,
+      "description": "Tipo de cocina para Google (servesCuisine), p. ej. \"Peruana norteña\"."
+    },
+    "textos": {
+      "type": "object",
+      "description": "Textos de la página que cambian con cada restaurante.",
+      "required": ["titular", "bajada", "introMenu", "introCarta", "introReserva", "introGaleria"],
+      "additionalProperties": false,
+      "properties": {
+        "titular": { "type": "string", "maxLength": 80 },
+        "bajada": { "type": "string", "maxLength": 200 },
+        "introMenu": { "type": "string", "maxLength": 140 },
+        "introCarta": { "type": "string", "maxLength": 140 },
+        "introReserva": { "type": "string", "maxLength": 160 },
+        "introGaleria": { "type": "string", "maxLength": 140 }
+      }
+    },
+    "menuDelDia": {
+      "type": "object",
+      "description": "El dueño lo cambia aquí y la página se actualiza en el siguiente build.",
+      "required": ["dias", "horario", "precio", "entradas", "fondos", "incluye"],
+      "additionalProperties": false,
+      "properties": {
+        "dias": { "type": "string", "examples": ["De martes a viernes"] },
+        "horario": { "type": "string", "examples": ["12:00 – 15:30"] },
+        "precio": { "$ref": "../core/negocio.schema.json#/$defs/precio" },
+        "entradas": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 4,
+          "items": { "type": "string" }
+        },
+        "fondos": { "type": "array", "minItems": 1, "maxItems": 4, "items": { "type": "string" } },
+        "incluye": { "type": "string", "examples": ["Refresco del día"] }
+      }
+    },
+    "carta": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 8,
+      "items": {
+        "type": "object",
+        "required": ["id", "nombre", "platos"],
+        "additionalProperties": false,
+        "properties": {
+          "id": { "$ref": "#/$defs/id" },
+          "nombre": { "type": "string" },
+          "platos": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/plato" } }
+        }
+      }
+    },
+    "pedidos": {
+      "type": "object",
+      "required": ["entrega"],
+      "additionalProperties": false,
+      "properties": {
+        "entrega": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "enum": ["delivery", "recojo"] }
+        },
+        "notaDelivery": { "type": "string", "maxLength": 120 }
+      }
+    },
+    "reservas": {
+      "type": "object",
+      "required": ["maxPersonas"],
+      "additionalProperties": false,
+      "properties": {
+        "maxPersonas": { "type": "integer", "minimum": 2, "maximum": 50 }
+      }
+    }
+  },
+  "unevaluatedProperties": false,
+  "$defs": {
+    "id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+    "plato": {
+      "type": "object",
+      "required": ["id", "nombre", "descripcion", "precio"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "nombre": { "type": "string", "maxLength": 50 },
+        "descripcion": { "type": "string", "maxLength": 120 },
+        "precio": { "$ref": "../core/negocio.schema.json#/$defs/precio" },
+        "foto": { "$ref": "../core/negocio.schema.json#/$defs/imagen" },
+        "etiquetas": {
+          "type": "array",
+          "uniqueItems": true,
+          "description": "Sin etiquetas de alérgenos o dietas: solo el dueño puede afirmarlas.",
+          "items": { "enum": ["picante", "para compartir", "de la casa"] }
+        }
+      }
+    }
+  }
+}

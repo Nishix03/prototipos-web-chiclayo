@@ -1,5 +1,5 @@
 {
-  "$schema": "../core/negocio.schema.json",
+  "$schema": "./rubro.schema.json",
   "demo": true,
   "rubro": "ejemplo",
   "nombre": "Negocio Demo",

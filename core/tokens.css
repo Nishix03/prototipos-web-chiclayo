@@ -9,6 +9,7 @@
   --color-marca: #1f5f8b;
   --color-sobre-marca: #ffffff; /* texto encima de la marca; render.js elige el de mejor contraste */
   --color-acento: #e07a2f;
+  --color-sobre-acento: #111111; /* texto encima del acento; render.js elige el de mejor contraste */
   --color-fondo: #fbfaf7;
   --color-texto: #1d1d1b;
 
@@ -20,7 +21,7 @@
   --color-foco: var(--color-marca);
 
   /* Estados: siempre acompañados de texto o ícono, nunca solo color */
-  --color-abierto: #1e7b46;
+  --color-abierto: #18683b; /* 5.61:1 sobre su tinte en fondo claro; 4.98:1 en papel */
   --color-cerrado: #a3332b;
   --color-whatsapp: #1a7f45; /* verde de WhatsApp oscurecido: 5.04:1 con texto blanco (AA) */
 
@@ -38,10 +39,14 @@
   --texto-xl: clamp(1.375rem, 1.2rem + 0.75vw, 1.875rem);
   --texto-2xl: clamp(1.75rem, 1.4rem + 1.5vw, 2.75rem);
   --texto-3xl: clamp(2.25rem, 1.6rem + 2.9vw, 4rem);
+  /* Titulares de portada. Por defecto igual que 3xl; los rubros con titulares gigantes lo agrandan */
+  --texto-display: var(--texto-3xl);
 
   --interlineado-texto: 1.6;
   --interlineado-titulos: 1.15;
   --peso-titulos: 700;
+  /* Ancho de la fuente de títulos (font-stretch). 100% = normal; 62–75% = condensada */
+  --ancho-titulos: 100%;
 
   /* ── Espaciado: escala de 4 px (0.25rem) ── */
   --espacio-1: 0.25rem;
@@ -64,6 +69,9 @@
   --radio-md: 0.75rem;
   --radio-lg: 1.25rem;
   --radio-pildora: 999px;
+  --radio-boton: var(
+    --radio-pildora
+  ); /* forma de los botones; un rubro puede usar otra sin que el nombre mienta */
   --sombra-sm: 0 1px 2px rgb(0 0 0 / 0.06), 0 1px 3px rgb(0 0 0 / 0.08);
   --sombra-md: 0 4px 12px rgb(0 0 0 / 0.08), 0 2px 4px rgb(0 0 0 / 0.06);
   --sombra-lg: 0 12px 32px rgb(0 0 0 / 0.12);

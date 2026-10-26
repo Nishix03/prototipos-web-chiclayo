@@ -42,6 +42,19 @@
 }
 
 /* ── Indicador de horario (lo usan el hero y el mapa) ── */
+/*
+ * El indicador ocupa su lugar desde el primer pintado (invisible hasta que horario.js lo
+ * rellena) para que su aparición no empuje la página (CLS). Sin JavaScript no se muestra:
+ * el horario completo ya está escrito en la sección de horario.
+ */
+html:not(.js) [data-estado-horario] {
+  display: none;
+}
+
+[data-estado-horario]:not([data-abierto]) {
+  visibility: hidden;
+}
+
 .estado-horario__punto {
   width: 0.6em;
   height: 0.6em;

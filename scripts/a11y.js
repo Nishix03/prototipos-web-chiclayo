@@ -39,7 +39,8 @@ console.log(`Auditando con Axe (${ETIQUETAS}):\n  ${urls.join('\n  ')}\n`);
 
 const axe = spawn(
   join(raiz, 'node_modules', '.bin', 'axe'),
-  [urls.join(','), '--tags', ETIQUETAS, '--load-delay', '500', '--exit'],
+  // Una URL por argumento: juntas con "," sin espacio, axe las toma como una sola
+  [...urls, '--tags', ETIQUETAS, '--load-delay', '500', '--exit'],
   { stdio: 'inherit' },
 );
 

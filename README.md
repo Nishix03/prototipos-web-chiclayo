@@ -10,18 +10,22 @@ Prototipos web para negocios locales (restaurante, spa, barbería, veterinaria, 
 
 - Node.js 22 o superior (en WSL: `nvm install --lts`)
 - Para `npm run a11y`, una sola vez: `npx browser-driver-manager install chrome`
+- Para `npm run test:teclado`, una sola vez: `npx playwright install chromium`
 
 ## Comandos
 
-| Comando           | Qué hace                                                                 |
-| ----------------- | ------------------------------------------------------------------------ |
-| `npm install`     | Instala las dependencias                                                 |
-| `npm run dev`     | Servidor de desarrollo con recarga al guardar (incluido `negocio.json`)  |
-| `npm run build`   | Valida cada `negocio.json`, genera el HTML y deja el sitio en `dist/`    |
-| `npm run preview` | Sirve `dist/` para revisar la versión de producción                      |
-| `npm run lint`    | Revisa el código con ESLint                                              |
-| `npm run format`  | Da formato a todo con Prettier                                           |
-| `npm run a11y`    | Construye y audita la accesibilidad de cada página con Axe (WCAG 2.1 AA) |
+| Comando                                              | Qué hace                                                                                            |
+| ---------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
+| `npm install`                                        | Instala las dependencias                                                                            |
+| `npm run dev`                                        | Servidor de desarrollo con recarga al guardar (incluido `negocio.json`)                             |
+| `npm run build`                                      | Valida cada `negocio.json`, genera el HTML y deja el sitio en `dist/`                               |
+| `npm run preview`                                    | Sirve `dist/` para revisar la versión de producción                                                 |
+| `npm run lint`                                       | Revisa el código con ESLint                                                                         |
+| `npm run format`                                     | Da formato a todo con Prettier                                                                      |
+| `npm run a11y`                                       | Construye y audita la accesibilidad de cada página con Axe (WCAG 2.1 AA)                            |
+| `npm run test:teclado`                               | Construye y prueba cada página solo con teclado (Playwright, ADR 006), con la hora de Lima simulada |
+| `npm run fotos -- buscar "<consulta>"`               | Busca fotos en Openverse con licencia permitida (cc0, by, by-sa)                                    |
+| `npm run fotos -- bajar <id> <carpeta>/img/<nombre>` | Descarga la foto en WebP tras verificar su licencia y escribe su `credito`                          |
 
 ## Cómo funciona
 
@@ -30,18 +34,19 @@ negocio.json ──► core/validar.js ──► core/render.js ──► compon
  (datos)          (ajv + esquema)    (plugin de Vite)   (hero, mapa…)    (se lee sin JavaScript)
 ```
 
-1. Cada carpeta con `index.html` + `negocio.json` es una página (`_ejemplo/` hoy; un rubro por carpeta desde la fase 2).
-2. Al construir, `core/render.js` valida el JSON contra [core/negocio.schema.json](core/negocio.schema.json) y reemplaza los marcadores del HTML:
+1. Cada carpeta con `index.html` + `negocio.json` + `rubro.schema.json` es una página (`_ejemplo/`, `restaurante/`…).
+2. Al construir, `core/render.js` valida el JSON contra el `rubro.schema.json` de su carpeta, que extiende [core/negocio.schema.json](core/negocio.schema.json) (ADR 005), y reemplaza los marcadores del HTML:
    - `<!-- @head -->` → título, descripción, Open Graph, colores del negocio y datos estructurados `LocalBusiness`;
-   - `<!-- @componente hero -->` → el HTML del componente.
+   - `<!-- @componente hero -->` → el HTML del componente (los de `core/componentes/` más los de `<carpeta>/componentes/`).
 3. En el navegador, `app.js` solo añade lo que depende del momento de la visita, como "Abierto ahora" con la hora de Lima.
 
 ## Crear un prototipo nuevo
 
 1. Copiar `_ejemplo/` con el nombre del rubro o del negocio.
-2. Editar `negocio.json`: VS Code autocompleta y marca los errores gracias al esquema.
-3. Poner las fotos en `img/` en formato WebP.
-4. `npm run dev` para verlo; `npm run build` y `npm run a11y` antes de publicar.
+2. Si el rubro tiene campos propios (carta, servicios…), agregarlos en su `rubro.schema.json`.
+3. Editar `negocio.json`: VS Code autocompleta y marca los errores gracias al esquema.
+4. Poner las fotos en `img/` en formato WebP (las de stock, con `npm run fotos`).
+5. `npm run dev` para verlo; `npm run lint`, `npm run test:teclado` y `npm run a11y` antes de cada commit.
 
 Si `"demo": true`, la página muestra un aviso de demostración: nunca se presenta contenido ficticio como real.
 
@@ -55,7 +60,10 @@ core/
   whatsapp.js · horario.js           enlaces wa.me y horario con hora de Lima
   componentes/                       hero, galería, reseñas, mapa, footer, botón flotante
 _ejemplo/                            página de prueba y plantilla para copiar
+restaurante/                         rubro 1: carta con armar pedido, comanda y reservas
 docs/decisiones/                     ADR
-scripts/a11y.js                      auditoría con Axe
+docs/visual/                         brief visual de cada rubro, con maqueta y capturas
+pruebas/teclado/                     pruebas E2E con Playwright (teclado y horario)
+scripts/a11y.js · scripts/fotos.js   auditoría con Axe y fotos de Openverse con licencia verificada
 .github/workflows/deploy.yml         publica en GitHub Pages en cada push a main
 ```

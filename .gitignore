@@ -8,3 +8,5 @@ Thumbs.db
 
 # Perfiles temporales que Lighthouse crea al correr en WSL
 /C:*
+test-results/
+playwright-report/
