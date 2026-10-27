@@ -38,6 +38,21 @@ const CASOS = [
     texto: 'Cerrado · abre mañana a las 10:00',
   }, // domingo por la tarde
   {
+    pagina: 'dental/',
+    hora: '2026-11-03T10:00:00-05:00',
+    texto: 'Abierto · hoy de 9:00 a 13:00 y de 15:00 a 20:00',
+  },
+  {
+    pagina: 'dental/',
+    hora: '2026-11-03T13:30:00-05:00',
+    texto: 'Cerrado · abre hoy a las 15:00',
+  }, // pausa del mediodía
+  {
+    pagina: 'dental/',
+    hora: '2026-11-08T10:00:00-05:00',
+    texto: 'Cerrado · abre mañana a las 9:00',
+  }, // domingo
+  {
     pagina: '_ejemplo/',
     hora: '2026-11-03T10:00:00-05:00',
     texto: 'Abierto · hoy de 9:00 a 13:00 y de 15:00 a 19:00',

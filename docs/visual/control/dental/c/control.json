@@ -1,0 +1,68 @@
+{
+  "360": {
+    "e1": {
+      "nombre": true,
+      "titular": true,
+      "estadoConHorarioDeHoy": true,
+      "enlaceAlHorario": true,
+      "funcionEstrella": true
+    },
+    "e2": {
+      "palabrasTitular": 3,
+      "lineasTitular": 3,
+      "maxPalabrasSeccion": 5,
+      "titulosSeccion": [
+        ["Encuentra tu tratamiento", 3],
+        ["Tratamientos y precios", 3],
+        ["Quiénes te atienden", 3],
+        ["Agenda tu evaluación", 3],
+        ["Preguntas frecuentes", 2],
+        ["Horario", 1],
+        ["Lo que dicen nuestros clientes", 5],
+        ["Horario y cómo llegar", 4]
+      ]
+    },
+    "e3": {
+      "escenaCubrePantalla": 100,
+      "escenaViva": true
+    },
+    "e5": {
+      "titular": "Literata Variable",
+      "titulosSeccion": ["Literata Variable"],
+      "texto": "Manrope Variable"
+    }
+  },
+  "1440": {
+    "e1": {
+      "nombre": true,
+      "titular": true,
+      "estadoConHorarioDeHoy": true,
+      "enlaceAlHorario": true,
+      "funcionEstrella": true
+    },
+    "e2": {
+      "palabrasTitular": 3,
+      "lineasTitular": 2,
+      "maxPalabrasSeccion": 5,
+      "titulosSeccion": [
+        ["Encuentra tu tratamiento", 3],
+        ["Tratamientos y precios", 3],
+        ["Quiénes te atienden", 3],
+        ["Agenda tu evaluación", 3],
+        ["Preguntas frecuentes", 2],
+        ["Horario", 1],
+        ["Lo que dicen nuestros clientes", 5],
+        ["Horario y cómo llegar", 4]
+      ]
+    },
+    "e3": {
+      "escenaCubrePantalla": 100,
+      "escenaViva": true
+    },
+    "e5": {
+      "titular": "Literata Variable",
+      "titulosSeccion": ["Literata Variable"],
+      "texto": "Manrope Variable"
+    }
+  }
+}
