@@ -1,0 +1,158 @@
+{
+  "$schema": "./rubro.schema.json",
+  "demo": true,
+  "rubro": "barberia",
+  "nombre": "Barbería Filo · Demo",
+  "eslogan": "Cortes clásicos, degradados y barba en Chiclayo",
+  "descripcion": "Demo de barbería en Chiclayo: elige tu corte y tu barbero, mira el tiempo de espera y pide tu turno por WhatsApp. Datos ficticios.",
+  "tituloSeo": "Barbería Filo (demo) · Barbería en Chiclayo",
+  "textos": {
+    "titular": "Tu turno en la silla",
+    "bajada": "Cortes clásicos, degradados y perfilado de barba en Chiclayo. Elige tu corte y tu barbero, y pide tu turno por WhatsApp.",
+    "introCortes": "Precio y duración de cada corte. Toca uno para pedirlo.",
+    "introBarberos": "Cada barbero atiende ciertos días: al pedir tu turno solo ves a los que están ese día.",
+    "introTurno": "Elige corte, día, barbero y hora. Te confirmamos por WhatsApp."
+  },
+  "espera": "Sin espera",
+  "contacto": {
+    "whatsapp": "995258351",
+    "mensajeWhatsapp": "Hola, vi la página de Barbería Filo (demo) y tengo una consulta."
+  },
+  "ubicacion": {
+    "direccion": "Av. de Ejemplo 123",
+    "referencia": "Dirección ficticia; el mapa apunta al centro de Chiclayo",
+    "distrito": "Chiclayo",
+    "ciudad": "Chiclayo",
+    "region": "Lambayeque",
+    "lat": -6.7714,
+    "lng": -79.8409
+  },
+  "horario": {
+    "lun": [["10:00", "21:00"]],
+    "mar": [["10:00", "21:00"]],
+    "mie": [["10:00", "21:00"]],
+    "jue": [["10:00", "21:00"]],
+    "vie": [["10:00", "21:00"]],
+    "sab": [["10:00", "21:00"]],
+    "dom": [["10:00", "14:00"]]
+  },
+  "tema": {
+    "marca": "#d4a937",
+    "acento": "#f3eee4",
+    "fondo": "#101012",
+    "texto": "#f3eee4"
+  },
+  "imagenes": {
+    "hero": {
+      "src": "img/filo-1440.webp",
+      "alt": "Superficie de cromo líquido con reflejos dorados (ilustración 3D)"
+    },
+    "og": {
+      "src": "img/filo-1440.webp",
+      "alt": "Barbería Filo (demo), Chiclayo"
+    }
+  },
+  "cortes": [
+    {
+      "id": "clasico",
+      "nombre": "Clásico con tijera",
+      "estilo": "clásico",
+      "precio": 25,
+      "minutos": 30,
+      "descripcion": "Corte a tijera con raya al lado y acabado con navaja en la nuca."
+    },
+    {
+      "id": "low-fade",
+      "nombre": "Low fade",
+      "estilo": "degradado",
+      "precio": 30,
+      "minutos": 40,
+      "descripcion": "Degradado bajo, desde la línea de la oreja, con la parte de arriba a tu gusto."
+    },
+    {
+      "id": "mid-fade",
+      "nombre": "Mid fade",
+      "estilo": "degradado",
+      "precio": 30,
+      "minutos": 40,
+      "descripcion": "Degradado a media altura, limpio a los lados y con volumen arriba."
+    },
+    {
+      "id": "mullet",
+      "nombre": "Mullet moderno",
+      "estilo": "moderno",
+      "precio": 35,
+      "minutos": 45,
+      "descripcion": "Corto a los lados y arriba, largo atrás, con textura."
+    },
+    {
+      "id": "buzz",
+      "nombre": "Buzz cut",
+      "estilo": "moderno",
+      "precio": 20,
+      "minutos": 20,
+      "descripcion": "Corte al ras con máquina, parejo en toda la cabeza."
+    },
+    {
+      "id": "barba",
+      "nombre": "Perfilado de barba",
+      "estilo": "barba",
+      "precio": 15,
+      "minutos": 20,
+      "descripcion": "Perfilado con navaja, toalla caliente y aceite para barba."
+    },
+    {
+      "id": "corte-barba",
+      "nombre": "Corte y barba",
+      "estilo": "barba",
+      "precio": 40,
+      "minutos": 60,
+      "descripcion": "Cualquier corte de la lista más el perfilado de barba."
+    }
+  ],
+  "barberos": [
+    {
+      "id": "luis",
+      "nombre": "Luis (demo)",
+      "especialidad": "Degradados y diseños con navaja",
+      "dias": ["lun", "mar", "mie", "jue", "vie"]
+    },
+    {
+      "id": "marco",
+      "nombre": "Marco (demo)",
+      "especialidad": "Cortes clásicos y barba",
+      "dias": ["mar", "jue", "sab", "dom"]
+    },
+    {
+      "id": "andres",
+      "nombre": "Andrés (demo)",
+      "especialidad": "Mullet y cortes con textura",
+      "dias": ["mie", "vie", "sab"]
+    }
+  ],
+  "fidelidad": {
+    "titulo": "Tu 6.º corte es gratis",
+    "detalle": "Te sellamos una tarjeta en cada corte. Con 5 sellos, el siguiente corte no se cobra."
+  },
+  "turno": { "minutosEntreTurnos": 30 },
+  "resenas": {
+    "fuente": "Reseñas de demostración: textos de ejemplo, no son opiniones reales.",
+    "items": [
+      {
+        "texto": "Reseña de ejemplo: pedí mi turno por WhatsApp y me atendieron a la hora.",
+        "autor": "Cliente de demostración 1",
+        "estrellas": 5
+      },
+      {
+        "texto": "Reseña de ejemplo: el degradado quedó parejo y me explicaron cómo mantenerlo.",
+        "autor": "Cliente de demostración 2",
+        "estrellas": 5
+      },
+      {
+        "texto": "Reseña de ejemplo: buen perfilado de barba con toalla caliente.",
+        "autor": "Cliente de demostración 3",
+        "estrellas": 4
+      }
+    ]
+  }
+}

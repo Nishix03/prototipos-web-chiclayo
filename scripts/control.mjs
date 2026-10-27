@@ -2,7 +2,8 @@
 // mide las exigencias 1, 2, 3 (cobertura de la escena) y 5, y captura los 3 cuadros
 // (inicio, mitad del scroll, función estrella) con el 3D renderizado como prueba.
 //
-//   npm run build && node scripts/control.mjs restaurante
+//   npm run build && node scripts/control.mjs restaurante [a|b|c]
+// Con una variante (paso 2: storyboard), abre ?direccion=<variante> y guarda en <rubro>/<variante>/.
 //
 // La función estrella de cada rubro se describe en <rubro>/control.json:
 //   { "seccion": "#carta", "clics": ["selector", ...], "abrir": "selector opcional" }
@@ -13,9 +14,9 @@ import { chromium } from '@playwright/test';
 import { preview } from 'vite';
 
 const raiz = resolve(import.meta.dirname, '..');
-const rubro = process.argv[2];
+const [rubro, variante] = process.argv.slice(2);
 const config = JSON.parse(readFileSync(resolve(raiz, rubro, 'control.json'), 'utf8'));
-const salida = resolve(raiz, 'docs/visual/control', rubro);
+const salida = resolve(raiz, 'docs/visual/control', rubro, variante ?? '');
 mkdirSync(salida, { recursive: true });
 
 const ANCHOS = { 360: 780, 1440: 900 };
@@ -24,7 +25,7 @@ const servidor = await preview({
   logLevel: 'error',
   preview: { port: 4198, strictPort: true },
 });
-const base = `${servidor.resolvedUrls.local[0]}${rubro}/?3d=forzar`;
+const base = `${servidor.resolvedUrls.local[0]}${rubro}/?3d=forzar${variante ? `&direccion=${variante}` : ''}`;
 const navegador = await chromium.launch({
   args: ['--use-angle=swiftshader', '--enable-unsafe-swiftshader', '--ignore-gpu-blocklist'],
 });

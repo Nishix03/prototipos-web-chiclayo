@@ -40,7 +40,9 @@ const mezclar = (a, b, t) => a + (b - a) * t;
  *   inicial(i, azar[], aspecto, pieza) y ordenado(g, k, n, aspecto, pieza) → {pos, rot, escala},
  *   luz, niebla, sombras, fov, exposicion,
  *   ligera(aspecto) → true para la versión de celular: sin sombras, la mitad de las piezas,
- *   densidad de píxeles 1 y sin antialias (Lighthouse móvil, ADR 008)
+ *   densidad de píxeles 1 y sin antialias (Lighthouse móvil, ADR 008),
+ *   cuadro(t, contexto) → opcional: escenas sin piezas (cromo, agua) se actualizan aquí.
+ *   fondo devuelve lo que necesite cuadro (contexto.mundo).
  * @param {() => number} avance  avance del scroll entre 0 y 1
  * @param {{ fija?: boolean, ancho?: number, alto?: number }} [opciones]
  *   fija: dibuja un solo cuadro (para la imagen fija del LCP) con ese tamaño
@@ -79,11 +81,11 @@ export function montarEscena(contenedor, d, avance, opciones = {}) {
   escena.add(sol);
 
   const camara = new PerspectiveCamera(d.fov ?? 35, 1, 0.1, 100);
-  d.fondo(escena, aspecto, { sombras });
+  const mundo = d.fondo(escena, aspecto, { sombras, ligera, renderer }) ?? {};
 
   const piezas = [];
   let i = 0;
-  d.grupos.forEach((grupo, g) => {
+  (d.grupos ?? []).forEach((grupo, g) => {
     // Versión ligera: la mitad de las piezas de cada grupo
     const claves = ligera ? grupo.piezas.filter((_, k) => k % 2 === 0) : grupo.piezas;
     claves.forEach((clave, k) => {
@@ -109,9 +111,12 @@ export function montarEscena(contenedor, d, avance, opciones = {}) {
     rot: new Vector3(...o.rot),
     escala: o.escala ?? 1,
   });
+  // Versión ligera: el canvas se dibuja al 70 % y el navegador lo agranda (CSS lo estira al
+  // 100 %). Con render por software, la cantidad de píxeles es lo que más cuesta.
+  const resolucion = ligera && !fija ? 0.7 : 1;
   function ajustar() {
     const { w, h } = medida();
-    renderer.setSize(w, h, false);
+    renderer.setSize(Math.round(w * resolucion), Math.round(h * resolucion), false);
     aspecto = w / h;
     camara.aspect = aspecto;
     camara.updateProjectionMatrix();
@@ -135,6 +140,7 @@ export function montarEscena(contenedor, d, avance, opciones = {}) {
     const c = d.camara(t, aspecto);
     camara.position.set(...c.pos);
     camara.lookAt(...c.mira);
+    d.cuadro?.(t, { escena, camara, aspecto, ligera, mundo });
     renderer.render(escena, camara);
   }
 
@@ -146,7 +152,7 @@ export function montarEscena(contenedor, d, avance, opciones = {}) {
     cam.lookAt(...c.mira);
     cam.updateMatrixWorld();
     const { w, h } = medida();
-    return d.grupos.map((_, g) => {
+    return (d.grupos ?? []).map((_, g) => {
       const del = piezas.filter((p) => p.g === g);
       const v = del.reduce((s, p) => s.add(p.hasta.pos), new Vector3()).divideScalar(del.length);
       v.project(cam);
