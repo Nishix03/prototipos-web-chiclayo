@@ -1,0 +1,134 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Negocio · veterinaria",
+  "description": "Campos propios de la veterinaria sobre la base común (ADR 005): textos, urgencias 24 h, servicios con precio «desde», la tabla de vacunas por especie (la valida la veterinaria), el equipo y los consejos de cuidado.",
+  "type": "object",
+  "allOf": [{ "$ref": "../core/negocio.schema.json" }],
+  "required": ["textos", "urgencias", "servicios", "vacunas", "equipo", "consejos"],
+  "properties": {
+    "rubro": { "const": "veterinaria" },
+    "textos": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["titular", "bajada", "introServicios", "introVacunas", "introCita"],
+      "properties": {
+        "titular": {
+          "type": "string",
+          "maxLength": 40,
+          "description": "6 palabras o menos (exigencia 2)"
+        },
+        "bajada": { "type": "string", "maxLength": 200 },
+        "introServicios": { "type": "string", "maxLength": 160 },
+        "introVacunas": { "type": "string", "maxLength": 200 },
+        "introCita": { "type": "string", "maxLength": 160 }
+      }
+    },
+    "urgencias": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["telefono", "texto"],
+      "properties": {
+        "telefono": {
+          "type": "string",
+          "pattern": "^\\+?[0-9 ]{9,15}$",
+          "description": "Número para llamar por una urgencia (enlace tel:)"
+        },
+        "texto": {
+          "type": "string",
+          "maxLength": 60,
+          "description": "Lo que dice la barra, p. ej. «Urgencias 24 h»"
+        }
+      }
+    },
+    "servicios": {
+      "type": "array",
+      "minItems": 3,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "nombre", "desde", "descripcion"],
+        "properties": {
+          "id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+          "nombre": { "type": "string", "maxLength": 40 },
+          "desde": { "$ref": "../core/negocio.schema.json#/$defs/precio" },
+          "descripcion": { "type": "string", "maxLength": 140 }
+        }
+      }
+    },
+    "vacunas": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["nota", "especies"],
+      "properties": {
+        "nota": {
+          "type": "string",
+          "maxLength": 200,
+          "description": "Quién valida la tabla. En una demo, que es de demostración."
+        },
+        "especies": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["id", "nombre", "dosis"],
+            "properties": {
+              "id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+              "nombre": { "type": "string", "maxLength": 20 },
+              "dosis": {
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": ["semanas", "vacuna"],
+                  "properties": {
+                    "semanas": {
+                      "type": "integer",
+                      "minimum": 1,
+                      "maximum": 520,
+                      "description": "Edad en semanas en que toca la dosis"
+                    },
+                    "vacuna": { "type": "string", "maxLength": 60 }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "equipo": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["nombre", "especialidad", "colegiatura"],
+        "properties": {
+          "nombre": { "type": "string", "maxLength": 60 },
+          "especialidad": { "type": "string", "maxLength": 80 },
+          "colegiatura": {
+            "type": "string",
+            "maxLength": 30,
+            "description": "Número del Colegio Médico Veterinario del Perú (CMVP). En una demo, «CMVP 00000 (demo)»: nunca se inventa una credencial."
+          }
+        }
+      }
+    },
+    "consejos": {
+      "type": "array",
+      "maxItems": 4,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["titulo", "texto"],
+        "properties": {
+          "titulo": { "type": "string", "maxLength": 60 },
+          "texto": { "type": "string", "maxLength": 400 }
+        }
+      }
+    }
+  },
+  "unevaluatedProperties": false
+}

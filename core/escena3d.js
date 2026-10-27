@@ -43,6 +43,8 @@ const mezclar = (a, b, t) => a + (b - a) * t;
  *   densidad de píxeles 1 y sin antialias (Lighthouse móvil, ADR 008),
  *   cuadro(t, contexto) → opcional: escenas sin piezas (cromo, agua) se actualizan aquí.
  *   fondo devuelve lo que necesite cuadro (contexto.mundo).
+ *   puntero: true → la escena sigue al cursor o al dedo; cuadro recibe contexto.puntero
+ *   (x e y entre -1 y 1, con inercia) y se redibuja solo mientras el puntero se mueve.
  * @param {() => number} avance  avance del scroll entre 0 y 1
  * @param {{ fija?: boolean, ancho?: number, alto?: number }} [opciones]
  *   fija: dibuja un solo cuadro (para la imagen fija del LCP) con ese tamaño
@@ -106,6 +108,10 @@ export function montarEscena(contenedor, d, avance, opciones = {}) {
     });
   });
 
+  // Puntero (opcional): el real y el suavizado que ve la escena
+  const puntero = { x: 0, y: 0 };
+  const visto = { x: 0, y: 0 };
+
   const pose = (o) => ({
     pos: new Vector3(...o.pos),
     rot: new Vector3(...o.rot),
@@ -140,7 +146,7 @@ export function montarEscena(contenedor, d, avance, opciones = {}) {
     const c = d.camara(t, aspecto);
     camara.position.set(...c.pos);
     camara.lookAt(...c.mira);
-    d.cuadro?.(t, { escena, camara, aspecto, ligera, mundo });
+    d.cuadro?.(t, { escena, camara, aspecto, ligera, mundo, puntero: visto });
     renderer.render(escena, camara);
   }
 
@@ -169,10 +175,22 @@ export function montarEscena(contenedor, d, avance, opciones = {}) {
 
   contenedor.append(canvas);
   let actual = -1;
+  if (d.puntero)
+    addEventListener(
+      'pointermove',
+      (e) => {
+        puntero.x = (e.clientX / innerWidth) * 2 - 1;
+        puntero.y = 1 - (e.clientY / innerHeight) * 2;
+      },
+      { passive: true },
+    );
   const bucle = () => {
     const t = avance();
-    if (actual < 0 || Math.abs(t - actual) > 0.0005) {
+    const sigue = Math.abs(puntero.x - visto.x) + Math.abs(puntero.y - visto.y) > 0.002;
+    if (actual < 0 || sigue || Math.abs(t - actual) > 0.0005) {
       actual = actual < 0 ? t : actual + (t - actual) * 0.18; // el scroll llega con inercia
+      visto.x += (puntero.x - visto.x) * 0.12;
+      visto.y += (puntero.y - visto.y) * 0.12;
       dibujar(actual);
       if (!contenedor.hasAttribute('data-viva')) contenedor.setAttribute('data-viva', '');
     }

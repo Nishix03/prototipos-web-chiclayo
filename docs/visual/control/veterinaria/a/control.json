@@ -1,0 +1,68 @@
+{
+  "360": {
+    "e1": {
+      "nombre": true,
+      "titular": true,
+      "estadoConHorarioDeHoy": true,
+      "enlaceAlHorario": true,
+      "funcionEstrella": true
+    },
+    "e2": {
+      "palabrasTitular": 5,
+      "lineasTitular": 2,
+      "maxPalabrasSeccion": 5,
+      "titulosSeccion": [
+        ["Servicios y precios", 3],
+        ["Calendario de vacunas", 3],
+        ["Agenda una cita", 3],
+        ["Quiénes los atienden", 3],
+        ["Consejos de cuidado", 3],
+        ["Horario de consultas", 3],
+        ["Lo que dicen nuestros clientes", 5],
+        ["Horario y cómo llegar", 4]
+      ]
+    },
+    "e3": {
+      "escenaCubrePantalla": 100,
+      "escenaViva": true
+    },
+    "e5": {
+      "titular": "Fredoka Variable",
+      "titulosSeccion": ["Fredoka Variable"],
+      "texto": "Nunito Variable"
+    }
+  },
+  "1440": {
+    "e1": {
+      "nombre": true,
+      "titular": true,
+      "estadoConHorarioDeHoy": true,
+      "enlaceAlHorario": true,
+      "funcionEstrella": true
+    },
+    "e2": {
+      "palabrasTitular": 5,
+      "lineasTitular": 2,
+      "maxPalabrasSeccion": 5,
+      "titulosSeccion": [
+        ["Servicios y precios", 3],
+        ["Calendario de vacunas", 3],
+        ["Agenda una cita", 3],
+        ["Quiénes los atienden", 3],
+        ["Consejos de cuidado", 3],
+        ["Horario de consultas", 3],
+        ["Lo que dicen nuestros clientes", 5],
+        ["Horario y cómo llegar", 4]
+      ]
+    },
+    "e3": {
+      "escenaCubrePantalla": 100,
+      "escenaViva": true
+    },
+    "e5": {
+      "titular": "Fredoka Variable",
+      "titulosSeccion": ["Fredoka Variable"],
+      "texto": "Nunito Variable"
+    }
+  }
+}

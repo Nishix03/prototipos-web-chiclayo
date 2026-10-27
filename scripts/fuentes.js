@@ -82,6 +82,21 @@ const FUENTES = [
     salida: 'instrument-sans-texto.woff2',
     ejes: { wght: { min: 400, max: 700 } },
   },
+  // Veterinaria «Juego y urgencia» (dirección B «Estante»): Baloo 2 (titulares) + Nunito
+  {
+    carpeta: 'veterinaria',
+    paquete: 'baloo-2',
+    entrada: 'files/baloo-2-latin-wght-normal.woff2',
+    salida: 'baloo-titulos.woff2',
+    ejes: { wght: { min: 600, max: 800 } },
+  },
+  {
+    carpeta: 'veterinaria',
+    paquete: 'nunito',
+    entrada: 'files/nunito-latin-wght-normal.woff2',
+    salida: 'nunito-texto.woff2',
+    ejes: { wght: { min: 400, max: 800 } },
+  },
 ];
 
 function fallar(mensaje) {
