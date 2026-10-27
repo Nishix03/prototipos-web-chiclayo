@@ -38,8 +38,9 @@ Los aprobó Iván en la Fase 2, después de verificar con búsquedas web que no 
 - «Barbería Filo · Demo»
 - «Sonrisa Clara · Demo»
 - «Remanso Spa · Demo» (modo autónomo, 2026-10-27): una búsqueda web no mostró ningún spa con ese nombre en Chiclayo. Pendiente de Iván: confirmarlo en Google Maps.
+- «Trufa Veterinaria · Demo» (modo autónomo, 2026-10-27): una búsqueda web no mostró ninguna veterinaria con ese nombre en Chiclayo. Pendiente de Iván: confirmarlo en Google Maps.
 
-Veterinaria y gimnasio usarán nombres nuevos, verificados de la misma forma, y quedarán anotados aquí.
+El gimnasio usará nombres nuevos, verificados de la misma forma, y quedarán anotados aquí.
 
 ## Estado por rubro
 
@@ -48,8 +49,8 @@ Veterinaria y gimnasio usarán nombres nuevos, verificados de la misma forma, y 
 | Restaurante v2 | ✔ publicado            | C «El pase»       | 92 / 89                       | 0   | #4           |
 | Barbería       | ✔ publicado            | A «Espejo»        | 86 / 98                       | 0   | #5           |
 | Clínica dental | ✔ publicado            | A «Arco»          | 93 / 100                      | 0   | #6           |
-| Spa / Estética | Construido; PR abierto | A «Superficie»    | 93 / 99                       | 0   | ver bitácora |
-| Veterinaria    | pendiente              | —                 | —                             | —   | —            |
+| Spa / Estética | ✔ publicado            | A «Superficie»    | 93 / 99                       | 0   | #7           |
+| Veterinaria    | Construida; PR abierto | B «Estante»       | 92 / 99                       | 0   | ver bitácora |
 | Gimnasio       | pendiente              | —                 | —                             | —   | —            |
 
 ## Bitácora
@@ -142,3 +143,22 @@ Veterinaria y gimnasio usarán nombres nuevos, verificados de la misma forma, y 
   - Revisar las webs de los prospectos queda pendiente antes de mostrarles la demo.
 - **Lighthouse:** móvil 93 · escritorio 99. Axe 0. `test:teclado` 66/66.
 - **Qué sigue:** fusionar el PR del spa y empezar la **veterinaria** («Juego y urgencia») en `feat/rubro-veterinaria`. Antes, un nombre de demo nuevo verificado con búsqueda web.
+- **Fusionado** el PR #7 con merge commit (checks de GitHub en verde). Publicado en https://nishix03.github.io/prototipos-web-chiclayo/spa/
+
+### 2026-10-27 · Veterinaria «Juego y urgencia»
+
+- **Nombre de demo:** «Trufa Veterinaria · Demo».
+- **3 direcciones** como variantes de la página real: A Pelotero, B Estante, C Rebote.
+- **Elegida: B «Estante».**
+  - Es la única portada a la izquierda: barbería, clínica dental y spa ya van centradas.
+  - A se veía más juguetona, pero repetía la composición.
+  - La tabla está en `docs/visual/veterinaria.md`.
+- **Función estrella:** la barra de urgencias 24 h, fija arriba con un punto que late, «Llamar ahora» (`tel:`) y WhatsApp.
+- **Componentes del rubro:**
+  - el calendario de vacunas por especie, con fechas y la próxima dosis; la tabla está marcada como de demostración;
+  - la cita para consulta o baño, que avisa el domingo en la tarde;
+  - consejos de cuidado;
+  - el equipo con «CMVP 00000 (demo)».
+- **Núcleo:** el motor 3D acepta `puntero`. Los juguetes siguen al cursor o al dedo y la escena se redibuja solo mientras el puntero se mueve.
+- **Lighthouse:** móvil 92 · escritorio 99. Axe 0. `test:teclado` 78/78.
+- **Qué sigue:** fusionar el PR de la veterinaria y empezar el **gimnasio** («Pulso») en `feat/rubro-gimnasio`. Antes, un nombre de demo nuevo verificado con búsqueda web.

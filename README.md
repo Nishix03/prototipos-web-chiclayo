@@ -71,6 +71,7 @@ restaurante/                         rubro 1 «El pase»: riel de comandas, ingr
 barberia/                            rubro 2 «Filo»: cromo líquido 3D, letrero con la espera de hoy y turno con corte, día, barbero y hora
 dental/                              rubro 3 «Calma clínica»: sonrisa de vidrio 3D, cuestionario «¿Qué tratamiento necesito?» y precios «desde»
 spa/                                 rubro 4 «Agua quieta»: agua 3D (shader), cita en 3 pasos que respira, paquetes y comparador antes/después
+veterinaria/                         rubro 5 «Juego y urgencia»: barra de urgencias 24 h, juguetes 3D que siguen al cursor y calendario de vacunas
 docs/decisiones/                     ADR
 docs/visual/                         brief visual de cada rubro, con maqueta y capturas
 pruebas/teclado/                     pruebas E2E con Playwright (teclado y horario)

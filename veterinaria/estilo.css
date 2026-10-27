@@ -1,0 +1,577 @@
+/*
+ * Veterinaria · «Juego y urgencia» (brief: docs/visual/veterinaria.md). Juguetes mate en
+ * turquesa, naranja y crema; la urgencia, en rojo, siempre arriba. Tono cercano.
+ * Los colores llegan de negocio.json (tema); aquí van materiales, tipografía y composición.
+ * Dirección elegida en el paso 2: B «Estante» (las otras dos quedan en el brief).
+ */
+@import '../core/core.css';
+
+/* Fuentes recortadas al español con `npm run fuentes`. Licencia OFL al lado. */
+@font-face {
+  font-family: 'Baloo 2 Variable';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 600 800;
+  src: url('./fuentes/baloo-titulos.woff2') format('woff2-variations');
+}
+
+@font-face {
+  font-family: 'Nunito Variable';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400 800;
+  src: url('./fuentes/nunito-texto.woff2') format('woff2-variations');
+}
+
+/* Respaldos con el ancho ajustado: el cambio de fuente no mueve nada (CLS) */
+@font-face {
+  font-family: 'Baloo respaldo';
+  src: local('Arial Rounded MT Bold'), local('Arial');
+  size-adjust: 100%;
+}
+
+@font-face {
+  font-family: 'Nunito respaldo';
+  src: local('Arial'), local('Helvetica'), local('Roboto');
+  size-adjust: 101%;
+}
+
+:root {
+  color-scheme: light;
+  --color-urgencia: #b3261e; /* con texto blanco: 6.5:1 */
+  --color-texto-suave: #3f5254;
+  --color-tarjeta: rgb(251 247 240 / 0.92);
+  --color-borde: rgb(27 42 44 / 0.14);
+  --radio-juguete: 0.75rem;
+  --radio-boton: 999px;
+  --curva-rebote: cubic-bezier(0.34, 1.56, 0.64, 1); /* un saltito al llegar */
+  --fuente-titulos: 'Baloo 2 Variable', 'Baloo respaldo', system-ui, sans-serif;
+  --fuente-texto: 'Nunito Variable', 'Nunito respaldo', system-ui, sans-serif;
+  --peso-titulos: 700;
+}
+
+html {
+  scroll-padding-top: 4.5rem;
+}
+
+body {
+  overflow-x: clip;
+}
+
+/* ── La barra de urgencias: fija arriba en toda la página (función estrella) ── */
+.urgencias {
+  position: sticky;
+  top: 0;
+  z-index: calc(var(--capa-flotante) + 1);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--espacio-2) var(--espacio-4);
+  padding: var(--espacio-2) var(--margen-lateral);
+  background: var(--color-urgencia);
+  color: #fff;
+  --color-foco: #fff;
+}
+
+.urgencias__texto {
+  display: flex;
+  align-items: center;
+  gap: var(--espacio-2);
+  margin-right: auto;
+  font-family: var(--fuente-titulos);
+  font-size: var(--texto-lg);
+}
+
+/* El punto que late: un latido cada segundo y medio (solo transform y opacidad) */
+.urgencias__pulso {
+  position: relative;
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 50%;
+  background: #fff;
+}
+
+.urgencias__pulso::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: #fff;
+  animation: latido 1.5s ease-out infinite;
+}
+
+@keyframes latido {
+  from {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+  to {
+    transform: scale(2.6);
+    opacity: 0;
+  }
+}
+
+.urgencias__llamar,
+.urgencias__whatsapp {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--espacio-2);
+  min-height: var(--tamano-tactil);
+  padding: var(--espacio-1) var(--espacio-4);
+  border-radius: var(--radio-boton);
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.urgencias__llamar {
+  background: #fff;
+  color: var(--color-urgencia);
+}
+
+.urgencias__llamar svg {
+  width: 1.1em;
+  height: 1.1em;
+}
+
+.urgencias__whatsapp {
+  color: #fff;
+  text-decoration: underline;
+  text-underline-offset: 0.25em;
+}
+
+.urgencias__whatsapp svg {
+  width: 1.3em;
+  height: 1.3em;
+}
+
+/* En celular la barra va en una sola línea: WhatsApp queda como ícono (con su nombre para el lector) */
+@media (max-width: 30rem) {
+  .urgencias {
+    flex-wrap: nowrap;
+    gap: var(--espacio-2);
+  }
+
+  .urgencias__texto,
+  .urgencias__llamar {
+    font-size: var(--texto-base);
+    white-space: nowrap;
+  }
+
+  .urgencias__llamar {
+    padding-inline: var(--espacio-3);
+  }
+
+  .urgencias__whatsapp {
+    padding-inline: var(--espacio-2);
+  }
+
+  .urgencias__whatsapp-texto {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+}
+
+/* ── Cabecera (no fija: arriba ya está la urgencia) ── */
+.cabecera {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--espacio-4);
+  padding: var(--espacio-3) var(--margen-lateral);
+}
+
+.cabecera__nombre {
+  font-family: var(--fuente-titulos);
+  font-weight: var(--peso-titulos);
+  font-size: var(--texto-xl);
+}
+
+.cabecera__demo {
+  margin-left: var(--espacio-1);
+  font-family: var(--fuente-texto);
+  font-size: var(--texto-sm);
+  font-weight: 400;
+  color: var(--color-texto-suave);
+}
+
+.cabecera__enlace {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tamano-tactil);
+  color: var(--color-marca);
+  font-weight: 700;
+  text-underline-offset: 0.3em;
+}
+
+/* ── Escena (ADR 008) ── */
+.escena {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: var(--color-fondo);
+}
+
+.escena__fija img,
+.escena canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.escena canvas {
+  opacity: 0;
+  transition: opacity 400ms ease-out;
+}
+
+.escena[data-viva] canvas {
+  opacity: 1;
+}
+
+/* ── Portada ── */
+.portada {
+  display: grid;
+  gap: var(--espacio-4);
+  align-content: start;
+  justify-items: start;
+  min-height: calc(100svh - 8rem);
+  padding: clamp(var(--espacio-6), 8svh, var(--espacio-8)) var(--margen-lateral);
+}
+
+.titular {
+  max-width: 13ch;
+  font-size: clamp(2.9rem, 1.6rem + 5.6vw, 7rem);
+  line-height: 0.98;
+  font-weight: var(--peso-titulos);
+  text-wrap: balance;
+}
+
+.bajada {
+  max-width: 44ch;
+  color: var(--color-texto);
+}
+
+.estado-horario__enlace {
+  margin-left: var(--espacio-2);
+}
+
+/* El llamado: una pelota naranja estirada, con un saltito al pasar el mouse */
+.llamado {
+  display: inline-flex;
+  align-items: center;
+  min-height: 3.5rem;
+  padding: var(--espacio-3) var(--espacio-6);
+  border-radius: var(--radio-boton);
+  background: var(--color-acento);
+  color: var(--color-sobre-acento);
+  font-family: var(--fuente-titulos);
+  font-weight: var(--peso-titulos);
+  font-size: var(--texto-lg);
+  text-decoration: none;
+  box-shadow: 0 6px 0 #a3521a;
+  transition: transform 250ms var(--curva-rebote);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .llamado:hover {
+    transform: translateY(-3px) rotate(-1.5deg);
+  }
+}
+
+/* ── Secciones: cajas redondeadas como juguetes, con distinto ancho cada una ── */
+.servicios,
+.vacunas,
+.cita,
+.equipo,
+.consejos,
+.horario-semana {
+  width: min(100% - 2 * var(--margen-lateral), var(--ancho-contenido));
+  margin: var(--espacio-seccion) auto;
+  padding: var(--espacio-7) clamp(var(--espacio-5), 4vw, var(--espacio-8));
+  background: var(--color-tarjeta);
+  border-radius: var(--radio-juguete);
+  box-shadow: 0 10px 0 rgb(11 107 110 / 0.12);
+}
+
+.seccion-titulo {
+  font-family: var(--fuente-titulos);
+  font-weight: var(--peso-titulos);
+  font-size: clamp(2rem, 1.4rem + 2.4vw, 3.4rem);
+  line-height: 1.02;
+}
+
+.seccion-intro {
+  margin-top: var(--espacio-2);
+  max-width: 52ch;
+  color: var(--color-texto-suave);
+}
+
+/* Servicios: filas con el precio en una etiqueta turquesa */
+.servicios {
+  max-width: 60rem;
+}
+
+.servicios__lista {
+  display: grid;
+  margin: var(--espacio-5) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.servicio {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: var(--espacio-1) var(--espacio-4);
+  align-items: baseline;
+  padding-block: var(--espacio-4);
+  border-bottom: 2px dashed var(--color-borde);
+}
+
+.servicio__nombre {
+  font-family: var(--fuente-titulos);
+  font-weight: var(--peso-titulos);
+  font-size: var(--texto-xl);
+}
+
+.servicio__precio {
+  white-space: nowrap;
+  padding: var(--espacio-1) var(--espacio-3);
+  border-radius: var(--radio-boton);
+  background: var(--color-marca);
+  color: var(--color-sobre-marca);
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+.servicio__descripcion {
+  grid-column: 1 / -1;
+  color: var(--color-texto-suave);
+}
+
+/* Vacunas: el carné, con la próxima dosis marcada en naranja */
+.vacunas {
+  max-width: 54rem;
+}
+
+.vacunas__datos {
+  display: grid;
+  gap: var(--espacio-4);
+  margin-top: var(--espacio-5);
+}
+
+.vacunas__datos select,
+.vacunas__datos input,
+.cita__ficha select,
+.cita__ficha input {
+  background: #fff;
+}
+
+.vacunas__resumen {
+  margin-top: var(--espacio-4);
+  font-weight: 700;
+}
+
+.vacunas__resumen:empty {
+  display: none;
+}
+
+.vacunas__resumen a {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tamano-tactil);
+  color: var(--color-marca);
+}
+
+.vacunas__tabla {
+  width: 100%;
+  margin-top: var(--espacio-5);
+  border-collapse: collapse;
+  font-variant-numeric: tabular-nums;
+}
+
+.vacunas__tabla[hidden] {
+  display: none;
+}
+
+.vacunas__tabla caption {
+  margin-bottom: var(--espacio-2);
+  font-family: var(--fuente-titulos);
+  font-weight: var(--peso-titulos);
+  font-size: var(--texto-xl);
+  text-align: left;
+}
+
+.vacunas__tabla th,
+.vacunas__tabla td {
+  padding: var(--espacio-3) var(--espacio-2);
+  border-bottom: 1px solid var(--color-borde);
+  text-align: left;
+}
+
+.vacunas__tabla [data-estado='paso'] td {
+  color: var(--color-texto-suave);
+  text-decoration: line-through;
+}
+
+.vacunas__tabla [data-estado='proxima'] {
+  background: #ffe9d1;
+  font-weight: 800;
+}
+
+.vacunas__nota {
+  margin-top: var(--espacio-4);
+  font-size: var(--texto-sm);
+  color: var(--color-texto-suave);
+}
+
+@media (min-width: 40rem) {
+  .vacunas__datos {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* La cita */
+.cita {
+  display: grid;
+  gap: var(--espacio-6);
+}
+
+.cita__ficha .boton--principal {
+  width: 100%;
+  border-radius: var(--radio-boton);
+  background: var(--color-marca);
+  color: var(--color-sobre-marca);
+}
+
+@media (min-width: 60rem) {
+  .cita {
+    grid-template-columns: 1fr 1.3fr;
+    align-items: start;
+  }
+}
+
+/* Equipo con el sello de la colegiatura */
+.equipo {
+  max-width: 48rem;
+}
+
+.equipo__lista {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--espacio-5) var(--espacio-8);
+  margin: var(--espacio-5) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.persona__nombre {
+  font-family: var(--fuente-titulos);
+  font-weight: var(--peso-titulos);
+  font-size: var(--texto-xl);
+}
+
+.persona__colegiatura {
+  display: inline-block;
+  margin-top: var(--espacio-2);
+  padding: var(--espacio-1) var(--espacio-3);
+  border: 2px solid var(--color-marca);
+  border-radius: var(--radio-boton);
+  font-size: var(--texto-sm);
+  font-weight: 700;
+}
+
+/* Consejos: texto corrido con un punto de color, no tarjetas */
+.consejos {
+  max-width: 44rem;
+}
+
+.consejo {
+  position: relative;
+  margin-top: var(--espacio-5);
+  padding-left: var(--espacio-6);
+}
+
+.consejo::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.45em;
+  width: 0.9rem;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--color-acento);
+}
+
+.consejo:nth-of-type(2n)::before {
+  background: var(--color-marca);
+}
+
+.consejo__titulo {
+  font-family: var(--fuente-titulos);
+  font-weight: var(--peso-titulos);
+  font-size: var(--texto-xl);
+}
+
+.consejo p {
+  max-width: 60ch;
+  color: var(--color-texto-suave);
+}
+
+.horario-semana {
+  max-width: 34rem;
+}
+
+.horario-semana__dias {
+  display: grid;
+  gap: var(--espacio-2);
+  margin-top: var(--espacio-4);
+}
+
+.horario-semana__dias div {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--espacio-4);
+  padding-bottom: var(--espacio-2);
+  border-bottom: 1px solid var(--color-borde);
+}
+
+.horario-semana__dias dd {
+  margin: 0;
+  font-variant-numeric: tabular-nums;
+}
+
+.horario-semana__urgencias {
+  margin-top: var(--espacio-4);
+  font-weight: 700;
+  color: var(--color-urgencia);
+}
+
+.horario-semana__urgencias a {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tamano-tactil);
+  color: inherit;
+}
+
+.resenas,
+.mapa {
+  background: var(--color-tarjeta);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .urgencias__pulso::after,
+  .escena canvas,
+  .llamado {
+    animation: none;
+    transition: none;
+  }
+
+  .llamado:hover {
+    transform: none;
+  }
+}

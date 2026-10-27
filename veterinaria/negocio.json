@@ -1,0 +1,162 @@
+{
+  "$schema": "./rubro.schema.json",
+  "demo": true,
+  "rubro": "veterinaria",
+  "nombre": "Trufa Veterinaria · Demo",
+  "eslogan": "Veterinaria en Chiclayo",
+  "descripcion": "Demo de veterinaria en Chiclayo: urgencias a un toque, calendario de vacunas por especie y cita para consulta o baño por WhatsApp. Datos ficticios.",
+  "tituloSeo": "Trufa Veterinaria (demo) · Veterinaria en Chiclayo",
+  "textos": {
+    "titular": "Cuidamos a quien te cuida",
+    "bajada": "Veterinaria en Chiclayo. Consulta, vacunas, cirugía y baño. Si es una urgencia, llámanos a cualquier hora.",
+    "introServicios": "Precios «desde»: el monto final depende del tamaño y de lo que veamos en la consulta.",
+    "introVacunas": "Elige la especie y la fecha de nacimiento: te mostramos qué vacuna toca y cuándo.",
+    "introCita": "Para consultas y baños de rutina. Si es una urgencia, llama: no esperes la respuesta por WhatsApp."
+  },
+  "contacto": {
+    "whatsapp": "995258351",
+    "mensajeWhatsapp": "Hola, vi la página de Trufa Veterinaria (demo) y tengo una consulta."
+  },
+  "urgencias": {
+    "telefono": "+51 995 258 351",
+    "texto": "Urgencias 24 h"
+  },
+  "ubicacion": {
+    "direccion": "Av. de Ejemplo 123",
+    "referencia": "Dirección ficticia; el mapa apunta al centro de Chiclayo",
+    "distrito": "Chiclayo",
+    "ciudad": "Chiclayo",
+    "region": "Lambayeque",
+    "lat": -6.7714,
+    "lng": -79.8409
+  },
+  "horario": {
+    "lun": [["09:00", "20:00"]],
+    "mar": [["09:00", "20:00"]],
+    "mie": [["09:00", "20:00"]],
+    "jue": [["09:00", "20:00"]],
+    "vie": [["09:00", "20:00"]],
+    "sab": [["09:00", "20:00"]],
+    "dom": [["09:00", "13:00"]]
+  },
+  "tema": {
+    "marca": "#0b6b6e",
+    "acento": "#f28c28",
+    "fondo": "#fbf7f0",
+    "texto": "#1b2a2c"
+  },
+  "imagenes": {
+    "hero": {
+      "src": "img/juego-1440.webp",
+      "alt": "Pelotas, aros y huesos de juguete en turquesa y naranja (ilustración 3D)"
+    },
+    "og": {
+      "src": "img/juego-1440.webp",
+      "alt": "Trufa Veterinaria (demo), veterinaria en Chiclayo"
+    }
+  },
+  "servicios": [
+    {
+      "id": "consulta",
+      "nombre": "Consulta general",
+      "desde": 50,
+      "descripcion": "Revisión completa, peso y temperatura. Te explicamos qué encontramos."
+    },
+    {
+      "id": "vacuna",
+      "nombre": "Vacunación",
+      "desde": 60,
+      "descripcion": "Incluye revisión antes de vacunar y el registro en su carné."
+    },
+    {
+      "id": "desparasitacion",
+      "nombre": "Desparasitación",
+      "desde": 30,
+      "descripcion": "Interna o externa, según el peso y la edad."
+    },
+    {
+      "id": "cirugia",
+      "nombre": "Cirugía programada",
+      "desde": 350,
+      "descripcion": "Esterilización y otras cirugías con evaluación previa."
+    },
+    {
+      "id": "bano",
+      "nombre": "Baño y corte",
+      "desde": 40,
+      "descripcion": "Baño, secado, corte de uñas y limpieza de oídos."
+    }
+  ],
+  "vacunas": {
+    "nota": "Tabla de demostración. La veterinaria la revisa y la confirma; en la consulta te dicen el plan exacto para tu mascota.",
+    "especies": [
+      {
+        "id": "perro",
+        "nombre": "Perro",
+        "dosis": [
+          { "semanas": 6, "vacuna": "Parvovirus y moquillo" },
+          { "semanas": 9, "vacuna": "Polivalente, 1.ª dosis" },
+          { "semanas": 12, "vacuna": "Polivalente, 2.ª dosis" },
+          { "semanas": 16, "vacuna": "Antirrábica" },
+          { "semanas": 52, "vacuna": "Refuerzo anual" }
+        ]
+      },
+      {
+        "id": "gato",
+        "nombre": "Gato",
+        "dosis": [
+          { "semanas": 8, "vacuna": "Triple felina, 1.ª dosis" },
+          { "semanas": 12, "vacuna": "Triple felina, 2.ª dosis" },
+          { "semanas": 16, "vacuna": "Antirrábica" },
+          { "semanas": 52, "vacuna": "Refuerzo anual" }
+        ]
+      }
+    ]
+  },
+  "equipo": [
+    {
+      "nombre": "Dra. de demostración",
+      "especialidad": "Medicina general de perros y gatos",
+      "colegiatura": "CMVP 00000 (demo)"
+    },
+    {
+      "nombre": "Dr. de demostración",
+      "especialidad": "Cirugía",
+      "colegiatura": "CMVP 00000 (demo)"
+    }
+  ],
+  "consejos": [
+    {
+      "titulo": "Lleva su carné a cada consulta",
+      "texto": "Ahí están sus vacunas y desparasitaciones. Con el carné sabemos qué le toca y no repetimos nada."
+    },
+    {
+      "titulo": "En días de calor, agua y sombra",
+      "texto": "Deja agua fresca a su alcance y evita los paseos al mediodía. Si lo ves jadear mucho o muy decaído, llámanos."
+    },
+    {
+      "titulo": "Después del baño, bien seco",
+      "texto": "Sécalo bien, sobre todo entre los dedos y detrás de las orejas, antes de que vuelva a salir."
+    }
+  ],
+  "resenas": {
+    "fuente": "Reseñas de demostración: textos de ejemplo, no son opiniones reales.",
+    "items": [
+      {
+        "texto": "Reseña de ejemplo: llamé de noche por una urgencia y me contestaron.",
+        "autor": "Dueña de demostración 1",
+        "estrellas": 5
+      },
+      {
+        "texto": "Reseña de ejemplo: el calendario de vacunas me ayudó a no olvidarme de la segunda dosis.",
+        "autor": "Dueño de demostración 2",
+        "estrellas": 5
+      },
+      {
+        "texto": "Reseña de ejemplo: el baño quedó listo a la hora que me dijeron.",
+        "autor": "Dueña de demostración 3",
+        "estrellas": 4
+      }
+    ]
+  }
+}
