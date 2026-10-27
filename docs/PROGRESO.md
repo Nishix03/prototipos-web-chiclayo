@@ -39,8 +39,7 @@ Los aprobó Iván en la Fase 2, después de verificar con búsquedas web que no 
 - «Sonrisa Clara · Demo»
 - «Remanso Spa · Demo» (modo autónomo, 2026-10-27): una búsqueda web no mostró ningún spa con ese nombre en Chiclayo. Pendiente de Iván: confirmarlo en Google Maps.
 - «Trufa Veterinaria · Demo» (modo autónomo, 2026-10-27): una búsqueda web no mostró ninguna veterinaria con ese nombre en Chiclayo. Pendiente de Iván: confirmarlo en Google Maps.
-
-El gimnasio usará nombres nuevos, verificados de la misma forma, y quedarán anotados aquí.
+- «Latido Gym · Demo» (modo autónomo, 2026-10-27): una búsqueda web no mostró ningún gimnasio con ese nombre en Chiclayo. Pendiente de Iván: confirmarlo en Google Maps.
 
 ## Estado por rubro
 
@@ -50,8 +49,8 @@ El gimnasio usará nombres nuevos, verificados de la misma forma, y quedarán an
 | Barbería       | ✔ publicado            | A «Espejo»        | 86 / 98                       | 0   | #5           |
 | Clínica dental | ✔ publicado            | A «Arco»          | 93 / 100                      | 0   | #6           |
 | Spa / Estética | ✔ publicado            | A «Superficie»    | 93 / 99                       | 0   | #7           |
-| Veterinaria    | Construida; PR abierto | B «Estante»       | 92 / 99                       | 0   | ver bitácora |
-| Gimnasio       | pendiente              | —                 | —                             | —   | —            |
+| Veterinaria    | ✔ publicada            | B «Estante»       | 92 / 99                       | 0   | #8           |
+| Gimnasio       | Construido; PR abierto | A «Monitor»       | 91 / 98                       | 0   | ver bitácora |
 
 ## Bitácora
 
@@ -162,3 +161,35 @@ El gimnasio usará nombres nuevos, verificados de la misma forma, y quedarán an
 - **Núcleo:** el motor 3D acepta `puntero`. Los juguetes siguen al cursor o al dedo y la escena se redibuja solo mientras el puntero se mueve.
 - **Lighthouse:** móvil 92 · escritorio 99. Axe 0. `test:teclado` 78/78.
 - **Qué sigue:** fusionar el PR de la veterinaria y empezar el **gimnasio** («Pulso») en `feat/rubro-gimnasio`. Antes, un nombre de demo nuevo verificado con búsqueda web.
+- **Fusionado** el PR #8 con merge commit (checks de GitHub en verde). Publicado en https://nishix03.github.io/prototipos-web-chiclayo/veterinaria/
+
+### 2026-10-27 · Gimnasio «Pulso»
+
+- **Nombre de demo:** «Latido Gym · Demo».
+- **3 direcciones** como variantes de la página real: A Monitor, B Pista, C Ecualizador.
+- **Elegida: A «Monitor».**
+  - El electrocardiograma es «Pulso» literal.
+  - B centraba la portada.
+  - C tapaba el texto y se leía como música.
+  - La tabla está en `docs/visual/gimnasio.md`.
+- **Función estrella:** el horario semanal de clases.
+  - Filtro por tipo en la URL.
+  - La clase en curso y la siguiente se marcan con la hora de Lima, y la portada dice «Ahora: …».
+  - En celular, el día de hoy va primero.
+- **Componentes del rubro:**
+  - cuenta regresiva de la promoción (marcada como demo; desaparece al terminar);
+  - tabla de planes con el ahorro calculado;
+  - calculadora de IMC (referencia de la OMS);
+  - clase de prueba por WhatsApp.
+- **Tipografía cinética:** los titulares se inclinan con la velocidad del scroll.
+- **Lighthouse:** móvil 91 · escritorio 98. Axe 0. `test:teclado` 94/94.
+
+## Cierre del modo autónomo
+
+Con el gimnasio se terminan los 6 prototipos.
+
+**Pendientes para Iván:**
+
+- **Nombres de demo:** confirmar en Google Maps que «Remanso Spa», «Trufa Veterinaria» y «Latido Gym» no existan en Chiclayo.
+- **Webs de los prospectos:** revisarlas antes de mostrarles la demo. Los briefs de la clínica dental, el spa, la veterinaria y el gimnasio no las revisaron.
+- **Comparador antes/después:** está en el núcleo. La clínica dental puede usarlo cuando tenga fotos reales con permiso.

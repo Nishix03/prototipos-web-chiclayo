@@ -1,0 +1,186 @@
+{
+  "$schema": "./rubro.schema.json",
+  "demo": true,
+  "rubro": "gimnasio",
+  "nombre": "Latido Gym · Demo",
+  "eslogan": "Gimnasio en Chiclayo",
+  "descripcion": "Demo de gimnasio en Chiclayo: horario de clases con la clase en curso, planes con su ahorro y clase de prueba gratis por WhatsApp. Datos ficticios.",
+  "tituloSeo": "Latido Gym (demo) · Gimnasio en Chiclayo",
+  "textos": {
+    "titular": "Entrena a tu ritmo",
+    "bajada": "Gimnasio en Chiclayo con clases de funcional, spinning y box. Mira qué clase hay ahora y pide tu clase de prueba gratis.",
+    "introClases": "Filtra por tipo de clase. La que está en curso y la siguiente se marcan solas, con la hora de Chiclayo.",
+    "introPlanes": "Mientras más meses pagas juntos, menos pagas por mes.",
+    "introImc": "Una referencia rápida, no un diagnóstico. En tu clase de prueba un entrenador te ayuda a armar tu plan.",
+    "introPrueba": "Una clase gratis para conocer el gimnasio. Dinos qué buscas y a qué hora te acomoda."
+  },
+  "contacto": {
+    "whatsapp": "995258351",
+    "mensajeWhatsapp": "Hola, vi la página de Latido Gym (demo) y tengo una consulta."
+  },
+  "ubicacion": {
+    "direccion": "Av. de Ejemplo 123",
+    "referencia": "Dirección ficticia; el mapa apunta al centro de Chiclayo",
+    "distrito": "Chiclayo",
+    "ciudad": "Chiclayo",
+    "region": "Lambayeque",
+    "lat": -6.7714,
+    "lng": -79.8409
+  },
+  "horario": {
+    "lun": [["06:00", "22:00"]],
+    "mar": [["06:00", "22:00"]],
+    "mie": [["06:00", "22:00"]],
+    "jue": [["06:00", "22:00"]],
+    "vie": [["06:00", "22:00"]],
+    "sab": [["07:00", "14:00"]],
+    "dom": []
+  },
+  "tema": {
+    "marca": "#c6ff3d",
+    "acento": "#c6ff3d",
+    "fondo": "#0b0d0c",
+    "texto": "#f2f5ee"
+  },
+  "imagenes": {
+    "hero": {
+      "src": "img/pulso-1440.webp",
+      "alt": "Líneas de luz verde neón que laten sobre fondo negro (ilustración 3D)"
+    },
+    "og": {
+      "src": "img/pulso-1440.webp",
+      "alt": "Latido Gym (demo), gimnasio en Chiclayo"
+    }
+  },
+  "tiposClase": [
+    { "id": "funcional", "nombre": "Funcional" },
+    { "id": "spinning", "nombre": "Spinning" },
+    { "id": "box", "nombre": "Box" }
+  ],
+  "clases": [
+    {
+      "dia": "lun",
+      "inicio": "07:00",
+      "minutos": 50,
+      "tipo": "funcional",
+      "entrenador": "Ana (demo)"
+    },
+    {
+      "dia": "lun",
+      "inicio": "12:30",
+      "minutos": 45,
+      "tipo": "spinning",
+      "entrenador": "Diego (demo)"
+    },
+    { "dia": "lun", "inicio": "19:00", "minutos": 60, "tipo": "box", "entrenador": "Rafa (demo)" },
+    {
+      "dia": "mar",
+      "inicio": "07:00",
+      "minutos": 45,
+      "tipo": "spinning",
+      "entrenador": "Diego (demo)"
+    },
+    {
+      "dia": "mar",
+      "inicio": "12:30",
+      "minutos": 50,
+      "tipo": "funcional",
+      "entrenador": "Ana (demo)"
+    },
+    {
+      "dia": "mar",
+      "inicio": "19:00",
+      "minutos": 50,
+      "tipo": "funcional",
+      "entrenador": "Ana (demo)"
+    },
+    { "dia": "mar", "inicio": "20:00", "minutos": 60, "tipo": "box", "entrenador": "Rafa (demo)" },
+    {
+      "dia": "mie",
+      "inicio": "07:00",
+      "minutos": 50,
+      "tipo": "funcional",
+      "entrenador": "Ana (demo)"
+    },
+    {
+      "dia": "mie",
+      "inicio": "12:30",
+      "minutos": 45,
+      "tipo": "spinning",
+      "entrenador": "Diego (demo)"
+    },
+    { "dia": "mie", "inicio": "19:00", "minutos": 60, "tipo": "box", "entrenador": "Rafa (demo)" },
+    {
+      "dia": "jue",
+      "inicio": "07:00",
+      "minutos": 45,
+      "tipo": "spinning",
+      "entrenador": "Diego (demo)"
+    },
+    {
+      "dia": "jue",
+      "inicio": "12:30",
+      "minutos": 50,
+      "tipo": "funcional",
+      "entrenador": "Ana (demo)"
+    },
+    { "dia": "jue", "inicio": "20:00", "minutos": 60, "tipo": "box", "entrenador": "Rafa (demo)" },
+    {
+      "dia": "vie",
+      "inicio": "07:00",
+      "minutos": 50,
+      "tipo": "funcional",
+      "entrenador": "Ana (demo)"
+    },
+    {
+      "dia": "vie",
+      "inicio": "18:30",
+      "minutos": 45,
+      "tipo": "spinning",
+      "entrenador": "Diego (demo)"
+    },
+    { "dia": "sab", "inicio": "09:00", "minutos": 60, "tipo": "box", "entrenador": "Rafa (demo)" },
+    {
+      "dia": "sab",
+      "inicio": "10:30",
+      "minutos": 50,
+      "tipo": "funcional",
+      "entrenador": "Ana (demo)"
+    }
+  ],
+  "planes": [
+    { "id": "mensual", "nombre": "Mensual", "meses": 1, "precio": 120 },
+    { "id": "trimestral", "nombre": "Trimestral", "meses": 3, "precio": 320 },
+    { "id": "anual", "nombre": "Anual", "meses": 12, "precio": 1080 }
+  ],
+  "entrenadores": [
+    { "nombre": "Ana (demo)", "especialidad": "Funcional y fuerza" },
+    { "nombre": "Diego (demo)", "especialidad": "Spinning y cardio" },
+    { "nombre": "Rafa (demo)", "especialidad": "Box" }
+  ],
+  "promocion": {
+    "titulo": "Matrícula gratis",
+    "texto": "Promoción de demostración: si te inscribes antes de que termine el contador, no pagas matrícula.",
+    "fin": "2026-11-30T23:59:00-05:00"
+  },
+  "resenas": {
+    "fuente": "Reseñas de demostración: textos de ejemplo, no son opiniones reales.",
+    "items": [
+      {
+        "texto": "Reseña de ejemplo: vi en la página que había spinning al mediodía y llegué justo.",
+        "autor": "Socia de demostración 1",
+        "estrellas": 5
+      },
+      {
+        "texto": "Reseña de ejemplo: la clase de prueba me ayudó a decidir el plan.",
+        "autor": "Socio de demostración 2",
+        "estrellas": 5
+      },
+      {
+        "texto": "Reseña de ejemplo: los horarios de la página coinciden con los del gimnasio.",
+        "autor": "Socia de demostración 3",
+        "estrellas": 4
+      }
+    ]
+  }
+}
