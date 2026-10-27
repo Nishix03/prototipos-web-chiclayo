@@ -33,11 +33,14 @@ export async function recorridoConTab(pagina, pasos) {
 /**
  * El elemento enfocado se ve: tiene contorno (outline) y llega a la pantalla.
  * toBeInViewport reintenta: la página usa scroll-behavior: smooth, así que el navegador
- * tarda unos milisegundos en desplazar el elemento hasta la vista.
+ * tarda unos milisegundos en desplazar el elemento hasta la vista. Con 4 navegadores en paralelo
+ * dibujando 3D por software, ese desplazamiento a veces pasa de 5 s: se espera hasta 10 s.
  */
 export async function esperarFocoVisible(pagina) {
   const enfocado = pagina.locator(':focus');
-  await expect(enfocado, 'el elemento enfocado debe llegar a la pantalla').toBeInViewport();
+  await expect(enfocado, 'el elemento enfocado debe llegar a la pantalla').toBeInViewport({
+    timeout: 10_000,
+  });
   await expect(enfocado).toBeVisible();
   const contorno = await pagina.evaluate(() => {
     const el = document.activeElement;
