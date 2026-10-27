@@ -1,0 +1,66 @@
+{
+  "360": {
+    "e1": {
+      "nombre": true,
+      "titular": true,
+      "estadoConHorarioDeHoy": true,
+      "enlaceAlHorario": true,
+      "funcionEstrella": true
+    },
+    "e2": {
+      "palabrasTitular": 5,
+      "lineasTitular": 2,
+      "maxPalabrasSeccion": 5,
+      "titulosSeccion": [
+        ["Cortes y precios", 3],
+        ["Nuestros barberos", 2],
+        ["Pide tu turno", 3],
+        ["Tu 6.º corte es gratis", 5],
+        ["Horario", 1],
+        ["Lo que dicen nuestros clientes", 5],
+        ["Horario y cómo llegar", 4]
+      ]
+    },
+    "e3": {
+      "escenaCubrePantalla": 100,
+      "escenaViva": true
+    },
+    "e5": {
+      "titular": "Bodoni Moda Variable",
+      "titulosSeccion": ["Bodoni Moda Variable"],
+      "texto": "Instrument Sans Variable"
+    }
+  },
+  "1440": {
+    "e1": {
+      "nombre": true,
+      "titular": true,
+      "estadoConHorarioDeHoy": true,
+      "enlaceAlHorario": true,
+      "funcionEstrella": true
+    },
+    "e2": {
+      "palabrasTitular": 5,
+      "lineasTitular": 2,
+      "maxPalabrasSeccion": 5,
+      "titulosSeccion": [
+        ["Cortes y precios", 3],
+        ["Nuestros barberos", 2],
+        ["Pide tu turno", 3],
+        ["Tu 6.º corte es gratis", 5],
+        ["Horario", 1],
+        ["Lo que dicen nuestros clientes", 5],
+        ["Horario y cómo llegar", 4]
+      ]
+    },
+    "e3": {
+      "escenaCubrePantalla": 100,
+      "escenaViva": true
+    },
+    "e5": {
+      "titular": "Bodoni Moda Variable",
+      "titulosSeccion": ["Bodoni Moda Variable"],
+      "texto": "Instrument Sans Variable"
+    }
+  }
+}

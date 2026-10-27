@@ -28,6 +28,16 @@ const CASOS = [
     texto: 'Cerrado · abre mañana a las 12:00',
   }, // lunes
   {
+    pagina: 'barberia/',
+    hora: '2026-11-03T13:00:00-05:00',
+    texto: 'Abierto · hoy de 10:00 a 21:00',
+  },
+  {
+    pagina: 'barberia/',
+    hora: '2026-11-08T15:00:00-05:00',
+    texto: 'Cerrado · abre mañana a las 10:00',
+  }, // domingo por la tarde
+  {
     pagina: '_ejemplo/',
     hora: '2026-11-03T10:00:00-05:00',
     texto: 'Abierto · hoy de 9:00 a 13:00 y de 15:00 a 19:00',

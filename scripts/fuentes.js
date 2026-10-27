@@ -44,6 +44,21 @@ const FUENTES = [
     salida: 'figtree-texto.woff2',
     ejes: { wght: { min: 400, max: 700 } },
   },
+  // Barbería «Filo» (dirección A «Espejo»): Big Shoulders Display + Manrope
+  {
+    carpeta: 'barberia',
+    paquete: 'big-shoulders-display',
+    entrada: 'files/big-shoulders-display-latin-wght-normal.woff2',
+    salida: 'big-shoulders-titulos.woff2',
+    ejes: { wght: { min: 700, max: 900 } },
+  },
+  {
+    carpeta: 'barberia',
+    paquete: 'manrope',
+    entrada: 'files/manrope-latin-wght-normal.woff2',
+    salida: 'manrope-texto.woff2',
+    ejes: { wght: { min: 400, max: 700 } },
+  },
 ];
 
 function fallar(mensaje) {

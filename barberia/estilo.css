@@ -1,0 +1,531 @@
+/*
+ * Barbería · «Filo» (brief: docs/visual/barberia.md). Cromo líquido y luz dorada, de noche.
+ * Los colores llegan de negocio.json (tema); aquí van materiales, tipografía y composición.
+ * Dirección elegida en el paso 2: A «Espejo» (las otras dos quedan en el brief).
+ */
+@import '../core/core.css';
+
+/* Fuentes recortadas al español con `npm run fuentes`. Licencia OFL al lado. */
+@font-face {
+  font-family: 'Big Shoulders Display Variable';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 700 900;
+  src: url('./fuentes/big-shoulders-titulos.woff2') format('woff2-variations');
+}
+
+@font-face {
+  font-family: 'Manrope Variable';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400 700;
+  src: url('./fuentes/manrope-texto.woff2') format('woff2-variations');
+}
+
+/* Respaldos con el ancho ajustado: el cambio de fuente no mueve nada (CLS) */
+@font-face {
+  font-family: 'Manrope respaldo';
+  src: local('Arial'), local('Helvetica'), local('Roboto');
+  size-adjust: 104%;
+}
+
+@font-face {
+  font-family: 'Big Shoulders respaldo';
+  src: local('Arial Narrow'), local('Arial');
+  size-adjust: 82%;
+}
+
+html:not(.js) [data-filtros] {
+  display: none;
+}
+
+:root {
+  color-scheme: dark;
+  --color-oro: #d4a937; /* 8.9:1 sobre el fondo */
+  --color-cromo: #c9c6c0;
+  --color-placa: rgb(16 16 18 / 0.86);
+  --color-texto-suave: #c9c2b4; /* 10:1 sobre el fondo */
+  --color-borde: rgb(243 238 228 / 0.22);
+  --color-foco: var(--color-oro);
+  --radio-boton: 2px;
+  --alto-letrero: 3.25rem;
+  --curva-filo: cubic-bezier(0.19, 1, 0.22, 1); /* expo.out: corta y frena en seco */
+}
+
+/* Tipografía: grotesca condensada de letrero + Manrope para leer */
+:root {
+  --fuente-titulos: 'Big Shoulders Display Variable', 'Big Shoulders respaldo', sans-serif;
+  --fuente-texto: 'Manrope Variable', 'Manrope respaldo', system-ui, sans-serif;
+  --peso-titulos: 800;
+}
+
+html {
+  scroll-padding-top: calc(var(--alto-letrero) + 1rem);
+}
+
+body {
+  overflow-x: clip;
+}
+
+h1,
+h2,
+h3 {
+  letter-spacing: 0;
+}
+
+/* ── Letrero fijo: nombre y espera de hoy, siempre visibles (componente del rubro) ── */
+.letrero {
+  position: sticky;
+  top: 0;
+  z-index: calc(var(--capa-flotante) + 1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--espacio-4);
+  min-height: var(--alto-letrero);
+  padding: var(--espacio-2) var(--margen-lateral);
+  background: rgb(10 10 11 / 0.92);
+  border-bottom: 1px solid var(--color-oro);
+  backdrop-filter: blur(6px);
+}
+
+.letrero__nombre {
+  font-family: var(--fuente-titulos);
+  font-weight: var(--peso-titulos);
+  font-size: var(--texto-lg);
+  line-height: 1;
+}
+
+.letrero__demo {
+  margin-left: var(--espacio-1);
+  font-family: var(--fuente-texto);
+  font-size: var(--texto-sm);
+  font-weight: 500;
+  color: var(--color-texto-suave);
+}
+
+.letrero__espera {
+  display: flex;
+  align-items: baseline;
+  gap: var(--espacio-2);
+  font-size: var(--texto-sm);
+}
+
+.letrero__etiqueta {
+  color: var(--color-texto-suave);
+}
+
+.letrero__espera strong {
+  color: var(--color-oro);
+}
+
+/* ── Escena detrás de toda la página (ADR 008) ── */
+.escena {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: var(--color-fondo);
+}
+
+.escena__fija img,
+.escena canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.escena canvas {
+  opacity: 0;
+  transition: opacity 400ms var(--curva-filo);
+}
+
+.escena[data-viva] canvas {
+  opacity: 1;
+}
+
+/* ── Portada ── */
+.portada {
+  display: grid;
+  min-height: calc(100svh - var(--alto-letrero) - 3rem);
+  padding: var(--espacio-6) var(--margen-lateral);
+}
+
+.portada__placa {
+  display: grid;
+  gap: var(--espacio-4);
+  align-content: start;
+  justify-items: start;
+}
+
+.titular {
+  font-size: clamp(3rem, 1.6rem + 6vw, 7.5rem);
+  line-height: 0.92;
+  font-weight: var(--peso-titulos);
+}
+
+.bajada {
+  max-width: 40ch;
+  color: var(--color-texto-suave);
+}
+
+.estado-horario {
+  --color-fondo: #f3eee4; /* la ficha del estado es clara: verde y rojo del núcleo se leen */
+  --color-texto: #101012;
+  padding: var(--espacio-1) var(--espacio-3);
+  border-radius: var(--radio-boton);
+  font-weight: 700;
+}
+
+.estado-horario__enlace {
+  margin-left: var(--espacio-2);
+  color: #101012;
+}
+
+/* El llamado: una placa dorada, recta, sin redondeos (no una píldora) */
+.llamado {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--espacio-3);
+  min-height: 3.25rem;
+  padding: var(--espacio-3) var(--espacio-6);
+  background: var(--color-oro);
+  color: #101012;
+  font-family: var(--fuente-titulos);
+  font-weight: var(--peso-titulos);
+  font-size: var(--texto-xl);
+  text-decoration: none;
+  text-transform: none;
+  transition: transform 160ms var(--curva-filo);
+  --color-foco: #f3eee4;
+}
+
+.llamado::after {
+  content: '';
+  width: 1.4em;
+  height: 2px;
+  background: currentColor;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .llamado:hover {
+    transform: translateX(4px);
+  }
+}
+
+/* La placa grabada al centro del espejo de cromo */
+.portada {
+  place-items: center;
+  text-align: center;
+}
+.portada__placa {
+  justify-items: center;
+  max-width: 46rem;
+  padding: var(--espacio-6) var(--espacio-6) var(--espacio-7);
+  background: var(--color-placa);
+  border: 1px solid var(--color-oro);
+  box-shadow:
+    0 0 0 6px rgb(16 16 18 / 0.6),
+    0 0 0 7px rgb(212 169 55 / 0.35);
+}
+.titular {
+  text-transform: uppercase;
+}
+
+/* ── Secciones: siempre sobre placas oscuras, el cromo se ve entre ellas ── */
+.cortes,
+.barberos,
+.turno,
+.fidelidad,
+.horario-semana {
+  width: min(100% - 2 * var(--margen-lateral), var(--ancho-contenido));
+  margin: var(--espacio-seccion) auto;
+  padding: var(--espacio-6) var(--espacio-5);
+  background: var(--color-placa);
+  border: 1px solid var(--color-borde);
+}
+
+.seccion-titulo {
+  font-family: var(--fuente-titulos);
+  font-weight: var(--peso-titulos);
+  font-size: clamp(2rem, 1.4rem + 2.4vw, 3.5rem);
+  line-height: 1;
+}
+
+.seccion-intro {
+  margin-top: var(--espacio-2);
+  max-width: 52ch;
+  color: var(--color-texto-suave);
+}
+
+.filtros {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--espacio-2);
+  margin-block: var(--espacio-5);
+}
+
+.filtros button {
+  min-height: var(--tamano-tactil);
+  padding: var(--espacio-2) var(--espacio-4);
+  border: 1px solid var(--color-oro);
+  border-radius: var(--radio-boton);
+  background: transparent;
+  color: var(--color-texto);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.filtros [aria-pressed='true'] {
+  background: var(--color-oro);
+  color: #101012;
+}
+
+/* La lista de precios: nombre … precio, como el tablero de la barbería */
+.cortes__lista {
+  display: grid;
+  gap: var(--espacio-2) var(--espacio-8);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.corte {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: var(--espacio-1) var(--espacio-4);
+  padding-block: var(--espacio-4);
+  border-bottom: 1px solid var(--color-borde);
+}
+
+.corte[hidden] {
+  display: none;
+}
+
+.corte__cabeza {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: baseline;
+  gap: var(--espacio-3);
+}
+
+.corte__nombre {
+  font-family: var(--fuente-titulos);
+  font-weight: var(--peso-titulos);
+  font-size: var(--texto-xl);
+}
+
+.corte__guia {
+  flex: 1;
+  border-bottom: 2px dotted var(--color-borde);
+  translate: 0 -0.3em;
+}
+
+.corte__precio {
+  font-family: var(--fuente-titulos);
+  font-weight: var(--peso-titulos);
+  font-size: var(--texto-xl);
+  color: var(--color-oro);
+  font-variant-numeric: tabular-nums;
+}
+
+.corte__descripcion {
+  color: var(--color-texto-suave);
+  font-size: var(--texto-sm);
+}
+
+.corte__minutos {
+  font-size: var(--texto-sm);
+  color: var(--color-texto-suave);
+  font-variant-numeric: tabular-nums;
+}
+
+.corte__pedir {
+  grid-column: 1 / -1;
+  justify-self: start;
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tamano-tactil);
+  color: var(--color-oro);
+  font-weight: 700;
+  text-underline-offset: 0.25em;
+}
+
+@media (min-width: 60rem) {
+  .cortes__lista {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Barberos: el tablero de turnos con los 7 días */
+.barberos__lista {
+  display: grid;
+  gap: var(--espacio-5);
+  margin: var(--espacio-5) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.barbero {
+  padding-block: var(--espacio-4);
+  border-top: 1px solid var(--color-oro);
+}
+
+.barbero__nombre {
+  font-family: var(--fuente-titulos);
+  font-weight: var(--peso-titulos);
+  font-size: var(--texto-2xl);
+}
+
+.barbero__especialidad {
+  color: var(--color-texto-suave);
+}
+
+.barbero__dias {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+  margin: var(--espacio-3) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.dia {
+  padding: var(--espacio-2) 0;
+  border: 1px solid var(--color-borde);
+  color: var(--color-texto-suave);
+  text-align: center;
+  font-size: var(--texto-sm);
+}
+
+.dia--si {
+  background: var(--color-oro);
+  border-color: var(--color-oro);
+  color: #101012;
+  font-weight: 700;
+}
+
+@media (min-width: 60rem) {
+  .barberos__lista {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* El turno: un ticket claro (la ficha de la silla), fácil de llenar */
+.turno {
+  display: grid;
+  gap: var(--espacio-6);
+}
+
+.turno__ticket {
+  --color-fondo: #f3eee4;
+  --color-texto: #101012;
+  --color-texto-suave: #4a4339;
+  --color-borde: #8c8476;
+  --color-foco: #101012;
+  padding: var(--espacio-6) var(--espacio-5);
+  background: #f3eee4;
+  color: #101012;
+  border-top: 6px solid var(--color-oro);
+}
+
+.turno__ticket .boton--principal {
+  width: 100%;
+  border: 2px solid #101012;
+  border-radius: var(--radio-boton);
+  background: var(--color-oro);
+  color: #101012;
+}
+
+.turno__ticket select,
+.turno__ticket input {
+  background: #fff;
+}
+
+@media (min-width: 60rem) {
+  .turno {
+    grid-template-columns: 1fr 1.2fr;
+    align-items: start;
+  }
+}
+
+/* Fidelidad: la tarjeta con 5 sellos */
+.fidelidad__tarjeta {
+  display: grid;
+  gap: var(--espacio-3);
+}
+
+.fidelidad__sellos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--espacio-2);
+  margin: var(--espacio-2) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.fidelidad__sellos li {
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border: 2px dashed var(--color-oro);
+  border-radius: 50%;
+}
+
+.fidelidad__sellos .fidelidad__gratis {
+  width: auto;
+  padding-inline: var(--espacio-3);
+  border-style: solid;
+  border-radius: var(--radio-boton);
+  background: var(--color-oro);
+  color: #101012;
+  font-weight: 700;
+}
+
+.horario-semana__dias {
+  display: grid;
+  gap: var(--espacio-2);
+  margin-top: var(--espacio-4);
+  max-width: 30rem;
+}
+
+.horario-semana__dias div {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: var(--espacio-2);
+  border-bottom: 1px solid var(--color-borde);
+}
+
+.horario-semana__dias dd {
+  margin: 0;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Núcleo (reseñas, mapa, pie) sobre placas oscuras */
+.resenas,
+.mapa {
+  background: var(--color-placa);
+}
+
+.resena {
+  background: rgb(243 238 228 / 0.06);
+  border-color: var(--color-borde);
+}
+
+.aviso-demo {
+  --color-foco: #101012;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .escena canvas,
+  .llamado {
+    transition: none;
+  }
+
+  .llamado:hover {
+    transform: none;
+  }
+}

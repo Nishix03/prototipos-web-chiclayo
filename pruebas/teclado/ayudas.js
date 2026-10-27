@@ -60,7 +60,12 @@ export async function interceptarWindowOpen(pagina) {
   return () => pagina.evaluate(() => window.__abiertas);
 }
 
-/** Fija el reloj del navegador: martes 3 de noviembre de 2026, 13:00 en Lima. */
+/**
+ * Pone el reloj del navegador en el martes 3 de noviembre de 2026, 13:00 en Lima, y lo deja
+ * correr desde ahí. No se congela: GSAP mide el tiempo con Date.now() y, con el reloj quieto,
+ * sus animaciones se quedarían en el primer cuadro (contenido recortado o transparente).
+ */
 export async function fijarHora(pagina, iso = '2026-11-03T13:00:00-05:00') {
-  await pagina.clock.setFixedTime(new Date(iso));
+  await pagina.clock.install({ time: new Date(iso) });
+  await pagina.clock.resume();
 }

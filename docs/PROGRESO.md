@@ -30,6 +30,16 @@ Si se reinicia el contexto de Claude Code, **se retoma desde este archivo**.
    - una acción borraría trabajo o no se puede deshacer;
    - una prueba falla 3 veces seguidas con el mismo error sin avance.
 
+## Nombres de demo
+
+Los aprobó Iván en la Fase 2, después de verificar con búsquedas web que no coinciden con negocios conocidos de Chiclayo:
+
+- «Sabores del Norte · Demo»
+- «Barbería Filo · Demo»
+- «Sonrisa Clara · Demo»
+
+Spa, veterinaria y gimnasio usarán nombres nuevos, verificados de la misma forma, y quedarán anotados aquí.
+
 ## Estado por rubro
 
 | Rubro          | Estado                 | Dirección elegida | Lighthouse móvil / escritorio | Axe | PR           |
@@ -61,3 +71,27 @@ Si se reinicia el contexto de Claude Code, **se retoma desde este archivo**.
   - **Pruebas:** Axe 0 violaciones · `test:teclado` 24/24 (4 workers y 60 s por prueba).
   - **Control de exigencias final:** pasa a 360 y 1440 px.
 - **Qué sigue:** fusionar el PR del restaurante y empezar la **barbería** («Filo») en `feat/rubro-barberia`.
+- **Fusionado** el PR #4 con merge commit (checks de GitHub en verde). Publicado en https://nishix03.github.io/prototipos-web-chiclayo/restaurante/
+
+### Método para los rubros que siguen
+
+- **Storyboards:** las 3 direcciones se construyen como variantes de la misma página real (`?direccion=a|b|c`) y se capturan con `npm run control -- <rubro> <a|b|c>`. Así el storyboard ya tiene el 3D renderizado y el contenido verdadero.
+- **Después de elegir,** se quitan las variantes no elegidas del código; sus capturas quedan en `docs/visual/control/<rubro>/`.
+
+### 2026-10-27 · Barbería «Filo»
+
+- **3 direcciones** como variantes de la página real: A Espejo, B Charco, C Navaja.
+- **Elegida: A «Espejo».**
+  - El cromo refleja el titular.
+  - B se parecía al agua del spa.
+  - C perdía fuerza en celular.
+  - La tabla está en `docs/visual/barberia.md`.
+- **Función estrella:** el turno (corte → día → barbero que atiende ese día → hora). Hay además un letrero fijo con la espera de hoy y un tablero de turnos por barbero.
+- **Núcleo:**
+  - `core/escena-cliente.js`, el arranque común del 3D;
+  - el motor 3D acepta escenas sin piezas (`cuadro`) y en la versión ligera dibuja al 70 %;
+  - `scripts/hoja.mjs` arma la hoja de contactos;
+  - `control.mjs` acepta una variante;
+  - las pruebas dejan correr el reloj.
+- **Lighthouse:** móvil 86 (aceptado, ADR 008) · escritorio 98. Axe 0.
+- **Qué sigue:** fusionar el PR de la barbería y empezar la **clínica dental** («Calma clínica», «Sonrisa Clara · Demo») en `feat/rubro-dental`.
