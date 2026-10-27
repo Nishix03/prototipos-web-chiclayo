@@ -37,8 +37,9 @@ Los aprobó Iván en la Fase 2, después de verificar con búsquedas web que no 
 - «Sabores del Norte · Demo»
 - «Barbería Filo · Demo»
 - «Sonrisa Clara · Demo»
+- «Remanso Spa · Demo» (modo autónomo, 2026-10-27): una búsqueda web no mostró ningún spa con ese nombre en Chiclayo. Pendiente de Iván: confirmarlo en Google Maps.
 
-Spa, veterinaria y gimnasio usarán nombres nuevos, verificados de la misma forma, y quedarán anotados aquí.
+Veterinaria y gimnasio usarán nombres nuevos, verificados de la misma forma, y quedarán anotados aquí.
 
 ## Estado por rubro
 
@@ -46,8 +47,8 @@ Spa, veterinaria y gimnasio usarán nombres nuevos, verificados de la misma form
 | -------------- | ---------------------- | ----------------- | ----------------------------- | --- | ------------ |
 | Restaurante v2 | ✔ publicado            | C «El pase»       | 92 / 89                       | 0   | #4           |
 | Barbería       | ✔ publicado            | A «Espejo»        | 86 / 98                       | 0   | #5           |
-| Clínica dental | Construida; PR abierto | A «Arco»          | 93 / 100                      | 0   | ver bitácora |
-| Spa / Estética | pendiente              | —                 | —                             | —   | —            |
+| Clínica dental | ✔ publicado            | A «Arco»          | 93 / 100                      | 0   | #6           |
+| Spa / Estética | Construido; PR abierto | A «Superficie»    | 93 / 99                       | 0   | ver bitácora |
 | Veterinaria    | pendiente              | —                 | —                             | —   | —            |
 | Gimnasio       | pendiente              | —                 | —                             | —   | —            |
 
@@ -117,3 +118,27 @@ Spa, veterinaria y gimnasio usarán nombres nuevos, verificados de la misma form
 - **Validación al construir:** si una respuesta del cuestionario apunta a una pregunta o a un tratamiento que no existe, el build se detiene con un error en español.
 - **Lighthouse:** móvil 93 · escritorio 100. Axe 0. `test:teclado` 52/52.
 - **Qué sigue:** fusionar el PR de la clínica dental y empezar el **spa** («Agua quieta», shader de agua) en `feat/rubro-spa`. Antes, un nombre de demo nuevo verificado con búsqueda web.
+- **Fusionado** el PR #6 con merge commit (checks de GitHub en verde). Publicado en https://nishix03.github.io/prototipos-web-chiclayo/dental/
+
+### 2026-10-27 · Spa «Agua quieta»
+
+- **Nombre de demo:** «Remanso Spa · Demo».
+- **3 direcciones** como variantes de la página real: A Superficie, B Horizonte, C Gota.
+- **Elegida: A «Superficie».**
+  - Los anillos del agua salen de detrás del titular.
+  - B casi no mostraba el agua.
+  - C se parecía al restaurante por la cursiva.
+  - La tabla está en `docs/visual/spa.md`.
+- **Función estrella:** la cita en 3 pasos (servicio o paquete → día y franja que cabe antes de cerrar → nombre), un paso a la vez, con un anillo que respira.
+- **Componentes del rubro:**
+  - carta de servicios con minutos y precio, con filtros por categoría;
+  - paquetes con la tarjeta de regalo por WhatsApp;
+  - comparador antes/después, con dibujos de agua marcados como demo y no como resultados.
+- **Núcleo:**
+  - `core/componentes/comparador.js`, que podrá usar la clínica dental con fotos reales;
+  - `horasPosibles` pasa de la barbería a `core/horario.js`.
+- **Corrección de los briefs:**
+  - el de la clínica dental (y el primer borrador del spa) afirmaba qué muestran las webs del rubro sin haberlas revisado. Quedó corregido.
+  - Revisar las webs de los prospectos queda pendiente antes de mostrarles la demo.
+- **Lighthouse:** móvil 93 · escritorio 99. Axe 0. `test:teclado` 66/66.
+- **Qué sigue:** fusionar el PR del spa y empezar la **veterinaria** («Juego y urgencia») en `feat/rubro-veterinaria`. Antes, un nombre de demo nuevo verificado con búsqueda web.

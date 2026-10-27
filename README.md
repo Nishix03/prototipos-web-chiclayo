@@ -65,11 +65,12 @@ core/
   render.js                          prerender: negocio.json → HTML (plugin de Vite)
   whatsapp.js · horario.js           enlaces wa.me y horario con hora de Lima
   escena3d.js · carga3d.js           motor 3D común (Three.js) y cuándo cargarlo (ADR 008)
-  componentes/                       hero, galería, reseñas, mapa, footer, botón flotante
+  componentes/                       hero, galería, reseñas, mapa, footer, botón flotante, comparador
 _ejemplo/                            página de prueba y plantilla para copiar
 restaurante/                         rubro 1 «El pase»: riel de comandas, ingredientes 3D que caen en sus bowls, comanda y reservas
 barberia/                            rubro 2 «Filo»: cromo líquido 3D, letrero con la espera de hoy y turno con corte, día, barbero y hora
 dental/                              rubro 3 «Calma clínica»: sonrisa de vidrio 3D, cuestionario «¿Qué tratamiento necesito?» y precios «desde»
+spa/                                 rubro 4 «Agua quieta»: agua 3D (shader), cita en 3 pasos que respira, paquetes y comparador antes/después
 docs/decisiones/                     ADR
 docs/visual/                         brief visual de cada rubro, con maqueta y capturas
 pruebas/teclado/                     pruebas E2E con Playwright (teclado y horario)

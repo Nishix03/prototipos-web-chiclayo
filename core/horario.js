@@ -176,3 +176,20 @@ export function iniciarIndicadorHorario() {
   actualizar();
   setInterval(actualizar, 60_000);
 }
+
+const aHora = (min) =>
+  `${String(Math.floor(min / 60)).padStart(2, '0')}:${String(min % 60).padStart(2, '0')}`;
+
+/**
+ * Todas las horas posibles de la semana, cada `paso` minutos (turnos y citas). Sin JavaScript
+ * se ofrecen todas; con JavaScript, cada rubro deja solo las del día elegido que caben.
+ */
+export function horasPosibles(horario, paso) {
+  const minutos = new Set();
+  for (const rangos of Object.values(horario)) {
+    for (const [a, b] of rangos) {
+      for (let m = aMinutos(a); m + paso <= aMinutos(b); m += paso) minutos.add(m);
+    }
+  }
+  return [...minutos].sort((x, y) => x - y).map(aHora);
+}

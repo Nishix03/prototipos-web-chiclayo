@@ -1,24 +1,7 @@
 import { html, crudo } from '../../core/componentes/html.js';
 import { campo, formularioWhatsapp } from '../../core/componentes/formulario.js';
 import { soles } from '../../core/dinero.js';
-
-const aMinutos = (hhmm) => hhmm.split(':').reduce((h, m) => Number(h) * 60 + Number(m));
-const aHora = (min) =>
-  `${String(Math.floor(min / 60)).padStart(2, '0')}:${String(min % 60).padStart(2, '0')}`;
-
-/**
- * Todas las horas posibles de la semana, cada `paso` minutos. Sin JavaScript se ofrecen todas;
- * con JavaScript (turno-cliente.js) quedan solo las del día elegido que caben antes de cerrar.
- */
-export function horasPosibles(horario, paso) {
-  const minutos = new Set();
-  for (const rangos of Object.values(horario)) {
-    for (const [a, b] of rangos) {
-      for (let m = aMinutos(a); m + paso <= aMinutos(b); m += paso) minutos.add(m);
-    }
-  }
-  return [...minutos].sort((x, y) => x - y).map(aHora);
-}
+import { horasPosibles } from '../../core/horario.js';
 
 /**
  * La función estrella: «tu turno en la silla». Corte → día → barbero (solo los que atienden

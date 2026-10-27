@@ -3,6 +3,7 @@
 
 import { iniciarIndicadorHorario } from './horario.js';
 import { iniciarFormulariosWhatsapp } from './formulario-whatsapp.js';
+import { iniciarComparadores } from './comparador.js';
 
 /** Ejecuta una mejora aislada: un error se registra en consola y no tumba a las demás. */
 export function seguro(nombre, fn) {
@@ -21,4 +22,5 @@ export function seguro(nombre, fn) {
 export function iniciarNucleo({ mensajes } = {}) {
   seguro('horario', iniciarIndicadorHorario);
   seguro('formularios', () => iniciarFormulariosWhatsapp(mensajes));
+  seguro('comparadores', iniciarComparadores);
 }

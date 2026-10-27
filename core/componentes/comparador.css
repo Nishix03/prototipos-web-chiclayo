@@ -1,0 +1,73 @@
+/* Comparador antes/después: la imagen de después se recorta desde la izquierda hasta --corte */
+.comparador {
+  margin: 0;
+}
+
+.comparador__marco {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radio-lg);
+}
+
+.comparador__capa img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.comparador__capa--despues {
+  position: absolute;
+  inset: 0;
+  clip-path: inset(0 0 0 var(--corte));
+}
+
+.comparador__capa--despues img {
+  height: 100%;
+  object-fit: cover;
+}
+
+.comparador__linea {
+  position: absolute;
+  inset-block: 0;
+  left: var(--corte);
+  width: 2px;
+  translate: -1px 0;
+  background: var(--color-fondo);
+}
+
+.comparador__etiqueta {
+  position: absolute;
+  bottom: var(--espacio-3);
+  padding: var(--espacio-1) var(--espacio-3);
+  border-radius: var(--radio-pildora);
+  background: var(--color-fondo);
+  color: var(--color-texto);
+  font-size: var(--texto-sm);
+  font-weight: 600;
+}
+
+.comparador__etiqueta--antes {
+  left: var(--espacio-3);
+}
+
+.comparador__etiqueta--despues {
+  right: var(--espacio-3);
+}
+
+.comparador__control {
+  display: block;
+  margin-top: var(--espacio-3);
+}
+
+.comparador__control input {
+  width: 100%;
+  min-height: var(--tamano-tactil);
+  accent-color: var(--color-marca);
+  cursor: ew-resize;
+}
+
+.comparador__nota {
+  margin-top: var(--espacio-2);
+  font-size: var(--texto-sm);
+  color: var(--color-texto-suave);
+}

@@ -1,0 +1,68 @@
+{
+  "360": {
+    "e1": {
+      "nombre": true,
+      "titular": true,
+      "estadoConHorarioDeHoy": true,
+      "enlaceAlHorario": true,
+      "funcionEstrella": true
+    },
+    "e2": {
+      "palabrasTitular": 4,
+      "lineasTitular": 2,
+      "maxPalabrasSeccion": 5,
+      "titulosSeccion": [
+        ["Servicios y precios", 3],
+        ["Arma tu cita", 3],
+        ["Paquetes", 1],
+        ["Antes y después", 3],
+        ["Quiénes te atienden", 3],
+        ["Horario", 1],
+        ["Lo que dicen nuestros clientes", 5],
+        ["Horario y cómo llegar", 4]
+      ]
+    },
+    "e3": {
+      "escenaCubrePantalla": 100,
+      "escenaViva": true
+    },
+    "e5": {
+      "titular": "Newsreader Variable",
+      "titulosSeccion": ["Newsreader Variable"],
+      "texto": "Instrument Sans Variable"
+    }
+  },
+  "1440": {
+    "e1": {
+      "nombre": true,
+      "titular": true,
+      "estadoConHorarioDeHoy": true,
+      "enlaceAlHorario": true,
+      "funcionEstrella": true
+    },
+    "e2": {
+      "palabrasTitular": 4,
+      "lineasTitular": 1,
+      "maxPalabrasSeccion": 5,
+      "titulosSeccion": [
+        ["Servicios y precios", 3],
+        ["Arma tu cita", 3],
+        ["Paquetes", 1],
+        ["Antes y después", 3],
+        ["Quiénes te atienden", 3],
+        ["Horario", 1],
+        ["Lo que dicen nuestros clientes", 5],
+        ["Horario y cómo llegar", 4]
+      ]
+    },
+    "e3": {
+      "escenaCubrePantalla": 100,
+      "escenaViva": true
+    },
+    "e5": {
+      "titular": "Newsreader Variable",
+      "titulosSeccion": ["Newsreader Variable"],
+      "texto": "Instrument Sans Variable"
+    }
+  }
+}

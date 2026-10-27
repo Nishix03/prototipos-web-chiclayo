@@ -1,0 +1,174 @@
+{
+  "$schema": "./rubro.schema.json",
+  "demo": true,
+  "rubro": "spa",
+  "nombre": "Remanso Spa · Demo",
+  "eslogan": "Spa y estética en Chiclayo",
+  "descripcion": "Demo de spa en Chiclayo: masajes, faciales y uñas con precio y duración, paquetes y cita por WhatsApp en 3 pasos. Datos ficticios.",
+  "tituloSeo": "Remanso Spa (demo) · Spa y estética en Chiclayo",
+  "textos": {
+    "titular": "Una hora para ti",
+    "bajada": "Spa en Chiclayo. Elige tu masaje, facial o manicure, mira cuánto dura y cuánto cuesta, y pide tu cita por WhatsApp.",
+    "introServicios": "Precio y duración de cada servicio, sin sorpresas.",
+    "introCita": "Tres pasos, sin apuro: el servicio, el día con su franja horaria y tu nombre.",
+    "introPaquetes": "Servicios combinados en una sola visita.",
+    "introComparador": "Mueve la línea para comparar. Aquí van las fotos de antes y después de tus clientes, siempre con su permiso."
+  },
+  "contacto": {
+    "whatsapp": "995258351",
+    "mensajeWhatsapp": "Hola, vi la página de Remanso Spa (demo) y tengo una consulta."
+  },
+  "ubicacion": {
+    "direccion": "Av. de Ejemplo 123",
+    "referencia": "Dirección ficticia; el mapa apunta al centro de Chiclayo",
+    "distrito": "Chiclayo",
+    "ciudad": "Chiclayo",
+    "region": "Lambayeque",
+    "lat": -6.7714,
+    "lng": -79.8409
+  },
+  "horario": {
+    "lun": [],
+    "mar": [["10:00", "20:00"]],
+    "mie": [["10:00", "20:00"]],
+    "jue": [["10:00", "20:00"]],
+    "vie": [["10:00", "20:00"]],
+    "sab": [["09:00", "19:00"]],
+    "dom": [["10:00", "15:00"]]
+  },
+  "tema": {
+    "marca": "#3d5c4a",
+    "acento": "#e6dcc8",
+    "fondo": "#f3efe6",
+    "texto": "#1f2a24"
+  },
+  "imagenes": {
+    "hero": {
+      "src": "img/agua-1440.webp",
+      "alt": "Superficie de agua quieta color salvia con ondas suaves (ilustración 3D)"
+    },
+    "og": {
+      "src": "img/agua-1440.webp",
+      "alt": "Remanso Spa (demo), spa y estética en Chiclayo"
+    }
+  },
+  "categorias": [
+    { "id": "masajes", "nombre": "Masajes" },
+    { "id": "faciales", "nombre": "Faciales" },
+    { "id": "unas", "nombre": "Uñas" }
+  ],
+  "servicios": [
+    {
+      "id": "relajante",
+      "nombre": "Masaje relajante",
+      "categoria": "masajes",
+      "precio": 90,
+      "minutos": 60,
+      "descripcion": "Cuerpo completo con presión suave y aceite tibio."
+    },
+    {
+      "id": "descontracturante",
+      "nombre": "Masaje descontracturante",
+      "categoria": "masajes",
+      "precio": 110,
+      "minutos": 60,
+      "descripcion": "Espalda, cuello y hombros con presión firme."
+    },
+    {
+      "id": "piedras",
+      "nombre": "Masaje con piedras calientes",
+      "categoria": "masajes",
+      "precio": 140,
+      "minutos": 75,
+      "descripcion": "Piedras tibias sobre la espalda y masaje de cuerpo completo."
+    },
+    {
+      "id": "limpieza-facial",
+      "nombre": "Limpieza facial",
+      "categoria": "faciales",
+      "precio": 80,
+      "minutos": 50,
+      "descripcion": "Limpieza, exfoliación, extracción y mascarilla."
+    },
+    {
+      "id": "hidratacion",
+      "nombre": "Hidratación facial",
+      "categoria": "faciales",
+      "precio": 95,
+      "minutos": 45,
+      "descripcion": "Mascarilla hidratante y masaje facial."
+    },
+    {
+      "id": "manicure",
+      "nombre": "Manicure",
+      "categoria": "unas",
+      "precio": 30,
+      "minutos": 40,
+      "descripcion": "Limado, cutícula y esmalte."
+    },
+    {
+      "id": "pedicure",
+      "nombre": "Pedicure spa",
+      "categoria": "unas",
+      "precio": 45,
+      "minutos": 50,
+      "descripcion": "Baño de pies, exfoliación, limado y esmalte."
+    }
+  ],
+  "paquetes": [
+    {
+      "id": "pausa",
+      "nombre": "Pausa completa",
+      "precio": 160,
+      "incluye": ["relajante", "limpieza-facial"]
+    },
+    {
+      "id": "manos-pies",
+      "nombre": "Manos y pies",
+      "precio": 65,
+      "incluye": ["manicure", "pedicure"]
+    }
+  ],
+  "regalo": {
+    "titulo": "Regala una visita",
+    "texto": "Elige un servicio o un paquete y te enviamos una tarjeta de regalo por WhatsApp con el nombre de quien la recibe.",
+    "mensaje": "Hola, quiero regalar una tarjeta de Remanso Spa (demo). ¿Me ayudan a elegir?"
+  },
+  "equipo": [
+    { "nombre": "Terapeuta de demostración 1", "especialidad": "Masajes y piedras calientes" },
+    { "nombre": "Terapeuta de demostración 2", "especialidad": "Faciales" },
+    { "nombre": "Terapeuta de demostración 3", "especialidad": "Manicure y pedicure" }
+  ],
+  "cita": { "minutosEntreFranjas": 30 },
+  "comparador": {
+    "antes": {
+      "src": "img/comparador-antes.webp",
+      "alt": "Imagen de demostración: agua agitada"
+    },
+    "despues": {
+      "src": "img/comparador-despues.webp",
+      "alt": "Imagen de demostración: la misma agua, quieta"
+    },
+    "nota": "Imágenes de demostración, no son resultados reales."
+  },
+  "resenas": {
+    "fuente": "Reseñas de demostración: textos de ejemplo, no son opiniones reales.",
+    "items": [
+      {
+        "texto": "Reseña de ejemplo: pedí la cita por WhatsApp y me confirmaron la hora en minutos.",
+        "autor": "Clienta de demostración 1",
+        "estrellas": 5
+      },
+      {
+        "texto": "Reseña de ejemplo: el precio que vi en la página fue el que pagué.",
+        "autor": "Cliente de demostración 2",
+        "estrellas": 5
+      },
+      {
+        "texto": "Reseña de ejemplo: el masaje con piedras calientes duró lo que decía.",
+        "autor": "Clienta de demostración 3",
+        "estrellas": 4
+      }
+    ]
+  }
+}
