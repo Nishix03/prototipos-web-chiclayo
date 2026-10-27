@@ -1,0 +1,9 @@
+{
+  "seccion": "#carta",
+  "clics": [
+    "[data-plato=\"arroz-con-pato\"] [data-accion=\"agregar\"]",
+    "[data-plato=\"ceviche\"] [data-accion=\"agregar\"]",
+    "[data-plato=\"chicha-morada\"] [data-accion=\"agregar\"]"
+  ],
+  "abrir": "[data-abrir-comanda]"
+}

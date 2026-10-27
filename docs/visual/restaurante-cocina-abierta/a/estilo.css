@@ -1,0 +1,313 @@
+/* A · «Mesón»: papel de comanda y pizarra sobre un mesón de terracota visto desde arriba. */
+@import '@fontsource-variable/bricolage-grotesque/index.css';
+@import '@fontsource-variable/literata/wght.css';
+@import '../comun/base.css';
+
+:root:root {
+  --color-fondo: #a9553a; /* mesón de terracota (la escena lo ilumina; el CSS lo usa de respaldo) */
+  --color-papel: #f4ede1; /* papel de comanda: aquí el crema es papel, no fondo de página */
+  --color-tinta: #22150e; /* 15:1 sobre papel */
+  --color-tinta-suave: #5b4637; /* 7:1 sobre papel */
+  --color-aji: #f2b705;
+  --color-pizarra: #26332c;
+  --color-tiza: #ece6da; /* 12:1 sobre pizarra */
+  --color-foco: var(--color-tinta);
+  --fuente-titulos: 'Bricolage Grotesque Variable', sans-serif;
+  --fuente-texto: 'Literata Variable', Georgia, serif;
+  --sombra-papel: 0 1px 1px rgb(60 25 10 / 0.25), 0 14px 28px -10px rgb(60 25 10 / 0.55);
+}
+
+body {
+  color: var(--color-tinta);
+}
+
+.aviso {
+  margin: 0;
+  padding: var(--espacio-2) var(--margen-lateral);
+  background: var(--color-tinta);
+  color: var(--color-papel);
+  font-size: var(--texto-sm);
+}
+
+/* ── Papel de comanda: borde dentado arriba y abajo, apenas girado sobre la mesa ── */
+.ticket {
+  position: relative;
+  background: var(--color-papel);
+  color: var(--color-tinta);
+  box-shadow: var(--sombra-papel);
+  padding: var(--espacio-6) var(--espacio-5);
+  -webkit-mask:
+    radial-gradient(circle 5px at 50% 0, #0000 98%, #000) top / 14px 51% repeat-x,
+    radial-gradient(circle 5px at 50% 100%, #0000 98%, #000) bottom / 14px 51% repeat-x;
+  mask:
+    radial-gradient(circle 5px at 50% 0, #0000 98%, #000) top / 14px 51% repeat-x,
+    radial-gradient(circle 5px at 50% 100%, #0000 98%, #000) bottom / 14px 51% repeat-x;
+}
+
+.ticket h1,
+.ticket h2 {
+  font-family: var(--fuente-titulos);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 0.98;
+}
+
+.portada {
+  min-height: calc(100svh - 2.5rem);
+  display: grid;
+  align-items: center;
+  padding: var(--espacio-6) var(--margen-lateral);
+}
+
+.portada {
+  justify-items: center;
+}
+
+.ticket--portada {
+  width: min(100%, 37rem);
+  rotate: -2deg;
+}
+
+.ticket__negocio {
+  font-family: var(--fuente-titulos);
+  font-weight: 700;
+  font-size: var(--texto-lg);
+  padding-bottom: var(--espacio-3);
+  border-bottom: 2px dashed var(--color-tinta-suave);
+}
+
+.ticket__negocio span {
+  margin-left: var(--espacio-1);
+  font-weight: 600;
+  font-size: var(--texto-sm);
+  color: var(--color-tinta-suave);
+}
+
+.ticket--portada h1 {
+  margin-block: var(--espacio-4) var(--espacio-3);
+  font-size: clamp(2.2rem, 1.5rem + 2.6vw, 3.5rem);
+}
+
+.ticket__estado {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--espacio-2) var(--espacio-4);
+  color: var(--color-tinta);
+}
+
+.ticket__estado a {
+  color: var(--color-tinta);
+  font-weight: 600;
+}
+
+/* El llamado es el talón que se corta de la comanda, no una píldora */
+.ticket__corte {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: var(--espacio-5) calc(-1 * var(--espacio-5)) calc(-1 * var(--espacio-6));
+  padding: var(--espacio-4) var(--espacio-5) var(--espacio-6);
+  border-top: 2px dashed var(--color-tinta);
+  background: var(--color-aji);
+  color: var(--color-tinta);
+  font-family: var(--fuente-titulos);
+  font-weight: 800;
+  font-size: var(--texto-xl);
+  text-decoration: none;
+}
+
+.ticket__corte::after {
+  content: '';
+  width: 1.4em;
+  height: 2px;
+  background: currentColor;
+  box-shadow: 0.5em -0.35em 0 -0.05em currentColor;
+}
+
+/* ── Pizarra: menú del día (mitad del recorrido) y horario ── */
+.recorrido {
+  min-height: 130svh;
+  display: grid;
+  align-items: start;
+  justify-items: end;
+  padding: 30svh var(--margen-lateral) 0;
+}
+
+.pizarra {
+  width: min(100%, 24rem);
+  padding: var(--espacio-6);
+  border: 10px solid #5b3520;
+  border-radius: 6px;
+  background: var(--color-pizarra);
+  color: var(--color-tiza);
+  box-shadow: var(--sombra-papel);
+  rotate: 1.5deg;
+  --color-foco: var(--color-aji);
+}
+
+.pizarra h2 {
+  font-family: var(--fuente-titulos);
+  font-weight: 800;
+  font-size: var(--texto-2xl);
+}
+
+.menu__precio {
+  font-family: var(--fuente-titulos);
+  font-weight: 800;
+  font-size: var(--texto-3xl);
+  color: var(--color-aji);
+  line-height: 1;
+  margin-top: var(--espacio-3);
+}
+
+.menu__cuando {
+  margin-block: var(--espacio-2) var(--espacio-4);
+}
+
+.menu__platos {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: var(--espacio-2);
+}
+
+.menu__platos span {
+  display: block;
+  font-family: var(--fuente-titulos);
+  font-weight: 700;
+  font-size: var(--texto-sm);
+  color: var(--color-aji);
+}
+
+/* ── La carta: una comanda larga sobre la mesa; tu comanda se imprime al lado ── */
+.carta {
+  display: grid;
+  gap: var(--espacio-6);
+  /* arriba queda libre la franja donde los ingredientes ya formaron las categorías */
+  padding: clamp(11rem, 34svh, 19rem) var(--margen-lateral) var(--espacio-seccion);
+  align-items: start;
+}
+
+.ticket--carta {
+  width: min(100%, 36rem);
+  rotate: -1deg;
+}
+
+.ticket--carta h2 {
+  font-size: var(--texto-3xl);
+}
+
+.carta__lista {
+  margin: var(--espacio-4) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.carta__categoria h3 {
+  margin-top: var(--espacio-5);
+  font-family: var(--fuente-titulos);
+  font-size: var(--texto-xl);
+}
+
+.carta__categoria ul {
+  margin: var(--espacio-2) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ticket--comanda {
+  width: min(100%, 22rem);
+  rotate: 2deg;
+}
+
+.ticket--comanda h2 {
+  font-size: var(--texto-2xl);
+  margin-bottom: var(--espacio-3);
+}
+
+.comanda__total {
+  margin-top: var(--espacio-3);
+  font-family: var(--fuente-titulos);
+  font-weight: 800;
+  font-size: var(--texto-xl);
+}
+
+@media (min-width: 60rem) {
+  .carta {
+    grid-template-columns: minmax(0, 36rem) minmax(0, 22rem);
+    justify-content: center;
+    column-gap: var(--espacio-8);
+  }
+
+  .ticket--comanda {
+    position: sticky;
+    top: var(--espacio-6);
+  }
+}
+
+.horario {
+  padding: var(--espacio-seccion) var(--margen-lateral) 30svh;
+}
+
+.pizarra--ancha {
+  width: min(100%, 40rem);
+  rotate: -0.5deg;
+}
+
+.horario__dias {
+  margin: var(--espacio-4) 0 0;
+  padding: 0;
+  list-style: none;
+  columns: 2 14rem;
+}
+
+.horario__dias li {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--espacio-3);
+  padding-block: var(--espacio-1);
+  break-inside: avoid;
+}
+
+.horario__dias [aria-current] {
+  color: var(--color-aji);
+  font-weight: 700;
+}
+
+/* Etiquetas de cada hilera: cinta de papel pegada al mesón */
+.etiqueta-grupo {
+  padding: var(--espacio-1) var(--espacio-3);
+  background: var(--color-papel);
+  color: var(--color-tinta);
+  font-family: var(--fuente-titulos);
+  font-weight: 700;
+  box-shadow: var(--sombra-papel);
+  rotate: -2deg;
+}
+
+/* Celular: tu comanda se imprime desde el borde de abajo, encima de la carta */
+@media (max-width: 59.99rem) {
+  .ticket--comanda {
+    position: fixed;
+    inset: auto var(--espacio-2) 0;
+    z-index: 2;
+    width: auto;
+    max-height: 48svh;
+    overflow: auto;
+    rotate: 0deg;
+    padding-block: var(--espacio-4) var(--espacio-5);
+  }
+
+  .ticket--comanda h2 {
+    font-size: var(--texto-xl);
+  }
+}
+
+@media (max-width: 40rem) {
+  .ticket--portada {
+    width: calc(100% - 0.75rem);
+    rotate: -1deg;
+  }
+}

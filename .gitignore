@@ -10,3 +10,5 @@ Thumbs.db
 /C:*
 test-results/
 playwright-report/
+/.maqueta/
+/.storyboard/

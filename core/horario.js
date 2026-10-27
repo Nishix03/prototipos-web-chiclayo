@@ -112,9 +112,21 @@ export function estadoHorario(horario, fecha = new Date()) {
   return { abierto: false, abre: null };
 }
 
-/** Frase para el indicador: "Abierto ahora · cierra a las 18:00". */
-export function textoEstado(estado) {
-  if (estado.abierto) return `Abierto ahora · cierra a las ${formatoHora(estado.cierra)}`;
+/** '12:00'–'16:30' y '19:00'–'23:00' → "de 12:00 a 16:30 y de 19:00 a 23:00" */
+const tramosDelDia = (rangos) =>
+  rangos.map(([a, b]) => `de ${formatoHora(a)} a ${formatoHora(b)}`).join(' y ');
+
+/**
+ * Frase para el indicador, con el horario de hoy (exigencia 1 del plan, ADR 009):
+ * "Abierto · hoy de 12:00 a 16:30" · "Cerrado · abre hoy a las 19:00" ·
+ * "Cerrado · abre mañana a las 12:00" · "Cerrado · abre el jueves a las 9:00".
+ * Sin `horario`, el abierto dice solo hasta qué hora (compatibilidad).
+ */
+export function textoEstado(estado, horario, fecha = new Date()) {
+  if (estado.abierto) {
+    if (!horario) return `Abierto · cierra a las ${formatoHora(estado.cierra)}`;
+    return `Abierto · hoy ${tramosDelDia(horario[ahoraEnLima(fecha).dia])}`;
+  }
   if (!estado.abre) return 'Cerrado';
   const { dia, hora, enDias } = estado.abre;
   const cuando = enDias === 0 ? 'hoy' : enDias === 1 ? 'mañana' : `el ${NOMBRE_DIA[dia]}`;
@@ -157,7 +169,7 @@ export function iniciarIndicadorHorario() {
   const actualizar = () => {
     const estado = estadoHorario(horario);
     indicadores.forEach((el) => {
-      el.querySelector('[data-estado-texto]').textContent = textoEstado(estado);
+      el.querySelector('[data-estado-texto]').textContent = textoEstado(estado, horario);
       el.dataset.abierto = String(estado.abierto);
     });
   };

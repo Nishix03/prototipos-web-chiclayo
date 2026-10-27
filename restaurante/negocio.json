@@ -8,8 +8,8 @@
   "tituloSeo": "Sabores del Norte (demo) · Restaurante norteño en Chiclayo",
   "cocina": "Peruana norteña",
   "textos": {
-    "titular": "Arroz con pato, cabrito y ceviche: cocina lambayecana en Chiclayo",
-    "bajada": "Elige tus platos, mira el total al instante y envía el pedido por WhatsApp. Delivery dentro de Chiclayo o recojo en el local.",
+    "titular": "Arma tu comanda por WhatsApp",
+    "bajada": "Arroz con pato, cabrito y ceviche: cocina lambayecana en Chiclayo. Delivery dentro de Chiclayo o recojo en el local.",
     "introMenu": "De martes a viernes, de 12:00 a 15:30: entrada, fondo y refresco por S/ 18.",
     "introCarta": "Marca lo que quieres, ajusta las cantidades y envía tu pedido por WhatsApp.",
     "introReserva": "Cuéntanos la fecha, la hora y cuántos vienen. Reservamos mesa para grupos de hasta 12 personas.",
@@ -44,10 +44,10 @@
     "dom": [["12:00", "16:30"]]
   },
   "tema": {
-    "marca": "#b42318",
-    "acento": "#f4b400",
-    "fondo": "#efebe2",
-    "texto": "#1a1714"
+    "marca": "#f2b705",
+    "acento": "#fbf7ef",
+    "fondo": "#a3472b",
+    "texto": "#fbf7ef"
   },
   "menuDelDia": {
     "dias": "De martes a viernes",

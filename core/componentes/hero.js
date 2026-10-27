@@ -4,13 +4,15 @@ import { enlaceWhatsapp } from '../whatsapp.js';
 import { imagen } from './imagen.js';
 
 /**
- * Indicador "Abierto ahora / Cerrado". Ocupa su espacio desde el inicio pero es invisible
- * hasta que horario.js lo rellena (ver hero.css): así no empuja la página al aparecer.
+ * Indicador "Abierto · hoy de 12:00 a 16:30 / Cerrado · abre mañana…". Ocupa su espacio desde
+ * el inicio pero es invisible hasta que horario.js lo rellena (ver hero.css): así no empuja la
+ * página al aparecer. Con `enlace`, agrega un enlace al horario completo (exigencia 1).
  */
-export const estadoHorario = () => html`
+export const estadoHorario = ({ enlace } = {}) => html`
   <p class="estado-horario etiqueta" data-estado-horario>
     <span class="estado-horario__punto" aria-hidden="true"></span>
     <span data-estado-texto>&nbsp;</span>
+    ${enlace ? html`<a class="estado-horario__enlace" href="${enlace}">Horario</a>` : ''}
   </p>
 `;
 

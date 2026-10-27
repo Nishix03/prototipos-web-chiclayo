@@ -1,5 +1,4 @@
 import { html } from '../../core/componentes/html.js';
-import { imagen } from '../../core/componentes/imagen.js';
 import { soles } from '../../core/dinero.js';
 
 const ETIQUETA = {
@@ -9,7 +8,8 @@ const ETIQUETA = {
 };
 
 /**
- * Un plato. Nombre, descripción y precio están siempre en el HTML; los controles de cantidad
+ * Un plato, como una línea de la comanda de su categoría (sin foto: en «El pase» los
+ * ingredientes 3D hacen ese papel). Nombre, descripción y precio están siempre en el HTML; los controles de cantidad
  * solo se muestran si hay JavaScript (clase .js en <html>, ver estilo.css): sin JS no habría
  * cómo armar el pedido. Ocupan su espacio desde el primer pintado, así no empujan la página.
  * Los data-* llevan lo que el carrito necesita, para no repetir la carta en otra isla de datos.
@@ -23,7 +23,6 @@ function plato(p) {
       data-nombre="${p.nombre}"
       data-precio="${p.precio}"
     >
-      ${p.foto ? imagen({ ...p.foto, alt: '' }) : ''}
       <div class="plato__cuerpo">
         <h4 class="plato__cabeza">
           <span class="plato__nombre">${p.nombre}</span>
@@ -73,8 +72,8 @@ function plato(p) {
 export function carta(negocio) {
   const { carta: categorias, textos, contacto } = negocio;
   return html`
-    <section class="carta contenedor" id="carta" aria-labelledby="carta-titulo">
-      <h2 class="carta__titulo" id="carta-titulo">La carta</h2>
+    <section class="carta" id="carta" aria-labelledby="carta-titulo">
+      <h2 class="carta__titulo" id="carta-titulo" data-armar>La carta</h2>
       <p class="carta__intro">${textos.introCarta}</p>
       <noscript>
         <p class="carta__sin-js">
@@ -83,22 +82,26 @@ export function carta(negocio) {
         </p>
       </noscript>
 
-      <!-- Los filtros son sticky dentro de este cuerpo: se sueltan al terminar la última
-           categoría, no al terminar la sección (que tiene margen abajo) -->
+      <!-- Cada categoría es una comanda colgada del riel sobre el bowl de sus ingredientes;
+           en celular el riel se desliza de lado, una comanda a la vez -->
+      <div class="filtros" role="group" aria-label="Filtrar la carta" data-filtros>
+        <button type="button" aria-pressed="true" data-filtro="todo">Todo</button>
+        ${categorias.map(
+          (c) =>
+            html`<button type="button" aria-pressed="false" data-filtro="${c.id}">
+              ${c.nombre}
+            </button>`,
+        )}
+      </div>
       <div class="carta__cuerpo">
-        <div class="filtros" role="group" aria-label="Filtrar la carta" data-filtros>
-          <button type="button" aria-pressed="true" data-filtro="todo">Todo</button>
-          ${categorias.map(
-            (c) =>
-              html`<button type="button" aria-pressed="false" data-filtro="${c.id}">
-                ${c.nombre}
-              </button>`,
-          )}
-        </div>
-
         ${categorias.map(
           (c) => html`
-            <section class="categoria" data-categoria="${c.id}" aria-labelledby="categoria-${c.id}">
+            <section
+              class="categoria comanda-colgada"
+              data-categoria="${c.id}"
+              aria-labelledby="categoria-${c.id}"
+            >
+              <span class="pinza" aria-hidden="true"></span>
               <h3 class="categoria__titulo" id="categoria-${c.id}">${c.nombre}</h3>
               <ul class="platos" role="list">
                 ${c.platos.map(plato)}

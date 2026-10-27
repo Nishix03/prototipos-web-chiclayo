@@ -1,25 +1,40 @@
 /*
- * Restaurante · «la carta como portada del diario del día» (brief: docs/visual/restaurante.md).
- * Arquetipo 09 de crear-web-como-servicio llevado al diario popular peruano: titulares en
- * grotesca condensada, tinta roja de imprenta, amarillo ají como resaltador y filetes solo
- * donde separan columnas. Los colores llegan de negocio.json (tema); aquí van los tokens que
- * cambian la forma y la tipografía.
+ * Restaurante v2 · «El pase» (brief: docs/visual/restaurante-cocina-abierta.md, dirección C).
+ * Frente al mostrador por donde sale la comida: todo lo que se lee cuelga del riel de comandas
+ * y la escena 3D (pared, mostrador, bowls, ingredientes) vive detrás de toda la página.
+ * Los colores de la pared y los botones llegan de negocio.json (tema); el papel, la tinta y la
+ * pizarra son materiales del rubro y se definen aquí.
  */
-/* Fuentes: ~148 KB en latín. Archivo con eje de ancho (la identidad del concepto); Newsreader
-   solo con eje de peso (58 KB en vez de 132 KB con tamaño óptico) y sin cursiva propia (147 KB):
-   los pies de foto usan la cursiva que sintetiza el navegador. Presupuesto de LCP del plan. */
-@import '@fontsource-variable/archivo/wdth.css';
-@import '@fontsource-variable/newsreader/wght.css';
 @import '../core/core.css';
 
-/*
- * Respaldo mientras llega Archivo: Arial reducida para que ocupe casi lo mismo que la
- * condensada. Así el cambio de fuente no reacomoda líneas ni empuja la página (CLS).
- */
+/* Fuentes recortadas al español con `npm run fuentes` (~35 KB las dos). Licencia OFL al lado. */
 @font-face {
-  font-family: 'Archivo respaldo';
-  src: local('Arial Narrow'), local('ArialNarrow'), local('Arial'), local('Roboto');
-  size-adjust: 76%;
+  font-family: 'Fraunces Variable';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 600 700;
+  src: url('./fuentes/fraunces-titulos.woff2') format('woff2-variations');
+}
+
+@font-face {
+  font-family: 'Figtree Variable';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400 700;
+  src: url('./fuentes/figtree-texto.woff2') format('woff2-variations');
+}
+
+/* Respaldos ajustados al ancho de cada fuente: el cambio no reacomoda líneas (CLS) */
+@font-face {
+  font-family: 'Fraunces respaldo';
+  src: local('Georgia'), local('Times New Roman');
+  size-adjust: 104%;
+}
+
+@font-face {
+  font-family: 'Figtree respaldo';
+  src: local('Arial'), local('Helvetica'), local('Roboto');
+  size-adjust: 97%;
 }
 
 /* Controles que solo funcionan con JavaScript: con .js ocupan su lugar desde el inicio */
@@ -30,458 +45,455 @@ html:not(.js) [data-descargar-qr] {
 }
 
 :root {
-  color-scheme: light; /* diseño de papel: sin modo oscuro, y el navegador no lo invierte */
+  color-scheme: light;
 
-  --fuente-titulos: 'Archivo Variable', 'Archivo respaldo', sans-serif;
-  --fuente-texto: 'Newsreader Variable', Georgia, serif;
-  --peso-titulos: 800;
-  --ancho-titulos: 72%;
-  --interlineado-texto: 1.65; /* serif: un poco más de aire que una sans */
-  --interlineado-titulos: 0.95;
-  --texto-display: clamp(2.1rem, 1.2rem + 4.4vw, 4.4rem);
-  --texto-cabecera: clamp(2.5rem, 14vw, 9rem); /* en una línea desde 360 px */
+  /* Materiales del pase (el tema de negocio.json pone pared, texto sobre pared y botones) */
+  --color-papel: #fbf7ef;
+  --color-tinta: #1f1712; /* 17:1 sobre papel */
+  --color-tinta-suave: #5d4b3f; /* 7.6:1 sobre papel */
+  --color-acero: #8d8a85;
+  --color-pizarra: #26332c;
+  --color-tiza: #ece6da; /* 11.4:1 sobre pizarra */
+  --color-aji: #f2b705;
+  --sombra-papel: 0 2px 2px rgb(40 15 5 / 0.25), 0 22px 30px -16px rgb(40 15 5 / 0.6);
 
-  --color-texto-suave: #5e5850; /* gris de columna: 5.91:1 sobre papel */
-  --color-borde: color-mix(in oklch, var(--color-texto) 25%, var(--color-fondo));
-  --color-marca-presionada: color-mix(in oklch, var(--color-marca) 85%, black);
+  --fuente-titulos: 'Fraunces Variable', 'Fraunces respaldo', Georgia, serif;
+  --fuente-texto: 'Figtree Variable', 'Figtree respaldo', system-ui, sans-serif;
+  --peso-titulos: 650;
+  --interlineado-titulos: 0.98;
+  --interlineado-texto: 1.55;
+  --texto-display: clamp(2.3rem, 1.4rem + 3vw, 3.7rem);
 
-  --radio-boton: 2px; /* botones como sellos */
-  --radio-sm: 2px;
-  --radio-md: 0;
-  --radio-lg: 0;
-  --sombra-sm: none;
-  --sombra-md: none;
-  --sombra-lg: none;
-  --sombra-comanda: 0 -12px 40px rgb(26 23 20 / 0.25); /* la única pieza que flota */
+  /* Texto secundario sobre la pared: crema fijo (la mezcla del núcleo daba menos de 4.5:1) */
+  --color-texto-suave: #f6eadf; /* 5.2:1 sobre terracota */
 
-  /* Movimiento (brief, paso 4): ease-out-quart para lo que entra */
-  --curva-impresion: cubic-bezier(0.165, 0.84, 0.44, 1);
-  --ancho-contenido: 78rem;
+  --radio-boton: 3px; /* papel y sellos, no píldoras */
+  --curva-impresion: cubic-bezier(0.165, 0.84, 0.44, 1); /* ease-out-quart */
+  --alto-riel: 14px;
 }
 
-/* Superficies oscuras: el foco pasa a ají (9.67:1 sobre tinta) */
-.aviso-demo,
-.barra-pedido,
-.pie {
-  --color-foco: var(--color-acento);
-}
-
-/* Lo fijo (filtros arriba, barra de pedido abajo) no debe tapar el elemento enfocado */
 html {
-  scroll-padding-top: 5rem;
+  scroll-padding-top: calc(var(--alto-riel) + 1rem);
 }
 
 html:has(body.con-pedido) {
   scroll-padding-bottom: 6rem;
 }
 
-.aviso-demo {
-  font-family: var(--fuente-titulos);
-  font-weight: 500;
+body {
+  overflow-x: clip;
 }
 
-.precio {
-  font-family: var(--fuente-titulos);
-  font-weight: 700;
-  font-variant-numeric: tabular-nums;
-  white-space: nowrap;
+/* ── El papel: la comanda colgada del riel (componente del rubro) ── */
+.papel,
+.comanda-colgada,
+.comanda__papel,
+.reservas form,
+.resena {
+  --color-fondo: var(--color-papel);
+  --color-texto: var(--color-tinta);
+  --color-texto-suave: var(--color-tinta-suave);
+  --color-borde: color-mix(in oklch, var(--color-tinta) 30%, var(--color-papel));
+  --color-superficie: color-mix(in oklch, var(--color-tinta) 5%, var(--color-papel));
+  --color-foco: var(--color-tinta);
+  background: var(--color-papel);
+  color: var(--color-tinta);
 }
 
-/* ── Botones y controles: misma voz tipográfica que los titulares ── */
-.boton {
-  border: 2px solid var(--color-texto);
-  font-family: var(--fuente-titulos);
-  font-weight: 700;
-  font-stretch: 87%;
-  transition: background-color var(--duracion-rapida) ease;
-}
-
-.boton:hover {
-  transform: none;
-  box-shadow: none;
-}
-
-.boton:active {
-  transform: scale(0.97);
-  transition: transform 100ms var(--curva-impresion);
-}
-
-.boton--principal {
-  border-color: var(--color-marca);
-}
-
-.boton--secundario {
-  color: var(--color-texto);
-}
-
-@media (hover: hover) and (pointer: fine) {
-  .boton--principal:hover {
-    background: var(--color-marca-presionada);
-  }
-
-  .boton--secundario:hover {
-    background: var(--color-superficie);
-  }
-}
-
-/* ── Cabecera del diario ── */
-.cabecera {
-  padding-top: clamp(0.75rem, 2vw, 1.5rem);
-}
-
-.cabecera__nombre {
-  font-family: var(--fuente-titulos);
-  font-size: var(--texto-cabecera);
-  font-weight: 900;
-  font-stretch: 62%;
-  line-height: 0.8;
-  letter-spacing: -0.01em;
-  color: var(--color-marca);
-  text-wrap: balance; /* en una línea desde 360 px; bajo eso se parte en dos (reflow 1.4.10) */
-}
-
-.cabecera__lema {
+.comanda-colgada {
+  position: relative;
   display: block;
-  margin-top: 0.35em;
-  font-size: max(0.16em, 0.8125rem);
-  font-weight: 600;
-  font-stretch: 100%;
-  letter-spacing: 0;
-  line-height: 1.3;
-  white-space: normal;
-  color: var(--color-texto);
+  padding: var(--espacio-6) var(--espacio-5) var(--espacio-5);
+  box-shadow: var(--sombra-papel);
+  transform-origin: 50% 0;
 }
 
-.fecha {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--espacio-1) var(--espacio-4);
-  margin-top: var(--espacio-3);
-  padding-block: var(--espacio-2);
-  border-block: 2px solid var(--color-texto);
+/* La pinza que la sujeta al riel */
+.pinza {
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  width: 46px;
+  height: 22px;
+  translate: -50% 0;
+  border-radius: 4px;
+  background: linear-gradient(#cfccc6, var(--color-acero));
+  box-shadow: 0 2px 3px rgb(0 0 0 / 0.35);
+}
+
+h1,
+h2,
+h3,
+.titular {
+  font-variation-settings: normal;
+  letter-spacing: -0.015em;
+}
+
+/* ── Riel de acero: fijo arriba, de él cuelga todo ── */
+.riel {
+  position: sticky;
+  top: 0;
+  z-index: calc(var(--capa-flotante) + 1);
+  height: var(--alto-riel);
+  background: linear-gradient(#b9b6b0, var(--color-acero) 60%, #6f6c67);
+  box-shadow: 0 4px 8px rgb(0 0 0 / 0.35);
+}
+
+/* ── La escena 3D, detrás de toda la página (ADR 008) ── */
+.escena {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: var(--color-fondo);
+}
+
+.escena__fija img,
+.escena canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.escena canvas {
+  opacity: 0;
+  transition: opacity 500ms var(--curva-impresion);
+}
+
+.escena[data-viva] canvas {
+  opacity: 1;
+}
+
+/* Nombre de cada bowl en celular (en escritorio lo dice la comanda de arriba) */
+.etiquetas {
+  position: fixed;
+  inset: 0;
+  z-index: -1; /* sobre la escena (que va antes en el DOM), debajo de las comandas */
+  pointer-events: none;
+  transition: opacity var(--duracion-media) var(--curva-impresion);
+}
+
+.etiqueta-grupo {
+  position: absolute;
+  left: 0;
+  top: 0;
+  translate: -50% 120%;
+  padding: var(--espacio-1) var(--espacio-2);
+  background: var(--color-papel);
+  color: var(--color-tinta);
   font-family: var(--fuente-titulos);
+  font-weight: 650;
   font-size: var(--texto-sm);
-  font-weight: 600;
+  white-space: nowrap;
+  box-shadow: var(--sombra-papel);
 }
 
-.fecha a {
-  display: inline-flex;
-  align-items: center;
-  min-height: var(--tamano-tactil);
-  color: inherit;
-}
-
-.fecha .estado-horario {
-  padding: 0;
-  background: none;
-  font-size: inherit;
-}
-
-@media (max-width: 59.99rem) {
-  .fecha__extra {
+@media (min-width: 60rem) {
+  .etiquetas {
     display: none;
   }
 }
 
-/* ── Portada ── */
+/* ── Portada: dos comandas colgadas del riel ── */
 .portada {
-  display: grid;
-  gap: var(--espacio-5);
-  padding-block: var(--espacio-5) var(--espacio-7);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: var(--espacio-5) var(--espacio-7);
+  min-height: calc(100svh - 4.5rem);
+  padding: 0 var(--margen-lateral) var(--espacio-6);
 }
 
-@media (max-width: 59.99rem) {
-  .portada__foto {
-    order: -1; /* comida en la primera pantalla del celular */
-  }
+.comanda-colgada--portada {
+  width: min(100%, 37rem);
+  margin-left: clamp(0rem, 6vw, 7rem);
+  rotate: -1.5deg;
 }
 
-.portada__foto img {
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  object-fit: cover;
-  outline: 1px solid rgb(0 0 0 / 0.08);
-  outline-offset: -1px;
+.comanda-colgada__negocio {
+  padding-bottom: var(--espacio-3);
+  border-bottom: 1px solid var(--color-tinta);
+  font-weight: 700;
+}
+
+.comanda-colgada__demo {
+  margin-left: var(--espacio-1);
+  font-weight: 500;
+  color: var(--color-tinta-suave);
 }
 
 .titular {
+  margin-block: var(--espacio-4) var(--espacio-3);
   font-size: var(--texto-display);
-  letter-spacing: -0.005em;
+  font-weight: 650;
+  line-height: 0.98;
 }
 
 .bajada {
-  max-width: 38ch;
-  margin-top: var(--espacio-3);
-  font-size: var(--texto-lg);
-  line-height: 1.5;
-}
-
-.portada .grupo-botones {
-  margin-top: var(--espacio-5);
-}
-
-@media (max-width: 59.99rem) {
-  /* Margen derecho: el botón flotante de WhatsApp (siempre visible) no tapa "Reservar mesa" */
-  /* Desde 360 px caben en una fila; más angosto, pasan a dos filas en vez de desbordar */
-  .portada .grupo-botones {
-    margin-right: 4.25rem;
-  }
-
-  .portada .grupo-botones .boton {
-    flex: 1 1 auto;
-    padding-inline: var(--espacio-2);
-    font-size: var(--texto-sm);
-    white-space: nowrap;
-  }
-}
-
-/* Menú del día: la columna lateral con su sello de precio */
-.menu-hoy {
-  position: relative;
-  padding: var(--espacio-4);
-  border: 2px solid var(--color-texto);
-}
-
-.menu-hoy__titulo,
-.menu-hoy__cuando {
-  padding-right: 4.5rem; /* espacio para el sello */
-}
-
-.menu-hoy__titulo {
-  font-size: 1.5rem;
-}
-
-.menu-hoy__lista dd {
-  line-height: 1.4;
-}
-
-.menu-hoy__cuando {
-  margin-top: var(--espacio-1);
-  color: var(--color-texto-suave);
-  font-family: var(--fuente-titulos);
+  max-width: 44ch;
+  color: var(--color-tinta-suave);
   font-size: var(--texto-sm);
+}
+
+/* Estado de hoy: verde y rojo del núcleo solo sobre papel (5.3:1 o más). Fuera de una
+   comanda va en su propia ficha de papel (sobre la pared darían ~3:1) */
+.estado-horario {
+  --color-fondo: var(--color-papel); /* el núcleo tiñe la ficha mezclando con el fondo */
+  --color-texto: var(--color-tinta);
+  padding: var(--espacio-1) var(--espacio-3);
+  border-radius: var(--radio-boton);
+}
+
+/* Estado de hoy dentro del papel: verde y rojo del núcleo sobre papel (5.3:1 o más) */
+.comanda-colgada .estado-horario {
+  margin-top: var(--espacio-4);
+  padding: 0;
+  background: none;
+  font-weight: 700;
+  gap: var(--espacio-2);
+  flex-wrap: wrap;
+}
+
+.estado-horario__enlace {
+  margin-left: var(--espacio-2);
+  color: var(--color-tinta);
   font-weight: 600;
 }
 
-.menu-hoy__lista dt {
-  margin-top: var(--espacio-3);
-  font-family: var(--fuente-titulos);
-  font-size: var(--texto-sm);
-  font-weight: 700;
-}
-
-.menu-hoy__sello {
-  position: absolute;
-  top: -0.9rem;
-  right: 0.8rem;
+.portada__llamados {
   display: grid;
-  place-items: center;
-  width: 4.6rem;
-  aspect-ratio: 1;
-  border-radius: 50%;
-  background: var(--color-acento);
-  color: var(--color-sobre-acento);
+  justify-items: start;
+  gap: var(--espacio-3);
+}
+
+/* El llamado es otra comanda, más corta y amarilla, colgada al lado */
+.comanda-colgada--pedir {
+  margin-top: var(--espacio-2);
+  background: var(--color-aji);
   font-family: var(--fuente-titulos);
-  font-size: 1.3rem;
-  font-weight: 900;
-  font-stretch: 70%;
-  rotate: -8deg;
+  font-weight: 700;
+  font-size: var(--texto-2xl);
+  line-height: 1;
+  text-decoration: none;
+  rotate: 2.5deg;
+  transition: rotate var(--duracion-media) var(--curva-impresion);
 }
 
-/* De la casa: la fila de "más noticias" */
-.de-la-casa__titulo {
-  padding-bottom: var(--espacio-2);
-  border-bottom: 2px solid var(--color-texto);
-  font-size: var(--texto-xl);
+/* Celular: la comanda deja ver la escena a su derecha (exigencia 3: la escena no se tapa) */
+@media (max-width: 40rem) {
+  .comanda-colgada--portada {
+    width: calc(100% - 3.5rem);
+    padding: var(--espacio-5) var(--espacio-4) var(--espacio-4);
+  }
+
+  .bajada {
+    font-size: 0.8125rem;
+  }
 }
 
-.de-la-casa__lista {
-  padding: 0;
-  list-style: none;
+@media (hover: hover) and (pointer: fine) {
+  .comanda-colgada--pedir:hover {
+    rotate: 0deg;
+  }
 }
 
-.de-la-casa__lista li {
-  padding-block: var(--espacio-3);
-  border-bottom: 1px solid var(--color-borde);
+/* «Reservar mesa»: una etiqueta de papel pequeña, legible sobre cualquier parte de la escena */
+.portada__reservar {
+  padding: var(--espacio-2) var(--espacio-3);
+  background: var(--color-papel);
+  color: var(--color-tinta);
+  font-weight: 700;
+  text-underline-offset: 0.2em;
+  box-shadow: var(--sombra-papel);
+  --color-foco: var(--color-tinta);
 }
 
-.de-la-casa__enlace {
+/* ── La pizarra: menú del día y horario (componente del rubro) ── */
+.pizarra-seccion {
+  display: grid;
+  justify-items: center;
+  padding: 12svh var(--margen-lateral) 22svh;
+}
+
+.pizarra {
+  --color-texto: var(--color-tiza);
+  --color-foco: var(--color-aji);
+  display: grid;
+  gap: var(--espacio-6);
+  width: min(100%, 52rem);
+  padding: var(--espacio-6);
+  border: 10px solid #5b3520;
+  border-radius: 6px;
+  background: var(--color-pizarra);
+  color: var(--color-tiza);
+  box-shadow: var(--sombra-papel);
+}
+
+.pizarra__titulo {
+  font-size: var(--texto-2xl);
+  color: var(--color-tiza);
+}
+
+.pizarra__precio {
+  margin-top: var(--espacio-2);
+  font-family: var(--fuente-titulos);
+  font-size: var(--texto-3xl);
+  font-weight: 700;
+  line-height: 1;
+  color: var(--color-aji);
+}
+
+.pizarra__cuando {
+  margin-block: var(--espacio-2) var(--espacio-4);
+}
+
+.pizarra__lista dt,
+.pizarra__dias dt {
+  font-weight: 700;
+  font-size: var(--texto-sm);
+  color: var(--color-aji);
+}
+
+.pizarra__lista dd {
+  margin: 0 0 var(--espacio-3);
+}
+
+.pizarra__dias {
+  display: grid;
+  gap: var(--espacio-2);
+  margin-top: var(--espacio-4);
+}
+
+.pizarra__dias div {
   display: flex;
   justify-content: space-between;
-  gap: var(--espacio-3);
-  min-height: var(--tamano-tactil);
-  align-items: center;
-  font-family: var(--fuente-titulos);
-  font-weight: 700;
-  text-decoration: none;
+  gap: var(--espacio-4);
+  padding-bottom: var(--espacio-2);
+  border-bottom: 1px dashed color-mix(in oklch, var(--color-tiza) 35%, transparent);
 }
 
-.de-la-casa__nombre {
-  text-decoration: underline;
-  text-decoration-thickness: 1px;
+.pizarra__dias dd {
+  margin: 0;
+  text-align: right;
 }
 
-.de-la-casa__lista p {
-  color: var(--color-texto-suave);
-  font-size: var(--texto-sm);
-  line-height: 1.45;
-}
-
-@media (min-width: 60rem) {
-  .portada {
-    grid-template-columns: 18.5rem minmax(0, 1.15fr) minmax(0, 1fr);
-    grid-template-areas:
-      'menu nota foto'
-      'casa casa casa';
-    gap: 0;
-  }
-
-  .menu-hoy {
-    grid-area: menu;
-    align-self: start;
-    margin: var(--espacio-4) var(--espacio-6) 0 0;
-  }
-
-  .portada__nota {
-    grid-area: nota;
-    padding-inline: var(--espacio-6);
-    border-left: 1px solid var(--color-borde);
-  }
-
-  .portada__foto {
-    grid-area: foto;
-  }
-
-  .portada__foto img {
-    aspect-ratio: 4 / 5;
-    max-height: 36rem;
-  }
-
-  .de-la-casa {
-    grid-area: casa;
-    margin-top: var(--espacio-6);
-  }
-
-  .de-la-casa__lista {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  .de-la-casa__lista li {
-    padding-inline: var(--espacio-5);
-    border-bottom: 0;
-  }
-
-  .de-la-casa__lista li:first-child {
-    padding-left: 0;
-  }
-
-  .de-la-casa__lista li + li {
-    border-left: 1px solid var(--color-borde);
+@media (min-width: 48rem) {
+  .pizarra {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--espacio-8);
   }
 }
 
-/* ── Carta: la función estrella ── */
+/* ── La carta: una comanda por categoría, colgada sobre el bowl de sus ingredientes ── */
 .carta {
-  padding-block: var(--espacio-7);
-  border-top: 2px solid var(--color-texto);
+  padding: var(--espacio-4) var(--margen-lateral) 50svh;
 }
 
-.carta__titulo,
-.reservas__titulo,
-.el-local__titulo {
-  font-size: var(--texto-2xl);
+.carta__titulo {
+  display: inline-block;
+  padding: var(--espacio-2) var(--espacio-4);
+  background: var(--color-aji);
+  color: var(--color-tinta);
+  font-size: var(--texto-xl);
+  box-shadow: var(--sombra-papel);
 }
 
 .carta__intro {
-  margin-top: var(--espacio-2);
-  color: var(--color-texto-suave);
+  margin-block: var(--espacio-3);
+  max-width: 50ch;
 }
 
-.carta__sin-js {
-  margin-top: var(--espacio-4);
-  padding: var(--espacio-3);
-  border: 2px solid var(--color-texto);
-}
-
+/* Filtros: etiquetas colgadas del riel */
 .filtros {
-  position: sticky;
-  top: 0;
-  z-index: 2;
   display: flex;
+  flex-wrap: wrap;
   gap: var(--espacio-2);
-  margin: var(--espacio-4) calc(-1 * var(--margen-lateral)) 0;
-  padding: var(--espacio-2) var(--margen-lateral);
-  overflow-x: auto;
-  border-bottom: 1px solid var(--color-borde);
-  background: var(--color-fondo);
-  scrollbar-width: none;
+  margin-bottom: var(--espacio-5);
 }
 
 .filtros button {
-  flex: none;
   min-height: var(--tamano-tactil);
-  padding: var(--espacio-2) var(--espacio-4);
+  padding: var(--espacio-2) var(--espacio-3);
   border: 2px solid var(--color-texto);
   border-radius: var(--radio-boton);
   background: transparent;
+  color: var(--color-texto);
   font-family: var(--fuente-titulos);
-  font-weight: 700;
+  font-weight: 650;
   cursor: pointer;
 }
 
 .filtros [aria-pressed='true'] {
-  background: var(--color-texto);
-  color: var(--color-fondo);
+  background: var(--color-papel);
+  border-color: var(--color-papel);
+  color: var(--color-tinta);
+}
+
+/* Celular: las comandas se deslizan por el riel de una en una */
+.carta__cuerpo {
+  display: flex;
+  gap: var(--espacio-4);
+  align-items: start;
+  margin-inline: calc(-1 * var(--margen-lateral));
+  padding: var(--espacio-3) var(--margen-lateral) var(--espacio-5);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  overscroll-behavior-x: contain;
+}
+
+.categoria {
+  flex: 0 0 min(84%, 22rem);
+  scroll-snap-align: center;
+  padding: var(--espacio-5) var(--espacio-4) var(--espacio-4);
+}
+
+.categoria:nth-of-type(1) {
+  rotate: -1.5deg;
+}
+.categoria:nth-of-type(2) {
+  rotate: 1deg;
+}
+.categoria:nth-of-type(3) {
+  rotate: -0.5deg;
+}
+.categoria:nth-of-type(4) {
+  rotate: 1.5deg;
 }
 
 .categoria__titulo {
-  margin-top: var(--espacio-6);
-  padding-bottom: var(--espacio-1);
-  border-bottom: 1px solid var(--color-texto);
+  padding-bottom: var(--espacio-2);
+  border-bottom: 1px solid var(--color-tinta);
   font-size: var(--texto-lg);
-  font-stretch: 80%;
 }
 
 .platos {
+  margin: 0;
   padding: 0;
   list-style: none;
 }
 
 .plato {
-  display: grid;
-  grid-template-columns: 6rem 1fr;
-  gap: var(--espacio-4);
-  padding-block: var(--espacio-4);
-  border-bottom: 1px solid var(--color-borde);
-  break-inside: avoid;
-  scroll-margin-top: 5rem; /* que el ancla #plato-x no quede bajo los filtros */
-}
-
-.plato img {
-  width: 100%;
-  aspect-ratio: 1;
-  object-fit: cover;
-  outline: 1px solid rgb(0 0 0 / 0.08);
-  outline-offset: -1px;
+  padding-block: var(--espacio-3);
+  border-bottom: 1px dashed var(--color-borde);
+  scroll-margin-top: 5rem;
 }
 
 .plato__cabeza {
   display: flex;
   justify-content: space-between;
   gap: var(--espacio-3);
+  font-family: var(--fuente-texto);
   font-size: var(--texto-base);
-  font-stretch: 100%;
-  line-height: 1.2;
+  font-weight: 700;
+  letter-spacing: 0;
 }
 
 .plato__descripcion {
   margin-top: var(--espacio-1);
-  color: var(--color-texto-suave);
+  color: var(--color-tinta-suave);
   font-size: var(--texto-sm);
-  line-height: 1.45;
+  line-height: 1.4;
 }
 
 .plato__etiquetas {
@@ -493,20 +505,29 @@ html:has(body.con-pedido) {
 
 .sello-texto {
   padding: 0 var(--espacio-2);
-  border: 1px solid var(--color-texto-suave);
-  color: var(--color-texto-suave);
-  font-family: var(--fuente-titulos);
+  border: 1px solid var(--color-tinta-suave);
+  color: var(--color-tinta-suave);
   font-size: 0.75rem;
   font-weight: 600;
 }
 
+.precio {
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
 .cantidad {
-  margin-top: var(--espacio-3);
+  margin-top: var(--espacio-2);
 }
 
 .cantidad__agregar {
   min-height: var(--tamano-tactil);
   padding-inline: var(--espacio-4);
+  border: 2px solid var(--color-tinta);
+  border-radius: var(--radio-boton);
+  background: var(--color-aji);
+  color: var(--color-tinta);
+  font-weight: 700;
 }
 
 .cantidad__control {
@@ -525,88 +546,93 @@ html:has(body.con-pedido) {
   place-items: center;
   width: var(--tamano-tactil);
   height: var(--tamano-tactil);
-  border: 2px solid var(--color-texto);
+  border: 2px solid var(--color-tinta);
   border-radius: var(--radio-boton);
   background: transparent;
-  font-family: var(--fuente-titulos);
+  color: var(--color-tinta);
   font-size: 1.35rem;
-  font-weight: 800;
+  font-weight: 700;
   cursor: pointer;
 }
 
-.cantidad__boton:active {
+.cantidad__boton:active,
+.cantidad__agregar:active {
   transform: scale(0.97);
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .cantidad__boton:hover,
-  .filtros button[aria-pressed='false']:hover {
+  .cantidad__boton:hover {
     background: var(--color-superficie);
   }
 }
 
 .cantidad__valor {
   min-width: 2.2rem;
-  font-family: var(--fuente-titulos);
-  font-size: var(--texto-lg);
-  font-weight: 800;
+  font-weight: 700;
   font-variant-numeric: tabular-nums;
   text-align: center;
 }
 
 .plato--en-pedido .plato__nombre {
   text-decoration: underline;
-  text-decoration-color: var(--color-acento);
-  text-decoration-thickness: 0.25em;
-  text-underline-offset: -0.1em;
+  text-decoration-color: var(--color-aji);
+  text-decoration-thickness: 0.3em;
+  text-underline-offset: -0.15em;
   text-decoration-skip-ink: none;
 }
 
-@media (hover: hover) and (pointer: fine) {
-  .plato img {
-    transition: transform var(--duracion-media) ease;
+@media (min-width: 60rem) {
+  .carta {
+    padding-inline: var(--espacio-5);
   }
 
-  .plato:hover img {
-    transform: scale(1.03);
-  }
-}
-
-@media (min-width: 48rem) {
-  .categoria .platos {
-    columns: 2;
-    column-gap: var(--espacio-7);
-    column-rule: 1px solid var(--color-borde);
-  }
-
-  .plato {
-    grid-template-columns: 7.5rem 1fr;
+  /* Escritorio: 4 comandas en fila, cada una sobre su bowl */
+  .carta__cuerpo {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    column-gap: var(--espacio-5);
+    margin: 0;
+    padding: var(--espacio-3) 0 0;
+    overflow: visible;
   }
 }
 
-/* ── Barra de pedido ── */
+/* El plato que vuela a la barra cuando se agrega (microinteracción de la función estrella) */
+.plato-volador {
+  position: fixed;
+  z-index: calc(var(--capa-flotante) + 2);
+  padding: var(--espacio-1) var(--espacio-3);
+  background: var(--color-papel);
+  color: var(--color-tinta);
+  font-weight: 700;
+  font-size: var(--texto-sm);
+  box-shadow: var(--sombra-papel);
+  pointer-events: none;
+}
+
+/* ── Barra de pedido: el ticket que asoma abajo ── */
 .barra-pedido {
   position: fixed;
-  inset: auto 0 0;
+  inset: auto var(--espacio-2) 0;
   z-index: var(--capa-flotante);
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: var(--espacio-4);
-  padding: var(--espacio-3) var(--margen-lateral)
-    calc(var(--espacio-3) + env(safe-area-inset-bottom));
-  background: var(--color-texto);
-  color: var(--color-fondo);
-  font-family: var(--fuente-titulos);
+  max-width: 40rem;
+  margin-inline: auto;
+  padding: var(--espacio-3) var(--espacio-4) calc(var(--espacio-3) + env(safe-area-inset-bottom));
+  background: var(--color-tinta);
+  color: var(--color-papel);
   font-weight: 700;
   font-variant-numeric: tabular-nums;
+  box-shadow: 0 -10px 30px rgb(0 0 0 / 0.3);
+  --color-foco: var(--color-aji);
   transition:
     transform var(--duracion-media) var(--curva-impresion),
     visibility 0s;
 }
 
-/* Oculta pero animable: visibility la saca del orden de tabulación y del lector.
-   (No se usa el atributo hidden: display: none no se puede animar.) */
 .barra-pedido:not(.barra-pedido--visible) {
   visibility: hidden;
   transform: translateY(110%);
@@ -615,13 +641,22 @@ html:has(body.con-pedido) {
     visibility 0s var(--duracion-media);
 }
 
-.barra-pedido__boton {
-  border-color: var(--color-acento);
-  background: var(--color-acento);
-  color: var(--color-sobre-acento);
+.barra-pedido[data-latido] {
+  animation: latido var(--duracion-media) var(--curva-impresion);
 }
 
-/* Con pedido, el botón flotante de WhatsApp sube para no tapar la barra */
+@keyframes latido {
+  50% {
+    transform: scale(1.03);
+  }
+}
+
+.barra-pedido__boton {
+  border: 2px solid var(--color-aji);
+  background: var(--color-aji);
+  color: var(--color-tinta);
+}
+
 .con-pedido .boton-flotante {
   bottom: calc(4.75rem + env(safe-area-inset-bottom));
 }
@@ -630,7 +665,7 @@ html:has(body.con-pedido) {
   padding-bottom: calc(var(--espacio-8) + 5rem);
 }
 
-/* ── La comanda (momento firma) ── */
+/* ── La comanda: el ticket que imprime la cocina ── */
 .comanda {
   width: min(100%, 30rem);
   max-width: 100%;
@@ -639,7 +674,6 @@ html:has(body.con-pedido) {
   padding: 0;
   border: 0;
   background: transparent;
-  color: var(--color-texto);
   overflow: visible;
   transition:
     transform 300ms var(--curva-impresion),
@@ -652,8 +686,18 @@ html:has(body.con-pedido) {
   }
 }
 
+/* Con View Transition, la entrada la hace la transición (barra → comanda): sin doble animación */
+::view-transition-group(pedido) {
+  animation-duration: 300ms;
+  animation-timing-function: var(--curva-impresion);
+}
+
+html:active-view-transition .comanda[open] {
+  transition: none;
+}
+
 .comanda::backdrop {
-  background: rgb(26 23 20 / 0.45);
+  background: rgb(31 23 18 / 0.5);
   transition: opacity 300ms var(--curva-impresion);
 }
 
@@ -663,7 +707,6 @@ html:has(body.con-pedido) {
   }
 }
 
-/* Salida más suave que la entrada: desplazamiento corto + opacidad, 200 ms */
 .comanda--cerrando {
   transform: translateY(24px);
   opacity: 0;
@@ -683,14 +726,12 @@ html:has(body.con-pedido) {
   gap: var(--espacio-4);
   max-height: 90dvh;
   overflow: auto;
-  overscroll-behavior: contain; /* al llegar al final de la comanda no se desplaza la página */
+  overscroll-behavior: contain;
   padding: var(--espacio-6) var(--espacio-5) calc(var(--espacio-5) + env(safe-area-inset-bottom));
-  background-color: #fbfaf6;
-  /* perforación del papel de la comanda */
   background-image: radial-gradient(circle at 8px 0, var(--color-borde) 4px, transparent 4.5px);
   background-size: 16px 10px;
   background-repeat: repeat-x;
-  box-shadow: var(--sombra-comanda);
+  box-shadow: 0 -12px 40px rgb(31 23 18 / 0.3);
 }
 
 .comanda__titulo {
@@ -705,6 +746,7 @@ html:has(body.con-pedido) {
   height: var(--tamano-tactil);
   border: 0;
   background: transparent;
+  color: var(--color-tinta);
   font-size: 1.75rem;
   line-height: 1;
   cursor: pointer;
@@ -721,7 +763,6 @@ html:has(body.con-pedido) {
   gap: 0 var(--espacio-2);
   padding-block: var(--espacio-2);
   border-bottom: 1px dashed var(--color-borde);
-  font-family: var(--fuente-titulos);
   font-weight: 600;
 }
 
@@ -746,8 +787,7 @@ html:has(body.con-pedido) {
   justify-content: space-between;
   font-family: var(--fuente-titulos);
   font-size: var(--texto-xl);
-  font-weight: 900;
-  font-stretch: 75%;
+  font-weight: 700;
 }
 
 .comanda__entrega {
@@ -755,8 +795,8 @@ html:has(body.con-pedido) {
   border: 0;
 }
 
-.comanda__entrega legend {
-  font-family: var(--fuente-titulos);
+.comanda__entrega legend,
+.campo__etiqueta {
   font-weight: 700;
 }
 
@@ -773,50 +813,46 @@ html:has(body.con-pedido) {
   gap: var(--espacio-2);
   min-height: var(--tamano-tactil);
   padding: var(--espacio-2) var(--espacio-3);
-  border: 2px solid var(--color-texto);
+  border: 2px solid var(--color-tinta);
   border-radius: var(--radio-boton);
-  font-family: var(--fuente-titulos);
   font-weight: 700;
   cursor: pointer;
 }
 
 .opcion input {
-  accent-color: var(--color-acento); /* sin el azul del sistema */
+  accent-color: var(--color-tinta);
 }
 
 .opcion:has(input:checked) {
-  background: var(--color-texto);
-  color: var(--color-fondo);
+  background: var(--color-tinta);
+  color: var(--color-papel);
+}
+
+.opcion input:checked {
+  accent-color: var(--color-aji); /* el punto se ve sobre la tinta */
 }
 
 .opcion:has(input:focus-visible) {
-  outline: 3px solid var(--color-foco);
+  outline: 3px solid var(--color-tinta);
   outline-offset: 3px;
 }
 
 .comanda__nota-delivery {
   margin-top: var(--espacio-2);
-  color: var(--color-texto-suave);
+  color: var(--color-tinta-suave);
   font-size: var(--texto-sm);
 }
 
-.comanda .campo input {
+.comanda .campo input,
+.reservas .campo input {
   background: #fff;
-}
-
-.campo__etiqueta,
-.comanda__entrega legend {
-  font-family: var(--fuente-titulos);
-  font-weight: 700;
 }
 
 .comanda__enviar {
   width: 100%;
-}
-
-.comanda__enviar:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
+  border: 2px solid var(--color-tinta);
+  background: var(--color-aji);
+  color: var(--color-tinta);
 }
 
 .comanda__vacia {
@@ -825,35 +861,63 @@ html:has(body.con-pedido) {
   justify-items: start;
 }
 
-/* ── Reservas ── */
+/* Botones dentro del papel: tinta sobre papel */
+.comanda__papel .boton--secundario,
+.reservas .boton {
+  border: 2px solid var(--color-tinta);
+  background: var(--color-aji);
+  color: var(--color-tinta);
+}
+
+/* ── Reservas: el pedido de mesa también es una comanda colgada ── */
 .reservas {
   display: grid;
   gap: var(--espacio-5);
-  padding-block: var(--espacio-7);
-  border-top: 2px solid var(--color-texto);
+  width: min(100% - 2 * var(--margen-lateral), var(--ancho-contenido));
+  margin-inline: auto;
+  padding-block: var(--espacio-seccion);
+}
+
+.reservas__titulo {
+  font-size: var(--texto-3xl);
 }
 
 .reservas__texto p {
   max-width: 34ch;
   margin-top: var(--espacio-2);
-  color: var(--color-texto-suave);
+}
+
+.reservas form {
+  position: relative;
+  padding: var(--espacio-6) var(--espacio-5) var(--espacio-5);
+  box-shadow: var(--sombra-papel);
+  rotate: -0.5deg;
 }
 
 @media (min-width: 60rem) {
   .reservas {
-    grid-template-columns: 1fr 1.4fr;
+    grid-template-columns: 1fr 1.3fr;
     gap: var(--espacio-8);
+    align-items: start;
   }
 }
 
-/* ── El local: reportaje gráfico ── */
-.el-local {
+/* ── El local, reseñas, mapa y QR: con el mismo papel y la misma tinta ── */
+.el-local,
+.qr-carta {
+  width: min(100% - 2 * var(--margen-lateral), var(--ancho-contenido));
+  margin-inline: auto;
   padding-block: var(--espacio-7);
-  border-top: 2px solid var(--color-texto);
 }
 
 .el-local figure {
   margin-top: var(--espacio-4);
+  padding: var(--espacio-3) var(--espacio-3) var(--espacio-5);
+  background: var(--color-papel);
+  color: var(--color-tinta);
+  box-shadow: var(--sombra-papel);
+  rotate: 1deg;
+  max-width: 44rem;
 }
 
 .el-local img {
@@ -862,42 +926,31 @@ html:has(body.con-pedido) {
   object-fit: cover;
 }
 
-.el-local figcaption,
-.qr-carta p {
+.el-local figcaption {
   margin-top: var(--espacio-2);
-  color: var(--color-texto-suave);
-  font-style: italic;
+  color: var(--color-tinta-suave);
+  font-size: var(--texto-sm);
 }
 
-/* ── Núcleo con estilo de diario ── */
 .resenas {
-  border-top: 2px solid var(--color-texto);
   background: none;
 }
 
 .resena {
   border: 0;
-  border-top: 1px solid var(--color-texto);
-  background: none;
-  padding-inline: 0;
+  box-shadow: var(--sombra-papel);
 }
 
-.resena__texto {
-  font-style: italic;
-}
-
-.mapa {
-  border-top: 2px solid var(--color-texto);
-}
-
-/* ── QR de la carta ── */
 .qr-carta {
   display: grid;
   grid-template-columns: 8rem 1fr;
   gap: var(--espacio-5);
   align-items: center;
-  padding-block: var(--espacio-6);
-  border-top: 2px solid var(--color-texto);
+}
+
+.qr-carta svg {
+  padding: var(--espacio-2);
+  background: var(--color-papel);
 }
 
 .qr-carta h2 {
@@ -906,29 +959,35 @@ html:has(body.con-pedido) {
 
 .qr-carta .boton {
   margin-top: var(--espacio-3);
+  border: 2px solid var(--color-texto);
 }
 
-/* ── Movimiento reducido: nada se mueve (brief, paso 4) ── */
+/* Superficies oscuras: el foco pasa a ají */
+.aviso-demo,
+.pie {
+  --color-foco: var(--color-aji);
+}
+
+/* ── Movimiento reducido: nada se mueve ── */
 @media (prefers-reduced-motion: reduce) {
-  .boton,
-  .boton:active,
-  .cantidad__boton:active,
-  .plato img,
+  .comanda-colgada--pedir,
   .barra-pedido,
   .barra-pedido:not(.barra-pedido--visible),
   .comanda,
   .comanda::backdrop,
-  .comanda--cerrando {
+  .comanda--cerrando,
+  .escena canvas,
+  .etiquetas {
     transition: none;
   }
 
-  .boton:active,
   .cantidad__boton:active,
-  .plato:hover img {
+  .cantidad__agregar:active {
     transform: none;
   }
 
-  .linea--imprimir {
+  .linea--imprimir,
+  .barra-pedido[data-latido] {
     animation: none;
   }
 }

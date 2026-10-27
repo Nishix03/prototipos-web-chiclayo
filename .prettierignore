@@ -2,3 +2,5 @@ dist/
 graphify-out/
 package-lock.json
 docs/PLAN.md
+.maqueta/
+.storyboard/

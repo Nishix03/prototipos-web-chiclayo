@@ -1,0 +1,109 @@
+/*
+ * Tokens del restaurante v2 «La olla manda» (paso 3 del brief).
+ * Usan los nombres del núcleo (core/tokens.css) y solo agregan los que el núcleo no tiene.
+ * Contraste medido sobre cada par que la página usa de verdad (WCAG 2.1 AA).
+ */
+
+@font-face {
+  font-family: 'Bricolage Grotesque Variable';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 600 800;
+  src: url('./fuentes/bricolage-titulos.woff2') format('woff2-variations');
+}
+
+@font-face {
+  font-family: 'Literata Variable';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400 700;
+  src: url('./fuentes/literata-texto.woff2') format('woff2-variations');
+}
+
+/* Respaldo mientras llega Bricolage: Arial ajustada al ancho medio de la grotesca (sin saltos) */
+@font-face {
+  font-family: 'Bricolage respaldo';
+  src: local('Arial'), local('Helvetica'), local('Roboto');
+  size-adjust: 96%;
+}
+
+:root:root:root {
+  color-scheme: light;
+
+  /* ── Paleta (en el sitio real irá en negocio.json → tema) ── */
+  --color-fondo: #d6a27a; /* adobe */
+  --color-texto: #22150e; /* hollín: 7.88:1 sobre adobe */
+  --color-marca: #9c4a26; /* barro cocido */
+  --color-sobre-marca: #fff7ee; /* 5.78:1 sobre barro */
+  --color-acento: #f2b705; /* ají amarillo */
+  --color-sobre-acento: #22150e; /* 9.78:1 */
+
+  /* ── Derivados del rubro ── */
+  --color-superficie: #e8e1d9; /* ceniza clara: tarjetas, fichas, comanda (hollín 13.71:1) */
+  --color-texto-suave: #4a2f1f; /* 5.42:1 sobre adobe; 9.8:1 sobre ceniza */
+  --color-borde: #22150e; /* los bordes de controles necesitan 3:1 (1.4.11): hollín */
+  --color-marca-presionada: #7a3a1d; /* 8.08:1 con su texto */
+  --color-foco: #22150e; /* barro sobre adobe da 2.72:1: el foco es hollín */
+
+  /* Pizarra (de la dirección C): carta y menú del día */
+  --color-pizarra: #2c4336;
+  --color-tiza: #e8e1d9; /* 8.25:1 sobre pizarra */
+  --color-tiza-suave: color-mix(in oklch, var(--color-tiza) 78%, var(--color-pizarra)); /* ≥ 5:1 */
+  --color-foco-pizarra: #f2b705; /* 5.88:1 sobre pizarra */
+
+  /* Estados: verde y rojo del núcleo dan ~3:1 sobre adobe → siempre sobre una ficha de ceniza */
+  --color-abierto: #18683b; /* 5.3:1 sobre ceniza */
+  --color-cerrado: #a3332b; /* 5.4:1 sobre ceniza */
+
+  /* ── Tipografía ── */
+  --fuente-titulos: 'Bricolage Grotesque Variable', 'Bricolage respaldo', sans-serif;
+  --fuente-texto: 'Literata Variable', Georgia, serif;
+  --peso-titulos: 750;
+  --ancho-titulos: 100%; /* el ancho va fijo en el archivo recortado (wdth 88) */
+  --interlineado-titulos: 1;
+  --interlineado-texto: 1.65; /* serif de lectura: más aire */
+
+  /*
+   * Escala fluida (360 → 1280 px), razón ~1.25 en celular y ~1.333 en escritorio.
+   * base 16→18 · lg 18→22 · xl 22→30 · 2xl 28→44 · 3xl 36→64 · display 34→88
+   */
+  --texto-display: clamp(2.125rem, 0.9rem + 5.6vw, 5.5rem); /* 34 px a 360, 88 px a 1280 */
+
+  /* ── Grilla ── */
+  --ancho-contenido: 76rem;
+  --columnas: 4; /* celular; 12 desde 60rem */
+  --hueco-grilla: clamp(1rem, 0.6rem + 1.6vw, 2rem);
+
+  /* ── Forma: barro = curvas generosas; la pizarra lleva marco recto de madera ── */
+  --radio-sm: 0.5rem;
+  --radio-md: 1rem;
+  --radio-lg: 2rem;
+  --radio-boton: var(--radio-pildora);
+  --radio-pizarra: 0.375rem;
+  --marco-pizarra: 0.625rem solid #5b3520; /* madera de algarrobo */
+
+  /* Sombras teñidas de hollín, nunca gris neutro */
+  --sombra-sm: 0 1px 2px rgb(34 21 14 / 0.18);
+  --sombra-md: 0 10px 24px -6px rgb(34 21 14 / 0.28);
+  --sombra-lg: 0 28px 56px -12px rgb(34 21 14 / 0.38);
+  --sombra-pizarra: inset 0 0 0 1px rgb(255 255 255 / 0.06), var(--sombra-md);
+
+  /* ── Movimiento (paso 4) ── */
+  --duracion-rapida: 150ms;
+  --duracion-media: 250ms;
+  --duracion-pesada: 500ms; /* solo lo decorativo grande: titulares, capas de la carta */
+  --curva-salida: cubic-bezier(0.165, 0.84, 0.44, 1); /* ease-out-quart: lo que entra */
+  --curva-pesada: cubic-bezier(0.23, 1, 0.32, 1); /* ease-out-quint: entra y se asienta */
+  --curva-movimiento: cubic-bezier(
+    0.645,
+    0.045,
+    0.355,
+    1
+  ); /* ease-in-out-cubic: lo que ya está en pantalla */
+}
+
+@media (min-width: 60rem) {
+  :root:root:root {
+    --columnas: 12;
+  }
+}
