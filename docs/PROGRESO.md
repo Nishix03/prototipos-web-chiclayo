@@ -44,9 +44,9 @@ Spa, veterinaria y gimnasio usarán nombres nuevos, verificados de la misma form
 
 | Rubro          | Estado                 | Dirección elegida | Lighthouse móvil / escritorio | Axe | PR           |
 | -------------- | ---------------------- | ----------------- | ----------------------------- | --- | ------------ |
-| Restaurante v2 | Construido; PR abierto | C «El pase»       | 92 / 89                       | 0   | ver bitácora |
-| Barbería       | pendiente              | —                 | —                             | —   | —            |
-| Clínica dental | pendiente              | —                 | —                             | —   | —            |
+| Restaurante v2 | ✔ publicado            | C «El pase»       | 92 / 89                       | 0   | #4           |
+| Barbería       | ✔ publicado            | A «Espejo»        | 86 / 98                       | 0   | #5           |
+| Clínica dental | Construida; PR abierto | A «Arco»          | 93 / 100                      | 0   | ver bitácora |
 | Spa / Estética | pendiente              | —                 | —                             | —   | —            |
 | Veterinaria    | pendiente              | —                 | —                             | —   | —            |
 | Gimnasio       | pendiente              | —                 | —                             | —   | —            |
@@ -95,3 +95,25 @@ Spa, veterinaria y gimnasio usarán nombres nuevos, verificados de la misma form
   - las pruebas dejan correr el reloj.
 - **Lighthouse:** móvil 86 (aceptado, ADR 008) · escritorio 98. Axe 0.
 - **Qué sigue:** fusionar el PR de la barbería y empezar la **clínica dental** («Calma clínica», «Sonrisa Clara · Demo») en `feat/rubro-dental`.
+- **Fusionado** el PR #5 con merge commit (checks de GitHub en verde). Publicado en https://nishix03.github.io/prototipos-web-chiclayo/barberia/
+
+### 2026-10-27 · Clínica dental «Calma clínica»
+
+- **3 direcciones** como variantes de la página real: A Arco, B Columna, C Bruma.
+- **Elegida: A «Arco».**
+  - Las piezas de vidrio se cierran en una sonrisa bajo el titular.
+  - B perdía la sonrisa (fila recta).
+  - C se parecía al restaurante por la serifa cursiva y la niebla costaba más.
+  - La tabla está en `docs/visual/dental.md`.
+- **Función estrella:** el cuestionario «¿Qué tratamiento necesito?», una pregunta a la vez, con View Transitions. El resultado:
+  - avisa que es una orientación y no un diagnóstico;
+  - deja elegido el motivo de la cita de evaluación;
+  - agrega una línea al mensaje de WhatsApp.
+- **Componentes del rubro:**
+  - precios «desde» con duración;
+  - equipo con sello de colegiatura «COP 00000 (demo)»;
+  - preguntas frecuentes con `details`.
+- **Sin antes y después:** con datos de demo sería fabricar resultados.
+- **Validación al construir:** si una respuesta del cuestionario apunta a una pregunta o a un tratamiento que no existe, el build se detiene con un error en español.
+- **Lighthouse:** móvil 93 · escritorio 100. Axe 0. `test:teclado` 52/52.
+- **Qué sigue:** fusionar el PR de la clínica dental y empezar el **spa** («Agua quieta», shader de agua) en `feat/rubro-spa`. Antes, un nombre de demo nuevo verificado con búsqueda web.

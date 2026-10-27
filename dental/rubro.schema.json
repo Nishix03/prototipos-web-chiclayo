@@ -1,0 +1,130 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Negocio · clínica dental",
+  "description": "Campos propios de la clínica dental sobre la base común (ADR 005): textos, tratamientos con precio «desde» y duración, el cuestionario orientador (árbol de decisión), el equipo y las preguntas frecuentes.",
+  "type": "object",
+  "allOf": [{ "$ref": "../core/negocio.schema.json" }],
+  "required": ["textos", "tratamientos", "cuestionario", "equipo", "preguntas"],
+  "properties": {
+    "rubro": { "const": "dental" },
+    "textos": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "titular",
+        "bajada",
+        "introCuestionario",
+        "avisoCuestionario",
+        "introTratamientos",
+        "introEvaluacion"
+      ],
+      "properties": {
+        "titular": {
+          "type": "string",
+          "maxLength": 40,
+          "description": "6 palabras o menos (exigencia 2)"
+        },
+        "bajada": { "type": "string", "maxLength": 200 },
+        "introCuestionario": { "type": "string", "maxLength": 160 },
+        "avisoCuestionario": {
+          "type": "string",
+          "maxLength": 160,
+          "description": "El cuestionario orienta, no diagnostica: este aviso se muestra siempre con el resultado"
+        },
+        "introTratamientos": { "type": "string", "maxLength": 160 },
+        "introEvaluacion": { "type": "string", "maxLength": 160 }
+      }
+    },
+    "tratamientos": {
+      "type": "array",
+      "minItems": 3,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "nombre", "desde", "duracion", "descripcion"],
+        "properties": {
+          "id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+          "nombre": { "type": "string", "maxLength": 40 },
+          "desde": { "$ref": "../core/negocio.schema.json#/$defs/precio" },
+          "duracion": {
+            "type": "string",
+            "maxLength": 40,
+            "description": "Texto libre: «40 min», «2 citas», «18 a 24 meses»"
+          },
+          "descripcion": { "type": "string", "maxLength": 140 }
+        }
+      }
+    },
+    "cuestionario": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["inicio", "preguntas"],
+      "properties": {
+        "inicio": { "type": "string" },
+        "preguntas": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["id", "texto", "opciones"],
+            "properties": {
+              "id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+              "texto": { "type": "string", "maxLength": 80 },
+              "opciones": {
+                "type": "array",
+                "minItems": 2,
+                "maxItems": 4,
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": ["texto"],
+                  "properties": {
+                    "texto": { "type": "string", "maxLength": 60 },
+                    "siguiente": { "type": "string", "description": "id de la siguiente pregunta" },
+                    "resultado": {
+                      "type": "string",
+                      "description": "id del tratamiento recomendado"
+                    }
+                  },
+                  "oneOf": [{ "required": ["siguiente"] }, { "required": ["resultado"] }]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "equipo": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["nombre", "especialidad", "colegiatura"],
+        "properties": {
+          "nombre": { "type": "string", "maxLength": 60 },
+          "especialidad": { "type": "string", "maxLength": 80 },
+          "colegiatura": {
+            "type": "string",
+            "maxLength": 30,
+            "description": "Número del Colegio Odontológico del Perú (COP). En una demo, «COP 00000 (demo)»: nunca se inventa una credencial."
+          }
+        }
+      }
+    },
+    "preguntas": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["pregunta", "respuesta"],
+        "properties": {
+          "pregunta": { "type": "string", "maxLength": 100 },
+          "respuesta": { "type": "string", "maxLength": 400 }
+        }
+      }
+    }
+  },
+  "unevaluatedProperties": false
+}

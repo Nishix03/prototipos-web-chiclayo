@@ -9,7 +9,7 @@
 // Antes de escribir nada, revisa que cada carácter de negocio.json y de los componentes
 // esté en el recorte: si falta uno, el script se detiene con un error en español.
 //
-// Las dos fuentes son SIL OFL 1.1 sin «Reserved Font Name»: se pueden recortar si la
+// Todas las fuentes son SIL OFL 1.1 sin «Reserved Font Name»: se pueden recortar si la
 // licencia viaja con ellas, por eso se copia junto a cada archivo.
 
 import { readFileSync, writeFileSync, mkdirSync, readdirSync, copyFileSync } from 'node:fs';
@@ -58,6 +58,14 @@ const FUENTES = [
     entrada: 'files/manrope-latin-wght-normal.woff2',
     salida: 'manrope-texto.woff2',
     ejes: { wght: { min: 400, max: 700 } },
+  },
+  // Clínica dental «Calma clínica» (dirección A «Arco»): Sora en todo, titulares y texto
+  {
+    carpeta: 'dental',
+    paquete: 'sora',
+    entrada: 'files/sora-latin-wght-normal.woff2',
+    salida: 'sora.woff2',
+    ejes: { wght: { min: 400, max: 600 } },
   },
 ];
 

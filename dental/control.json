@@ -1,0 +1,8 @@
+{
+  "seccion": "#cuestionario",
+  "clics": [
+    "[data-siguiente=\"pieza\"]",
+    "[data-siguiente=\"mejorar\"]",
+    "[data-resultado=\"ortodoncia\"]"
+  ]
+}

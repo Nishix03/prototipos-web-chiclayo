@@ -69,6 +69,7 @@ core/
 _ejemplo/                            página de prueba y plantilla para copiar
 restaurante/                         rubro 1 «El pase»: riel de comandas, ingredientes 3D que caen en sus bowls, comanda y reservas
 barberia/                            rubro 2 «Filo»: cromo líquido 3D, letrero con la espera de hoy y turno con corte, día, barbero y hora
+dental/                              rubro 3 «Calma clínica»: sonrisa de vidrio 3D, cuestionario «¿Qué tratamiento necesito?» y precios «desde»
 docs/decisiones/                     ADR
 docs/visual/                         brief visual de cada rubro, con maqueta y capturas
 pruebas/teclado/                     pruebas E2E con Playwright (teclado y horario)

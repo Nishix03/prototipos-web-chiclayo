@@ -1,0 +1,203 @@
+{
+  "$schema": "./rubro.schema.json",
+  "demo": true,
+  "rubro": "dental",
+  "nombre": "Sonrisa Clara · Demo",
+  "eslogan": "Clínica dental en Chiclayo",
+  "descripcion": "Demo de clínica dental en Chiclayo: un cuestionario te orienta sobre el tratamiento, precios «desde» y cita por WhatsApp. Datos ficticios.",
+  "tituloSeo": "Sonrisa Clara (demo) · Clínica dental en Chiclayo",
+  "textos": {
+    "titular": "¿Qué tratamiento necesitas?",
+    "bajada": "Clínica dental en Chiclayo. Responde 4 preguntas, mira el tratamiento que podría servirte y agenda tu evaluación por WhatsApp.",
+    "introCuestionario": "Responde con calma: cada respuesta lleva a la siguiente pregunta.",
+    "avisoCuestionario": "Esto es una orientación, no un diagnóstico: lo confirma el dentista en tu evaluación.",
+    "introTratamientos": "Precios «desde»: el monto final depende de lo que veamos en la evaluación.",
+    "introEvaluacion": "Dinos qué te trae y cuándo te acomoda. Te respondemos por WhatsApp para confirmar la hora."
+  },
+  "contacto": {
+    "whatsapp": "995258351",
+    "mensajeWhatsapp": "Hola, vi la página de Sonrisa Clara (demo) y tengo una consulta."
+  },
+  "ubicacion": {
+    "direccion": "Av. de Ejemplo 123",
+    "referencia": "Dirección ficticia; el mapa apunta al centro de Chiclayo",
+    "distrito": "Chiclayo",
+    "ciudad": "Chiclayo",
+    "region": "Lambayeque",
+    "lat": -6.7714,
+    "lng": -79.8409
+  },
+  "horario": {
+    "lun": [
+      ["09:00", "13:00"],
+      ["15:00", "20:00"]
+    ],
+    "mar": [
+      ["09:00", "13:00"],
+      ["15:00", "20:00"]
+    ],
+    "mie": [
+      ["09:00", "13:00"],
+      ["15:00", "20:00"]
+    ],
+    "jue": [
+      ["09:00", "13:00"],
+      ["15:00", "20:00"]
+    ],
+    "vie": [
+      ["09:00", "13:00"],
+      ["15:00", "20:00"]
+    ],
+    "sab": [["09:00", "13:00"]],
+    "dom": []
+  },
+  "tema": {
+    "marca": "#0f6b5c",
+    "acento": "#d8f1ea",
+    "fondo": "#f6faf8",
+    "texto": "#13302b"
+  },
+  "imagenes": {
+    "hero": {
+      "src": "img/calma-1440.webp",
+      "alt": "Formas de vidrio esmerilado color menta alineándose en un arco (ilustración 3D)"
+    },
+    "og": {
+      "src": "img/calma-1440.webp",
+      "alt": "Sonrisa Clara (demo), clínica dental en Chiclayo"
+    }
+  },
+  "tratamientos": [
+    {
+      "id": "limpieza",
+      "nombre": "Limpieza dental",
+      "desde": 80,
+      "duracion": "40 min",
+      "descripcion": "Retiro de sarro y placa, y pulido. Incluye revisión de encías."
+    },
+    {
+      "id": "resina",
+      "nombre": "Curación con resina",
+      "desde": 120,
+      "duracion": "45 min por pieza",
+      "descripcion": "Se retira la caries y la pieza se rellena con resina del color del diente."
+    },
+    {
+      "id": "endodoncia",
+      "nombre": "Endodoncia",
+      "desde": 450,
+      "duracion": "1 a 2 citas",
+      "descripcion": "Tratamiento del nervio de una pieza con dolor o infección, para conservarla."
+    },
+    {
+      "id": "blanqueamiento",
+      "nombre": "Blanqueamiento",
+      "desde": 600,
+      "duracion": "60 min",
+      "descripcion": "Aclarado del color de los dientes en consultorio, después de una limpieza."
+    },
+    {
+      "id": "ortodoncia",
+      "nombre": "Ortodoncia",
+      "desde": 2500,
+      "duracion": "18 a 24 meses",
+      "descripcion": "Brackets o alineadores para ordenar los dientes y la mordida."
+    },
+    {
+      "id": "implante",
+      "nombre": "Implante dental",
+      "desde": 3500,
+      "duracion": "3 a 6 meses",
+      "descripcion": "Reemplazo de una pieza que falta con una raíz de titanio y una corona."
+    }
+  ],
+  "cuestionario": {
+    "inicio": "dolor",
+    "preguntas": [
+      {
+        "id": "dolor",
+        "texto": "¿Te duele algún diente?",
+        "opciones": [
+          { "texto": "Sí, un dolor fuerte o que no se pasa", "resultado": "endodoncia" },
+          { "texto": "A veces, con frío, calor o dulce", "siguiente": "sensibilidad" },
+          { "texto": "No me duele", "siguiente": "pieza" }
+        ]
+      },
+      {
+        "id": "sensibilidad",
+        "texto": "¿Ves alguna mancha oscura o un agujero en el diente?",
+        "opciones": [
+          { "texto": "Sí", "resultado": "resina" },
+          { "texto": "No, o no estoy seguro", "resultado": "limpieza" }
+        ]
+      },
+      {
+        "id": "pieza",
+        "texto": "¿Te falta alguna pieza?",
+        "opciones": [
+          { "texto": "Sí", "resultado": "implante" },
+          { "texto": "No", "siguiente": "mejorar" }
+        ]
+      },
+      {
+        "id": "mejorar",
+        "texto": "¿Qué te gustaría mejorar?",
+        "opciones": [
+          { "texto": "El color de mis dientes", "resultado": "blanqueamiento" },
+          { "texto": "Que estén más alineados", "resultado": "ortodoncia" },
+          { "texto": "Nada en especial: solo un control", "resultado": "limpieza" }
+        ]
+      }
+    ]
+  },
+  "equipo": [
+    {
+      "nombre": "Dra. de demostración",
+      "especialidad": "Odontología general y estética",
+      "colegiatura": "COP 00000 (demo)"
+    },
+    {
+      "nombre": "Dr. de demostración",
+      "especialidad": "Ortodoncia",
+      "colegiatura": "COP 00000 (demo)"
+    }
+  ],
+  "preguntas": [
+    {
+      "pregunta": "¿Qué pasa en la evaluación?",
+      "respuesta": "El dentista revisa tus dientes y encías, te explica lo que ve y te dice qué tratamiento recomienda y cuánto costaría. Recién ahí decides."
+    },
+    {
+      "pregunta": "¿Por qué los precios dicen «desde»?",
+      "respuesta": "Porque el monto final depende de cada caso: por ejemplo, de cuántas piezas necesitan tratamiento. En la evaluación te damos el precio exacto."
+    },
+    {
+      "pregunta": "¿El cuestionario reemplaza a la evaluación?",
+      "respuesta": "No. Solo te orienta para saber qué preguntar. El diagnóstico lo hace el dentista en la consulta."
+    },
+    {
+      "pregunta": "¿Cómo agendo?",
+      "respuesta": "Desde el formulario de esta página: se arma un mensaje de WhatsApp con tus datos y te respondemos para confirmar la hora."
+    }
+  ],
+  "resenas": {
+    "fuente": "Reseñas de demostración: textos de ejemplo, no son opiniones reales.",
+    "items": [
+      {
+        "texto": "Reseña de ejemplo: me explicaron cada paso antes de empezar y pude preguntar todo.",
+        "autor": "Paciente de demostración 1",
+        "estrellas": 5
+      },
+      {
+        "texto": "Reseña de ejemplo: agendé por WhatsApp y me confirmaron la hora el mismo día.",
+        "autor": "Paciente de demostración 2",
+        "estrellas": 5
+      },
+      {
+        "texto": "Reseña de ejemplo: el precio final fue el que me dijeron en la evaluación.",
+        "autor": "Paciente de demostración 3",
+        "estrellas": 4
+      }
+    ]
+  }
+}
