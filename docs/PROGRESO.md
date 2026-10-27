@@ -43,14 +43,14 @@ Los aprobó Iván en la Fase 2, después de verificar con búsquedas web que no 
 
 ## Estado por rubro
 
-| Rubro          | Estado                 | Dirección elegida | Lighthouse móvil / escritorio | Axe | PR           |
-| -------------- | ---------------------- | ----------------- | ----------------------------- | --- | ------------ |
-| Restaurante v2 | ✔ publicado            | C «El pase»       | 92 / 89                       | 0   | #4           |
-| Barbería       | ✔ publicado            | A «Espejo»        | 86 / 98                       | 0   | #5           |
-| Clínica dental | ✔ publicado            | A «Arco»          | 93 / 100                      | 0   | #6           |
-| Spa / Estética | ✔ publicado            | A «Superficie»    | 93 / 99                       | 0   | #7           |
-| Veterinaria    | ✔ publicada            | B «Estante»       | 92 / 99                       | 0   | #8           |
-| Gimnasio       | Construido; PR abierto | A «Monitor»       | 91 / 98                       | 0   | ver bitácora |
+| Rubro          | Estado      | Dirección elegida | Lighthouse móvil / escritorio | Axe | PR  |
+| -------------- | ----------- | ----------------- | ----------------------------- | --- | --- |
+| Restaurante v2 | ✔ publicado | C «El pase»       | 92 / 89                       | 0   | #4  |
+| Barbería       | ✔ publicado | A «Espejo»        | 86 / 98                       | 0   | #5  |
+| Clínica dental | ✔ publicado | A «Arco»          | 93 / 100                      | 0   | #6  |
+| Spa / Estética | ✔ publicado | A «Superficie»    | 93 / 99                       | 0   | #7  |
+| Veterinaria    | ✔ publicada | B «Estante»       | 92 / 99                       | 0   | #8  |
+| Gimnasio       | ✔ publicado | A «Monitor»       | 91 / 98                       | 0   | #9  |
 
 ## Bitácora
 
@@ -183,6 +183,7 @@ Los aprobó Iván en la Fase 2, después de verificar con búsquedas web que no 
   - clase de prueba por WhatsApp.
 - **Tipografía cinética:** los titulares se inclinan con la velocidad del scroll.
 - **Lighthouse:** móvil 91 · escritorio 98. Axe 0. `test:teclado` 94/94.
+- **Fusionado** el PR #9 con merge commit (checks de GitHub en verde). Publicado en https://nishix03.github.io/prototipos-web-chiclayo/gimnasio/
 
 ## Cierre del modo autónomo
 
