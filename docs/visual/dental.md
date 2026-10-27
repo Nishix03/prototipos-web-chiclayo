@@ -13,13 +13,7 @@
 
 ## Paso 1 · Referencias
 
-**Webs del rubro.** Las clínicas dentales repiten 3 cosas:
-
-- un botón de «agenda tu cita»;
-- una lista de tratamientos, casi siempre sin precio;
-- fotos de antes y después.
-
-Lo que el paciente pregunta por WhatsApp antes de ir es **qué tratamiento necesita y cuánto cuesta más o menos**. Por eso el cuestionario va primero y los precios «desde» van a la vista, con su duración.
+**Lo que resuelve la página.** Este paso no revisó las webs de los prospectos del plan (TAPIA, Consultorio Dental Olano); queda pendiente antes de mostrarles la demo. El plan pide quitar el miedo y la duda («¿cuánto cuesta?», «¿duele?»). Lo que el paciente pregunta por WhatsApp antes de ir es **qué tratamiento necesita y cuánto cuesta más o menos**. Por eso el cuestionario va primero y los precios «desde» van a la vista, con su duración.
 
 **Lo que no se hace:**
 

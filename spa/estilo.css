@@ -1,0 +1,567 @@
+/*
+ * Spa · «Agua quieta» (brief: docs/visual/spa.md). Agua salvia a pantalla completa, hojas de
+ * papel arena que flotan encima y una serif elegante en los títulos. Mucho aire.
+ * Los colores llegan de negocio.json (tema); aquí van materiales, tipografía y composición.
+ * Dirección elegida en el paso 2: A «Superficie» (las otras dos quedan en el brief).
+ */
+@import '../core/core.css';
+
+/* Fuentes recortadas al español con `npm run fuentes`. Licencia OFL al lado. */
+@font-face {
+  font-family: 'Newsreader Variable';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400 500;
+  src: url('./fuentes/newsreader-titulos.woff2') format('woff2-variations');
+}
+
+@font-face {
+  font-family: 'Instrument Sans Variable';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400 700;
+  src: url('./fuentes/instrument-sans-texto.woff2') format('woff2-variations');
+}
+
+/* Respaldos con el ancho ajustado: el cambio de fuente no mueve nada (CLS) */
+@font-face {
+  font-family: 'Newsreader respaldo';
+  src: local('Georgia'), local('Times New Roman');
+  size-adjust: 96%;
+}
+
+@font-face {
+  font-family: 'Instrument Sans respaldo';
+  src: local('Arial'), local('Helvetica'), local('Roboto');
+  size-adjust: 98%;
+}
+
+html:not(.js) [data-filtros],
+html:not(.js) .cita__siguiente,
+html:not(.js) .cita__volver,
+html:not(.js) .respiracion {
+  display: none;
+}
+
+:root {
+  color-scheme: light;
+  --color-texto-suave: #45524a; /* 7.2:1 sobre las hojas; nunca directo sobre el agua */
+  --color-hoja: rgb(243 239 230 / 0.9); /* papel arena sobre el agua, casi opaco */
+  --color-hoja-borde: rgb(61 92 74 / 0.18);
+  --color-arena: #e6dcc8;
+  --color-borde: rgb(31 42 36 / 0.16);
+  --radio-hoja: 2px;
+  --radio-boton: 999px;
+  --alto-cabecera: 3.5rem;
+  --curva-respira: cubic-bezier(0.45, 0, 0.55, 1); /* entra y sale igual, como el aire */
+  --fuente-titulos: 'Newsreader Variable', 'Newsreader respaldo', Georgia, serif;
+  --fuente-texto: 'Instrument Sans Variable', 'Instrument Sans respaldo', system-ui, sans-serif;
+  --peso-titulos: 400;
+}
+
+html {
+  scroll-padding-top: calc(var(--alto-cabecera) + 1rem);
+}
+
+body {
+  overflow-x: clip;
+}
+
+/* ── Cabecera ── */
+.cabecera {
+  position: sticky;
+  top: 0;
+  z-index: calc(var(--capa-flotante) + 1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--espacio-4);
+  min-height: var(--alto-cabecera);
+  padding: var(--espacio-2) var(--margen-lateral);
+  background: rgb(243 239 230 / 0.88);
+  border-bottom: 1px solid var(--color-hoja-borde);
+}
+
+.cabecera__nombre {
+  font-family: var(--fuente-titulos);
+  font-size: var(--texto-xl);
+}
+
+.cabecera__demo {
+  margin-left: var(--espacio-1);
+  font-family: var(--fuente-texto);
+  font-size: var(--texto-sm);
+  color: var(--color-texto-suave);
+}
+
+.cabecera__enlace {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tamano-tactil);
+  color: var(--color-marca);
+  font-weight: 600;
+  text-underline-offset: 0.3em;
+}
+
+/* ── Escena (ADR 008) ── */
+.escena {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: var(--color-fondo);
+}
+
+.escena__fija img,
+.escena canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.escena canvas {
+  opacity: 0;
+  transition: opacity 900ms var(--curva-respira);
+}
+
+.escena[data-viva] canvas {
+  opacity: 1;
+}
+
+/* ── Portada: el texto flota sobre el agua ── */
+.portada {
+  display: grid;
+  gap: var(--espacio-4);
+  align-content: center;
+  justify-items: center;
+  min-height: calc(100svh - var(--alto-cabecera) - 3rem);
+  padding: var(--espacio-6) var(--margen-lateral);
+  text-align: center;
+}
+
+.titular {
+  max-width: 12ch;
+  margin-inline: auto;
+  font-size: clamp(3.25rem, 1.6rem + 7vw, 8.5rem);
+  line-height: 0.95;
+  font-weight: var(--peso-titulos);
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+.bajada {
+  max-width: 42ch;
+  margin-inline: auto;
+  color: var(--color-texto); /* sobre el agua: 5.4:1 aun en la parte más honda */
+}
+
+.estado-horario__enlace {
+  margin-left: var(--espacio-2);
+}
+
+/* El llamado: una piedra lisa, la única píldora de la página */
+.llamado {
+  display: inline-flex;
+  align-items: center;
+  min-height: 3.5rem;
+  padding: var(--espacio-3) var(--espacio-7);
+  border-radius: var(--radio-boton);
+  background: var(--color-marca);
+  color: var(--color-sobre-marca);
+  font-weight: 600;
+  font-size: var(--texto-lg);
+  text-decoration: none;
+  box-shadow: 0 18px 40px -18px rgb(31 42 36 / 0.55);
+  transition: transform 400ms var(--curva-respira);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .llamado:hover {
+    transform: translateY(-3px);
+  }
+}
+
+/* ── Secciones: hojas de papel que flotan, cada una con su propio ancho ── */
+.servicios,
+.cita,
+.paquetes,
+.antes-despues,
+.equipo,
+.horario-semana {
+  width: min(100% - 2 * var(--margen-lateral), var(--ancho-contenido));
+  margin: var(--espacio-seccion) auto;
+  padding: var(--espacio-7) clamp(var(--espacio-5), 5vw, var(--espacio-8));
+  background: var(--color-hoja);
+  border: 1px solid var(--color-hoja-borde);
+  border-radius: var(--radio-hoja);
+  box-shadow: 0 30px 60px -40px rgb(31 42 36 / 0.45);
+}
+
+.seccion-titulo {
+  font-family: var(--fuente-titulos);
+  font-weight: var(--peso-titulos);
+  font-size: clamp(2.2rem, 1.4rem + 3vw, 4rem);
+  line-height: 1;
+  letter-spacing: -0.01em;
+}
+
+.seccion-intro {
+  margin-top: var(--espacio-3);
+  max-width: 50ch;
+  color: var(--color-texto-suave);
+}
+
+.filtros {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--espacio-2);
+  margin-block: var(--espacio-6) var(--espacio-4);
+}
+
+.filtros button {
+  min-height: var(--tamano-tactil);
+  padding: var(--espacio-2) var(--espacio-4);
+  border: 1px solid var(--color-marca);
+  border-radius: var(--radio-pildora);
+  background: transparent;
+  color: var(--color-texto);
+  font: inherit;
+  cursor: pointer;
+}
+
+.filtros [aria-pressed='true'] {
+  background: var(--color-marca);
+  color: var(--color-sobre-marca);
+}
+
+.servicios {
+  max-width: 62rem;
+}
+
+/* La carta de servicios: dos columnas de spa, nombre arriba y minutos · precio abajo */
+.servicios__lista {
+  display: grid;
+  gap: 0 var(--espacio-8);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.servicio {
+  display: grid;
+  gap: var(--espacio-1);
+  padding-block: var(--espacio-5);
+  border-bottom: 1px solid var(--color-borde);
+}
+
+.servicio[hidden] {
+  display: none;
+}
+
+.servicio__nombre {
+  font-family: var(--fuente-titulos);
+  font-weight: var(--peso-titulos);
+  font-size: var(--texto-2xl);
+  line-height: 1.1;
+}
+
+.servicio__datos {
+  display: flex;
+  gap: var(--espacio-4);
+  font-variant-numeric: tabular-nums;
+}
+
+.servicio__precio {
+  font-weight: 700;
+  color: var(--color-marca);
+}
+
+.servicio__descripcion {
+  color: var(--color-texto-suave);
+  font-size: var(--texto-sm);
+}
+
+.servicio__reservar {
+  justify-self: start;
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tamano-tactil);
+  color: var(--color-marca);
+  font-weight: 600;
+  text-underline-offset: 0.3em;
+}
+
+@media (min-width: 60rem) {
+  .servicios__lista {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* La cita: la ficha y, al lado, el anillo que respira con el paso actual */
+.cita {
+  display: grid;
+  gap: var(--espacio-6);
+  max-width: 64rem;
+}
+
+.respiracion {
+  display: grid;
+  place-items: center;
+  width: 9rem;
+  aspect-ratio: 1;
+  margin-top: var(--espacio-6);
+}
+
+.respiracion__anillo {
+  width: 100%;
+  aspect-ratio: 1;
+  border: 2px solid var(--color-marca);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgb(61 92 74 / 0.12), transparent 70%);
+  animation: respirar 8s var(--curva-respira) infinite;
+}
+
+@keyframes respirar {
+  0%,
+  100% {
+    transform: scale(0.72);
+  }
+  50% {
+    transform: scale(1);
+  }
+}
+
+.cita__progreso {
+  margin-top: var(--espacio-3);
+  font-family: var(--fuente-titulos);
+  font-size: var(--texto-xl);
+}
+
+.cita__ficha .boton--principal {
+  width: 100%;
+  border-radius: var(--radio-boton);
+  background: var(--color-marca);
+  color: var(--color-sobre-marca);
+}
+
+.cita__ficha select,
+.cita__ficha input {
+  background: #fff;
+}
+
+.cita__paso {
+  display: grid;
+  gap: var(--espacio-4);
+  margin: 0 0 var(--espacio-5);
+  padding: 0;
+  border: 0;
+}
+
+.cita__paso[hidden] {
+  display: none;
+}
+
+.cita__paso-titulo {
+  margin-bottom: var(--espacio-3);
+  font-family: var(--fuente-titulos);
+  font-size: var(--texto-2xl);
+}
+
+.cita__numero {
+  display: inline-grid;
+  place-items: center;
+  width: 2.2rem;
+  aspect-ratio: 1;
+  margin-right: var(--espacio-2);
+  border: 1px solid var(--color-marca);
+  border-radius: 50%;
+  font-family: var(--fuente-texto);
+  font-size: var(--texto-base);
+  vertical-align: middle;
+}
+
+.cita__siguiente,
+.cita__volver {
+  justify-self: start;
+  min-height: var(--tamano-tactil);
+  padding: var(--espacio-2) var(--espacio-6);
+  border-radius: var(--radio-boton);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.cita__siguiente {
+  border: 0;
+  background: var(--color-marca);
+  color: var(--color-sobre-marca);
+}
+
+.cita__volver {
+  border: 1px solid var(--color-marca);
+  background: transparent;
+  color: var(--color-marca);
+}
+
+.cita__resumen {
+  padding: var(--espacio-3) var(--espacio-4);
+  background: var(--color-arena);
+}
+
+.cita__resumen:empty {
+  display: none;
+}
+
+/* En celular el anillo es chico y va al lado del paso, no encima del formulario */
+@media (max-width: 59.99rem) {
+  .cita__texto {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    column-gap: var(--espacio-4);
+  }
+
+  .cita__texto > :not(.respiracion, .cita__progreso) {
+    grid-column: 1 / -1;
+  }
+
+  .respiracion {
+    width: 4.5rem;
+    margin-top: var(--espacio-4);
+  }
+
+  .cita__progreso {
+    margin-top: var(--espacio-4);
+  }
+}
+
+@media (min-width: 60rem) {
+  .cita {
+    grid-template-columns: 1fr 1.3fr;
+    align-items: start;
+  }
+}
+
+/* Paquetes y regalo */
+.paquetes {
+  max-width: 52rem;
+}
+
+.paquetes__lista {
+  display: grid;
+  gap: var(--espacio-4);
+  margin: var(--espacio-6) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.paquete {
+  display: grid;
+  gap: var(--espacio-1);
+  padding-left: var(--espacio-5);
+  border-left: 2px solid var(--color-marca);
+}
+
+.paquete__nombre {
+  font-family: var(--fuente-titulos);
+  font-weight: var(--peso-titulos);
+  font-size: var(--texto-2xl);
+}
+
+.paquete__datos {
+  font-variant-numeric: tabular-nums;
+}
+
+.paquete__incluye {
+  color: var(--color-texto-suave);
+}
+
+.regalo {
+  margin-top: var(--espacio-7);
+  padding: var(--espacio-5) var(--espacio-6);
+  background: var(--color-arena);
+}
+
+.regalo__titulo {
+  font-family: var(--fuente-titulos);
+  font-weight: var(--peso-titulos);
+  font-size: var(--texto-2xl);
+}
+
+.regalo__enlace {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tamano-tactil);
+  margin-top: var(--espacio-2);
+  color: var(--color-marca);
+  font-weight: 600;
+  text-underline-offset: 0.3em;
+}
+
+.antes-despues {
+  max-width: 56rem;
+}
+
+.antes-despues .comparador {
+  margin-top: var(--espacio-6);
+}
+
+/* Equipo: nombres en línea, sin tarjetas */
+.equipo__lista {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--espacio-5) var(--espacio-8);
+  margin: var(--espacio-5) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.persona__nombre {
+  font-family: var(--fuente-titulos);
+  font-weight: var(--peso-titulos);
+  font-size: var(--texto-xl);
+}
+
+.horario-semana {
+  max-width: 36rem;
+}
+
+.horario-semana__dias {
+  display: grid;
+  gap: var(--espacio-2);
+  margin-top: var(--espacio-4);
+}
+
+.horario-semana__dias div {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--espacio-4);
+  padding-bottom: var(--espacio-2);
+  border-bottom: 1px solid var(--color-borde);
+}
+
+.horario-semana__dias dd {
+  margin: 0;
+  font-variant-numeric: tabular-nums;
+}
+
+.resenas,
+.mapa {
+  background: var(--color-hoja);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .escena canvas,
+  .llamado {
+    transition: none;
+  }
+
+  .llamado:hover {
+    transform: none;
+  }
+
+  .respiracion__anillo {
+    animation: none;
+  }
+}

@@ -1,0 +1,142 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Negocio · spa y estética",
+  "description": "Campos propios del spa sobre la base común (ADR 005): textos, servicios por categoría con precio y duración, paquetes, el regalo, el equipo, la cita (cada cuántos minutos hay una franja) y el comparador antes/después.",
+  "type": "object",
+  "allOf": [{ "$ref": "../core/negocio.schema.json" }],
+  "required": [
+    "textos",
+    "categorias",
+    "servicios",
+    "paquetes",
+    "regalo",
+    "equipo",
+    "cita",
+    "comparador"
+  ],
+  "properties": {
+    "rubro": { "const": "spa" },
+    "textos": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "titular",
+        "bajada",
+        "introServicios",
+        "introCita",
+        "introPaquetes",
+        "introComparador"
+      ],
+      "properties": {
+        "titular": {
+          "type": "string",
+          "maxLength": 40,
+          "description": "6 palabras o menos (exigencia 2)"
+        },
+        "bajada": { "type": "string", "maxLength": 200 },
+        "introServicios": { "type": "string", "maxLength": 160 },
+        "introCita": { "type": "string", "maxLength": 160 },
+        "introPaquetes": { "type": "string", "maxLength": 160 },
+        "introComparador": { "type": "string", "maxLength": 200 }
+      }
+    },
+    "categorias": {
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "nombre"],
+        "properties": {
+          "id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+          "nombre": { "type": "string", "maxLength": 30 }
+        }
+      }
+    },
+    "servicios": {
+      "type": "array",
+      "minItems": 3,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "nombre", "categoria", "precio", "minutos", "descripcion"],
+        "properties": {
+          "id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+          "nombre": { "type": "string", "maxLength": 40 },
+          "categoria": { "type": "string", "description": "id de una de las categorías" },
+          "precio": { "$ref": "../core/negocio.schema.json#/$defs/precio" },
+          "minutos": { "type": "integer", "minimum": 10, "maximum": 300 },
+          "descripcion": { "type": "string", "maxLength": 140 }
+        }
+      }
+    },
+    "paquetes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "nombre", "precio", "incluye"],
+        "properties": {
+          "id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+          "nombre": { "type": "string", "maxLength": 40 },
+          "precio": { "$ref": "../core/negocio.schema.json#/$defs/precio" },
+          "incluye": {
+            "type": "array",
+            "minItems": 2,
+            "items": { "type": "string", "description": "id de un servicio" }
+          }
+        }
+      }
+    },
+    "regalo": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["titulo", "texto", "mensaje"],
+      "properties": {
+        "titulo": { "type": "string", "maxLength": 40 },
+        "texto": { "type": "string", "maxLength": 200 },
+        "mensaje": {
+          "type": "string",
+          "maxLength": 200,
+          "description": "Mensaje de WhatsApp ya escrito para pedir una tarjeta de regalo"
+        }
+      }
+    },
+    "equipo": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["nombre", "especialidad"],
+        "properties": {
+          "nombre": { "type": "string", "maxLength": 60 },
+          "especialidad": { "type": "string", "maxLength": 80 }
+        }
+      }
+    },
+    "cita": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["minutosEntreFranjas"],
+      "properties": {
+        "minutosEntreFranjas": { "type": "integer", "enum": [15, 20, 30, 60] }
+      }
+    },
+    "comparador": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["antes", "despues", "nota"],
+      "properties": {
+        "antes": { "$ref": "../core/negocio.schema.json#/$defs/imagen" },
+        "despues": { "$ref": "../core/negocio.schema.json#/$defs/imagen" },
+        "nota": {
+          "type": "string",
+          "maxLength": 200,
+          "description": "De dónde salen las fotos. Con fotos de clientes: «publicadas con permiso». En una demo lo dice."
+        }
+      }
+    }
+  },
+  "unevaluatedProperties": false
+}

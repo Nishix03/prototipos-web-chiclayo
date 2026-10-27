@@ -67,6 +67,21 @@ const FUENTES = [
     salida: 'sora.woff2',
     ejes: { wght: { min: 400, max: 600 } },
   },
+  // Spa «Agua quieta» (dirección A «Superficie»): Newsreader (titulares) + Instrument Sans
+  {
+    carpeta: 'spa',
+    paquete: 'newsreader',
+    entrada: 'files/newsreader-latin-opsz-normal.woff2',
+    salida: 'newsreader-titulos.woff2',
+    ejes: { wght: { min: 400, max: 500 }, opsz: 72 },
+  },
+  {
+    carpeta: 'spa',
+    paquete: 'instrument-sans',
+    entrada: 'files/instrument-sans-latin-wght-normal.woff2',
+    salida: 'instrument-sans-texto.woff2',
+    ejes: { wght: { min: 400, max: 700 } },
+  },
 ];
 
 function fallar(mensaje) {
