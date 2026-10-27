@@ -43,7 +43,7 @@ export default [
   },
   {
     // Herramientas de las maquetas: corren en Node y mandan código al navegador (page.evaluate)
-    files: ['docs/visual/**/*.mjs', 'docs/visual/**/vite.config.js'],
+    files: ['docs/visual/**/*.mjs', 'docs/visual/**/vite.config.js', 'scripts/**/*.mjs'],
     languageOptions: { globals: { ...globals.node, ...globals.browser } },
   },
   // Siempre al final: apaga las reglas de estilo que ya resuelve Prettier
