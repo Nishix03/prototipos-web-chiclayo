@@ -32,14 +32,14 @@ Si se reinicia el contexto de Claude Code, **se retoma desde este archivo**.
 
 ## Estado por rubro
 
-| Rubro          | Estado                        | Dirección elegida | Lighthouse móvil / escritorio | Axe | PR  |
-| -------------- | ----------------------------- | ----------------- | ----------------------------- | --- | --- |
-| Restaurante v2 | Paso 2 hecho; sigue el paso 3 | C «El pase»       | —                             | —   | —   |
-| Barbería       | pendiente                     | —                 | —                             | —   | —   |
-| Clínica dental | pendiente                     | —                 | —                             | —   | —   |
-| Spa / Estética | pendiente                     | —                 | —                             | —   | —   |
-| Veterinaria    | pendiente                     | —                 | —                             | —   | —   |
-| Gimnasio       | pendiente                     | —                 | —                             | —   | —   |
+| Rubro          | Estado                 | Dirección elegida | Lighthouse móvil / escritorio | Axe | PR           |
+| -------------- | ---------------------- | ----------------- | ----------------------------- | --- | ------------ |
+| Restaurante v2 | Construido; PR abierto | C «El pase»       | 92 / 89                       | 0   | ver bitácora |
+| Barbería       | pendiente              | —                 | —                             | —   | —            |
+| Clínica dental | pendiente              | —                 | —                             | —   | —            |
+| Spa / Estética | pendiente              | —                 | —                             | —   | —            |
+| Veterinaria    | pendiente              | —                 | —                             | —   | —            |
+| Gimnasio       | pendiente              | —                 | —                             | —   | —            |
 
 ## Bitácora
 
@@ -51,3 +51,13 @@ Si se reinicia el contexto de Claude Code, **se retoma desde este archivo**.
   - **Elegida: C «El pase».** La tabla de puntaje está en `docs/visual/restaurante-cocina-abierta.md`.
 - **Qué sigue:** pasos 3 a 6 del restaurante con la dirección C y luego la construcción en `restaurante/`.
   - No cambian la lógica (`carrito.js`, comanda, reservas) ni los ganchos `data-*` que usan las pruebas.
+- **Construido (pasos 3 a 6 y las 8 etapas):** `restaurante/` con la dirección C.
+  - **Núcleo nuevo (lo reusan los rubros que vienen):**
+    - `core/escena3d.js`: motor 3D común, con versión ligera para celular;
+    - `core/carga3d.js`: cuándo se carga el 3D;
+    - estado «Abierto · hoy de…» con enlace al horario;
+    - scripts `poster`, `control`, `lighthouse` y `video`.
+  - **Lighthouse** (mediana de 5): móvil 92 · escritorio 89 (aceptado y anotado en el ADR 008). LCP 1.30 s.
+  - **Pruebas:** Axe 0 violaciones · `test:teclado` 24/24 (4 workers y 60 s por prueba).
+  - **Control de exigencias final:** pasa a 360 y 1440 px.
+- **Qué sigue:** fusionar el PR del restaurante y empezar la **barbería** («Filo») en `feat/rubro-barberia`.

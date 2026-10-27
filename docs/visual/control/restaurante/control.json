@@ -1,0 +1,68 @@
+{
+  "360": {
+    "e1": {
+      "nombre": true,
+      "titular": true,
+      "estadoConHorarioDeHoy": true,
+      "enlaceAlHorario": true,
+      "funcionEstrella": true
+    },
+    "e2": {
+      "palabrasTitular": 5,
+      "lineasTitular": 3,
+      "maxPalabrasSeccion": 5,
+      "titulosSeccion": [
+        ["Menú del día", 3],
+        ["Horario", 1],
+        ["La carta", 2],
+        ["Reservar mesa", 2],
+        ["El local", 2],
+        ["Lo que dicen nuestros clientes", 5],
+        ["Horario y cómo llegar", 4],
+        ["La carta en tu mesa", 5]
+      ]
+    },
+    "e3": {
+      "escenaCubrePantalla": 100,
+      "escenaViva": true
+    },
+    "e5": {
+      "titular": "Fraunces Variable",
+      "titulosSeccion": ["Fraunces Variable"],
+      "texto": "Figtree Variable"
+    }
+  },
+  "1440": {
+    "e1": {
+      "nombre": true,
+      "titular": true,
+      "estadoConHorarioDeHoy": true,
+      "enlaceAlHorario": true,
+      "funcionEstrella": true
+    },
+    "e2": {
+      "palabrasTitular": 5,
+      "lineasTitular": 2,
+      "maxPalabrasSeccion": 5,
+      "titulosSeccion": [
+        ["Menú del día", 3],
+        ["Horario", 1],
+        ["La carta", 2],
+        ["Reservar mesa", 2],
+        ["El local", 2],
+        ["Lo que dicen nuestros clientes", 5],
+        ["Horario y cómo llegar", 4],
+        ["La carta en tu mesa", 5]
+      ]
+    },
+    "e3": {
+      "escenaCubrePantalla": 100,
+      "escenaViva": true
+    },
+    "e5": {
+      "titular": "Fraunces Variable",
+      "titulosSeccion": ["Fraunces Variable"],
+      "texto": "Figtree Variable"
+    }
+  }
+}

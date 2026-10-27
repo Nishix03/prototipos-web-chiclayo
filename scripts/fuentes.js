@@ -29,35 +29,19 @@ const ESPACIOS_DUROS = String.fromCodePoint(0xa0, 0x202f);
 export const ESPANOL = ASCII + 'ÁÉÍÓÚÜÑáéíóúüñ¿¡«»—–·…‘’“”•ºª°' + '−×©' + ESPACIOS_DUROS;
 
 const FUENTES = [
+  // Restaurante v2 «El pase»: Fraunces (titulares, blanda y con «wonk») + Figtree (texto)
   {
     carpeta: 'restaurante',
-    paquete: 'archivo',
-    entrada: 'files/archivo-latin-wdth-normal.woff2',
-    salida: 'archivo-titulos.woff2',
-    ejes: { wght: { min: 500, max: 900 }, wdth: { min: 62, max: 100 } },
+    paquete: 'fraunces',
+    entrada: 'files/fraunces-latin-full-normal.woff2',
+    salida: 'fraunces-titulos.woff2',
+    ejes: { wght: { min: 600, max: 700 }, opsz: 72, SOFT: 100, WONK: 1 },
   },
   {
     carpeta: 'restaurante',
-    paquete: 'newsreader',
-    entrada: 'files/newsreader-latin-wght-normal.woff2',
-    salida: 'newsreader-texto.woff2',
-    ejes: { wght: { min: 400, max: 700 } },
-  },
-  // Maqueta de la v2 inmersiva (brief en revisión): mismo texto que restaurante/, otra carpeta
-  {
-    carpeta: 'restaurante',
-    destino: 'docs/visual/restaurante-inmersivo/fuentes',
-    paquete: 'bricolage-grotesque',
-    entrada: 'files/bricolage-grotesque-latin-standard-normal.woff2',
-    salida: 'bricolage-titulos.woff2',
-    ejes: { wght: { min: 600, max: 800 }, wdth: 88, opsz: 48 },
-  },
-  {
-    carpeta: 'restaurante',
-    destino: 'docs/visual/restaurante-inmersivo/fuentes',
-    paquete: 'literata',
-    entrada: 'files/literata-latin-wght-normal.woff2',
-    salida: 'literata-texto.woff2',
+    paquete: 'figtree',
+    entrada: 'files/figtree-latin-wght-normal.woff2',
+    salida: 'figtree-texto.woff2',
     ejes: { wght: { min: 400, max: 700 } },
   },
 ];

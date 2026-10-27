@@ -18,7 +18,10 @@
     "maqueta": "vite --config docs/visual/restaurante-inmersivo/vite.config.js",
     "maqueta:build": "vite build --config docs/visual/restaurante-inmersivo/vite.config.js",
     "maqueta:preview": "vite preview --config docs/visual/restaurante-inmersivo/vite.config.js",
-    "storyboard": "vite --config docs/visual/restaurante-cocina-abierta/vite.config.js"
+    "storyboard": "vite --config docs/visual/restaurante-cocina-abierta/vite.config.js",
+    "poster": "node scripts/poster.js",
+    "control": "node scripts/control.mjs",
+    "lighthouse": "bash scripts/lighthouse.sh"
   },
   "repository": {
     "type": "git",

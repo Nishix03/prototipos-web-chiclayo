@@ -7,6 +7,11 @@ const PUERTO = 4176;
 export default defineConfig({
   testDir: 'pruebas',
   fullyParallel: true,
+  // Cada página dibuja su escena 3D por software (Chromium sin GPU): con más de 4 navegadores
+  // a la vez el CPU se satura y el teclado responde tarde. 4 mantiene las pruebas estables.
+  workers: 4,
+  // El pedido completo son ~150 pulsaciones con desplazamiento suave: 30 s no alcanzan con carga
+  timeout: 60_000,
   reporter: [['list']],
   use: {
     baseURL: `http://localhost:${PUERTO}/prototipos-web-chiclayo/`,

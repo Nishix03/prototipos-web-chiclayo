@@ -1,4 +1,4 @@
-// "Abierto ahora / Cerrado" con la hora simulada, y Axe en los dos estados.
+// "Abierto · hoy de… / Cerrado · abre…" con la hora simulada, y Axe en los dos estados.
 // El indicador cambia de color según la hora: una revisión de contraste hecha a una sola
 // hora no basta (así se coló un verde de 4.42:1 en _ejemplo, visible solo con el local abierto).
 import { test, expect } from '@playwright/test';
@@ -15,7 +15,7 @@ const CASOS = [
   {
     pagina: 'restaurante/',
     hora: '2026-11-03T13:00:00-05:00',
-    texto: 'Abierto ahora · cierra a las 16:30',
+    texto: 'Abierto · hoy de 12:00 a 16:30',
   },
   {
     pagina: 'restaurante/',
@@ -30,7 +30,7 @@ const CASOS = [
   {
     pagina: '_ejemplo/',
     hora: '2026-11-03T10:00:00-05:00',
-    texto: 'Abierto ahora · cierra a las 13:00',
+    texto: 'Abierto · hoy de 9:00 a 13:00 y de 15:00 a 19:00',
   },
   {
     pagina: '_ejemplo/',

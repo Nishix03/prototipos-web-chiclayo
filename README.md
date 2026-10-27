@@ -27,6 +27,11 @@ Prototipos web para negocios locales (restaurante, spa, barbería, veterinaria, 
 | `npm run fotos -- buscar "<consulta>"`               | Busca fotos en Openverse con licencia permitida (cc0, by, by-sa)                                    |
 | `npm run fotos -- bajar <id> <carpeta>/img/<nombre>` | Descarga la foto en WebP tras verificar su licencia y escribe su `credito`                          |
 | `npm run fuentes`                                    | Recorta las fuentes de cada rubro a los caracteres del español y a los pesos que usa                |
+| `npm run poster -- <rubro>`                          | Genera la imagen fija (LCP) desde la escena 3D del rubro y verifica su límite de peso (ADR 008)     |
+| `npm run control -- <rubro>`                         | Control de exigencias (ADR 009) sobre el build: mide la primera pantalla y captura 3 cuadros        |
+| `npm run lighthouse -- <rubro>`                      | Lighthouse 12 sobre build + preview, mediana de 5 en celular y escritorio                           |
+| `node scripts/video.mjs <rubro>`                     | Graba el recorrido a 360 y 1440 px (con `FFMPEG=<ruta>` deja MP4)                                   |
+| `npm run storyboard`                                 | Sirve los storyboards del paso 2 del restaurante (`docs/visual/restaurante-cocina-abierta/`)        |
 
 ## Cómo funciona
 
@@ -59,9 +64,10 @@ core/
   negocio.schema.json · validar.js   esquema (única fuente de verdad) y validación
   render.js                          prerender: negocio.json → HTML (plugin de Vite)
   whatsapp.js · horario.js           enlaces wa.me y horario con hora de Lima
+  escena3d.js · carga3d.js           motor 3D común (Three.js) y cuándo cargarlo (ADR 008)
   componentes/                       hero, galería, reseñas, mapa, footer, botón flotante
 _ejemplo/                            página de prueba y plantilla para copiar
-restaurante/                         rubro 1: carta con armar pedido, comanda y reservas
+restaurante/                         rubro 1 «El pase»: riel de comandas, ingredientes 3D que caen en sus bowls, comanda y reservas
 docs/decisiones/                     ADR
 docs/visual/                         brief visual de cada rubro, con maqueta y capturas
 pruebas/teclado/                     pruebas E2E con Playwright (teclado y horario)

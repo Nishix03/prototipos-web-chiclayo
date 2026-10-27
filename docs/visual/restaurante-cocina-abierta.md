@@ -1,6 +1,6 @@
 # Brief visual · Restaurante v2 · «La cocina abierta» («Sabores del Norte · Demo»)
 
-- **Estado:** paso 2 hecho. **Dirección elegida: C «El pase»** (modo autónomo; ver [docs/PROGRESO.md](../PROGRESO.md)). Siguen los pasos 3 a 6.
+- **Estado:** pasos 1 a 6 hechos y construido en `restaurante/`. **Dirección elegida: C «El pase»** (modo autónomo; ver [docs/PROGRESO.md](../PROGRESO.md)).
 - **Fecha:** 2026-10-26
 - **Identidad:** «La cocina abierta» ([identidad.md](identidad.md)).
   - Ingredientes del norte en 3D mate a pantalla completa que, al bajar, se ordenan en las categorías de la carta.
@@ -163,3 +163,98 @@ Puntaje de 1 a 5:
 
 - **De B:** el horario en un recuadro de tiza con fondo sólido, para que siempre se lea sobre el 3D.
 - **De A:** las sombras largas y la niebla cálida para dar profundidad.
+
+---
+
+## Paso 3 · Sistema visual (dirección C)
+
+- **Tema** (en `restaurante/negocio.json`):
+  - pared `#a3472b`;
+  - texto sobre la pared `#fbf7ef` (5.9:1);
+  - botones ají `#f2b705`, con texto tinta.
+- **Materiales del rubro** (en `restaurante/estilo.css`):
+  - papel `#fbf7ef` con tinta `#1f1712` (17:1) y tinta suave `#5d4b3f` (7.6:1);
+  - pizarra `#26332c` con tiza `#ece6da` (11.4:1);
+  - acero `#8d8a85` para el riel y las pinzas.
+- **Cambio de tokens dentro del papel:** todo lo que va en papel (comandas, comanda del pedido, formulario de reserva y reseñas) redefine `--color-fondo` y `--color-texto`. Así los componentes del núcleo se leen con tinta sobre papel sin tocarlos.
+- **Contraste:**
+  - **Texto secundario sobre la pared:** fijo en `#f6eadf` (5.2:1). La mezcla del núcleo quedaba bajo 4.5:1.
+  - **Estado «Abierto/Cerrado»:** siempre en una ficha de papel. El verde y el rojo darían unos 3:1 sobre terracota.
+- **Tipografía:**
+  - Fraunces 600–700 (ejes «soft» y «wonk» fijos) en titulares, y Figtree 400–700 en el texto.
+  - Recortadas al español: 21 + 13 KB, frente a 67 KB en la v1.
+  - Tienen respaldos con `size-adjust` para que el cambio de fuente no mueva nada.
+- **Forma:** radios de 3 px (papel y sellos, no píldoras) y sombras teñidas de terracota oscura.
+
+## Paso 4 · Guion de movimiento
+
+| Elemento                                              | Disparador                          | Duración y curva                                                           | Movimiento reducido             |
+| ----------------------------------------------------- | ----------------------------------- | -------------------------------------------------------------------------- | ------------------------------- |
+| Ingredientes que caen en su bowl (3D)                 | scroll de la portada hasta la carta | ligado al scroll, inercia corta                                            | sin 3D: queda la imagen fija    |
+| Títulos que se arman (GSAP)                           | el título entra al 85 %             | 500 ms, 70 ms entre palabras, `power4.out`                                 | sin animación                   |
+| La pizarra se escribe línea por línea (GSAP)          | la pizarra entra al 75 %            | 400 ms, 50 ms entre líneas, `power3.out`                                   | sin animación                   |
+| Las comandas de la carta se cuelgan (GSAP)            | la carta entra al 70 %              | 600 ms, 100 ms entre comandas, `back.out(1.6)` (balanceo de papel colgado) | sin animación                   |
+| El plato vuela a la barra                             | clic o toque en «Agregar» o «+»     | 480 ms, ease-in-out (ya está en pantalla)                                  | no vuela (con teclado, tampoco) |
+| La barra se convierte en la comanda (View Transition) | «Ver mi pedido»                     | 300 ms, ease-out-quart                                                     | se abre sin transición          |
+| El ticket se imprime                                  | se abre la comanda                  | 200 ms por línea, 100 ms entre líneas                                      | sin animación                   |
+| La comanda «Armar mi pedido» se endereza              | hover con mouse                     | 250 ms, ease-out-quart                                                     | sin animación                   |
+
+**Carga del 3D (ADR 008):**
+
+1. La imagen fija de la escena (`img/pase-*.webp`, de 12 a 33 KB) es el LCP, en encuadre horizontal o vertical según la pantalla.
+2. Con `load` y un momento libre llegan las coreografías (GSAP) y la escena (Three.js), cada una con `import()`.
+3. La escena no se carga con movimiento reducido, ahorro de datos, `deviceMemory` menor a 4 ni sin WebGL2.
+4. Los shaders se compilan con `compileAsync`, y la escena se redibuja solo cuando cambia el scroll.
+5. **Versión de celular** (pantalla más alta que ancha): sin sombras, la mitad de las piezas, densidad de píxeles 1 y sin antialias.
+
+## Paso 5 · Hero vivo (la página construida)
+
+El hero vivo ya es el restaurante real, en `restaurante/`.
+
+- **Videos del recorrido** (Playwright, Chromium sin GPU):
+  - [recorrido-360.mp4](control/restaurante/recorrido-360.mp4)
+  - [recorrido-1440.mp4](control/restaurante/recorrido-1440.mp4)
+- **Verla en el navegador:** en la terminal de Ubuntu, `npm run build && npm run preview`; luego abre http://localhost:4173/prototipos-web-chiclayo/restaurante/.
+
+| Cuadro               | 360 px                                      | 1440 px                                      |
+| -------------------- | ------------------------------------------- | -------------------------------------------- |
+| 1 · Inicio           | ![](control/restaurante/1-inicio-360.png)   | ![](control/restaurante/1-inicio-1440.png)   |
+| 2 · Mitad del scroll | ![](control/restaurante/2-mitad-360.png)    | ![](control/restaurante/2-mitad-1440.png)    |
+| 3 · Función estrella | ![](control/restaurante/3-estrella-360.png) | ![](control/restaurante/3-estrella-1440.png) |
+
+## Paso 6 · Revisión y Control de exigencias final
+
+**`design:design-critique`:**
+
+- **La portada en escritorio quedaba despoblada** después de aligerar la escena. Ahora las piezas son más grandes: llenan la pared sin sumar objetos.
+- **En celular, la comanda de portada tapaba la escena.** Ahora es más angosta y deja ver los ingredientes a la derecha.
+- **En la carta, las comandas tapan los bowls al llegar.** Se acepta: la comanda debe leerse entera, y el bowl aparece al bajar por la carta.
+- **¿Un dueño la recordaría mañana?** Sí. El riel de comandas, un bowl por categoría y el llamado amarillo existen solo en este rubro.
+
+**`copy-proof-check`:** la evidencia (`negocio.json`) respalda el titular, la bajada, el estado y la pizarra. La única salvedad: «lambayecana» es más estrecho que «Peruana norteña», y lo respaldan los platos («pato a la chiclayana»).
+
+**Correcciones de esta etapa:**
+
+- **«Reservar mesa»:** pasó a una etiqueta de papel (sobre el mostrador claro no se leía).
+- **El estado del mapa y el texto secundario sobre la pared:** subieron de contraste (Axe los marcó).
+- **Las etiquetas de los bowls:** quedaron debajo de las comandas.
+- **El radio elegido en la comanda:** ahora se ve.
+
+**Control final** (`npm run build && npm run control -- restaurante`, con el resultado en [control.json](control/restaurante/control.json)):
+
+| Exigencia                                                                                                    | 360 px | 1440 px | Prueba                    |
+| ------------------------------------------------------------------------------------------------------------ | ------ | ------- | ------------------------- |
+| 1. Primera pantalla: nombre, titular, «Abierto · hoy de 12:00 a 16:30», enlace «Horario» y «Armar mi pedido» | ✔      | ✔       | `1-inicio-*.png`          |
+| 2. Titular de 5 palabras: 3 líneas en celular y 2 en escritorio; secciones de 3 palabras o menos             | ✔      | ✔       | `1-inicio-*.png`          |
+| 3. Escena a pantalla completa, viva, con la interfaz dentro; anuncia la carta (bowls)                        | ✔      | ✔       | `1-inicio` y `2-mitad`    |
+| 4. Sin hero partido ni par de botones; riel de comandas, comanda por bowl y pizarra                          | ✔      | ✔       | `1-inicio` y `3-estrella` |
+| 5. Fraunces y Figtree en toda la página                                                                      | ✔      | ✔       | `control.json` (e5)       |
+
+**Lighthouse 12** (build + preview, mediana de 5):
+
+|            | Rendimiento | Accesibilidad | Buenas prácticas | SEO | LCP    | CLS   | TBT    |
+| ---------- | ----------- | ------------- | ---------------- | --- | ------ | ----- | ------ |
+| Móvil      | 92          | 100           | 100              | 100 | 1.30 s | 0.003 | 331 ms |
+| Escritorio | 89          | 100           | 100              | 100 | 0.36 s | 0.001 | 272 ms |
+
+Escritorio queda entre 85 y 89 y se acepta según la regla del modo autónomo (anotado en el ADR 008).

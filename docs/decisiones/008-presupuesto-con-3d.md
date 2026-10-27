@@ -71,3 +71,11 @@ El presupuesto se mide siempre igual que el punto de partida: Lighthouse 12 sobr
   - `test:teclado` y `a11y` corren con el póster (Playwright con movimiento reducido).
   - Se agrega una prueba que fuerce la escena.
 - **Dependencias nuevas:** `three` y `gsap`. Ninguna es React ni Tailwind, y las dos se cargan solo en las páginas que las usan.
+
+## Excepciones aceptadas (modo autónomo, desde el 2026-10-26)
+
+Regla de Iván: con 3D, Lighthouse móvil entre 85 y 89 se acepta y se anota aquí. Bajo 85, se aligera la escena hasta llegar a 85. Se aplica igual a escritorio.
+
+| Rubro                    | Móvil | Escritorio        | Qué se hizo para llegar                                                                                                                                                                                      |
+| ------------------------ | ----- | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Restaurante v2 «El pase» | 92    | **89** (aceptado) | Empezó en 72 / 81. Se aplicó la versión ligera en celular (sin sombras, la mitad de las piezas, densidad 1, sin antialias), menos polígonos por pieza, sombras de 1024 px en vivo y 30 piezas en lugar de 44 |

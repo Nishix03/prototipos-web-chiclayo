@@ -154,6 +154,18 @@ export function iniciarCarrito() {
     dialogo.classList.remove('comanda--cerrando');
   }
 
+  // View Transition: la barra del pedido se convierte en la comanda (si el navegador la tiene)
+  function transicion(cambio) {
+    if (!document.startViewTransition || movimientoReducido()) return cambio();
+    barra.style.viewTransitionName = 'pedido';
+    const vt = document.startViewTransition(() => {
+      barra.style.viewTransitionName = '';
+      dialogo.style.viewTransitionName = 'pedido';
+      cambio();
+    });
+    vt.finished.finally(() => (dialogo.style.viewTransitionName = ''));
+  }
+
   function abrir() {
     cancelarCierre();
     pintarComanda();
@@ -161,7 +173,7 @@ export function iniciarCarrito() {
       li.classList.add('linea--imprimir');
       li.style.setProperty('--retraso', `${Math.min(i, MAX_ESCALONADAS) * ESCALONADO_MS}ms`);
     });
-    if (!dialogo.open) dialogo.showModal();
+    if (!dialogo.open) transicion(() => dialogo.showModal());
   }
 
   function cerrar() {
