@@ -1,0 +1,176 @@
+{
+  "a": {
+    "360": {
+      "e1": {
+        "nombre": true,
+        "titular": true,
+        "estado": true,
+        "enlaceHorario": true,
+        "estrella": true
+      },
+      "e2": {
+        "palabrasTitular": 6,
+        "lineasTitular": 3,
+        "titulosSeccion": [
+          ["Menú del día", 3],
+          ["La carta", 2],
+          ["Tu comanda", 2],
+          ["Horario", 1]
+        ]
+      },
+      "e3": {
+        "escenaCubrePantalla": 100,
+        "interfazSobreEscena": true
+      },
+      "e5": {
+        "titulosPortada": "\"Bricolage Grotesque Variable\"",
+        "titulosSecciones": "\"Bricolage Grotesque Variable\"",
+        "texto": "\"Literata Variable\""
+      }
+    },
+    "1440": {
+      "e1": {
+        "nombre": true,
+        "titular": true,
+        "estado": true,
+        "enlaceHorario": true,
+        "estrella": true
+      },
+      "e2": {
+        "palabrasTitular": 6,
+        "lineasTitular": 2,
+        "titulosSeccion": [
+          ["Menú del día", 3],
+          ["La carta", 2],
+          ["Tu comanda", 2],
+          ["Horario", 1]
+        ]
+      },
+      "e3": {
+        "escenaCubrePantalla": 100,
+        "interfazSobreEscena": true
+      },
+      "e5": {
+        "titulosPortada": "\"Bricolage Grotesque Variable\"",
+        "titulosSecciones": "\"Bricolage Grotesque Variable\"",
+        "texto": "\"Literata Variable\""
+      }
+    }
+  },
+  "b": {
+    "360": {
+      "e1": {
+        "nombre": true,
+        "titular": true,
+        "estado": true,
+        "enlaceHorario": true,
+        "estrella": true
+      },
+      "e2": {
+        "palabrasTitular": 5,
+        "lineasTitular": 3,
+        "titulosSeccion": [
+          ["Menú del día", 3],
+          ["La carta", 2],
+          ["Tu comanda", 2],
+          ["Horario", 1]
+        ]
+      },
+      "e3": {
+        "escenaCubrePantalla": 100,
+        "interfazSobreEscena": true
+      },
+      "e5": {
+        "titulosPortada": "\"Archivo Variable\"",
+        "titulosSecciones": "\"Archivo Variable\"",
+        "texto": "\"Newsreader Variable\""
+      }
+    },
+    "1440": {
+      "e1": {
+        "nombre": true,
+        "titular": true,
+        "estado": true,
+        "enlaceHorario": true,
+        "estrella": true
+      },
+      "e2": {
+        "palabrasTitular": 5,
+        "lineasTitular": 2,
+        "titulosSeccion": [
+          ["Menú del día", 3],
+          ["La carta", 2],
+          ["Tu comanda", 2],
+          ["Horario", 1]
+        ]
+      },
+      "e3": {
+        "escenaCubrePantalla": 100,
+        "interfazSobreEscena": true
+      },
+      "e5": {
+        "titulosPortada": "\"Archivo Variable\"",
+        "titulosSecciones": "\"Archivo Variable\"",
+        "texto": "\"Newsreader Variable\""
+      }
+    }
+  },
+  "c": {
+    "360": {
+      "e1": {
+        "nombre": true,
+        "titular": true,
+        "estado": true,
+        "enlaceHorario": true,
+        "estrella": true
+      },
+      "e2": {
+        "palabrasTitular": 5,
+        "lineasTitular": 3,
+        "titulosSeccion": [
+          ["Menú del día", 3],
+          ["La carta", 2],
+          ["Tu comanda", 2],
+          ["Horario", 1]
+        ]
+      },
+      "e3": {
+        "escenaCubrePantalla": 100,
+        "interfazSobreEscena": true
+      },
+      "e5": {
+        "titulosPortada": "\"Fraunces Variable\"",
+        "titulosSecciones": "\"Fraunces Variable\"",
+        "texto": "\"Figtree Variable\""
+      }
+    },
+    "1440": {
+      "e1": {
+        "nombre": true,
+        "titular": true,
+        "estado": true,
+        "enlaceHorario": true,
+        "estrella": true
+      },
+      "e2": {
+        "palabrasTitular": 5,
+        "lineasTitular": 2,
+        "titulosSeccion": [
+          ["Menú del día", 3],
+          ["La carta", 2],
+          ["Tu comanda", 2],
+          ["Horario", 1]
+        ]
+      },
+      "e3": {
+        "escenaCubrePantalla": 100,
+        "interfazSobreEscena": true
+      },
+      "e5": {
+        "titulosPortada": "\"Fraunces Variable\"",
+        "titulosSecciones": "\"Fraunces Variable\"",
+        "texto": "\"Figtree Variable\""
+      }
+    }
+  }
+}

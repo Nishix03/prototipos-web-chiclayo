@@ -17,7 +17,8 @@
     "fuentes": "node scripts/fuentes.js",
     "maqueta": "vite --config docs/visual/restaurante-inmersivo/vite.config.js",
     "maqueta:build": "vite build --config docs/visual/restaurante-inmersivo/vite.config.js",
-    "maqueta:preview": "vite preview --config docs/visual/restaurante-inmersivo/vite.config.js"
+    "maqueta:preview": "vite preview --config docs/visual/restaurante-inmersivo/vite.config.js",
+    "storyboard": "vite --config docs/visual/restaurante-cocina-abierta/vite.config.js"
   },
   "repository": {
     "type": "git",
@@ -31,6 +32,8 @@
     "@axe-core/cli": "^4.14.0",
     "@eslint/js": "^10.0.1",
     "@fontsource-variable/bricolage-grotesque": "^5.3.0",
+    "@fontsource-variable/figtree": "^5.3.0",
+    "@fontsource-variable/fraunces": "^5.3.0",
     "@fontsource-variable/literata": "^5.3.0",
     "@playwright/test": "^1.64.1",
     "ajv": "^8.20.0",

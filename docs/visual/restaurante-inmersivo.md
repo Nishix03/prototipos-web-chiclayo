@@ -1,6 +1,10 @@
 # Brief visual · Restaurante v2 inmersivo («Sabores del Norte · Demo»)
 
-- **Estado:** dirección elegida por Iván: A con la pizarra de C (ver el final del paso 2). **Pasos 3 a 6 hechos; espera tu aprobación del hero vivo y la decisión del ADR 008 (móvil con 3D: 86).**
+- **Estado:** **no aprobada** por Iván el 2026-10-26.
+  - **Motivos:** la olla realista se veía anticuada frente a la interfaz minimalista y quedaba suelta al costado del texto; el titular era largo; no se veía el horario; la composición se sentía de plantilla.
+  - **Lo que salió de aquí:** las _Exigencias de diseño_ del plan (ADR 009).
+  - **Lo que sigue:** la segunda ronda está en [restaurante-cocina-abierta.md](restaurante-cocina-abierta.md).
+  - **Lo que se conserva:** la imagen fija liviana, el ADR 008 y las herramientas de la maqueta.
 - **Fecha:** 2026-10-26
 - **Identidad de partida:** «Fuego y barro», la cocina de leña de una picantería ([identidad.md](identidad.md)).
 - **Alcance:** solo cambia la capa de presentación de la v1 ([restaurante.md](restaurante.md)).

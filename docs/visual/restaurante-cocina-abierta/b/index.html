@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="es-PE">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="dark" />
+    <title>Storyboard B · Pizarra de la cocina · Sabores del Norte (demo)</title>
+    <link rel="stylesheet" href="./estilo.css" />
+  </head>
+  <body>
+    <div class="escena" data-escena></div>
+    <div class="etiquetas" data-etiquetas aria-hidden="true"></div>
+
+    <p class="aviso capa" role="note">
+      Sitio de demostración: el nombre, los precios y el contacto son ficticios.
+    </p>
+
+    <main class="capa">
+      <!-- La portada está escrita con tiza en la pizarra; el pedido es una comanda sujeta con un imán -->
+      <section class="portada" aria-labelledby="titular">
+        <div class="tiza">
+          <p class="tiza__negocio" translate="no">Sabores del Norte <span>demo</span></p>
+          <h1 id="titular">Cocina lambayecana, lista para pedir</h1>
+          <p class="tiza__estado">
+            <span data-estado></span>
+            <a href="#horario">Ver horario</a>
+          </p>
+        </div>
+        <a class="papel-iman" href="#carta">
+          <span class="papel-iman__iman" aria-hidden="true"></span>
+          Armar mi pedido
+          <small>Elige tus platos y envíalo por WhatsApp</small>
+        </a>
+      </section>
+
+      <section class="recorrido" aria-labelledby="titulo-menu">
+        <div class="tiza tiza--recuadro">
+          <h2 id="titulo-menu">Menú del día</h2>
+          <div data-menu></div>
+        </div>
+      </section>
+
+      <section class="carta" id="carta" aria-labelledby="titulo-carta">
+        <div class="tiza tiza--carta">
+          <h2 id="titulo-carta">La carta</h2>
+          <ul class="carta__lista" data-carta></ul>
+        </div>
+        <aside class="papel comanda-ticket" data-comanda hidden aria-labelledby="titulo-comanda">
+          <span class="papel-iman__iman" aria-hidden="true"></span>
+          <h2 id="titulo-comanda">Tu comanda</h2>
+          <ol data-lineas></ol>
+          <p class="comanda__total" data-total></p>
+          <a class="papel__enviar" href="#carta">Enviar por WhatsApp</a>
+        </aside>
+      </section>
+
+      <section class="horario" id="horario" aria-labelledby="titulo-horario">
+        <div class="tiza tiza--recuadro">
+          <h2 id="titulo-horario">Horario</h2>
+          <ul class="horario__dias" data-horario></ul>
+        </div>
+      </section>
+    </main>
+
+    <script type="module" src="./direccion.js"></script>
+  </body>
+</html>

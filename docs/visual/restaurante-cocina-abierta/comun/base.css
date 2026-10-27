@@ -1,0 +1,118 @@
+/* Común a las 3 direcciones: capas (escena detrás, interfaz dentro), comanda y etiquetas.
+   Cada dirección pone sus tokens, su tipografía y su composición en su estilo.css. */
+@import '../../../../core/core.css';
+
+body {
+  background: var(--color-fondo);
+  overflow-x: clip;
+}
+
+/* La escena ocupa siempre la pantalla: la interfaz vive dentro de ella (exigencia 3) */
+.escena {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+}
+
+.escena canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.capa {
+  position: relative;
+  z-index: 1;
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-foco);
+  outline-offset: 3px;
+}
+
+/* Etiquetas que nombran cada grupo de ingredientes cuando ya se ordenó */
+.etiquetas {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  transition: opacity var(--duracion-media) var(--curva-salida);
+}
+
+.etiqueta-grupo {
+  position: absolute;
+  left: 0;
+  top: 0;
+  translate: -50% -180%;
+  pointer-events: auto;
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+/* La carta como comanda: líneas con puntos guía hasta el precio */
+.carta__plato {
+  display: grid;
+  grid-template-columns: auto 1fr auto auto;
+  align-items: baseline;
+  gap: var(--espacio-2);
+  min-height: var(--tamano-tactil);
+}
+
+.carta__puntos {
+  border-bottom: 2px dotted currentColor;
+  opacity: 0.45;
+  translate: 0 -0.3em;
+}
+
+.carta__precio {
+  font-variant-numeric: tabular-nums;
+}
+
+.carta__agregar {
+  inline-size: var(--tamano-tactil);
+  block-size: var(--tamano-tactil);
+  border: 2px solid currentColor;
+  border-radius: var(--radio-sm);
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-size: 1.4rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+/* Tu comanda: el ticket se imprime línea por línea */
+.comanda-ticket {
+  font-variant-numeric: tabular-nums;
+}
+
+.comanda-ticket ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.comanda-ticket li {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--espacio-4);
+  padding-block: var(--espacio-2);
+  border-bottom: 1px dashed currentColor;
+  animation: imprimir 250ms var(--curva-salida) backwards;
+  animation-delay: calc(var(--i, 0) * 60ms);
+}
+
+@keyframes imprimir {
+  from {
+    opacity: 0;
+    transform: translateY(-0.6rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .comanda-ticket li,
+  .etiquetas {
+    animation: none;
+    transition: none;
+  }
+}

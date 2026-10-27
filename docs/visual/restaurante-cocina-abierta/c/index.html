@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="es-PE">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light" />
+    <title>Storyboard C · El pase · Sabores del Norte (demo)</title>
+    <link rel="stylesheet" href="./estilo.css" />
+  </head>
+  <body>
+    <div class="escena" data-escena></div>
+    <div class="etiquetas" data-etiquetas aria-hidden="true"></div>
+
+    <p class="aviso capa" role="note">
+      Sitio de demostración: el nombre, los precios y el contacto son ficticios.
+    </p>
+
+    <!-- El riel de comandas cruza la pantalla: todo lo que se lee cuelga de él -->
+    <div class="riel capa" aria-hidden="true"></div>
+
+    <main class="capa">
+      <section class="portada" aria-labelledby="titular">
+        <article class="comanda comanda--portada">
+          <span class="pinza" aria-hidden="true"></span>
+          <p class="comanda__mesa" translate="no">Sabores del Norte <span>demo</span></p>
+          <h1 id="titular">Arma tu comanda por WhatsApp</h1>
+          <p class="comanda__estado">
+            <span data-estado></span>
+            <a href="#horario">Horario</a>
+          </p>
+        </article>
+        <a class="comanda comanda--pedir" href="#carta">
+          <span class="pinza" aria-hidden="true"></span>
+          Armar mi pedido
+        </a>
+      </section>
+
+      <section class="recorrido" aria-labelledby="titulo-menu">
+        <div class="pizarra">
+          <h2 id="titulo-menu">Menú del día</h2>
+          <div data-menu></div>
+        </div>
+      </section>
+
+      <section class="carta" id="carta" aria-labelledby="titulo-carta">
+        <!-- Cada categoría es una comanda colgada sobre su bowl -->
+        <h2 class="carta__titulo" id="titulo-carta">La carta</h2>
+        <ul class="carta__riel" data-carta></ul>
+        <aside
+          class="comanda comanda--tuya comanda-ticket"
+          data-comanda
+          hidden
+          aria-labelledby="titulo-comanda"
+        >
+          <span class="pinza" aria-hidden="true"></span>
+          <h2 id="titulo-comanda">Tu comanda</h2>
+          <ol data-lineas></ol>
+          <p class="comanda__total" data-total></p>
+          <a class="comanda__enviar" href="#carta">Enviar por WhatsApp</a>
+        </aside>
+      </section>
+
+      <section class="horario" id="horario" aria-labelledby="titulo-horario">
+        <div class="pizarra">
+          <h2 id="titulo-horario">Horario</h2>
+          <ul class="horario__dias" data-horario></ul>
+        </div>
+      </section>
+    </main>
+
+    <script type="module" src="./direccion.js"></script>
+  </body>
+</html>

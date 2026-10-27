@@ -80,16 +80,45 @@ Si pides cambios, el brief vuelve al paso que corresponda; la maqueta del hero s
 
 | Paso | Skills | Entregable |
 | --- | --- | --- |
-| 1. Referencias | `anti-ui-slop`, guía de nicho de `crear-web-como-servicio`, búsqueda web | Las 3 mejores webs reales del rubro y 5 referencias de inmersión (sitios premiados por su movimiento o 3D, de cualquier rubro), con la técnica que se toma de cada una |
-| 2. Tres direcciones | `frontend-design`, arquetipos y catálogo de efectos de `crear-web-como-servicio` | 3 direcciones claramente distintas, cada una con concepto en una frase, arquetipo, momento firma 3D, paleta, par tipográfico y lenguaje de movimiento. **Tú eliges una** |
-| 3. Sistema visual | `ui-ux-pro-max`, `design-system` | Paleta con contraste verificado, par tipográfico con escala fluida, grid, radios y sombras, como tokens del rubro |
+| 1. Referencias | Búsqueda web, guía de nicho de `crear-web-como-servicio` | Las 3 mejores webs reales del rubro y 5 referencias de inmersión (sitios premiados por su movimiento o 3D, de cualquier rubro), con la técnica que se toma de cada una y ejemplos del estilo de 3D buscado |
+| 2. Tres direcciones con storyboard | `frontend-design`, catálogo de efectos de `crear-web-como-servicio` | 3 direcciones distintas, cada una con concepto, escena inmersiva, paleta, tipografía y componentes propios del rubro, y **un storyboard de 3 cuadros** (inicio, mitad del scroll, función estrella) a 360 y 1440 px con el 3D ya renderizado. Eliges mirando imágenes, no leyendo descripciones |
+| 3. Sistema visual | `design-system` | Paleta con contraste verificado, par tipográfico con escala fluida, grid, radios y sombras, como tokens del rubro |
 | 4. Guion de movimiento | `web-animation-design` y catálogo de efectos (diseñan); `emil-design-engineering` y `make-interfaces-feel-better` (pulen después) | Tabla de cada animación: elemento, disparador, duración, curva y versión reducida, más el plan de carga del 3D |
 | 5. Hero vivo | `frontend-design` | Hero con el 3D real, la función estrella y las coreografías de scroll funcionando; video de Playwright a 360 y 1440 px, capturas y la página abierta en tu navegador |
-| 6. Revisión experta | `design-critique`, `audit-as-design-eng`, `audit-as-perf-eng` | Veredicto con la pregunta "¿un dueño recordaría esta página mañana?", peso y costo del 3D medidos, y las correcciones aplicadas |
+| 6. Revisión experta | `design-critique`, `audit-as-design-eng`, `audit-as-perf-eng` y el Control de exigencias | Tabla del Control de exigencias con una captura como prueba de cada punto; si falla alguno, Claude Code lo corrige antes de mostrártelo |
 
 Todo queda en `docs/visual/<rubro>.md` con sus capturas. Claude Code se detiene ahí y te pide aprobación.
 
-**Tu revisión, en dos paradas:** después del paso 2 eliges una de las 3 direcciones; después del paso 6 apruebas el hero vivo mirando el video y la página en movimiento, nunca solo capturas fijas, porque una captura no muestra el movimiento. La prueba es la misma: si como dueño del negocio no te dan ganas de tocar el botón principal, o no recordarías la página mañana, no está aprobado.
+**Tu revisión, en dos paradas:** después del paso 2 eliges una dirección mirando sus storyboards; después del paso 6 apruebas el hero vivo mirando el video y la página en movimiento. La prueba es la misma: si como dueño del negocio no te dan ganas de tocar el botón principal, o no recordarías la página mañana, no está aprobado.
+
+### Exigencias de diseño para todos los rubros
+
+Se agregaron el 26 de octubre, después de que la primera maqueta del restaurante v2 no pasara: un objeto 3D realista y anticuado al lado de una interfaz minimalista, un titular de cinco líneas, sin horario visible y con composición de plantilla. Valen para los 6 prototipos y Claude Code las verifica con capturas antes de mostrarte nada.
+
+**1. La primera pantalla informa.** A 360 y a 1440 px, sin hacer scroll, se ven: el nombre del negocio, el titular, el estado con el horario de hoy ("Abierto · hoy de 12:00 a 16:00" o "Cerrado · abre mañana a las 12:00") con enlace al horario completo, y el botón de la función estrella. El horario de toda la semana tiene su propia sección y se repite en el pie.
+
+**2. Titulares cortos.** El titular principal tiene 6 palabras o menos y ocupa como máximo 2 líneas en escritorio y 3 en celular; los títulos de sección, 5 palabras o menos. Las palabras clave para Google van en el `title`, la `meta description`, el subtítulo y el JSON-LD, nunca alargan el titular.
+
+**3. El 3D es inmersivo y coherente con la página.**
+
+- **Mismo lenguaje visual que la interfaz:** si la página es minimalista, el 3D también: formas limpias, materiales mate o de vidrio, colores tomados de los tokens. Nada de texturas realistas de "objeto de época" ni de aspecto clip-art; la tradición del rubro se cuenta con color, materia o formas abstraídas.
+- **Inmersivo:** la escena ocupa el encuadre y la interfaz vive dentro de ella, no es un objeto recortado al costado del texto. La escena cambia con el scroll y anuncia lo que viene (por ejemplo, los ingredientes se ordenan y se convierten en las categorías de la carta).
+- **Prueba:** si el 3D se reemplaza por una foto recortada y la página se entiende igual, no es inmersivo.
+
+**4. Nada de plantilla.** Quedan prohibidos como estructura principal: el hero partido en dos (texto a la izquierda, imagen a la derecha), un par de botones redondeados como único llamado, grillas de 3 tarjetas iguales, secciones apiladas con el mismo ancho y ritmo, y el hero sobre fondo plano sin profundidad. Cada rubro tiene al menos 2 componentes de diseño que solo tienen sentido en su negocio (por ejemplo, la carta como comanda y el horario en pizarra). **Prueba:** con el nombre y las fotos tapados, ¿podría ser la plantilla de cualquier negocio? Si la respuesta es sí, no pasa.
+
+**5. Un solo lenguaje de principio a fin.** El hero y el resto de secciones comparten tipografía, materia y ritmo; no puede haber un hero espectacular y debajo una página genérica.
+
+### Skills que dejan de usarse en el diseño
+
+| Skill | Por qué se deja | Qué la reemplaza |
+| --- | --- | --- |
+| Arquetipos de `crear-web-como-servicio` | Son 10 diseños fijos: una plantilla por definición | `frontend-design` con las exigencias. Se siguen usando el catálogo de efectos, las reglas de robustez y su checklist |
+| `ui-ux-pro-max` | Entrega los patrones promedio de cada tipo de negocio, que es justo lo que se siente genérico | `design-system`, solo para ordenar los tokens |
+| `landing-page-copy` | Sus fórmulas producen titulares largos y cargados de palabras clave | `copy-edit` y `brand-voice` con los límites de la exigencia 2 |
+| `anti-ui-slop` | Su servicio de referencias (UIZZE) no está conectado, así que no aporta | El Control de exigencias y las referencias de inmersión del paso 1 |
+
+`seo-audit` se queda, pero no puede pedir que se alargue el titular.
 
 ### Reglas de movimiento y efectos
 
@@ -116,14 +145,14 @@ Todo queda en `docs/visual/<rubro>.md` con sus capturas. Claude Code se detiene 
 
 Cada prototipo tiene un concepto, un momento firma y un ritmo que ningún otro repite; la matriz vive en `docs/visual/identidad.md` y es el punto de partida del paso 2.
 
-| Rubro | Concepto | Momento firma | Lenguaje de movimiento | Color de partida |
+| Rubro | Concepto | Escena inmersiva (punto de partida) | Componentes propios | Color de partida |
 | --- | --- | --- | --- | --- |
-| Restaurante | "Fuego y barro": la cocina de leña de una picantería | Olla de barro o plato 3D con vapor de partículas que gira con el scroll | Cálido y generoso: los platos caen a la comanda, el ticket se imprime | Terracota, carbón, crema |
-| Barbería | "La silla de noche": cromo y luz dorada | Poste de barbero 3D ligado al scroll y un reflejo de navaja que recorre los títulos | Cortes secos, como un filo | Negro, dorado |
-| Clínica dental | "Calma clínica" | Diente o sonrisa de vidrio con refracción suave y luz que respira | Lento y preciso: el cuestionario avanza como un recorrido | Blanco, menta |
-| Spa / Estética | "Agua quieta" | Shader de ondas de agua sobre la imagen del hero | Muy lento, al ritmo de la respiración | Verde salvia, arena |
-| Veterinaria | "Juego y urgencia" | Mascota low-poly que sigue al cursor o al dedo | Rebotes juguetones; la barra de urgencias late | Turquesa, naranja |
-| Gimnasio | "Neón y pulso" | Pesa rusa 3D ligada al scroll y tipografía cinética | Rápido e intenso; cuenta regresiva que se voltea | Negro, verde lima neón |
+| Restaurante | "La cocina abierta" | Ingredientes del norte (ají limo, limón, cebolla morada, loche) en 3D mate a pantalla completa, con vapor sutil; al bajar se ordenan y forman las categorías de la carta | Carta como comanda que se imprime; horario y menú del día en pizarra | Terracota, crema, ají amarillo |
+| Barbería | "Filo" | Superficie de cromo líquido que se deforma con el scroll y refleja el titular, con un barrido de luz | Elegir corte y barbero como un turno en la silla; tiempo de espera siempre visible | Negro, dorado |
+| Clínica dental | "Calma clínica" | Formas de vidrio esmerilado que se alinean poco a poco con el scroll, como una sonrisa que se ordena | Cuestionario como recorrido; precios "desde" con duración | Blanco, menta |
+| Spa / Estética | "Agua quieta" | Shader de agua a pantalla completa en el que flotan los textos | Armador de cita al ritmo de la respiración; comparador antes y después | Verde salvia, arena |
+| Veterinaria | "Juego y urgencia" | Formas suaves tipo juguete, mate, que reaccionan al toque y al cursor | Barra de urgencias que late; calendario de vacunas por especie | Turquesa, naranja |
+| Gimnasio | "Pulso" | Ondas de luz que responden a la velocidad del scroll, con tipografía cinética | Horario de clases con "en curso" en vivo; cuenta regresiva de la promoción | Negro, verde lima neón |
 
 Nada de personajes, logos ni marcas reales en las escenas.
 
@@ -137,14 +166,14 @@ Cada prototipo pasa por ocho etapas con skills especializadas, en este orden, an
 
 | Etapa | Skill | Qué aporta |
 | --- | --- | --- |
-| 1. Textos de la página | `landing-page-copy`, `copy-edit` (Copywriting Kit) | Titular, subtítulo y llamados a la acción escritos para cada rubro, solo con datos reales del negocio |
-| 2. Dirección visual | `frontend-design` | Un concepto estético propio por rubro (tipografía, color, composición), para que ningún prototipo parezca plantilla |
-| 3. Sistema de diseño | `ui-ux-pro-max`, `design-system` (Design) | Paletas, tipografías y patrones UX por tipo de negocio; `design-system` revisa que los tokens sean consistentes entre rubros |
-| 4. Referencias reales | `anti-ui-slop` | Contrasta el diseño con pantallas reales de la industria y fija un "contrato de diseño" con los estados obligatorios |
-| 5. Microtextos | `ux-copy` (Design) | Botones, mensajes de error, confirmaciones y estados vacíos de los formularios de reserva |
-| 6. Crítica de diseño | `design-critique` (Design) | Revisión estructurada de jerarquía, usabilidad y consistencia con ojos frescos; se corrige lo que encuentre |
+| 1. Textos de la página | `copy-edit`, `brand-voice` (Copywriting Kit) | Titular, subtítulo y llamados a la acción dentro de los límites de longitud, solo con datos reales del negocio |
+| 2. Dirección visual | `frontend-design` | Un concepto estético propio por rubro, sin arquetipos ni plantillas |
+| 3. Sistema de diseño | `design-system` (Design) | Tokens consistentes y propios de cada rubro |
+| 4. Control de exigencias | Checklist propio con capturas | Verifica primera pantalla, titulares, 3D inmersivo y coherente, y que nada parezca plantilla |
+| 5. Microtextos | `ux-copy` (Design) | Botones, mensajes de error, confirmaciones y estados vacíos de los formularios |
+| 6. Crítica de diseño | `design-critique` (Design), `audit-as-design-eng` | Revisión de jerarquía, usabilidad y consistencia con ojos frescos; se corrige lo que encuentre |
 | 7. Accesibilidad | `mcp-audit` (Axe), `web-design-guidelines`, `accessibility-review` (Design) | Axe escanea la página y prueba el teclado en un bucle hasta 0 violaciones; las otras dos cubren pautas de interfaz y WCAG 2.1 AA |
-| 8. SEO local y control final | `seo-audit`, `copy-proof-check` (Copywriting Kit), `anti-ui-slop` | Datos estructurados `LocalBusiness`, afirmaciones de los textos verificadas contra los datos del negocio y control de salida del diseño |
+| 8. SEO local y control final | `seo-audit`, `copy-proof-check` (Copywriting Kit), Control de exigencias | Datos estructurados `LocalBusiness`, afirmaciones verificadas contra los datos del negocio y el Control de exigencias otra vez sobre la versión final |
 
 Axe necesita conectar su servidor una sola vez con `mcp-setup` y una cuenta de Deque; lo configuramos al empezar la fase 1.
 
@@ -156,7 +185,7 @@ Axe necesita conectar su servidor una sola vez con `mcp-setup` y una cuenta de D
 - Container queries: las tarjetas se adaptan al espacio que tienen, no solo al tamaño de la pantalla.
 - Imágenes en AVIF/WebP con `srcset`, para cargar rápido en datos móviles.
 
-La meta medible: 90 o más en las cuatro categorías de Lighthouse en cada prototipo. La skill `anti-ui-slop` usa un servicio externo de referencias; si no está disponible, ese paso se hace con `frontend-design` y `ui-ux-pro-max`, y se avisa.
+La meta medible: 90 o más en las cuatro categorías de Lighthouse en cada prototipo (o la excepción del ADR 008 aprobada por ti), y el Control de exigencias completo.
 
 ## Skills de construcción y venta
 
@@ -164,8 +193,8 @@ Dos skills aportan el motor para construir y vender: `crear-web-como-servicio` p
 
 | Skill | Qué se toma de ella | Dónde entra |
 | --- | --- | --- |
-| `crear-web-como-servicio` (diseño) | 10 arquetipos visuales (uno distinto por prototipo), catálogo de más de 40 efectos, reglas para no clonar diseños, reglas de robustez (movimiento reducido, caché, todo en WebP) y su checklist antes de publicar | Fases 1 a 3, junto a `frontend-design` en la etapa de dirección visual |
-| `crear-web-como-servicio` (imágenes) | Fotos de stock gratis (Openverse) convertidas a WebP; imágenes con IA solo si hay clave de OpenAI | Mientras no haya fotos reales del negocio |
+| `crear-web-como-servicio` (diseño) | Catálogo de más de 40 efectos, reglas para no clonar diseños, reglas de robustez (movimiento reducido, caché, todo en WebP) y su checklist antes de publicar. Sus 10 arquetipos ya no se usan | Fases 2 y 3, junto a `frontend-design` |
+| `crear-web-como-servicio` (imágenes) | Imágenes con IA (clave de OpenAI) con dirección de arte por rubro; fotos de Openverse solo como último recurso | Mientras no haya fotos reales del negocio |
 | `crear-web-como-servicio` (IA) | Asistente de chat con Gemini, lector de documentos o fotos, calculadoras interactivas y captura de contactos, con la clave guardada solo en el servidor | Fase siguiente, como upgrade vendible junto al chatbot de WhatsApp |
 | `crear-web-como-servicio` (venta) | Guía de nicho, argumento de venta y paso de demo a cliente; el contenido de demo siempre marcado como demo | Fase 4, visitas a prospectos |
 | `crear-web-micro-saas` | Recetas de herramientas que corren en el navegador sin servidor: generador de QR, calculadoras | QR de la carta (restaurante) y calculadora de IMC (gimnasio); más adelante, un posible proyecto propio de micro SaaS |
@@ -242,7 +271,7 @@ Objetivo: que el cliente vea la carta con fotos y reserve o pida en menos de un 
 | Plato del día / menú | Campo `menuDelDia` en el JSON; el dueño lo cambia y se actualiza solo |
 | Código QR de la carta | Imagen QR que apunta a la web, para imprimir en las mesas |
 
-**Identidad:** "Fuego y barro" (ver *Identidad por rubro*). La versión 1, con dirección de periódico, queda como base funcional: carrito, comanda, reservas y pruebas. La versión 2 rehace solo la presentación con la planificación visual revisada.
+**Identidad:** "La cocina abierta" (ver *Identidad por rubro*). La versión 1, con dirección de periódico, queda como base funcional: carrito, comanda, reservas y pruebas. La primera maqueta de la versión 2 ("La olla manda") no se aprobó: la olla realista se veía anticuada frente a la interfaz minimalista, el titular era largo, faltaba el horario y la composición se sentía de plantilla. De ahí salen las *Exigencias de diseño*.
 
 **Upgrade de chatbot:** bot de WhatsApp que toma reservas y pedidos solo y responde horario y ubicación.
 
@@ -357,14 +386,15 @@ Cada fase pasa a la siguiente solo cuando cumple su control (los rombos).
 
 ### Checklist de "terminado" para cada prototipo
 
-- [ ] Elegiste su dirección entre 3, aprobaste su hero vivo en video, y se ve bien en un celular de 360 px de ancho y en escritorio
-- [ ] Cumple la inmersión mínima: momento firma 3D con póster de respaldo, 3 coreografías de scroll y microinteracciones en la función estrella
+- [ ] Elegiste su dirección entre 3 storyboards, aprobaste su hero vivo en video, y se ve bien en un celular de 360 px de ancho y en escritorio
+- [ ] Pasa las 5 exigencias de diseño: primera pantalla con horario de hoy, titulares cortos, 3D inmersivo y coherente, nada de plantilla y un solo lenguaje
+- [ ] Cumple la inmersión mínima: escena 3D con póster de respaldo, 3 coreografías de scroll y microinteracciones en la función estrella
 - [ ] Todo el contenido sale de `negocio.json` (cambiar de negocio = cambiar el JSON)
 - [ ] La función estrella funciona y termina en un mensaje de WhatsApp correcto
-- [ ] "Abierto ahora" coincide con el horario real
+- [ ] "Abierto ahora" y el horario de hoy coinciden con el horario real
 - [ ] 90 o más en las 4 categorías de Lighthouse, LCP menor a 2.5 s y CLS menor a 0.1 (o la excepción del ADR 008 aprobada por ti)
 - [ ] 0 violaciones en Axe, incluida la prueba de teclado
-- [ ] Pasó `design-critique`, `web-design-guidelines` y el control final de `anti-ui-slop`
+- [ ] Pasó `design-critique` y `web-design-guidelines`
 - [ ] Textos sin afirmaciones inventadas (`copy-proof-check`)
 - [ ] Pasó el checklist previo a publicar de crear-web-como-servicio y tiene su ADR y sus commits explicados
 - [ ] Publicado en GitHub Pages con su propia URL

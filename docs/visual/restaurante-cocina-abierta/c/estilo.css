@@ -1,0 +1,421 @@
+/* C · «El pase»: comandas colgadas del riel, sobre el mostrador por donde sale la comida. */
+@import '@fontsource-variable/fraunces/index.css';
+@import '@fontsource-variable/figtree/index.css';
+@import '../comun/base.css';
+
+:root:root {
+  --color-fondo: #a3472b; /* pared de la cocina (respaldo del canvas) */
+  --color-papel: #fbf7ef;
+  --color-tinta: #1f1712; /* 17:1 sobre papel */
+  --color-tinta-suave: #5d4b3f;
+  --color-aji: #f2b705;
+  --color-acero: #8d8a85;
+  --color-pizarra: #26332c;
+  --color-tiza: #ece6da;
+  --color-foco: var(--color-tinta);
+  --fuente-titulos: 'Fraunces Variable', Georgia, serif;
+  --fuente-texto: 'Figtree Variable', system-ui, sans-serif;
+  --sombra-papel: 0 2px 2px rgb(40 15 5 / 0.25), 0 22px 30px -16px rgb(40 15 5 / 0.6);
+}
+
+body {
+  color: var(--color-tinta);
+}
+
+.aviso {
+  margin: 0;
+  padding: var(--espacio-2) var(--margen-lateral);
+  background: var(--color-tinta);
+  color: var(--color-papel);
+  font-size: var(--texto-sm);
+}
+
+/* Riel de acero fijo arriba: de él cuelgan las comandas */
+.riel {
+  position: sticky;
+  top: 0;
+  height: 14px;
+  background: linear-gradient(#b9b6b0, var(--color-acero) 60%, #6f6c67);
+  box-shadow: 0 4px 8px rgb(0 0 0 / 0.35);
+  z-index: 3;
+}
+
+/* Comanda colgada: papel con pinza arriba, un poco ladeada */
+.comanda {
+  position: relative;
+  display: block;
+  background: var(--color-papel);
+  color: var(--color-tinta);
+  padding: var(--espacio-6) var(--espacio-5) var(--espacio-5);
+  box-shadow: var(--sombra-papel);
+  transform-origin: 50% 0;
+}
+
+.pinza {
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  width: 46px;
+  height: 22px;
+  translate: -50% 0;
+  border-radius: 4px;
+  background: linear-gradient(#cfccc6, var(--color-acero));
+  box-shadow: 0 2px 3px rgb(0 0 0 / 0.35);
+}
+
+.comanda h1,
+.comanda h2 {
+  font-family: var(--fuente-titulos);
+  font-optical-sizing: auto;
+  font-weight: 650;
+  font-variation-settings:
+    'SOFT' 100,
+    'WONK' 1;
+  line-height: 0.98;
+  letter-spacing: -0.015em;
+}
+
+.portada {
+  min-height: calc(100svh - 3rem);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: var(--espacio-5) var(--espacio-7);
+  padding: 0 var(--margen-lateral);
+}
+
+.comanda--portada {
+  width: min(100%, 37rem);
+  margin-left: clamp(0rem, 6vw, 7rem);
+  rotate: -1.5deg;
+}
+
+.comanda__mesa {
+  font-weight: 700;
+  padding-bottom: var(--espacio-3);
+  border-bottom: 1px solid var(--color-tinta);
+}
+
+.comanda__mesa span {
+  font-weight: 500;
+  color: var(--color-tinta-suave);
+}
+
+.comanda--portada h1 {
+  margin-block: var(--espacio-4);
+  font-size: clamp(2.3rem, 1.4rem + 3vw, 3.7rem);
+}
+
+.comanda__estado {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--espacio-2) var(--espacio-4);
+  font-weight: 600;
+}
+
+.comanda__estado a {
+  color: var(--color-tinta);
+}
+
+/* El llamado es otra comanda, más corta y amarilla, colgada al lado */
+.comanda--pedir {
+  margin-top: var(--espacio-2);
+  padding: var(--espacio-6) var(--espacio-5) var(--espacio-5);
+  background: var(--color-aji);
+  font-family: var(--fuente-titulos);
+  font-weight: 700;
+  font-size: var(--texto-2xl);
+  line-height: 1;
+  text-decoration: none;
+  rotate: 2.5deg;
+}
+
+.recorrido {
+  min-height: 120svh;
+  display: grid;
+  justify-items: center;
+  align-items: start;
+  padding: 18svh var(--margen-lateral) 0;
+}
+
+.pizarra {
+  width: min(100%, 25rem);
+  padding: var(--espacio-6);
+  border: 10px solid #5b3520;
+  border-radius: 6px;
+  background: var(--color-pizarra);
+  color: var(--color-tiza);
+  box-shadow: var(--sombra-papel);
+  --color-foco: var(--color-aji);
+}
+
+.pizarra h2 {
+  font-family: var(--fuente-titulos);
+  font-weight: 650;
+  font-size: var(--texto-2xl);
+}
+
+.menu__precio {
+  margin-top: var(--espacio-2);
+  font-family: var(--fuente-titulos);
+  font-size: var(--texto-3xl);
+  font-weight: 700;
+  color: var(--color-aji);
+  line-height: 1;
+}
+
+.menu__cuando {
+  margin-block: var(--espacio-2) var(--espacio-4);
+}
+
+.menu__platos {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: var(--espacio-2);
+}
+
+.menu__platos span {
+  display: block;
+  font-weight: 700;
+  font-size: var(--texto-sm);
+  color: var(--color-aji);
+}
+
+/* La carta: 4 comandas colgadas del riel, cada una sobre el bowl de su categoría */
+.carta {
+  padding: var(--espacio-4) var(--margen-lateral) 60svh;
+}
+
+.carta__titulo {
+  display: inline-block;
+  margin-bottom: var(--espacio-4);
+  padding: var(--espacio-2) var(--espacio-4);
+  background: var(--color-aji);
+  color: var(--color-tinta);
+  font-family: var(--fuente-titulos);
+  font-weight: 700;
+  font-size: var(--texto-xl);
+  box-shadow: var(--sombra-papel);
+}
+
+/* Celular: las comandas se deslizan por el riel de una en una */
+.carta__riel {
+  display: flex;
+  gap: var(--espacio-4);
+  align-items: start;
+  margin: 0 calc(-1 * var(--margen-lateral));
+  padding: var(--espacio-3) var(--margen-lateral) var(--espacio-5);
+  list-style: none;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  overscroll-behavior-x: contain;
+}
+
+.carta__riel > li {
+  flex: 0 0 82%;
+  scroll-snap-align: center;
+}
+
+.carta__precio {
+  white-space: nowrap;
+}
+
+.carta__categoria {
+  position: relative;
+  padding: var(--espacio-5) var(--espacio-3) var(--espacio-3);
+  background: var(--color-papel);
+  box-shadow: var(--sombra-papel);
+  transform-origin: 50% 0;
+  font-size: var(--texto-sm);
+}
+
+/* La pinza de cada comanda, y cada una colgada con su propio ángulo */
+.carta__categoria::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  width: 40px;
+  height: 20px;
+  translate: -50% 0;
+  border-radius: 4px;
+  background: linear-gradient(#cfccc6, var(--color-acero));
+}
+
+.carta__categoria:nth-child(1) {
+  rotate: -1.5deg;
+}
+.carta__categoria:nth-child(2) {
+  rotate: 1deg;
+}
+.carta__categoria:nth-child(3) {
+  rotate: -0.5deg;
+}
+.carta__categoria:nth-child(4) {
+  rotate: 2deg;
+}
+
+.carta__categoria h3 {
+  font-family: var(--fuente-titulos);
+  font-weight: 650;
+  font-size: var(--texto-lg);
+  padding-bottom: var(--espacio-2);
+  border-bottom: 1px solid var(--color-tinta);
+}
+
+.carta__categoria ul {
+  margin: var(--espacio-2) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.carta__categoria .carta__plato {
+  grid-template-columns: 1fr auto auto;
+  column-gap: var(--espacio-2);
+}
+
+.carta__categoria .carta__puntos {
+  display: none;
+}
+
+@media (min-width: 60rem) {
+  .carta {
+    padding-inline: var(--espacio-5);
+  }
+
+  .carta__riel {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    column-gap: var(--espacio-5);
+    margin: 0;
+    padding: 0;
+    overflow: visible;
+  }
+}
+
+.comanda--tuya {
+  width: min(100%, 21rem);
+  rotate: -2deg;
+}
+
+.comanda--tuya h2 {
+  font-size: var(--texto-2xl);
+  margin-bottom: var(--espacio-3);
+}
+
+.comanda__total {
+  margin-top: var(--espacio-3);
+  font-family: var(--fuente-titulos);
+  font-weight: 700;
+  font-size: var(--texto-xl);
+}
+
+.comanda__enviar {
+  display: block;
+  margin-top: var(--espacio-4);
+  padding: var(--espacio-3) var(--espacio-4);
+  background: var(--color-aji);
+  color: var(--color-tinta);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+@media (min-width: 60rem) {
+  .comanda--tuya {
+    position: fixed;
+    right: var(--espacio-6);
+    bottom: 0;
+    z-index: 2;
+    width: 21rem;
+    max-height: 40svh;
+    overflow: auto;
+    padding: var(--espacio-4) var(--espacio-4) var(--espacio-3);
+    font-size: var(--texto-sm);
+    rotate: -1deg;
+  }
+
+  .comanda--tuya h2 {
+    font-size: var(--texto-xl);
+    margin-bottom: var(--espacio-1);
+  }
+
+  .comanda--tuya li {
+    padding-block: var(--espacio-1);
+  }
+
+  .comanda--tuya .comanda__total {
+    margin-top: var(--espacio-2);
+    font-size: var(--texto-lg);
+  }
+
+  .comanda--tuya .comanda__enviar {
+    margin-top: var(--espacio-2);
+  }
+
+  .comanda--tuya .pinza {
+    display: none;
+  }
+}
+
+@media (max-width: 59.99rem) {
+  .comanda--tuya {
+    position: fixed;
+    inset: auto var(--espacio-2) 0;
+    z-index: 2;
+    width: auto;
+    max-height: 48svh;
+    overflow: auto;
+    rotate: 0deg;
+    padding-block: var(--espacio-4);
+  }
+
+  .comanda--tuya .pinza {
+    display: none;
+  }
+
+  .comanda--portada {
+    rotate: -1deg;
+  }
+}
+
+.horario {
+  padding: var(--espacio-seccion) var(--margen-lateral) 30svh;
+}
+
+.horario__dias {
+  margin: var(--espacio-4) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.horario__dias li {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--espacio-4);
+  padding-block: var(--espacio-1);
+}
+
+.horario__dias [aria-current] {
+  color: var(--color-aji);
+  font-weight: 700;
+}
+
+/* El nombre de cada bowl: una etiqueta de papel pegada en el mostrador
+   (en C la comanda de arriba ya nombra la categoría: la etiqueta solo en celular) */
+@media (min-width: 60rem) {
+  .etiquetas {
+    display: none;
+  }
+}
+
+.etiqueta-grupo {
+  translate: -50% 120%;
+  padding: var(--espacio-1) var(--espacio-3);
+  background: var(--color-papel);
+  color: var(--color-tinta);
+  font-family: var(--fuente-titulos);
+  font-weight: 650;
+  box-shadow: var(--sombra-papel);
+}
