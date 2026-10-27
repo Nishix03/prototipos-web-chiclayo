@@ -72,6 +72,7 @@ barberia/                            rubro 2 «Filo»: cromo líquido 3D, letrer
 dental/                              rubro 3 «Calma clínica»: sonrisa de vidrio 3D, cuestionario «¿Qué tratamiento necesito?» y precios «desde»
 spa/                                 rubro 4 «Agua quieta»: agua 3D (shader), cita en 3 pasos que respira, paquetes y comparador antes/después
 veterinaria/                         rubro 5 «Juego y urgencia»: barra de urgencias 24 h, juguetes 3D que siguen al cursor y calendario de vacunas
+gimnasio/                            rubro 6 «Pulso»: monitor de luz neón 3D (shader), horario de clases con la clase en curso y cuenta regresiva
 docs/decisiones/                     ADR
 docs/visual/                         brief visual de cada rubro, con maqueta y capturas
 pruebas/teclado/                     pruebas E2E con Playwright (teclado y horario)

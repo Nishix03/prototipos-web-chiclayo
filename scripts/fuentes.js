@@ -97,6 +97,14 @@ const FUENTES = [
     salida: 'nunito-texto.woff2',
     ejes: { wght: { min: 400, max: 800 } },
   },
+  // Gimnasio «Pulso» (dirección A «Monitor»): Archivo en todo, expandida al 125 % en titulares
+  {
+    carpeta: 'gimnasio',
+    paquete: 'archivo',
+    entrada: 'files/archivo-latin-wdth-normal.woff2',
+    salida: 'archivo.woff2',
+    ejes: { wght: { min: 400, max: 900 }, wdth: { min: 100, max: 125 } },
+  },
 ];
 
 function fallar(mensaje) {
