@@ -6,6 +6,7 @@ import { iniciarFormulariosWhatsapp } from './formulario-whatsapp.js';
 import { iniciarComparadores } from './comparador.js';
 import { cuandoEsteLibre } from './carga3d.js';
 import { iniciarMovimiento } from './movimiento.js';
+import { iniciarSelecciones } from './seleccion.js';
 
 /** Ejecuta una mejora aislada: un error se registra en consola y no tumba a las demás. */
 export function seguro(nombre, fn) {
@@ -23,6 +24,7 @@ export function seguro(nombre, fn) {
  */
 export function iniciarNucleo({ mensajes } = {}) {
   seguro('movimiento de marca', iniciarMovimiento);
+  seguro('respuesta de selecciones', iniciarSelecciones);
   seguro('horario', iniciarIndicadorHorario);
   seguro('formularios', () => iniciarFormulariosWhatsapp(mensajes));
   seguro('comparadores', iniciarComparadores);

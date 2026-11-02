@@ -35,6 +35,8 @@ Prototipos web para negocios locales (restaurante, spa, barbería, veterinaria, 
 
 ## Cómo funciona
 
+Las elecciones tienen una capa de confirmación propia en `core/seleccion.js`. Para reproducir filtros, desplegables, tarjetas y opciones de las seis marcas: `node scripts/control-seleccion.mjs <ronda>` después de construir. Véase [ADR 020](docs/decisiones/020-confirmacion-de-selecciones.md).
+
 El movimiento de las seis marcas se inicia desde `core/movimiento.js`, separado de la carga 3D. Usa animaciones nativas y respeta movimiento reducido. Para revisar fotos, portadas y grabar un recorrido: `node scripts/control-movimiento.mjs <ronda>` después de construir. Detalle en [ADR 019](docs/decisiones/019-movimiento-de-marca.md).
 
 ```text

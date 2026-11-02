@@ -8,7 +8,6 @@ const MARCAS = {
     y: -20,
     giro: -1.6,
     piezas: '.categoria__titulo, .pizarra dt, .pizarra dd, .portada__platos-titulo',
-    respuesta: '.barra-pedido, [data-barra]',
   },
   barberia: {
     tiempo: 440,
@@ -17,7 +16,6 @@ const MARCAS = {
     y: 0,
     giro: 0,
     piezas: '.corte__cabeza, .barbero__nombre, .barbero__dias',
-    respuesta: '.barbero:has([aria-pressed="true"]) .barbero__dias',
   },
   dental: {
     tiempo: 650,
@@ -26,7 +24,6 @@ const MARCAS = {
     y: 22,
     giro: 0,
     piezas: '.tratamiento__nombre',
-    respuesta: '[data-etapas]',
   },
   spa: {
     tiempo: 950,
@@ -35,7 +32,6 @@ const MARCAS = {
     y: 30,
     giro: 0.7,
     piezas: '.servicio__nombre, .paquete__nombre, .paquete__datos',
-    respuesta: '.cita__progreso',
   },
   veterinaria: {
     tiempo: 560,
@@ -44,7 +40,6 @@ const MARCAS = {
     y: 18,
     giro: -0.6,
     piezas: '.servicio__nombre, .ficha-mascota',
-    respuesta: '.ficha-mascota',
   },
   gimnasio: {
     tiempo: 420,
@@ -53,7 +48,6 @@ const MARCAS = {
     y: 30,
     giro: 0,
     piezas: '.dia__nombre, .clase__hora, .planes__ahorro',
-    respuesta: '.plan-semanal',
   },
 };
 
@@ -203,41 +197,6 @@ export function iniciarMovimiento() {
       const objetivo = animacion.effect?.target;
       if (objetivo?.contains(e.target) || e.target.contains(objetivo)) animacion.cancel();
     }
-  });
-  document.addEventListener('click', (e) => {
-    if (!e.detail || teclado || !permitido()) return;
-    const boton = e.target.closest(
-      '[data-filtro], [data-fase], [data-elegir-barbero], [data-guardar-sesion], [data-accion], [data-siguiente], [data-resultado]',
-    );
-    if (!boton) return;
-    requestAnimationFrame(() => {
-      if (boton.hasAttribute('data-filtro')) {
-        const seccion = boton.closest('section');
-        seccion
-          ?.querySelectorAll(
-            '.corte:not([hidden]) .corte__cabeza, .servicio:not([hidden]) .servicio__nombre, .clase:not([hidden]) .clase__tipo, .categoria:not([hidden]) .categoria__titulo',
-          )
-          .forEach((elemento, i) => {
-            if (i < 8)
-              animar(elemento, [{ translate: '0 10px' }, { translate: '0 0' }], 260, i * 25);
-          });
-      }
-      const respuesta = document.querySelector(perfil.respuesta);
-      animar(
-        respuesta,
-        [{ translate: '0 0' }, { translate: '0 -4px', offset: 0.4 }, { translate: '0 0' }],
-        300,
-      );
-    });
-  });
-  document.addEventListener('change', (e) => {
-    if (teclado || !permitido() || !e.target.matches('#vacunas-especie, #vacunas-nacimiento'))
-      return;
-    animar(
-      document.querySelector('.ficha-mascota'),
-      [{ transform: 'scale(.985)' }, { transform: 'scale(1)' }],
-      280,
-    );
   });
   preferencia.addEventListener('change', () => {
     cancelar();

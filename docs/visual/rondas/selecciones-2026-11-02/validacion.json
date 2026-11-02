@@ -1,0 +1,21 @@
+{
+  "fecha": "2026-11-02",
+  "pruebas": {
+    "aprobadas": 172,
+    "omitidas": 2,
+    "fallidas": 0,
+    "workers": 2
+  },
+  "clientes": [
+    {
+      "archivo": "cliente-DEIu_R7j.js",
+      "bytes": 18335,
+      "gzip": 7106
+    }
+  ],
+  "capaSeleccion": {
+    "dependenciasNuevas": 0,
+    "buclesPermanentesNuevos": 0,
+    "incrementoClienteGzip": 1660
+  }
+}
