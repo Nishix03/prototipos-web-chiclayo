@@ -1,11 +1,9 @@
 // Navegador: el arranque de la escena 3D de un rubro, igual en todos (ADR 008).
 //
 // - Con ?poster dibuja la escena quieta en sus encuadres para scripts/poster.js.
-// - Si no, cuando la página está libre: llegan las coreografías (si no hay movimiento reducido)
-//   y la escena (si puede3d()). Three.js y GSAP vienen con import(): no pesan al cargar.
+// - Si no, la escena llega al explorar (si puede3d()). El movimiento de interfaz
+//   se inicia por separado desde cliente.js; no espera a Three.js.
 import { puede3d, cuandoExplore } from './carga3d.js';
-
-const reducido = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 /** Avance del scroll entre la portada (0) y el momento en que `selector` llega arriba (1). */
 export function avanceHasta(selector) {
@@ -19,12 +17,11 @@ export function avanceHasta(selector) {
 /**
  * @param {object} o
  * @param {() => Promise<{montar: Function}>} o.escena  import() del montaje del rubro
- * @param {() => Promise<{iniciarCoreografias: Function}>} [o.coreografias]
  * @param {() => number} o.avance
  * @param {Array<[string, number, number]>} o.posters  [nombre, ancho, alto] de cada encuadre
  * @param {(escena: object) => void} [o.alMontar]
  */
-export function iniciarEscena({ escena, coreografias, avance, posters, alMontar }) {
+export function iniciarEscena({ escena, avance, posters, alMontar }) {
   if (new URLSearchParams(location.search).has('poster')) {
     escena().then(({ montar }) => {
       const fondo = getComputedStyle(document.documentElement)
@@ -39,7 +36,6 @@ export function iniciarEscena({ escena, coreografias, avance, posters, alMontar 
     return;
   }
   cuandoExplore(async () => {
-    if (coreografias && !reducido()) (await coreografias()).iniciarCoreografias();
     if (puede3d()) {
       const { montar } = await escena();
       const montada = montar(document.querySelector('[data-escena]'), avance);

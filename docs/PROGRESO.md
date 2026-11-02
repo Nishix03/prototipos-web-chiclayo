@@ -222,3 +222,13 @@ Con el gimnasio se terminan los 6 prototipos.
 - Comanda con espacio reservado al plato y acciones móviles más compactas. Se retira la capa de etiquetas de bowls y las direcciones antiguas sin recursos. Carrito y reservas conservan su implementación.
 - 16 pruebas aprobadas, incluida la primera interacción que activa la escena en ambos dispositivos. Control 2/2 con el 3D vivo y sin desborde. Evidencia vigente: ADR 018 y `docs/visual/rondas/restaurante-mesa-2026-11-02/`. No se ha publicado.
 - Lighthouse de la nueva escena: 98 móvil (mediana de cinco) y 100 escritorio (una corrida), LCP móvil 1,98 s; accesibilidad, buenas prácticas y SEO 100. Se limita el póster de teléfonos a 600 px (33,6 KB) para conservar rapidez. Las mediciones intermedias se guardan junto al resultado final.
+
+### 2026-11-02 · Movimiento por marca y hero más completo
+
+- La ronda anterior se integró en main y se publicó con el merge `07a2c6f`. La nueva indicación de Iván pide animaciones más profesionales y un hero de restaurante con más contenido.
+- Nueva capa nativa de movimiento, independiente de Three.js: portadas coordinadas, cortinas en fotografías, recorrido editorial, entradas de títulos/detalles y respuestas a filtros, selecciones y ficha. Se sustituyen las seis coreografías de GSAP/ScrollTrigger en las páginas.
+- El restaurante incorpora arroz con pato, cabrito y ceviche en una franja de pizarra con fotos, precios y enlaces a los platos; se restablece el filtro si el plato elegido estaba oculto.
+- Las áreas pulsables permanecen estables; el movimiento reducido se respeta incluso al cambiarlo con la página abierta. Se mantienen el render bajo demanda y la carga diferida del 3D.
+- 140 pruebas aprobadas y dos omisiones por dispositivo. Revisión visual 12/12 sin imágenes rotas, errores de JavaScript ni desborde; Control del restaurante 2/2 con 3D vivo.
+- Decisión: ADR 019. Informe, vídeo y capturas: `docs/visual/MOVIMIENTO-2026-11-02.md` y ronda `movimiento-de-marca-2026-11-02`. Iteración local en `codex/animaciones-de-marca`, pendiente de subir.
+- Comprobación puntual de Lighthouse (una corrida por caso): móvil 93–99 en los seis prototipos, LCP 1,64–2,14 s; restaurante en escritorio 99. Accesibilidad, buenas prácticas y SEO 100 en las siete corridas. Las muestras no son medianas; están guardadas junto a la evidencia.

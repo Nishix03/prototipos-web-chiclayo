@@ -1,0 +1,107 @@
+[
+  {
+    "rubro": "restaurante",
+    "modo": "movil",
+    "corridas": 1,
+    "scores": {
+      "performance": 93,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 100
+    },
+    "lcp": 2142.2524999999996,
+    "tbt": 250.50099999999986,
+    "cls": 0.0003139438255816604,
+    "bytes": 395637
+  },
+  {
+    "rubro": "spa",
+    "modo": "movil",
+    "corridas": 1,
+    "scores": {
+      "performance": 93,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 100
+    },
+    "lcp": 2016.62,
+    "tbt": 278.2239999999996,
+    "cls": 0.0004056862623456984,
+    "bytes": 556278
+  },
+  {
+    "rubro": "barberia",
+    "modo": "movil",
+    "corridas": 1,
+    "scores": {
+      "performance": 99,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 100
+    },
+    "lcp": 1640.8969499999998,
+    "tbt": 119.5,
+    "cls": 0.0001819598195579389,
+    "bytes": 350782
+  },
+  {
+    "rubro": "dental",
+    "modo": "movil",
+    "corridas": 1,
+    "scores": {
+      "performance": 99,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 100
+    },
+    "lcp": 1684.7153749999998,
+    "tbt": 84.5,
+    "cls": 0,
+    "bytes": 161110
+  },
+  {
+    "rubro": "gimnasio",
+    "modo": "movil",
+    "corridas": 1,
+    "scores": {
+      "performance": 96,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 100
+    },
+    "lcp": 2035.3508,
+    "tbt": 123.66229999999973,
+    "cls": 0,
+    "bytes": 448286
+  },
+  {
+    "rubro": "veterinaria",
+    "modo": "movil",
+    "corridas": 1,
+    "scores": {
+      "performance": 97,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 100
+    },
+    "lcp": 1719.6313999999998,
+    "tbt": 157.15785000000005,
+    "cls": 0.0002294158646741591,
+    "bytes": 211450
+  },
+  {
+    "rubro": "restaurante",
+    "modo": "escritorio",
+    "corridas": 1,
+    "scores": {
+      "performance": 99,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 100
+    },
+    "lcp": 661.413,
+    "tbt": 58.471000000000004,
+    "cls": 0.000900690275218988,
+    "bytes": 298743
+  }
+]

@@ -8,7 +8,6 @@ seguro('cita', iniciarCita);
 seguro('escena', () =>
   iniciarEscena({
     escena: () => import('./escena/montar.js'),
-    coreografias: () => import('./escena/coreografias.js'),
     avance: avanceHasta('#vacunas'),
     posters: [
       ['juego', 1440, 900],

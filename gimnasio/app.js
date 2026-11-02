@@ -9,7 +9,6 @@ seguro('IMC', iniciarImc);
 seguro('escena', () =>
   iniciarEscena({
     escena: () => import('./escena/montar.js'),
-    coreografias: () => import('./escena/coreografias.js'),
     avance: avanceHasta('#prueba'),
     posters: [
       ['pulso', 1440, 900],

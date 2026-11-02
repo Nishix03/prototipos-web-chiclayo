@@ -1,0 +1,8 @@
+{
+  "fecha": "2026-11-02",
+  "pruebas": { "aprobadas": 140, "omitidas": 2, "fallidas": 0, "workers": 2 },
+  "combinacionesVisuales": 12,
+  "controlRestauranteCon3d": 2,
+  "clientes": [{ "archivo": "cliente-BSUk2CIR.js", "bytes": 12924, "gzip": 5446 }],
+  "gsapEnBuild": []
+}

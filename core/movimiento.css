@@ -1,0 +1,163 @@
+/* Solo gestos finitos. Sin listeners de scroll, cursores propios ni bucles decorativos. */
+.movimiento-foto {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  width: 100%;
+}
+.movimiento-foto__cortina {
+  position: absolute;
+  inset: 0;
+  background: var(--movimiento-material, var(--color-fondo));
+  pointer-events: none;
+  transform: scaleY(0);
+  transform-origin: center bottom;
+}
+.foto-servicio > .movimiento-foto {
+  height: 100%;
+}
+.movimiento-llamado__texto {
+  display: inline-block;
+  pointer-events: none;
+}
+body[data-rubro='barberia'] {
+  --movimiento-material: #d4a937;
+  --movimiento-curva: cubic-bezier(0.19, 1, 0.22, 1);
+}
+body[data-rubro='spa'] {
+  --movimiento-material: #c9974f;
+  --movimiento-curva: cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+body[data-rubro='dental'] {
+  --movimiento-material: #b9def6;
+  --movimiento-curva: cubic-bezier(0.22, 0.68, 0, 1);
+}
+body[data-rubro='gimnasio'] {
+  --movimiento-material: #c6ff3d;
+  --movimiento-curva: cubic-bezier(0.16, 1, 0.3, 1);
+}
+body[data-rubro='veterinaria'] {
+  --movimiento-material: #e5a25a;
+  --movimiento-curva: cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+body[data-rubro='restaurante'] {
+  --movimiento-material: #d9c397;
+  --movimiento-curva: cubic-bezier(0.16, 1, 0.3, 1);
+}
+body:is([data-rubro='barberia'], [data-rubro='gimnasio']) .movimiento-foto__cortina {
+  transform: scaleX(0);
+  transform-origin: right center;
+}
+body[data-rubro='spa'] .editorial .movimiento-foto {
+  border-radius: 8rem 8rem 0 0;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  [data-movimiento='activo']
+    :is(.llamado, .boton, .comanda-colgada--pedir, .fase, .barbero__elegir, .clase__guardar) {
+    transition-property: scale, translate, rotate, background-color, color;
+    transition-duration: 180ms;
+    transition-timing-function: var(--movimiento-curva);
+  }
+  [data-movimiento='activo']
+    :is(
+      .llamado,
+      .boton,
+      .comanda-colgada--pedir,
+      .fase,
+      .barbero__elegir,
+      .clase__guardar
+    ):active {
+    scale: 0.975;
+  }
+  [data-movimiento='activo'] .movimiento-foto img {
+    transition: scale 550ms var(--movimiento-curva);
+  }
+  @media (hover: hover) and (pointer: fine) {
+    [data-movimiento='activo']
+      :is(.corte, .servicio, .tratamiento, .plato, .disciplina):hover
+      .movimiento-foto
+      img {
+      scale: 1.045;
+    }
+    [data-movimiento='activo'] :is(.barbero, .paquete, .planes__plan) {
+      transition: translate 250ms var(--movimiento-curva);
+    }
+    [data-movimiento='activo'] :is(.barbero, .paquete, .planes__plan):hover {
+      translate: 0 -4px;
+    }
+    [data-movimiento='activo'] :is(.llamado, .comanda-colgada--pedir):hover {
+      translate: 0 -3px;
+    }
+  }
+  /* Foto editorial con recorrido nativo: el navegador solo evalúa la línea de vista. */
+  @supports (animation-timeline: view()) {
+    [data-movimiento='activo'] .editorial .movimiento-foto img {
+      animation: movimiento-foto-recorrido linear both;
+      animation-timeline: view();
+      animation-range: entry 0% exit 100%;
+    }
+  }
+  [data-movimiento='activo'] .plan-semanal__lista li {
+    animation: movimiento-sesion 280ms var(--movimiento-curva) both;
+  }
+  [data-movimiento='activo'] .cita__paso:not([hidden]) {
+    animation: movimiento-paso 400ms var(--movimiento-curva) both;
+  }
+  [data-entrada='teclado'] :is(.plan-semanal__lista li, .cita__paso:not([hidden])) {
+    animation: none;
+  }
+  /* El brillo sigue el material del cromo de Filo, solo al pasar por su acción principal. */
+  [data-movimiento='activo'] body[data-rubro='barberia'] .llamado {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+  }
+  [data-movimiento='activo'] body[data-rubro='barberia'] .llamado::after {
+    content: '';
+    position: absolute;
+    inset: -40% auto -40% 0;
+    width: 25%;
+    pointer-events: none;
+    background: linear-gradient(90deg, transparent, rgb(255 255 255 / 0.35), transparent);
+    transform: translateX(-200%) rotate(-18deg);
+    transition: transform 600ms var(--movimiento-curva);
+  }
+  @media (hover: hover) and (pointer: fine) {
+    [data-movimiento='activo'] body[data-rubro='barberia'] .llamado:hover::after {
+      transform: translateX(600%) rotate(-18deg);
+    }
+  }
+}
+@keyframes movimiento-foto-recorrido {
+  from {
+    transform: translateY(-1.5%) scale(1.045);
+  }
+  to {
+    transform: translateY(1.5%) scale(1.045);
+  }
+}
+@keyframes movimiento-sesion {
+  from {
+    translate: 14px 0;
+  }
+  to {
+    translate: 0 0;
+  }
+}
+@keyframes movimiento-paso {
+  from {
+    translate: 0 14px;
+  }
+  to {
+    translate: 0 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .movimiento-foto img,
+  .plan-semanal__lista li,
+  .cita__paso:not([hidden]) {
+    animation: none;
+    transition: none;
+  }
+}

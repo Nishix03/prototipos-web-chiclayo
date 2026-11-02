@@ -7,7 +7,6 @@ seguro('cuestionario', iniciarCuestionario);
 seguro('escena', () =>
   iniciarEscena({
     escena: () => import('./escena/montar.js'),
-    coreografias: () => import('./escena/coreografias.js'),
     // La sonrisa termina de ordenarse un poco antes de que el cuestionario llegue arriba
     avance: (
       (hasta) => () =>

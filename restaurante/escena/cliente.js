@@ -71,13 +71,16 @@ async function generarImagenesFijas() {
 export function iniciarPase() {
   if (new URLSearchParams(location.search).has('poster')) return generarImagenesFijas();
   document.getElementById('carta')?.addEventListener('click', volar);
+  document.querySelectorAll('[data-plato-portada]').forEach((enlace) => {
+    enlace.addEventListener('click', () => {
+      const plato = document.getElementById(enlace.hash.slice(1));
+      if (plato?.closest('.categoria')?.hidden)
+        document.querySelector('[data-filtro="todo"]')?.click();
+    });
+  });
 
   const mejorar = () =>
     cuandoEsteLibre(async () => {
-      if (!reducido()) {
-        const { iniciarCoreografias } = await import('./coreografias.js');
-        iniciarCoreografias();
-      }
       if (puede3d()) {
         const { montar } = await import('./montar.js');
         montar(document.querySelector('[data-escena]'), avanceDelScroll);
