@@ -8,6 +8,7 @@ import { resenas } from './resenas.js';
 import { mapa } from './mapa.js';
 import { footer } from './footer.js';
 import { botonFlotante } from './boton-flotante.js';
+import { asistenteSimulacion } from './asistente-simulacion.js';
 
 export const componentes = {
   hero,
@@ -16,6 +17,7 @@ export const componentes = {
   mapa,
   footer,
   'boton-flotante': botonFlotante,
+  'asistente-simulacion': asistenteSimulacion,
 };
 
 export { avisoDemo } from './aviso-demo.js';

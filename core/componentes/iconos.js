@@ -12,6 +12,9 @@ export const iconos = {
   chat: svg(
     '<path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 9 9 0 0 1-4-.9L3 20.5l1.5-4.5a8 8 0 0 1-1-4.5 8.5 8.5 0 0 1 17.5 0Z"/><path d="M8.5 10.5h.01M12 10.5h.01M15.5 10.5h.01"/>',
   ),
+  asistente: svg(
+    '<rect x="3" y="4" width="18" height="12" rx="3"/><path d="M9 20l3-4"/><path d="M8 8.5h8M8 11.5h5"/>',
+  ),
   ubicacion: svg(
     '<path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/>',
   ),

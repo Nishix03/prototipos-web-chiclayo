@@ -140,6 +140,26 @@
     { "nombre": "Terapeuta de demostración 3", "especialidad": "Manicure y pedicure" }
   ],
   "cita": { "minutosEntreFranjas": 30 },
+  "agente": {
+    "activo": true,
+    "estado": "proximamente",
+    "nombre": "Asistente de Remanso Spa",
+    "saludo": "Elige una pregunta para ver un ejemplo de cómo respondería el asistente.",
+    "simulacion": [
+      {
+        "pregunta": "¿Cuánto dura el masaje relajante?",
+        "respuesta": "Dura 60 minutos y cuesta S/ 90 (precio de demostración)."
+      },
+      {
+        "pregunta": "¿Hasta qué hora atienden?",
+        "respuesta": "De martes a viernes de 10:00 a 20:00, sábados de 9:00 a 19:00 y domingos de 10:00 a 15:00. Los lunes cerramos (horario de demostración)."
+      },
+      {
+        "pregunta": "¿Puedo pedir mi cita por WhatsApp?",
+        "respuesta": "Sí. Elige el servicio, el día y tu nombre en la sección de cita, y se arma el mensaje para WhatsApp."
+      }
+    ]
+  },
   "comparador": {
     "antes": {
       "src": "img/comparador-antes.webp",

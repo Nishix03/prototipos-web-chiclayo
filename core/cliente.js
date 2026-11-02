@@ -4,6 +4,7 @@
 import { iniciarIndicadorHorario } from './horario.js';
 import { iniciarFormulariosWhatsapp } from './formulario-whatsapp.js';
 import { iniciarComparadores } from './comparador.js';
+import { cuandoEsteLibre } from './carga3d.js';
 
 /** Ejecuta una mejora aislada: un error se registra en consola y no tumba a las demás. */
 export function seguro(nombre, fn) {
@@ -23,4 +24,11 @@ export function iniciarNucleo({ mensajes } = {}) {
   seguro('horario', iniciarIndicadorHorario);
   seguro('formularios', () => iniciarFormulariosWhatsapp(mensajes));
   seguro('comparadores', iniciarComparadores);
+  // La simulación del asistente llega después del primer pintado y solo si la página la trae
+  seguro('asistente', () => {
+    if (!document.querySelector('[data-asistente]')) return;
+    cuandoEsteLibre(() =>
+      import('./asistente-cliente.js').then(({ iniciarAsistente }) => iniciarAsistente()),
+    );
+  });
 }

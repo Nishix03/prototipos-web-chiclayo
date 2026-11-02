@@ -5,6 +5,8 @@
  * Dirección elegida en el paso 2: A «Superficie» (las otras dos quedan en el brief).
  */
 @import '../core/core.css';
+/* Tailwind 4 (ADR 015): animaciones y componentes nuevos. Piloto en el spa. */
+@import '../core/tailwind.css';
 
 /* Fuentes recortadas al español con `npm run fuentes`. Licencia OFL al lado. */
 @font-face {

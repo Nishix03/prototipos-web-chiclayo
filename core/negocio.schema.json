@@ -124,6 +124,11 @@
         "og": {
           "$ref": "#/$defs/imagen",
           "description": "Imagen de vista previa al compartir el enlace (1200×630). Si falta, se usa la del hero."
+        },
+        "leyenda": {
+          "type": "string",
+          "maxLength": 120,
+          "description": "Pie de la galería, por ejemplo «Imágenes generadas con IA (demo)»."
         }
       }
     },
@@ -160,6 +165,40 @@
         "instagram": { "type": "string", "format": "uri" },
         "facebook": { "type": "string", "format": "uri" },
         "tiktok": { "type": "string", "format": "uri" }
+      }
+    },
+    "agente": {
+      "type": "object",
+      "description": "Simulación del asistente virtual (ADR 013). No hay modelo ni backend: son 2 a 4 preguntas con respuestas escritas de antemano, siempre rotuladas como simulación. Con activo: false no se muestra nada.",
+      "required": ["activo", "estado", "nombre", "simulacion"],
+      "additionalProperties": false,
+      "properties": {
+        "activo": { "type": "boolean" },
+        "estado": {
+          "const": "proximamente",
+          "description": "Por ahora solo existe la simulación. Cuando haya un backend podrá cambiar."
+        },
+        "nombre": { "type": "string", "minLength": 5, "maxLength": 60 },
+        "saludo": {
+          "type": "string",
+          "maxLength": 160,
+          "description": "Frase de bienvenida. Si falta, se usa una genérica."
+        },
+        "simulacion": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 4,
+          "description": "Los chips: cada pregunta da siempre la misma respuesta. Las respuestas deben coincidir con los datos del demo. Sin consejo clínico ni respuestas sobre salud.",
+          "items": {
+            "type": "object",
+            "required": ["pregunta", "respuesta"],
+            "additionalProperties": false,
+            "properties": {
+              "pregunta": { "type": "string", "minLength": 5, "maxLength": 60 },
+              "respuesta": { "type": "string", "minLength": 10, "maxLength": 240 }
+            }
+          }
+        }
       }
     }
   },
@@ -208,7 +247,11 @@
           "description": "Opcional: la misma foto más pequeña (p. ej. img/hero-960.webp) para que el celular no descargue la versión de escritorio. render.js mide su ancho y arma el srcset.",
           "items": { "type": "string", "pattern": "^img/.+\\.(webp|avif)$" }
         },
-        "credito": { "$ref": "#/$defs/credito" }
+        "credito": { "$ref": "#/$defs/credito" },
+        "marcador": {
+          "type": "boolean",
+          "description": "true si es un marcador de posición: la imagen definitiva (generada con IA) aún no existe. La página lo rotula a la vista."
+        }
       }
     },
     "credito": {
