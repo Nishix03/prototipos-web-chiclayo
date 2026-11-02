@@ -35,6 +35,8 @@ Prototipos web para negocios locales (restaurante, spa, barbería, veterinaria, 
 
 ## Cómo funciona
 
+El movimiento de las seis marcas se inicia desde `core/movimiento.js`, separado de la carga 3D. Usa animaciones nativas y respeta movimiento reducido. Para revisar fotos, portadas y grabar un recorrido: `node scripts/control-movimiento.mjs <ronda>` después de construir. Detalle en [ADR 019](docs/decisiones/019-movimiento-de-marca.md).
+
 ```text
 negocio.json ──► core/validar.js ──► core/render.js ──► componentes ──► HTML completo en dist/
  (datos)          (ajv + esquema)    (plugin de Vite)   (hero, mapa…)    (se lee sin JavaScript)

@@ -8,7 +8,6 @@ seguro('filtros de servicios', iniciarFiltrosServicios);
 seguro('escena', () =>
   iniciarEscena({
     escena: () => import('./escena/montar.js'),
-    coreografias: () => import('./escena/coreografias.js'),
     avance: avanceHasta('#cita'),
     posters: [
       ['agua', 1440, 900],

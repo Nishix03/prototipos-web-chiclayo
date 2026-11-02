@@ -5,6 +5,7 @@ import { iniciarIndicadorHorario } from './horario.js';
 import { iniciarFormulariosWhatsapp } from './formulario-whatsapp.js';
 import { iniciarComparadores } from './comparador.js';
 import { cuandoEsteLibre } from './carga3d.js';
+import { iniciarMovimiento } from './movimiento.js';
 
 /** Ejecuta una mejora aislada: un error se registra en consola y no tumba a las demás. */
 export function seguro(nombre, fn) {
@@ -21,6 +22,7 @@ export function seguro(nombre, fn) {
  *   armadores de mensaje propios por id de formulario (funciones estrella del rubro)
  */
 export function iniciarNucleo({ mensajes } = {}) {
+  seguro('movimiento de marca', iniciarMovimiento);
   seguro('horario', iniciarIndicadorHorario);
   seguro('formularios', () => iniciarFormulariosWhatsapp(mensajes));
   seguro('comparadores', iniciarComparadores);

@@ -251,18 +251,12 @@ a {
 /*
  * Aparición al hacer scroll, solo con CSS (scroll-driven animations).
  * El elemento siempre es visible por defecto: la animación se añade solo si el navegador la
- * soporta. Con movimiento reducido se queda en un fundido, sin desplazamiento.
+ * soporta. Con movimiento reducido se desactiva la entrada.
  */
 @keyframes revelar {
   from {
     opacity: 0;
     translate: 0 1.5rem;
-  }
-}
-
-@keyframes revelar-sin-movimiento {
-  from {
-    opacity: 0;
   }
 }
 
@@ -275,7 +269,7 @@ a {
 
   @media (prefers-reduced-motion: reduce) {
     .revelar {
-      animation-name: revelar-sin-movimiento;
+      animation: none;
     }
   }
 }

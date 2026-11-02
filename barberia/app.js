@@ -8,7 +8,6 @@ seguro('filtros de cortes', iniciarFiltrosCortes);
 seguro('escena', () =>
   iniciarEscena({
     escena: () => import('./escena/montar.js'),
-    coreografias: () => import('./escena/coreografias.js'),
     avance: avanceHasta('#turno'),
     posters: [
       ['filo', 1440, 900],

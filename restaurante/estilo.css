@@ -1066,6 +1066,95 @@ html:not([data-direccion]) .comanda-colgada--portada .bajada {
   border: 1px solid var(--color-papel);
 }
 
+/* La primera pantalla presenta la cocina: comanda, mesa y una pequeña carta de la casa. */
+.portada {
+  position: relative;
+  display: block;
+  min-height: 0;
+}
+.portada__principal {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: var(--espacio-5) var(--espacio-7);
+  min-height: calc(100svh - 7rem);
+}
+.portada__platos {
+  width: min(100%, 36rem);
+  padding: 1rem 1.25rem;
+  margin: 1rem 0 0 clamp(0rem, 6vw, 7rem);
+  background: var(--color-pizarra);
+  color: var(--color-tiza);
+  box-shadow: var(--sombra-papel);
+  rotate: 0.6deg;
+}
+.portada__platos-titulo {
+  font-family: var(--fuente-titulos);
+  font-size: 1.25rem;
+  margin-bottom: 0.75rem;
+}
+.portada__platos ul {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.portada__platos a {
+  display: grid;
+  align-content: start;
+  gap: 0.25rem;
+  height: 100%;
+  color: inherit;
+  text-decoration: none;
+  font-size: 0.875rem;
+  line-height: 1.25;
+}
+.portada__platos img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  margin-bottom: 0.35rem;
+}
+.portada__platos strong {
+  color: #ffdc64;
+  font-variant-numeric: tabular-nums;
+}
+.portada__platos a:hover span {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+.portada__platos a:focus-visible {
+  outline: 3px solid #ffdc64;
+  outline-offset: 5px;
+}
+@media (min-width: 60rem) and (min-height: 47.5rem) {
+  .portada__platos {
+    position: absolute;
+    left: var(--margen-lateral);
+    bottom: 2rem;
+  }
+}
+@media (max-width: 40rem) {
+  .portada__principal {
+    align-content: space-between;
+    min-height: calc(100svh - 7rem);
+    gap: 1rem;
+  }
+  .portada__platos {
+    margin: 1.5rem 0 0;
+    padding: 1rem;
+  }
+  .portada__platos ul {
+    gap: 0.75rem;
+  }
+  .portada__platos a {
+    font-size: 0.8rem;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .boton-flotante:hover,
   .llamado:hover {
