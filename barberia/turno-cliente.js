@@ -2,6 +2,7 @@
 // ese día y las horas en que el local está abierto y el corte elegido alcanza a terminar.
 // «Pedir este corte» en la lista deja ese corte elegido en el turno.
 import { diaDeFecha, hoyEnLima, ahoraEnLima, nombreDia } from '../core/horario.js';
+import { notificarSeleccion } from '../core/seleccion.js';
 
 const aMinutos = (hhmm) => hhmm.split(':').reduce((h, m) => Number(h) * 60 + Number(m));
 
@@ -63,6 +64,7 @@ export function iniciarTurno() {
     marcarBarbero();
     document.getElementById('turno').scrollIntoView({ block: 'start' });
     dia.focus({ preventScroll: true });
+    notificarSeleccion(carta, barbero);
   });
   form.addEventListener('change', (e) => {
     if ([corte, dia].includes(e.target)) filtrar();
@@ -79,6 +81,7 @@ export function iniciarTurno() {
     filtrar();
     document.getElementById('turno').scrollIntoView({ block: 'start' });
     dia.focus({ preventScroll: true });
+    notificarSeleccion(enlace, corte);
   });
 }
 

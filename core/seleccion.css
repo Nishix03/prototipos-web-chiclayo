@@ -1,0 +1,85 @@
+/* Respuestas a elecciones reales. Las capas son decorativas y no cambian el área pulsable. */
+body[data-rubro='restaurante'] {
+  --seleccion-acento: #a3472b;
+  --seleccion-tinta: #fff9e9;
+}
+body[data-rubro='barberia'] {
+  --seleccion-acento: #d4a937;
+  --seleccion-tinta: #101012;
+}
+body[data-rubro='dental'] {
+  --seleccion-acento: #175c91;
+  --seleccion-tinta: #f5faff;
+}
+body[data-rubro='spa'] {
+  --seleccion-acento: #704126;
+  --seleccion-tinta: #faf2e5;
+}
+body[data-rubro='veterinaria'] {
+  --seleccion-acento: #00676a;
+  --seleccion-tinta: #fffaf1;
+}
+body[data-rubro='gimnasio'] {
+  --seleccion-acento: #c6ff3d;
+  --seleccion-tinta: #0b0d0c;
+}
+.seleccion-ancla {
+  position: relative;
+}
+.seleccion-riel {
+  position: absolute;
+  inset: 0 auto auto 0;
+  width: 1px;
+  height: 3px;
+  background: currentColor;
+  transform-origin: left center;
+  pointer-events: none;
+  z-index: 1;
+}
+.seleccion-sello {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  display: grid;
+  place-items: center;
+  width: 1.25rem;
+  height: 1.25rem;
+  border-radius: 50%;
+  background: var(--seleccion-acento);
+  color: var(--seleccion-tinta);
+  opacity: 0;
+  pointer-events: none;
+}
+.campo > .seleccion-sello {
+  top: 0;
+  right: 0;
+  width: 1rem;
+  height: 1rem;
+}
+[data-seleccion-activa='true'] > .seleccion-sello {
+  opacity: 1;
+}
+body:is([data-rubro='barberia'], [data-rubro='gimnasio'], [data-rubro='restaurante'])
+  .seleccion-sello {
+  border-radius: 2px;
+}
+.seleccion-contorno {
+  position: absolute;
+  box-sizing: border-box;
+  border: 2px solid var(--seleccion-acento);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 2;
+}
+.seleccion-contorno--error {
+  border-color: var(--color-error, #b42318);
+}
+body[data-rubro='restaurante'] .seleccion-contorno {
+  border-style: dashed;
+}
+body[data-rubro='gimnasio'] .seleccion-riel {
+  height: 4px;
+}
+body[data-rubro='spa'] .seleccion-riel {
+  border-radius: 2px;
+}

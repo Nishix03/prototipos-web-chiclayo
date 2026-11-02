@@ -3,6 +3,7 @@
 // de cerrar (y, si es hoy, las que todavía no pasaron). «Reservar» en la carta deja el servicio
 // elegido y abre el paso 2.
 import { diaDeFecha, hoyEnLima, ahoraEnLima, nombreDia } from '../core/horario.js';
+import { notificarSeleccion } from '../core/seleccion.js';
 
 const aMinutos = (hhmm) => hhmm.split(':').reduce((h, m) => Number(h) * 60 + Number(m));
 
@@ -64,6 +65,7 @@ export function iniciarCita() {
     progreso.textContent = `Paso ${n + 1} de ${pasos.length}`;
     if (n === pasos.length - 1) escribirResumen();
     if (enfocar) pasos[n].querySelector('input, select')?.focus();
+    if (enfocar) notificarSeleccion(null, progreso);
   }
 
   function filtrar() {
@@ -138,6 +140,7 @@ export function iniciarCita() {
     filtrar();
     document.getElementById('cita').scrollIntoView({ block: 'start' });
     mostrar(1);
+    notificarSeleccion(enlace, servicio);
   });
 
   filtrar();

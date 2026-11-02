@@ -3,10 +3,16 @@
 // el foco va siempre a lo nuevo, para que teclado y lector de pantalla sigan el recorrido.
 // El resultado queda escrito en la cita de evaluación: motivo elegido y una línea en el mensaje.
 
-function cambiar(fn) {
+import { notificarSeleccion } from '../core/seleccion.js';
+
+function cambiar(fn, terminado) {
   const reducido = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (document.startViewTransition && !reducido) document.startViewTransition(fn);
-  else fn();
+  if (document.startViewTransition && !reducido) {
+    document.startViewTransition(fn).finished.then(terminado, terminado);
+  } else {
+    fn();
+    terminado();
+  }
 }
 
 export function iniciarCuestionario() {
@@ -28,20 +34,26 @@ export function iniciarCuestionario() {
       else e.removeAttribute('aria-current');
     });
   }
-  recorrido.querySelector('[data-agendar]')?.addEventListener('click', () => progreso(2));
+  recorrido.querySelector('[data-agendar]')?.addEventListener('click', (e) => {
+    progreso(2);
+    notificarSeleccion(e.currentTarget, motivo);
+  });
   function mostrar(id, resultado) {
     progreso(resultado ? 1 : 0);
-    cambiar(() => {
-      for (const [clave, paso] of pasos) paso.hidden = clave !== id;
-      panel.hidden = !resultado;
-      if (resultado) {
-        for (const t of panel.querySelectorAll('[data-tratamiento]'))
-          t.hidden = t.dataset.tratamiento !== resultado;
-        panel.setAttribute('aria-labelledby', `resultado-${resultado}`);
-      }
-      // El foco, dentro del cambio: con View Transition el DOM se actualiza después
-      (resultado ? panel : pasos.get(id)).focus({ preventScroll: true });
-    });
+    cambiar(
+      () => {
+        for (const [clave, paso] of pasos) paso.hidden = clave !== id;
+        panel.hidden = !resultado;
+        if (resultado) {
+          for (const t of panel.querySelectorAll('[data-tratamiento]'))
+            t.hidden = t.dataset.tratamiento !== resultado;
+          panel.setAttribute('aria-labelledby', `resultado-${resultado}`);
+        }
+        // El foco, dentro del cambio: con View Transition el DOM se actualiza después
+        (resultado ? panel : pasos.get(id)).focus({ preventScroll: true });
+      },
+      () => notificarSeleccion(null, resultado ? panel : pasos.get(id)),
+    );
   }
 
   recorrido.addEventListener('click', (e) => {

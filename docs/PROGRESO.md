@@ -232,3 +232,12 @@ Con el gimnasio se terminan los 6 prototipos.
 - 140 pruebas aprobadas y dos omisiones por dispositivo. Revisión visual 12/12 sin imágenes rotas, errores de JavaScript ni desborde; Control del restaurante 2/2 con 3D vivo.
 - Decisión: ADR 019. Informe, vídeo y capturas: `docs/visual/MOVIMIENTO-2026-11-02.md` y ronda `movimiento-de-marca-2026-11-02`. Iteración local en `codex/animaciones-de-marca`, pendiente de subir.
 - Comprobación puntual de Lighthouse (una corrida por caso): móvil 93–99 en los seis prototipos, LCP 1,64–2,14 s; restaurante en escritorio 99. Accesibilidad, buenas prácticas y SEO 100 en las siete corridas. Las muestras no son medianas; están guardadas junto a la evidencia.
+
+### 2026-11-02 · Confirmación al elegir opciones
+
+- La ronda de movimiento anterior se integró y publicó en main mediante `59c1875`. Iván pide ahora respuestas animadas al seleccionar opciones.
+- Se añade una capa específica de selección: indicador móvil en filtros/fases, confirmación de campos, marcas en barberos y sesiones, respuesta del panel dental, cantidades y entrega. Las áreas pulsables permanecen estables y los datos siguen en sus módulos de negocio.
+- Se detectan los cambios reales de estado y los flujos que trasladan una elección a otro campo; se retira la respuesta genérica anterior de movimiento.js. Las confirmaciones usan transformaciones/opacidad, sin dependencias nuevas ni bucles permanentes.
+- Suite completa: 172 pruebas aprobadas y dos omisiones por dispositivo. Revisión visual de doce combinaciones sin desborde, errores de JavaScript ni imágenes rotas.
+- Incremento medido del cliente compartido: 1660 bytes gzip sobre la ronda anterior. Se respeta movimiento reducido y la respuesta con teclado es inmediata.
+- Decisión: ADR 020. Informe, vídeo y capturas en `docs/visual/SELECCIONES-2026-11-02.md` y ronda `selecciones-2026-11-02`. Cambios locales en `codex/feedback-selecciones`, pendientes de subir.
