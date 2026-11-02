@@ -1,0 +1,28 @@
+/*
+ * Tailwind CSS 4 (ADR 015). Se usa para animaciones, estados y los componentes nuevos del núcleo;
+ * el resto de la página sigue con tokens.css y el CSS de cada rubro.
+ *
+ * Cada rubro que lo necesita lo importa en su estilo.css, después de core.css:
+ *   @import '../core/tailwind.css';
+ *
+ * Reglas de esta integración:
+ * - Sin `preflight`: no se importa el reset de Tailwind, para no cambiar el de base.css.
+ * - Sin tema por defecto: los valores salen de tokens.css con la sintaxis bg-(--color-marca).
+ *   Aquí solo se define lo que Tailwind necesita para hacer cuentas (espacio y puntos de corte).
+ * - Las utilidades van SIN capa (@layer). El CSS del núcleo tampoco usa capas, y un estilo sin
+ *   capa le gana a cualquiera que esté dentro de una: `* { margin: 0 }` de base.css anularía
+ *   todos los márgenes de Tailwind. Sin capa, manda la especificidad, y `.mt-4` vence a `*`.
+ * - `source(none)` apaga la detección automática: solo se escanean los archivos de @source.
+ *   Así no se generan clases por palabras sueltas de los .md ni de otros rubros.
+ * - Las clases se escriben completas en el código: Tailwind no detecta nombres armados con
+ *   concatenación (`'bg-' + color`).
+ */
+@import 'tailwindcss/utilities.css' source(none);
+
+@source './componentes/asistente-simulacion.js';
+
+@theme {
+  --spacing: 0.25rem; /* la misma escala de 4 px que --espacio-* de tokens.css */
+  --breakpoint-md: 48rem;
+  --breakpoint-lg: 60rem;
+}

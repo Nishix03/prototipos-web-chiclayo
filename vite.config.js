@@ -1,6 +1,7 @@
 import { readdirSync, existsSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { defineConfig } from 'vite';
+import tailwindcss from '@tailwindcss/vite';
 import { ViteImageOptimizer } from 'vite-plugin-image-optimizer';
 import { prerenderNegocio } from './core/render.js';
 
@@ -19,6 +20,8 @@ export default defineConfig({
   base: '/prototipos-web-chiclayo/',
   plugins: [
     prerenderNegocio({ sitio: 'https://nishix03.github.io' }),
+    // Tailwind 4 (ADR 015): solo genera las utilidades que usan los archivos de core/tailwind.css
+    tailwindcss(),
     ViteImageOptimizer({
       webp: { quality: 80 },
       avif: { quality: 60 },
