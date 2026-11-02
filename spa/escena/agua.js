@@ -1,10 +1,13 @@
+import formaMarca from '../img/marca/relieve.json';
+import { relieveMarca } from '../../core/marca3d.js';
 // Escena «Agua quieta» (identidad del spa), dirección A «Superficie» (docs/visual/spa.md): el agua
 // vista desde arriba a pantalla completa, con anillos que salen de detrás del titular. Quieta al
 // llegar; al bajar se agita con ondas suaves y, al llegar a la cita, vuelve a quedar quieta.
 //
 // Es un solo plano con un shader propio: la altura del agua se calcula en cada píxel con unas
 // pocas ondas (senos), la normal sale de la diferencia entre puntos vecinos y el color mezcla el
-// salvia hondo con el reflejo claro, más un brillo. Sin texturas, sin luces, sin piezas.
+// ámbar hondo con el reflejo claro, más un brillo. El agua no usa texturas ni luces;
+// la R en relieve utiliza un matcap pequeño compartido.
 // Quieta, la escena no se redibuja (el motor solo dibuja cuando cambia el scroll).
 import { Color, Mesh, PlaneGeometry, ShaderMaterial } from 'three';
 
@@ -52,7 +55,8 @@ const fragmento = /* glsl */ `
 export function crearAgua() {
   return {
     fov: 40,
-    cielo: '#f3efe6',
+    puntero: true,
+    cielo: '#faf2e5',
     ligera: (aspecto) => aspecto < 1,
     // El shader no usa luces: el motor crea una igual, aquí apagada
     luz: {
@@ -70,16 +74,28 @@ export function crearAgua() {
         uniforms: {
           uT: { value: 0 },
           uCentro: { value: [0, 0.6] },
-          uHondo: { value: new Color('#86a28f') },
-          uClaro: { value: new Color('#eef0e6') },
+          uHondo: { value: new Color('#c29a6c') },
+          uClaro: { value: new Color('#fff3d9') },
         },
       });
       escena.add(new Mesh(new PlaneGeometry(16 * Math.max(1, aspecto), 16), material));
-      return { material };
+      const marca = relieveMarca(formaMarca, {
+        color: '#a9773e',
+        ancho: aspecto < 1 ? 0.65 : 2.3,
+        profundidad: 0.11,
+      });
+      marca.position.set(aspecto < 1 ? 0.85 : 3.65, aspecto < 1 ? 1.35 : 0.25, 0.18);
+      marca.rotation.set(-0.12, -0.2, 0.04);
+      escena.add(marca);
+      return { material, marca, yMarca: marca.position.y };
     },
     camara: (t) => ({ pos: [0, -t * 0.8, 10], mira: [0, -t * 0.8, 0] }),
-    cuadro(t, { mundo }) {
+    cuadro(t, { mundo, puntero }) {
+      mundo.material.uniforms.uCentro.value = [puntero.x * 3, 0.6 + puntero.y * 2];
       mundo.material.uniforms.uT.value = t;
+      mundo.marca.rotation.y = -0.2 + puntero.x * 0.05;
+      mundo.marca.rotation.x = -0.12 + puntero.y * 0.04;
+      mundo.marca.position.y = mundo.yMarca - t * 0.4;
     },
   };
 }

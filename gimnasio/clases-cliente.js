@@ -15,6 +15,49 @@ const enSemana = (dia, minutos) => ORDEN.indexOf(dia) * 1440 + minutos;
 export function iniciarClases() {
   const clases = [...document.querySelectorAll('[data-clase]')];
   if (!clases.length) return;
+  const clavePlan = 'latido-plan-semanal-v1';
+  let guardadas = new Set();
+  try {
+    const anteriores = JSON.parse(localStorage.getItem(clavePlan) ?? '[]');
+    if (Array.isArray(anteriores))
+      guardadas = new Set(anteriores.filter((id) => clases.some((c) => c.dataset.sesion === id)));
+  } catch {
+    /* El horario funciona también sin almacenamiento. */
+  }
+  function mostrarPlan() {
+    const lista = document.querySelector('[data-plan-lista]');
+    lista.replaceChildren();
+    document.querySelector('[data-plan-vacio]').hidden = guardadas.size > 0;
+    clases.forEach((c) => {
+      const elegida = guardadas.has(c.dataset.sesion);
+      const boton = c.querySelector('[data-guardar-sesion]');
+      boton.setAttribute('aria-pressed', String(elegida));
+      boton.textContent = elegida ? 'Quitar de mi plan' : 'Añadir a mi plan';
+      boton.setAttribute(
+        'aria-label',
+        `${boton.textContent}: ${c.querySelector('.clase__tipo').textContent}, ${c.closest('[data-dia]').querySelector('h3').textContent}, ${c.dataset.inicio}`,
+      );
+      if (elegida) {
+        const li = document.createElement('li');
+        li.textContent = `${c.closest('[data-dia]').querySelector('h3').textContent}, ${c.dataset.inicio}: ${c.querySelector('.clase__tipo').textContent}`;
+        lista.append(li);
+      }
+    });
+  }
+  document.querySelector('.semana').addEventListener('click', (e) => {
+    const boton = e.target.closest('[data-guardar-sesion]');
+    if (!boton) return;
+    const id = boton.closest('[data-sesion]').dataset.sesion;
+    if (guardadas.has(id)) guardadas.delete(id);
+    else guardadas.add(id);
+    try {
+      localStorage.setItem(clavePlan, JSON.stringify([...guardadas]));
+    } catch {
+      /* Sesión en memoria. */
+    }
+    mostrarPlan();
+  });
+  mostrarPlan();
   const ahoraTexto = document.querySelector('[data-ahora]');
   const filtros = document.querySelector('[data-filtros]');
   let tipo = 'todo';

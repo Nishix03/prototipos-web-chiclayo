@@ -1,3 +1,4 @@
+import { marca } from './marca.js';
 import { html } from './html.js';
 import { enlaceWhatsapp } from '../whatsapp.js';
 
@@ -38,7 +39,7 @@ export function footer(negocio, { creditos = [] } = {}) {
     <footer class="pie">
       <div class="contenedor pie__rejilla">
         <div class="pila">
-          <p class="pie__nombre">${nombre}</p>
+          <p class="pie__nombre">${marca(negocio)}${nombre}</p>
           <p>${ubicacion.direccion}, ${ubicacion.distrito}, ${ubicacion.ciudad}</p>
         </div>
 

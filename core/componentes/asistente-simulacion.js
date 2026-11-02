@@ -28,7 +28,7 @@ export function asistenteSimulacion(negocio) {
         type="button"
         data-asistente-abrir
         aria-haspopup="dialog"
-        aria-label="Abrir el asistente virtual (simulación)"
+        aria-label="Asistente · simulación: abrir el asistente virtual"
         class="fixed right-[max(1rem,env(safe-area-inset-right))] bottom-[calc(5.5rem+env(safe-area-inset-bottom))] z-(--capa-flotante) hidden min-h-11 min-w-11 cursor-pointer items-center justify-center gap-2 rounded-full border border-(--color-borde) bg-(--color-fondo) px-3 py-2 text-(length:--texto-sm) font-[600] text-(--color-texto) [box-shadow:var(--sombra-md)] transition-[scale,box-shadow] duration-(--duracion-rapida) ease-(--curva-salida) hover:[box-shadow:var(--sombra-lg)] active:scale-[0.96] motion-reduce:transition-none data-[listo]:inline-flex ${FOCO}"
       >
         <span class="size-6">${iconos.asistente}</span>

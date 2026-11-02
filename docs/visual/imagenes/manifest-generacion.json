@@ -1,0 +1,218 @@
+{
+  "fecha": "2026-11-01",
+  "herramienta": "image_gen integrada",
+  "ambientes": [
+    {
+      "rubro": "spa",
+      "prompt": "Photorealistic editorial architectural photograph for a refined warm-toned Peruvian day-spa demo landing page. A close, tactile composition of a sand-colored plaster treatment alcove, a low amber glass bowl of water reflecting ripples, neatly folded ivory linen, and the edge of a caramel leather treatment bed. Natural late afternoon window light, mineral texture, warm honey and clay palette, restrained professional hospitality photography, quiet lived-in realism rather than a glossy CGI showroom. Wide landscape 3:2 image, balanced rich composition useful as a full-width editorial feature, realistic scale and material details. No people, no text, no logos, no branding, no watermarks. This is an illustrative fictional environment, not a real business.",
+      "path": "C:\\Users\\IVAN\\.codex\\generated_images\\01a19a4f-29b9-77d3-8a9b-eb84ece5db41\\exec-87606cde-c872-4434-8e35-119352b5dbab.png"
+    },
+    {
+      "rubro": "dental",
+      "prompt": "Photorealistic architectural editorial photograph for a modern dental clinic demo website in Chiclayo. A carefully composed wide view of a pristine but welcoming treatment room, white ergonomic dental chair in three-quarter profile, pale glacier-blue cabinetry, frosted glass partition and clear daylight. Subtle brushed steel equipment, immaculate neutral countertop, simple blue-gray tiled floor, professional clinical credibility with real material textures, calm soft shadows, natural imperfections in glass and metal, sophisticated medical architecture photography, no green or warm spa tones. Landscape 3:2 composition. No patients, no procedures, no humans, no teeth closeups, no text, no letters, no signs, no logos or watermarks. Fictional illustrative clinic.",
+      "path": "C:\\Users\\IVAN\\.codex\\generated_images\\01a19a4f-29b9-77d3-8a9b-eb84ece5db41\\exec-4821ca62-7dbd-45af-b2aa-4120da1e025d.png"
+    },
+    {
+      "rubro": "barberia",
+      "prompt": "Photorealistic cinematic editorial photograph for a premium barber shop demo website, black chrome and antique gold visual identity. Close three-quarter view of a beautifully crafted black leather barber chair with detailed stitching and a polished chrome armrest, a mirror reflecting warm amber practical light, straight razor and professional scissors neatly resting on a dark workbench in foreground. Realistic patina, sharp chrome reflections, rich near-black shadows with retained detail, tactile masculine workshop atmosphere, professional grooming editorial photography rather than generic luxury hotel advertising. Landscape 3:2 frame. No human faces, no people, no readable text, no logos, no brand marks, no watermarks. Fictional illustrative interior.",
+      "path": "C:\\Users\\IVAN\\.codex\\generated_images\\01a19a4f-29b9-77d3-8a9b-eb84ece5db41\\exec-ddbe2f93-785c-4e45-8366-10e6dd21c2f6.png"
+    },
+    {
+      "rubro": "gimnasio",
+      "prompt": "Photorealistic athletic editorial photograph for a serious strength and conditioning gym demo landing page. Low angle diagonal composition of a black rubber training floor, a rack of unbranded dark steel dumbbells in close foreground and an uncluttered functional training area behind, one lime-green floor lane and subtle lime reflected light. Crisp natural side light through high windows with controlled deep charcoal shadows, visible rubber grain and brushed metal texture, real everyday professional gym atmosphere. High energy conveyed through perspective and objects, no fantasy neon fog. Landscape 3:2 photograph. No people, no human silhouettes, no text, no logos, no signage, no brand markings or watermarks. Illustrative fictional environment.",
+      "path": "C:\\Users\\IVAN\\.codex\\generated_images\\01a19a4f-29b9-77d3-8a9b-eb84ece5db41\\exec-36f8e46e-615c-4e07-ae48-a99629615683.png"
+    },
+    {
+      "rubro": "veterinaria",
+      "prompt": "Photorealistic warm professional veterinary editorial photograph for a fictional veterinary clinic demo in Chiclayo. One friendly healthy medium-sized caramel mixed-breed dog sitting naturally and one calm gray short-haired cat resting in a separate open teal pet carrier nearby in a clean cream-colored clinic waiting area. Species-appropriate believable anatomy, correct paws and tails, natural calm alert expressions, abundant soft daylight, turquoise upholstery and a tiny muted orange accent. Eye-level candid animal photography with real fur detail, professional and reassuring, no cute cartoon styling, no medical procedures. Landscape 3:2 composition with both animals fully readable and breathing room. No people, no human hands, no text, no logos, no recognizable brands, no watermarks. These are illustrative fictional animals, not actual patients.",
+      "path": "C:\\Users\\IVAN\\.codex\\generated_images\\01a19a4f-29b9-77d3-8a9b-eb84ece5db41\\exec-798745df-8a3a-4e6a-b28e-54198ab29fc5.png"
+    },
+    {
+      "rubro": "restaurante",
+      "prompt": "Photorealistic editorial food photograph for a northern Peruvian restaurant demo landing page. A carefully plated authentic arroz con pato: a tender braised duck leg with golden-brown skin on deeply green cilantro rice with peas and finely diced carrot, topped beside the rice with a small portion of red-onion salsa criolla with lime and ají. Served on a broad handmade off-white ceramic plate on a terracotta-toned wooden restaurant table, a folded natural linen napkin and a plain glass of chicha morada subtly out of focus. Three-quarter overhead angle, appetizing generous restaurant portion, warm northern Peru afternoon window light, real food texture and natural imperfections. High-end local food editorial photography, rich terracotta, ají yellow and fresh green palette. Landscape 3:2 composition. No people, no text, no logos, no branding, no watermark. Illustrative dish, not a photograph of the real business.",
+      "path": "C:\\Users\\IVAN\\.codex\\generated_images\\01a19a4f-29b9-77d3-8a9b-eb84ece5db41\\exec-3e9a880b-e182-465b-8480-ea5defae1534.png"
+    }
+  ],
+  "servicios": [
+    {
+      "rubro": "barberia",
+      "id": "clasico",
+      "prompt": "Photorealistic professional barber haircut catalogue photograph: classic scissor haircut, neat side part, medium short length on top with natural combed shape, clean tapered nape, no skin fade. An anonymous adult male model, precise realistic hair texture and accurate haircut, cropped three-quarter side/back view with no full identifiable face; for beard detail crop focus on beard. Same consistent charcoal black seamless studio background and warm controlled amber rim light, premium black/chrome/gold editorial art direction. Center subject with generous margin for a 3:4 thumbnail crop inside a landscape 3:2 source. Do not add tools, props, text, diagrams, logos, watermarks or borders. This is an illustrative style reference, not a real customer portrait.",
+      "path": "C:\\Users\\IVAN\\.codex\\generated_images\\01a19a4f-29b9-77d3-8a9b-eb84ece5db41\\exec-cbdef331-6d98-4eee-8cab-37ed64deecf1.png"
+    },
+    {
+      "rubro": "barberia",
+      "id": "low-fade",
+      "prompt": "Photorealistic professional barber haircut catalogue photograph: precise low skin fade starting around the ear line, dark hair gradually blending into longer textured hair on top; fade stays low below temple. An anonymous adult male model, precise realistic hair texture and accurate haircut, cropped three-quarter side/back view with no full identifiable face; for beard detail crop focus on beard. Same consistent charcoal black seamless studio background and warm controlled amber rim light, premium black/chrome/gold editorial art direction. Center subject with generous margin for a 3:4 thumbnail crop inside a landscape 3:2 source. Do not add tools, props, text, diagrams, logos, watermarks or borders. This is an illustrative style reference, not a real customer portrait.",
+      "path": "C:\\Users\\IVAN\\.codex\\generated_images\\01a19a4f-29b9-77d3-8a9b-eb84ece5db41\\exec-a2bd741b-868d-4dd1-b87c-8dad32d96ef8.png"
+    },
+    {
+      "rubro": "barberia",
+      "id": "buzz",
+      "prompt": "Photorealistic professional barber haircut catalogue photograph: uniform very short dark buzz cut, even length all over the scalp, tidy natural hairline, no long top. An anonymous adult male model, precise realistic hair texture and accurate haircut, cropped three-quarter side/back view with no full identifiable face; for beard detail crop focus on beard. Same consistent charcoal black seamless studio background and warm controlled amber rim light, premium black/chrome/gold editorial art direction. Center subject with generous margin for a 3:4 thumbnail crop inside a landscape 3:2 source. Do not add tools, props, text, diagrams, logos, watermarks or borders. This is an illustrative style reference, not a real customer portrait.",
+      "path": "C:\\Users\\IVAN\\.codex\\generated_images\\01a19a4f-29b9-77d3-8a9b-eb84ece5db41\\exec-c3193940-9f94-4ba9-bd17-7c009a3dde1c.png"
+    },
+    {
+      "rubro": "barberia",
+      "id": "mid-fade",
+      "prompt": "Photorealistic professional barber haircut catalogue photograph: precise mid skin fade with transition at temple height, short dark hair and visible clean graduated blend halfway up the side, voluminous textured top. An anonymous adult male model, precise realistic hair texture and accurate haircut, cropped three-quarter side/back view with no full identifiable face; for beard detail crop focus on beard. Same consistent charcoal black seamless studio background and warm controlled amber rim light, premium black/chrome/gold editorial art direction. Center subject with generous margin for a 3:4 thumbnail crop inside a landscape 3:2 source. Do not add tools, props, text, diagrams, logos, watermarks or borders. This is an illustrative style reference, not a real customer portrait.",
+      "path": "C:\\Users\\IVAN\\.codex\\generated_images\\01a19a4f-29b9-77d3-8a9b-eb84ece5db41\\exec-1335637d-eb9b-4911-b815-9590aa9b04bf.png"
+    },
+    {
+      "rubro": "barberia",
+      "id": "barba",
+      "prompt": "Photorealistic professional barber haircut catalogue photograph: neatly shaped full dark beard with sharp cheek line and clean neckline, precise realistic individual beard hairs, tight crop below the nose to upper chest. An anonymous adult male model, precise realistic hair texture and accurate haircut, cropped three-quarter side/back view with no full identifiable face; for beard detail crop focus on beard. Same consistent charcoal black seamless studio background and warm controlled amber rim light, premium black/chrome/gold editorial art direction. Center subject with generous margin for a 3:4 thumbnail crop inside a landscape 3:2 source. Do not add tools, props, text, diagrams, logos, watermarks or borders. This is an illustrative style reference, not a real customer portrait.",
+      "path": "C:\\Users\\IVAN\\.codex\\generated_images\\01a19a4f-29b9-77d3-8a9b-eb84ece5db41\\exec-9d7b9e1a-ec79-4846-93c6-39b0909214d7.png"
+    },
+    {
+      "rubro": "barberia",
+      "id": "mullet",
+      "prompt": "Photorealistic professional barber haircut catalogue photograph: modern short textured mullet, close sides, cropped textured top, clearly longer hair at the nape extending down the back of the neck. An anonymous adult male model, precise realistic hair texture and accurate haircut, cropped three-quarter side/back view with no full identifiable face; for beard detail crop focus on beard. Same consistent charcoal black seamless studio background and warm controlled amber rim light, premium black/chrome/gold editorial art direction. Center subject with generous margin for a 3:4 thumbnail crop inside a landscape 3:2 source. Do not add tools, props, text, diagrams, logos, watermarks or borders. This is an illustrative style reference, not a real customer portrait.",
+      "path": "C:\\Users\\IVAN\\.codex\\generated_images\\01a19a4f-29b9-77d3-8a9b-eb84ece5db41\\exec-5ad86ef7-b12b-4dab-b589-a4c0d4c9cddf.png"
+    },
+    {
+      "rubro": "barberia",
+      "id": "corte-barba",
+      "prompt": "Photorealistic professional barber haircut catalogue photograph: crisp short textured haircut with a graduated fade and neatly shaped medium dark beard, three-quarter side view focused on hair and beard. An anonymous adult male model, precise realistic hair texture and accurate haircut, cropped three-quarter side/back view with no full identifiable face; for beard detail crop focus on beard. Same consistent charcoal black seamless studio background and warm controlled amber rim light, premium black/chrome/gold editorial art direction. Center subject with generous margin for a 3:4 thumbnail crop inside a landscape 3:2 source. Do not add tools, props, text, diagrams, logos, watermarks or borders. This is an illustrative style reference, not a real customer portrait.",
+      "path": "C:\\Users\\IVAN\\.codex\\generated_images\\01a19a4f-29b9-77d3-8a9b-eb84ece5db41\\exec-403edd06-8ac2-4a3d-af72-7aa8fe030bc4.png"
+    },
+    {
+      "rubro": "spa",
+      "id": "piedras",
+      "prompt": "Photorealistic professional spa catalogue still life for hot-stone massage: a neat group of smooth black basalt massage stones of different sizes resting on a shallow warm ceramic tray, a folded ivory towel and a plain amber oil bottle nearby. Warm sand, honey and clay palette, soft daylight, tactile natural material detail, premium restrained spa editorial photograph, landscape 3:2. No people, no human bodies, no skin, no hands, no text, no labels, no branding, no logos or watermarks.",
+      "path": "C:\\Users\\IVAN\\.codex\\generated_images\\01a19a4f-29b9-77d3-8a9b-eb84ece5db41\\exec-e16fd246-1ea5-4f54-b16c-5dd511ca7be1.png"
+    },
+    {
+      "rubro": "spa",
+      "id": "relajante",
+      "prompt": "Photorealistic professional spa catalogue still life for a relaxing massage service: a small amber glass bowl with clear massage oil, a plain amber oil bottle, two softly rolled ivory towels and a folded linen sheet on a warm sand-colored stone table. Soft warm window light, tactile natural materials, calm premium editorial photography, landscape 3:2. No people, no human bodies, no skin, no hands, no text, no logos, no branding or watermarks.",
+      "path": "C:\\Users\\IVAN\\.codex\\generated_images\\01a19a4f-29b9-77d3-8a9b-eb84ece5db41\\exec-4a0b5269-db54-4217-ace0-4435e2eb38c1.png"
+    },
+    {
+      "rubro": "spa",
+      "id": "limpieza-facial",
+      "prompt": "Photorealistic professional spa service catalogue image: clean professional facial cleansing essentials in a warm spa: a shallow ceramic bowl, soft cleansing brush, cotton rounds and folded ivory face towel on sand-colored stone, no person and no brands. Consistent warm sand, ivory, honey and clay palette with amber accents, natural soft window light, refined tactile spa editorial photography, believable skin and linen texture, anatomically correct body details when present, professional draping. Landscape 3:2 centered composition suitable for cropping into a service thumbnail. No nudity, no identifiable faces, no branding, no labels, no letters, no text, no watermarks. Illustrative fictional service image, not evidence of results.",
+      "path": "C:\\Users\\IVAN\\.codex\\generated_images\\01a19a4f-29b9-77d3-8a9b-eb84ece5db41\\exec-e33b61e6-f3d3-4d11-8b78-2bf8299e74a5.png"
+    },
+    {
+      "rubro": "spa",
+      "id": "descontracturante",
+      "prompt": "Photorealistic professional spa service catalogue still life representing deep tissue massage: a pair of smooth ergonomic wooden massage tools, a plain dark amber massage balm jar, tightly rolled ivory towels and a warm ceramic bowl arranged precisely on sand-colored stone. A stronger directional window light creates distinct sculptural shadows, warm clay and honey palette, tactile restrained professional editorial photography, landscape 3:2 composition with centered tools and no labels. No people, no human bodies, no skin, no hands, no text, no logos, no brands or watermarks.",
+      "path": "C:\\Users\\IVAN\\.codex\\generated_images\\01a19a4f-29b9-77d3-8a9b-eb84ece5db41\\exec-8f8048e2-9ed5-4d37-adeb-9ca9efe819cb.png"
+    },
+    {
+      "rubro": "spa",
+      "id": "hidratacion",
+      "prompt": "Photorealistic professional spa service catalogue image: close view of a professional hydrating cream mask in an amber glass bowl, a flat skincare brush and ivory linen with natural ceramic surface, warm spa still life, no people. Consistent warm sand, ivory, honey and clay palette with amber accents, natural soft window light, refined tactile spa editorial photography, believable skin and linen texture, anatomically correct body details when present, professional draping. Landscape 3:2 centered composition suitable for cropping into a service thumbnail. No nudity, no identifiable faces, no branding, no labels, no letters, no text, no watermarks. Illustrative fictional service image, not evidence of results.",
+      "path": "C:\\Users\\IVAN\\.codex\\generated_images\\01a19a4f-29b9-77d3-8a9b-eb84ece5db41\\exec-a03898d7-461e-4f08-a80b-82bfeb70eace.png"
+    },
+    {
+      "rubro": "dental",
+      "id": "limpieza",
+      "prompt": "Photorealistic professional dental service catalogue still life: neatly arranged stainless dental mirror, scaler and polishing tool on a pristine pale glacier-blue sterile tray, no patient, no mouth, no procedure. Consistent clinical white and glacier blue art direction, soft precise daylight, realistic stainless steel, ceramic and polymer materials, elegant minimal professional medical product photograph. Landscape 3:2, centered subject with margin for square thumbnail cropping. Non-graphic and not a diagnostic illustration. No people, no brands, no text, no lettering, no labels, no logos, no watermarks. Fictional illustrative service photograph.",
+      "path": "C:\\Users\\IVAN\\.codex\\generated_images\\01a19a4f-29b9-77d3-8a9b-eb84ece5db41\\exec-16abe405-50d3-4bcb-ad18-e2eec7f4ee9d.png"
+    },
+    {
+      "rubro": "spa",
+      "id": "manicure",
+      "prompt": "Photorealistic professional spa service catalogue image: a single adult woman's hand resting naturally on ivory linen, neatly filed short nails painted a warm caramel amber color, fingers and nails anatomically correct, no face, no jewelry. Consistent warm sand, ivory, honey and clay palette with amber accents, natural soft window light, refined tactile spa editorial photography, believable skin and linen texture, anatomically correct body details when present, professional draping. Landscape 3:2 centered composition suitable for cropping into a service thumbnail. No nudity, no identifiable faces, no branding, no labels, no letters, no text, no watermarks. Illustrative fictional service image, not evidence of results.",
+      "path": "C:\\Users\\IVAN\\.codex\\generated_images\\01a19a4f-29b9-77d3-8a9b-eb84ece5db41\\exec-5c6058d6-0a19-4852-8bb4-524b02e97e79.png"
+    },
+    {
+      "rubro": "dental",
+      "id": "resina",
+      "prompt": "Photorealistic professional dental service catalogue still life: a single clean white demonstration molar model beside a blank tooth-shade guide and a tiny dental composite instrument on a pale glacier-blue surface, no labels or text, no patient. Consistent clinical white and glacier blue art direction, soft precise daylight, realistic stainless steel, ceramic and polymer materials, elegant minimal professional medical product photograph. Landscape 3:2, centered subject with margin for square thumbnail cropping. Non-graphic and not a diagnostic illustration. No people, no brands, no text, no lettering, no labels, no logos, no watermarks. Fictional illustrative service photograph.",
+      "path": "C:\\Users\\IVAN\\.codex\\generated_images\\01a19a4f-29b9-77d3-8a9b-eb84ece5db41\\exec-e2f57185-7479-476e-8b1f-1403fdd38fca.png"
+    },
+    {
+      "rubro": "spa",
+      "id": "pedicure",
+      "prompt": "Photorealistic professional spa service catalogue image: close view of two clean adult feet resting naturally on folded ivory towels beside a shallow ceramic foot bath with water, short neat toenails with pale neutral polish, correct toes and anatomy, no face. Consistent warm sand, ivory, honey and clay palette with amber accents, natural soft window light, refined tactile spa editorial photography, believable skin and linen texture, anatomically correct body details when present, professional draping. Landscape 3:2 centered composition suitable for cropping into a service thumbnail. No nudity, no identifiable faces, no branding, no labels, no letters, no text, no watermarks. Illustrative fictional service image, not evidence of results.",
+      "path": "C:\\Users\\IVAN\\.codex\\generated_images\\01a19a4f-29b9-77d3-8a9b-eb84ece5db41\\exec-03776d7e-47ff-40e8-ae3b-2133804979bf.png"
+    },
+    {
+      "rubro": "dental",
+      "id": "blanqueamiento",
+      "prompt": "Photorealistic professional dental service catalogue still life: a professional dental whitening LED lamp and an unbranded closed whitening kit on a clean white counter with glacier blue light, no person, no mouth, no before-and-after. Consistent clinical white and glacier blue art direction, soft precise daylight, realistic stainless steel, ceramic and polymer materials, elegant minimal professional medical product photograph. Landscape 3:2, centered subject with margin for square thumbnail cropping. Non-graphic and not a diagnostic illustration. No people, no brands, no text, no lettering, no labels, no logos, no watermarks. Fictional illustrative service photograph.",
+      "path": "C:\\Users\\IVAN\\.codex\\generated_images\\01a19a4f-29b9-77d3-8a9b-eb84ece5db41\\exec-392478f6-2074-4ecc-9e6a-f71aed55affb.png"
+    },
+    {
+      "rubro": "dental",
+      "id": "endodoncia",
+      "prompt": "Photorealistic professional dental service catalogue still life: an organized professional set of endodontic files with subtle color-coded handles in a small sterile instrument holder beside an intact demonstration tooth model, clean and non-graphic, no patient, no visible tooth section. Consistent clinical white and glacier blue art direction, soft precise daylight, realistic stainless steel, ceramic and polymer materials, elegant minimal professional medical product photograph. Landscape 3:2, centered subject with margin for square thumbnail cropping. Non-graphic and not a diagnostic illustration. No people, no brands, no text, no lettering, no labels, no logos, no watermarks. Fictional illustrative service photograph.",
+      "path": "C:\\Users\\IVAN\\.codex\\generated_images\\01a19a4f-29b9-77d3-8a9b-eb84ece5db41\\exec-7d4cf5f6-6424-4a66-9b40-3f84f8c03f7d.png"
+    },
+    {
+      "rubro": "dental",
+      "id": "ortodoncia",
+      "prompt": "Photorealistic professional dental service catalogue still life: macro still life of a clean transparent dental aligner resting on a white demonstration dental arch, pale glacier-blue surface, highly accurate clear material and restrained medical product photography. Consistent clinical white and glacier blue art direction, soft precise daylight, realistic stainless steel, ceramic and polymer materials, elegant minimal professional medical product photograph. Landscape 3:2, centered subject with margin for square thumbnail cropping. Non-graphic and not a diagnostic illustration. No people, no brands, no text, no lettering, no labels, no logos, no watermarks. Fictional illustrative service photograph.",
+      "path": "C:\\Users\\IVAN\\.codex\\generated_images\\01a19a4f-29b9-77d3-8a9b-eb84ece5db41\\exec-c972bf4c-b67c-4268-a08d-7e8b3c33a5ae.png"
+    },
+    {
+      "rubro": "veterinaria",
+      "id": "vacuna",
+      "prompt": "Photorealistic professional veterinary service catalogue image: a blank pet vaccination booklet, a clean unopened syringe still in its sterile transparent wrapper and a small unbranded sealed vial on a teal veterinary counter, no readable text, no animal being injected. Consistent cream, turquoise and muted orange art direction, generous soft daylight, clean professional environment, realistic material and fur textures with accurate animal anatomy, calm serious caring atmosphere. Landscape 3:2 centered composition with breathing room for a square thumbnail crop. No gore, no procedures on animals, no faces of people, no text, logos, readable labels, brands or watermarks. Fictional illustrative scene, not an actual patient.",
+      "path": "C:\\Users\\IVAN\\.codex\\generated_images\\01a19a4f-29b9-77d3-8a9b-eb84ece5db41\\exec-a63c9e17-0aca-4502-8866-14e7227fdada.png"
+    },
+    {
+      "rubro": "dental",
+      "id": "implante",
+      "prompt": "Photorealistic professional dental service catalogue still life: macro product photograph of a single titanium dental implant screw with a separate white ceramic tooth crown standing upright beside it on a clean pale glacier-blue surface, realistic medical demonstration props, non-graphic. Consistent clinical white and glacier blue art direction, soft precise daylight, realistic stainless steel, ceramic and polymer materials, elegant minimal professional medical product photograph. Landscape 3:2, centered subject with margin for square thumbnail cropping. Non-graphic and not a diagnostic illustration. No people, no brands, no text, no lettering, no labels, no logos, no watermarks. Fictional illustrative service photograph.",
+      "path": "C:\\Users\\IVAN\\.codex\\generated_images\\01a19a4f-29b9-77d3-8a9b-eb84ece5db41\\exec-73d50c90-8b07-4b5d-8992-280c737e8bdb.png"
+    },
+    {
+      "rubro": "veterinaria",
+      "id": "desparasitacion",
+      "prompt": "Photorealistic professional veterinary service catalogue image: a healthy gray cat resting beside a closed unbranded pet carrier, a small blank white veterinary box and folded towel on a cream and teal consultation counter, no medicine administration. Consistent cream, turquoise and muted orange art direction, generous soft daylight, clean professional environment, realistic material and fur textures with accurate animal anatomy, calm serious caring atmosphere. Landscape 3:2 centered composition with breathing room for a square thumbnail crop. No gore, no procedures on animals, no faces of people, no text, logos, readable labels, brands or watermarks. Fictional illustrative scene, not an actual patient.",
+      "path": "C:\\Users\\IVAN\\.codex\\generated_images\\01a19a4f-29b9-77d3-8a9b-eb84ece5db41\\exec-43b03e7d-0bf3-4236-9630-74bd24142491.png"
+    },
+    {
+      "rubro": "veterinaria",
+      "id": "consulta",
+      "prompt": "Photorealistic professional veterinary service catalogue image: one healthy friendly caramel dog sitting calmly on a non-slip examination mat in a cream and teal veterinary exam room, a stethoscope neatly on the counter, no people or hands, no treatment. Consistent cream, turquoise and muted orange art direction, generous soft daylight, clean professional environment, realistic material and fur textures with accurate animal anatomy, calm serious caring atmosphere. Landscape 3:2 centered composition with breathing room for a square thumbnail crop. No gore, no procedures on animals, no faces of people, no text, logos, readable labels, brands or watermarks. Fictional illustrative scene, not an actual patient.",
+      "path": "C:\\Users\\IVAN\\.codex\\generated_images\\01a19a4f-29b9-77d3-8a9b-eb84ece5db41\\exec-5c0e3bca-e861-4f34-a19f-3dec6c3e797f.png"
+    },
+    {
+      "rubro": "veterinaria",
+      "id": "cirugia",
+      "prompt": "Photorealistic professional veterinary service catalogue image: an empty impeccably prepared veterinary operating room with stainless steel table, clean folded sterile drapes and soft teal accents, clinical architectural photography, no animals, no people, no procedure. Consistent cream, turquoise and muted orange art direction, generous soft daylight, clean professional environment, realistic material and fur textures with accurate animal anatomy, calm serious caring atmosphere. Landscape 3:2 centered composition with breathing room for a square thumbnail crop. No gore, no procedures on animals, no faces of people, no text, logos, readable labels, brands or watermarks. Fictional illustrative scene, not an actual patient.",
+      "path": "C:\\Users\\IVAN\\.codex\\generated_images\\01a19a4f-29b9-77d3-8a9b-eb84ece5db41\\exec-591705d0-d77d-4fa8-a193-e92e65ec5225.png"
+    },
+    {
+      "rubro": "veterinaria",
+      "id": "bano",
+      "prompt": "Photorealistic professional veterinary service catalogue image: one small healthy white-and-tan dog freshly groomed sitting on a non-slip teal grooming mat, a neatly folded towel and grooming brush nearby, natural dry fur texture, no people or hands. Consistent cream, turquoise and muted orange art direction, generous soft daylight, clean professional environment, realistic material and fur textures with accurate animal anatomy, calm serious caring atmosphere. Landscape 3:2 centered composition with breathing room for a square thumbnail crop. No gore, no procedures on animals, no faces of people, no text, logos, readable labels, brands or watermarks. Fictional illustrative scene, not an actual patient.",
+      "path": "C:\\Users\\IVAN\\.codex\\generated_images\\01a19a4f-29b9-77d3-8a9b-eb84ece5db41\\exec-3ecc4b35-47b6-48af-99ff-90ba69b24b8f.png"
+    },
+    {
+      "rubro": "gimnasio",
+      "id": "funcional",
+      "prompt": "Photorealistic athletic editorial service photograph: a serious functional training zone with unbranded black kettlebells, a thick battle rope, medicine ball and lime green floor lane on charcoal rubber flooring, dynamic diagonal low angle, no people. Consistent deep charcoal black and lime-green art direction, natural directional light with detailed shadows, realistic rubber, steel and leather textures, professional training environment. Landscape 3:2 composition with clear central subject and room for a square crop. No people, no human silhouettes, no neon fog, no text, no logos, no readable brands, no watermarks. Fictional illustrative gym environment.",
+      "path": "C:\\Users\\IVAN\\.codex\\generated_images\\01a19a4f-29b9-77d3-8a9b-eb84ece5db41\\exec-5949d858-35f7-40b1-99ff-48c46fbb9334.png"
+    },
+    {
+      "rubro": "gimnasio",
+      "id": "spinning",
+      "prompt": "Photorealistic athletic editorial service photograph: a row of unbranded matte black indoor spinning bikes with lime green accents in a professional studio, strong directional window light, clean athletic atmosphere, no people. Consistent deep charcoal black and lime-green art direction, natural directional light with detailed shadows, realistic rubber, steel and leather textures, professional training environment. Landscape 3:2 composition with clear central subject and room for a square crop. No people, no human silhouettes, no neon fog, no text, no logos, no readable brands, no watermarks. Fictional illustrative gym environment.",
+      "path": "C:\\Users\\IVAN\\.codex\\generated_images\\01a19a4f-29b9-77d3-8a9b-eb84ece5db41\\exec-5285e018-e35f-4aee-8ac8-4cde0c0b659c.png"
+    },
+    {
+      "rubro": "gimnasio",
+      "id": "box",
+      "prompt": "Photorealistic athletic editorial service photograph: a heavy unbranded black boxing bag, a pair of lime green boxing gloves neatly resting on the edge of a charcoal boxing ring, hard natural side light and realistic leather texture, no people. Consistent deep charcoal black and lime-green art direction, natural directional light with detailed shadows, realistic rubber, steel and leather textures, professional training environment. Landscape 3:2 composition with clear central subject and room for a square crop. No people, no human silhouettes, no neon fog, no text, no logos, no readable brands, no watermarks. Fictional illustrative gym environment.",
+      "path": "C:\\Users\\IVAN\\.codex\\generated_images\\01a19a4f-29b9-77d3-8a9b-eb84ece5db41\\exec-c333765e-e144-4b12-90d9-ea585812d167.png"
+    }
+  ],
+  "stockOriginales": {
+    "causa": "img/causa.webp",
+    "tiradito": "img/tiradito.webp",
+    "ceviche": "img/ceviche.webp",
+    "jalea": "img/jalea.webp",
+    "arroz-con-pato": "img/arroz-con-pato.webp",
+    "cabrito": "img/cabrito.webp",
+    "lomo-saltado": "img/lomo-saltado.webp",
+    "picarones": "img/picarones.webp",
+    "chicha-morada": "img/chicha-morada.webp",
+    "pisco-sour": "img/pisco-sour.webp"
+  }
+}

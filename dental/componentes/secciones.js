@@ -1,3 +1,4 @@
+import { imagen } from '../../core/componentes/imagen.js';
 import { html } from '../../core/componentes/html.js';
 import { campo, formularioWhatsapp } from '../../core/componentes/formulario.js';
 import { soles } from '../../core/dinero.js';
@@ -10,11 +11,15 @@ export function tratamientos(negocio) {
     <section class="tratamientos" id="tratamientos" aria-labelledby="tratamientos-titulo">
       <h2 class="seccion-titulo" id="tratamientos-titulo" data-armar>Tratamientos y precios</h2>
       <p class="seccion-intro">${textos.introTratamientos}</p>
+      <p class="muestra-ia">
+        Imágenes generadas con IA · instrumental y modelos ilustrativos (demo).
+      </p>
       <dl class="tratamientos__lista">
         ${lista.map(
           (t) => html`
             <div class="tratamiento" data-tratamiento-fila="${t.id}">
               <dt class="tratamiento__nombre">${t.nombre}</dt>
+              ${t.foto ? html`<dd class="foto-servicio tratamiento__foto">${imagen(t.foto, { sizes: '(min-width: 60rem) 220px, 110px' })}</dd>` : ''}
               <dd class="tratamiento__precio">Desde ${soles(t.desde)}</dd>
               <dd class="tratamiento__duracion">${t.duracion}</dd>
               <dd class="tratamiento__descripcion">${t.descripcion}</dd>

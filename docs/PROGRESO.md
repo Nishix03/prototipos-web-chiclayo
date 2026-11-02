@@ -194,3 +194,31 @@ Con el gimnasio se terminan los 6 prototipos.
 - **Nombres de demo:** confirmar en Google Maps que «Remanso Spa», «Trufa Veterinaria» y «Latido Gym» no existan en Chiclayo.
 - **Webs de los prospectos:** revisarlas antes de mostrarles la demo. Los briefs de la clínica dental, el spa, la veterinaria y el gimnasio no las revisaron.
 - **Comparador antes/después:** está en el núcleo. La clínica dental puede usarlo cuando tenga fotos reales con permiso.
+
+### 2026-11-01 · Rediseño de los seis prototipos
+
+- Referencia correcta: `plan-mejora-prototipos-chiclayo.md`, indicado por Iván.
+- Aplicación de las identidades y controles: spa cálido con fases del día y comparador IA rotulado; dental glaciar con sonrisa y etapas; barbería sin caja central y cartas conectadas al turno; gimnasio con intensidad y plan semanal local; veterinaria con ficha en memoria y carné; restaurante con comanda más grande y carta más clara.
+- Rendimiento: render 3D bajo demanda y carga diferida de mejoras visuales táctiles. Se mantienen póster, movimiento reducido, ahorro de datos y filtros de memoria.
+- Se amplía Control para detectar desborde horizontal y guardar rondas; hoja comparativa de los seis heros a 360 y 1440.
+- Nombres Remanso Spa, Trufa Veterinaria y Latido Gym confirmados por Iván según §12 del plan de mejora; se da por resuelto el pendiente de nombres del cierre anterior.
+- Resultado y evidencia: `docs/visual/REDISENO-2026-11-01.md`. No se ha publicado ni creado PR; pendiente de revisión visual de Iván.
+
+- **Ampliación de Iván durante el rediseño:** fotografía para cada landing y cada servicio, logos personalizados y coherencia de todos los elementos y animaciones. Se generan 34 fotos, seis logos y los PNG maestros; se incorporan las diez fotos de platos existentes. Controles, reseñas, mapa, pies y curvas de movimiento se adaptan a cada marca. Se eliminan los rebotes de barbería, gimnasio y fichas veterinarias que no encajaban con el tono profesional. Evidencia en `docs/visual/BRANDING-2026-11-01.md` y ronda `rediseno-imagenes-2026-11-01`.
+
+### 2026-11-02 · Modelos 3D propios de las marcas
+
+- Nueva indicación de Iván: personalizar también los modelos 3D. Se incorporan relieves físicos de los símbolos con materiales y movimientos propios, chapas veterinarias y sellos curvos en cerámica.
+- La geometría se genera desde contornos simplificados; se reducen malla de cromo, cantidad de piezas dentales/accesorios y líneas del monitor para compensarla.
+- Se regeneran pósters de las seis escenas dentro del presupuesto. Los de restaurante incorporan el sello ajustado a la curva del bowl.
+- Las diez fotos de la carta reciben variantes 320/480/640, conservando las fotos y créditos originales.
+- Evidencia: ADR 017 y ronda `docs/visual/rondas/marcas-3d-2026-11-02/`.
+- Cierre: build y lint correctos, 112 pruebas aprobadas y dos omisiones por dispositivo; Control 12/12 con 3D vivo y sin desborde. Lighthouse final (mediana de tres en móvil, una en escritorio): móvil 98–100 y escritorio 92–100; accesibilidad, buenas prácticas y SEO 100 en los doce casos. Resultados y límites del muestreo en el informe de rediseño. No se ha publicado.
+
+### 2026-11-02 · Restaurante rehecho: «La mesa norteña»
+
+- Iván rechaza el 3D anterior. Se reemplaza el mostrador y los ingredientes suspendidos por una mesa con ceviche servido, camote, choclo, cebolla criolla, limón y ají. La cerámica integra el sello de la marca; madera, tejido y cubiertos completan el entorno.
+- Cámara oblicua con desplazamiento corto ligado al scroll. Carga del motor al explorar también en escritorio; render en reposo, movimiento reducido y póster permanecen. Instancias para los alimentos repetidos y sombras de contacto precalculadas.
+- Comanda con espacio reservado al plato y acciones móviles más compactas. Se retira la capa de etiquetas de bowls y las direcciones antiguas sin recursos. Carrito y reservas conservan su implementación.
+- 16 pruebas aprobadas, incluida la primera interacción que activa la escena en ambos dispositivos. Control 2/2 con el 3D vivo y sin desborde. Evidencia vigente: ADR 018 y `docs/visual/rondas/restaurante-mesa-2026-11-02/`. No se ha publicado.
+- Lighthouse de la nueva escena: 98 móvil (mediana de cinco) y 100 escritorio (una corrida), LCP móvil 1,98 s; accesibilidad, buenas prácticas y SEO 100. Se limita el póster de teléfonos a 600 px (33,6 KB) para conservar rapidez. Las mediciones intermedias se guardan junto al resultado final.

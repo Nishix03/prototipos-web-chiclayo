@@ -1,4 +1,5 @@
 import { html } from '../../core/componentes/html.js';
+import { pasoProgreso } from '../../core/componentes/paso-progreso.js';
 import { soles } from '../../core/dinero.js';
 
 /**
@@ -42,6 +43,7 @@ export function cuestionario(negocio) {
     >
       <h2 class="seccion-titulo" id="cuestionario-titulo" data-armar>Encuentra tu tratamiento</h2>
       <p class="seccion-intro">${textos.introCuestionario}</p>
+      ${pasoProgreso(['Orientación', 'Tus opciones', 'Evaluación'])}
       <noscript>
         <p class="seccion-intro">
           El cuestionario necesita JavaScript. Mientras, mira
@@ -62,7 +64,7 @@ export function cuestionario(negocio) {
                 ${p.opciones.map(
                   (o) => html`
                     <button
-                      class="opcion"
+                      class="opcion transition-transform duration-150 motion-reduce:transition-none active:scale-[0.98]"
                       type="button"
                       ${o.siguiente ? html`data-siguiente="${o.siguiente}"` : ''}
                       ${o.resultado ? html`data-resultado="${o.resultado}"` : ''}

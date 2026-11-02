@@ -1,11 +1,11 @@
-// Navegador: la parte liviana de «El pase». Decide si llega el 3D y las coreografías (ADR 008),
-// hace volar el plato hasta la barra al agregarlo y nombra cada bowl en celular.
+// Navegador: la parte liviana de «La mesa norteña». Decide si llega el 3D y las coreografías (ADR 008),
+// hace volar el papel del plato hasta la barra al agregarlo.
 // No importa Three.js ni GSAP: esos llegan con import() solo si hacen falta.
 import { puede3d, cuandoEsteLibre } from '../../core/carga3d.js';
 
 const reducido = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-/** 0 en la portada, 1 cuando la carta llega arriba: los ingredientes ya están en sus bowls. */
+/** 0 en la portada, 1 cuando la carta llega arriba: el recorrido sobre la mesa termina. */
 export function avanceDelScroll() {
   const carta = document.getElementById('carta');
   const fin = Math.max(1, carta.offsetTop - innerHeight * 0.25);
@@ -53,42 +53,15 @@ function volar(e) {
   });
 }
 
-/** Etiquetas de los bowls (solo celular: en escritorio lo dice la comanda de cada categoría). */
-function etiquetarBowls(escena) {
-  const capa = Object.assign(document.createElement('div'), { className: 'etiquetas' });
-  capa.setAttribute('aria-hidden', 'true');
-  const nombres = [...document.querySelectorAll('.categoria__titulo')].map((h) =>
-    h.textContent.trim(),
-  );
-  const etiquetas = nombres.map((n) => {
-    const e = Object.assign(document.createElement('span'), {
-      className: 'etiqueta-grupo',
-      textContent: n,
-    });
-    capa.append(e);
-    return e;
-  });
-  document.body.append(capa);
-  const colocar = () => {
-    const t = avanceDelScroll();
-    capa.style.opacity = String(Math.min(1, Math.max(0, (t - 0.7) / 0.25)));
-    escena.centros().forEach((p, i) => {
-      etiquetas[i].style.transform = `translate(${p.x}px, ${p.y}px)`;
-    });
-  };
-  addEventListener('scroll', colocar, { passive: true });
-  addEventListener('resize', colocar);
-  colocar();
-}
-
 // Modo imagen fija (scripts/poster.js): dibuja la escena quieta en los dos encuadres
 async function generarImagenesFijas() {
   const { montar } = await import('./montar.js');
   const fondo = getComputedStyle(document.documentElement).getPropertyValue('--color-fondo').trim();
-  window.__posters = [
-    ['pase', 1440, 900],
-    ['pase-movil', 900, 1948],
-  ].map(([nombre, ancho, alto]) => ({
+  const originales = [
+    ['mesa-nortena', 1440, 900],
+    ['mesa-nortena-movil', 900, 1948],
+  ];
+  window.__posters = originales.map(([nombre, ancho, alto]) => ({
     nombre,
     fondo,
     png: montar(null, () => 0, { fija: true, ancho, alto }).canvas.toDataURL('image/png'),
@@ -99,15 +72,28 @@ export function iniciarPase() {
   if (new URLSearchParams(location.search).has('poster')) return generarImagenesFijas();
   document.getElementById('carta')?.addEventListener('click', volar);
 
-  cuandoEsteLibre(async () => {
-    if (!reducido()) {
-      const { iniciarCoreografias } = await import('./coreografias.js');
-      iniciarCoreografias();
+  const mejorar = () =>
+    cuandoEsteLibre(async () => {
+      if (!reducido()) {
+        const { iniciarCoreografias } = await import('./coreografias.js');
+        iniciarCoreografias();
+      }
+      if (puede3d()) {
+        const { montar } = await import('./montar.js');
+        montar(document.querySelector('[data-escena]'), avanceDelScroll);
+      }
+    });
+  if (new URLSearchParams(location.search).get('3d') === 'forzar') mejorar();
+  else {
+    // El póster ya muestra la mesa exacta. También en escritorio, el motor llega
+    // al explorar; el formulario y el pedido no dependen de esta mejora visual.
+    const eventos = new AbortController();
+    const iniciar = () => {
+      eventos.abort();
+      mejorar();
+    };
+    for (const evento of ['pointermove', 'pointerdown', 'keydown', 'scroll']) {
+      addEventListener(evento, iniciar, { once: true, passive: true, signal: eventos.signal });
     }
-    if (puede3d()) {
-      const { montar } = await import('./montar.js');
-      const escena = montar(document.querySelector('[data-escena]'), avanceDelScroll);
-      etiquetarBowls(escena);
-    }
-  });
+  }
 }

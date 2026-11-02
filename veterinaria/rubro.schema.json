@@ -3,10 +3,16 @@
   "title": "Negocio · veterinaria",
   "description": "Campos propios de la veterinaria sobre la base común (ADR 005): textos, urgencias 24 h, servicios con precio «desde», la tabla de vacunas por especie (la valida la veterinaria), el equipo y los consejos de cuidado.",
   "type": "object",
-  "allOf": [{ "$ref": "../core/negocio.schema.json" }],
+  "allOf": [
+    {
+      "$ref": "../core/negocio.schema.json"
+    }
+  ],
   "required": ["textos", "urgencias", "servicios", "vacunas", "equipo", "consejos"],
   "properties": {
-    "rubro": { "const": "veterinaria" },
+    "rubro": {
+      "const": "veterinaria"
+    },
     "textos": {
       "type": "object",
       "additionalProperties": false,
@@ -17,10 +23,22 @@
           "maxLength": 40,
           "description": "6 palabras o menos (exigencia 2)"
         },
-        "bajada": { "type": "string", "maxLength": 200 },
-        "introServicios": { "type": "string", "maxLength": 160 },
-        "introVacunas": { "type": "string", "maxLength": 200 },
-        "introCita": { "type": "string", "maxLength": 160 }
+        "bajada": {
+          "type": "string",
+          "maxLength": 200
+        },
+        "introServicios": {
+          "type": "string",
+          "maxLength": 160
+        },
+        "introVacunas": {
+          "type": "string",
+          "maxLength": 200
+        },
+        "introCita": {
+          "type": "string",
+          "maxLength": 160
+        }
       }
     },
     "urgencias": {
@@ -48,10 +66,24 @@
         "additionalProperties": false,
         "required": ["id", "nombre", "desde", "descripcion"],
         "properties": {
-          "id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
-          "nombre": { "type": "string", "maxLength": 40 },
-          "desde": { "$ref": "../core/negocio.schema.json#/$defs/precio" },
-          "descripcion": { "type": "string", "maxLength": 140 }
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z0-9-]+$"
+          },
+          "nombre": {
+            "type": "string",
+            "maxLength": 40
+          },
+          "desde": {
+            "$ref": "../core/negocio.schema.json#/$defs/precio"
+          },
+          "descripcion": {
+            "type": "string",
+            "maxLength": 140
+          },
+          "foto": {
+            "$ref": "../core/negocio.schema.json#/$defs/imagen"
+          }
         }
       }
     },
@@ -73,8 +105,14 @@
             "additionalProperties": false,
             "required": ["id", "nombre", "dosis"],
             "properties": {
-              "id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
-              "nombre": { "type": "string", "maxLength": 20 },
+              "id": {
+                "type": "string",
+                "pattern": "^[a-z0-9-]+$"
+              },
+              "nombre": {
+                "type": "string",
+                "maxLength": 20
+              },
               "dosis": {
                 "type": "array",
                 "minItems": 1,
@@ -89,7 +127,10 @@
                       "maximum": 520,
                       "description": "Edad en semanas en que toca la dosis"
                     },
-                    "vacuna": { "type": "string", "maxLength": 60 }
+                    "vacuna": {
+                      "type": "string",
+                      "maxLength": 60
+                    }
                   }
                 }
               }
@@ -106,8 +147,14 @@
         "additionalProperties": false,
         "required": ["nombre", "especialidad", "colegiatura"],
         "properties": {
-          "nombre": { "type": "string", "maxLength": 60 },
-          "especialidad": { "type": "string", "maxLength": 80 },
+          "nombre": {
+            "type": "string",
+            "maxLength": 60
+          },
+          "especialidad": {
+            "type": "string",
+            "maxLength": 80
+          },
           "colegiatura": {
             "type": "string",
             "maxLength": 30,
@@ -124,8 +171,14 @@
         "additionalProperties": false,
         "required": ["titulo", "texto"],
         "properties": {
-          "titulo": { "type": "string", "maxLength": 60 },
-          "texto": { "type": "string", "maxLength": 400 }
+          "titulo": {
+            "type": "string",
+            "maxLength": 60
+          },
+          "texto": {
+            "type": "string",
+            "maxLength": 400
+          }
         }
       }
     }

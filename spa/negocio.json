@@ -12,7 +12,7 @@
     "introServicios": "Precio y duración de cada servicio, sin sorpresas.",
     "introCita": "Tres pasos, sin apuro: el servicio, el día con su franja horaria y tu nombre.",
     "introPaquetes": "Servicios combinados en una sola visita.",
-    "introComparador": "Mueve la línea para comparar. Aquí van las fotos de antes y después de tus clientes, siempre con su permiso."
+    "introComparador": "Desliza para explorar un acabado de manicure. Ambas imágenes son ilustrativas, generadas con IA."
   },
   "contacto": {
     "whatsapp": "995258351",
@@ -37,25 +37,59 @@
     "dom": [["10:00", "15:00"]]
   },
   "tema": {
-    "marca": "#3d5c4a",
-    "acento": "#e6dcc8",
-    "fondo": "#f3efe6",
-    "texto": "#1f2a24"
+    "marca": "#704126",
+    "acento": "#c9974f",
+    "fondo": "#faf2e5",
+    "texto": "#35261e"
   },
   "imagenes": {
     "hero": {
-      "src": "img/agua-1440.webp",
-      "alt": "Superficie de agua quieta color salvia con ondas suaves (ilustración 3D)"
+      "src": "img/agua-v5-1440.webp",
+      "alt": "Agua ámbar y símbolo R de Remanso en relieve mineral (escena 3D)"
     },
     "og": {
-      "src": "img/agua-1440.webp",
+      "src": "img/agua-v5-1440.webp",
       "alt": "Remanso Spa (demo), spa y estética en Chiclayo"
-    }
+    },
+    "editorial": {
+      "foto": {
+        "src": "img/generadas/ambiente-1440.webp",
+        "variantes": ["img/generadas/ambiente-480.webp", "img/generadas/ambiente-960.webp"],
+        "creditoIA": {
+          "herramienta": "ChatGPT / Codex (image_gen)",
+          "fecha": "2026-11-01"
+        },
+        "alt": "Rincón de spa con agua ámbar, piedra cálida y toallas de lino"
+      },
+      "titulo": "El tiempo se siente distinto",
+      "texto": "Masajes, faciales y cuidado personal. Elige tu servicio con su precio y duración a la vista.",
+      "enlace": "#servicios",
+      "accion": "Explorar los servicios"
+    },
+    "logo": {
+      "src": "img/marca/simbolo-192.webp",
+      "variantes": ["img/marca/simbolo-48.webp", "img/marca/simbolo-96.webp"],
+      "alt": "Símbolo de Remanso Spa",
+      "creditoIA": {
+        "herramienta": "ChatGPT / Codex (image_gen)",
+        "fecha": "2026-11-01"
+      }
+    },
+    "icono": "img/marca/favicon.png"
   },
   "categorias": [
-    { "id": "masajes", "nombre": "Masajes" },
-    { "id": "faciales", "nombre": "Faciales" },
-    { "id": "unas", "nombre": "Uñas" }
+    {
+      "id": "masajes",
+      "nombre": "Masajes"
+    },
+    {
+      "id": "faciales",
+      "nombre": "Faciales"
+    },
+    {
+      "id": "unas",
+      "nombre": "Uñas"
+    }
   ],
   "servicios": [
     {
@@ -64,7 +98,19 @@
       "categoria": "masajes",
       "precio": 90,
       "minutos": 60,
-      "descripcion": "Cuerpo completo con presión suave y aceite tibio."
+      "descripcion": "Cuerpo completo con presión suave y aceite tibio.",
+      "foto": {
+        "src": "img/generadas/servicio-relajante-960.webp",
+        "variantes": [
+          "img/generadas/servicio-relajante-320.webp",
+          "img/generadas/servicio-relajante-480.webp"
+        ],
+        "creditoIA": {
+          "herramienta": "ChatGPT / Codex (image_gen)",
+          "fecha": "2026-11-01"
+        },
+        "alt": "Aceite de masaje y toallas de lino sobre piedra cálida"
+      }
     },
     {
       "id": "descontracturante",
@@ -72,7 +118,19 @@
       "categoria": "masajes",
       "precio": 110,
       "minutos": 60,
-      "descripcion": "Espalda, cuello y hombros con presión firme."
+      "descripcion": "Espalda, cuello y hombros con presión firme.",
+      "foto": {
+        "src": "img/generadas/servicio-descontracturante-960.webp",
+        "variantes": [
+          "img/generadas/servicio-descontracturante-320.webp",
+          "img/generadas/servicio-descontracturante-480.webp"
+        ],
+        "creditoIA": {
+          "herramienta": "ChatGPT / Codex (image_gen)",
+          "fecha": "2026-11-01"
+        },
+        "alt": "Utensilios de madera y bálsamo para masaje sobre toallas"
+      }
     },
     {
       "id": "piedras",
@@ -80,7 +138,19 @@
       "categoria": "masajes",
       "precio": 140,
       "minutos": 75,
-      "descripcion": "Piedras tibias sobre la espalda y masaje de cuerpo completo."
+      "descripcion": "Piedras tibias sobre la espalda y masaje de cuerpo completo.",
+      "foto": {
+        "src": "img/generadas/servicio-piedras-960.webp",
+        "variantes": [
+          "img/generadas/servicio-piedras-320.webp",
+          "img/generadas/servicio-piedras-480.webp"
+        ],
+        "creditoIA": {
+          "herramienta": "ChatGPT / Codex (image_gen)",
+          "fecha": "2026-11-01"
+        },
+        "alt": "Piedras de basalto para masaje sobre bandeja y toallas"
+      }
     },
     {
       "id": "limpieza-facial",
@@ -88,7 +158,19 @@
       "categoria": "faciales",
       "precio": 80,
       "minutos": 50,
-      "descripcion": "Limpieza, exfoliación, extracción y mascarilla."
+      "descripcion": "Limpieza, exfoliación, extracción y mascarilla.",
+      "foto": {
+        "src": "img/generadas/servicio-limpieza-facial-960.webp",
+        "variantes": [
+          "img/generadas/servicio-limpieza-facial-320.webp",
+          "img/generadas/servicio-limpieza-facial-480.webp"
+        ],
+        "creditoIA": {
+          "herramienta": "ChatGPT / Codex (image_gen)",
+          "fecha": "2026-11-01"
+        },
+        "alt": "Utensilios de limpieza facial y toalla sobre piedra arena"
+      }
     },
     {
       "id": "hidratacion",
@@ -96,7 +178,19 @@
       "categoria": "faciales",
       "precio": 95,
       "minutos": 45,
-      "descripcion": "Mascarilla hidratante y masaje facial."
+      "descripcion": "Mascarilla hidratante y masaje facial.",
+      "foto": {
+        "src": "img/generadas/servicio-hidratacion-960.webp",
+        "variantes": [
+          "img/generadas/servicio-hidratacion-320.webp",
+          "img/generadas/servicio-hidratacion-480.webp"
+        ],
+        "creditoIA": {
+          "herramienta": "ChatGPT / Codex (image_gen)",
+          "fecha": "2026-11-01"
+        },
+        "alt": "Mascarilla hidratante y brocha en un cuenco de vidrio ámbar"
+      }
     },
     {
       "id": "manicure",
@@ -104,7 +198,19 @@
       "categoria": "unas",
       "precio": 30,
       "minutos": 40,
-      "descripcion": "Limado, cutícula y esmalte."
+      "descripcion": "Limado, cutícula y esmalte.",
+      "foto": {
+        "src": "img/generadas/servicio-manicure-960.webp",
+        "variantes": [
+          "img/generadas/servicio-manicure-320.webp",
+          "img/generadas/servicio-manicure-480.webp"
+        ],
+        "creditoIA": {
+          "herramienta": "ChatGPT / Codex (image_gen)",
+          "fecha": "2026-11-01"
+        },
+        "alt": "Mano con manicure en tono ámbar sobre lino"
+      }
     },
     {
       "id": "pedicure",
@@ -112,7 +218,19 @@
       "categoria": "unas",
       "precio": 45,
       "minutos": 50,
-      "descripcion": "Baño de pies, exfoliación, limado y esmalte."
+      "descripcion": "Baño de pies, exfoliación, limado y esmalte.",
+      "foto": {
+        "src": "img/generadas/servicio-pedicure-960.webp",
+        "variantes": [
+          "img/generadas/servicio-pedicure-320.webp",
+          "img/generadas/servicio-pedicure-480.webp"
+        ],
+        "creditoIA": {
+          "herramienta": "ChatGPT / Codex (image_gen)",
+          "fecha": "2026-11-01"
+        },
+        "alt": "Pies sobre toallas junto a un baño de pies"
+      }
     }
   ],
   "paquetes": [
@@ -120,13 +238,15 @@
       "id": "pausa",
       "nombre": "Pausa completa",
       "precio": 160,
-      "incluye": ["relajante", "limpieza-facial"]
+      "incluye": ["relajante", "limpieza-facial"],
+      "franja": "amanecer"
     },
     {
       "id": "manos-pies",
       "nombre": "Manos y pies",
       "precio": 65,
-      "incluye": ["manicure", "pedicure"]
+      "incluye": ["manicure", "pedicure"],
+      "franja": "tarde"
     }
   ],
   "regalo": {
@@ -135,11 +255,22 @@
     "mensaje": "Hola, quiero regalar una tarjeta de Remanso Spa (demo). ¿Me ayudan a elegir?"
   },
   "equipo": [
-    { "nombre": "Terapeuta de demostración 1", "especialidad": "Masajes y piedras calientes" },
-    { "nombre": "Terapeuta de demostración 2", "especialidad": "Faciales" },
-    { "nombre": "Terapeuta de demostración 3", "especialidad": "Manicure y pedicure" }
+    {
+      "nombre": "Terapeuta de demostración 1",
+      "especialidad": "Masajes y piedras calientes"
+    },
+    {
+      "nombre": "Terapeuta de demostración 2",
+      "especialidad": "Faciales"
+    },
+    {
+      "nombre": "Terapeuta de demostración 3",
+      "especialidad": "Manicure y pedicure"
+    }
   ],
-  "cita": { "minutosEntreFranjas": 30 },
+  "cita": {
+    "minutosEntreFranjas": 30
+  },
   "agente": {
     "activo": true,
     "estado": "proximamente",
@@ -162,14 +293,22 @@
   },
   "comparador": {
     "antes": {
-      "src": "img/comparador-antes.webp",
-      "alt": "Imagen de demostración: agua agitada"
+      "src": "img/manicure-antes-ia.webp",
+      "alt": "Mano con uñas naturales, imagen generada con IA para la demo",
+      "creditoIA": {
+        "herramienta": "ChatGPT / Codex (image_gen)",
+        "fecha": "2026-11-01"
+      }
     },
     "despues": {
-      "src": "img/comparador-despues.webp",
-      "alt": "Imagen de demostración: la misma agua, quieta"
+      "src": "img/manicure-despues-ia.webp",
+      "alt": "Mano con esmalte ámbar, imagen generada con IA para la demo",
+      "creditoIA": {
+        "herramienta": "ChatGPT / Codex (image_gen)",
+        "fecha": "2026-11-01"
+      }
     },
-    "nota": "Imágenes de demostración, no son resultados reales."
+    "nota": "Imagen generada con IA · resultado ilustrativo (demo). No muestra resultados ni clientes reales."
   },
   "resenas": {
     "fuente": "Reseñas de demostración: textos de ejemplo, no son opiniones reales.",

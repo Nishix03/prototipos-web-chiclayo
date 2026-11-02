@@ -1,0 +1,80 @@
+[
+  {
+    "modo": "movil",
+    "corridas": 3,
+    "scores": {
+      "performance": 95,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 100
+    },
+    "lcp": 2601.7936,
+    "cls": 0.0001642122633983482,
+    "tbt": 118,
+    "muestras": [
+      {
+        "scores": {
+          "performance": 95,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "lcp": 2601.7936,
+        "cls": 0.0003139438255816604,
+        "tbt": 118,
+        "bytes": 386907
+      },
+      {
+        "scores": {
+          "performance": 94,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "lcp": 2620.4534999999996,
+        "cls": 0.0001642122633983482,
+        "tbt": 118,
+        "bytes": 386907
+      },
+      {
+        "scores": {
+          "performance": 97,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "lcp": 2569.8484,
+        "cls": 0.0001642122633983482,
+        "tbt": 0,
+        "bytes": 386907
+      }
+    ]
+  },
+  {
+    "modo": "escritorio",
+    "corridas": 1,
+    "scores": {
+      "performance": 87,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 100
+    },
+    "lcp": 751.4498249999999,
+    "cls": 0.0008301770349526438,
+    "tbt": 296.349975,
+    "muestras": [
+      {
+        "scores": {
+          "performance": 87,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "lcp": 751.4498249999999,
+        "cls": 0.0008301770349526438,
+        "tbt": 296.349975,
+        "bytes": 491896
+      }
+    ]
+  }
+]

@@ -47,6 +47,14 @@ export function iniciarCita() {
   dia.min = hoyEnLima();
   form.classList.add('cita__ficha--pasos');
   let actual = 0;
+  const fases = [...form.querySelectorAll('[data-fase]')];
+  let fase = fases[0];
+  form.addEventListener('click', (e) => {
+    const elegida = e.target.closest('[data-fase]');
+    if (!elegida) return;
+    fase = elegida;
+    filtrar();
+  });
 
   function mostrar(n, { enfocar = true } = {}) {
     actual = n;
@@ -64,12 +72,28 @@ export function iniciarCita() {
     const esHoy = dia.value === hoyEnLima();
     const ahora = ahoraEnLima().minutos;
     const dura = datos.minutos[servicio.value] ?? datos.paso;
+    const disponibles = [];
     for (const opcion of hora.options) {
       if (!opcion.value) continue;
       const m = aMinutos(opcion.value);
       const cabe = !rangos || rangos.some(([a, b]) => m >= aMinutos(a) && m + dura <= aMinutos(b));
-      opcion.hidden = opcion.disabled = !cabe || (esHoy && m <= ahora);
+      const disponible = cabe && !(esHoy && m <= ahora);
+      if (disponible) disponibles.push(m);
+      const enFase = m >= Number(fase.dataset.desde) * 60 && m < Number(fase.dataset.hasta) * 60;
+      opcion.hidden = opcion.disabled = !disponible || !enFase;
     }
+    fases.forEach((b) => {
+      b.disabled =
+        b.dataset.fase !== 'todas' &&
+        !disponibles.some(
+          (m) => m >= Number(b.dataset.desde) * 60 && m < Number(b.dataset.hasta) * 60,
+        );
+    });
+    if (fase.disabled) {
+      fase = fases[0];
+      return filtrar();
+    }
+    fases.forEach((b) => b.setAttribute('aria-pressed', String(b === fase)));
     if (hora.selectedOptions[0]?.disabled) hora.value = '';
     dia.setCustomValidity(
       d && !datos.horario[d].length ? `Los ${nombreDia(d)} no atendemos. Elige otro día.` : '',
@@ -108,6 +132,9 @@ export function iniciarCita() {
     if (!enlace) return;
     e.preventDefault();
     servicio.value = enlace.dataset.reservar;
+    const franja = enlace.closest('[data-franja]')?.dataset.franja;
+    fase =
+      fases.find((b) => b.dataset.fase === (franja === 'amanecer' ? 'manana' : franja)) ?? fases[0];
     filtrar();
     document.getElementById('cita').scrollIntoView({ block: 'start' });
     mostrar(1);

@@ -1,0 +1,7 @@
+# Manicure ilustrativa para Remanso Spa
+
+Herramienta: image_gen integrada en Codex. Fecha: 2026-11-01.
+
+Prompt final: Create a photorealistic editorial spa photography diptych, two equal panels side by side, no gap, no text anywhere. Both panels show exactly the same close-up of a single adult woman's hand resting flat naturally on warm ivory linen, top-down view, five anatomically correct fingers, no jewelry, no faces. Left panel: clean natural short unpainted nails. Right panel: the exact same hand, pose, framing, lighting, and skin appearance with the nails neatly painted warm muted amber-brown glossy manicure. No skin retouch transformation, no health or beauty treatment claims. Warm sand, honey, soft clay palette, soft window light, professional restrained day spa art direction, high detail, 3:2 overall landscape composition, perfectly equal width halves so it can be split for a demo nail-polish comparison slider. The only change between halves is nail polish. No logos, lettering, watermarks or labels.
+
+Original: `manicure-diptico-ia.png`. WebP de entrega: `spa/img/manicure-antes-ia.webp` y `spa/img/manicure-despues-ia.webp`. Recortadas por mitad y redimensionadas a 600 px de ancho. Las composiciones no son fotografías del negocio. La comparación solo ilustra esmalte y lleva rótulo permanente. No se infiere una licencia de stock ni se afirma una verificación legal de uso comercial.

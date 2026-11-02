@@ -47,8 +47,26 @@ export function iniciarTurno() {
     );
   }
 
+  const cartas = [...document.querySelectorAll('[data-elegir-barbero]')];
+  function marcarBarbero() {
+    cartas.forEach((b) =>
+      b.setAttribute('aria-pressed', String(b.dataset.elegirBarbero === barbero.value)),
+    );
+  }
+  document.addEventListener('click', (e) => {
+    const carta = e.target.closest('[data-elegir-barbero]');
+    if (!carta) return;
+    const opcion = [...barbero.options].find((o) => o.value === carta.dataset.elegirBarbero);
+    if (opcion.disabled) dia.value = '';
+    filtrar();
+    barbero.value = opcion.value;
+    marcarBarbero();
+    document.getElementById('turno').scrollIntoView({ block: 'start' });
+    dia.focus({ preventScroll: true });
+  });
   form.addEventListener('change', (e) => {
     if ([corte, dia].includes(e.target)) filtrar();
+    marcarBarbero();
   });
   filtrar();
 

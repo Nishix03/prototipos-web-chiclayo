@@ -5,6 +5,7 @@
  * Dirección elegida en el paso 2: A «Monitor» (las otras dos quedan en el brief).
  */
 @import '../core/core.css';
+@import '../core/tailwind.css';
 
 /* Archivo recortada al español con `npm run fuentes`, con sus ejes de peso y de ancho
    (los titulares van expandidos al 125 %). Licencia OFL al lado. */
@@ -528,6 +529,272 @@ body {
     transition: none;
   }
 
+  .llamado:hover {
+    transform: none;
+  }
+}
+
+/* Rediseño · tablero de entrenamiento: tipos grandes, filas útiles y selección de sesiones. */
+.cabecera {
+  padding-inline: clamp(1rem, 4vw, 4rem);
+  background: #0b0d0c;
+}
+.portada {
+  position: relative;
+  padding-inline: clamp(1rem, 5vw, 5rem);
+}
+.titular {
+  max-width: 13ch;
+  font-size: clamp(3.4rem, 9vw, 9rem);
+  letter-spacing: -0.055em;
+}
+.bajada,
+.ahora {
+  background: #0b0d0c;
+  padding: 0.5rem 0.75rem;
+}
+.portada__disciplinas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 2rem;
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  background: #0b0d0c;
+  border-top: 1px solid var(--color-neon);
+}
+.portada__disciplinas a {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  font-weight: 700;
+  text-underline-offset: 0.5em;
+}
+.clases {
+  max-width: none;
+  width: 100%;
+  border: 0;
+  border-top: 6px solid var(--color-neon);
+  background: #0b0d0c;
+  padding-inline: clamp(1rem, 4vw, 4rem);
+}
+.clases .seccion-titulo {
+  font-size: clamp(2.3rem, 5.5vw, 5rem);
+}
+.semana {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+  gap: 2rem;
+}
+.dia__nombre {
+  padding-bottom: 0.75rem;
+}
+.clase {
+  position: relative;
+  padding: 1rem;
+  background: #171d17;
+  border: 0;
+  border-bottom: 1px solid var(--color-borde);
+  gap: 0.35rem;
+}
+.clase__hora {
+  color: var(--color-neon);
+  font-size: 1.25rem;
+}
+.clase[data-estado='en-curso'] .clase__hora {
+  color: #0b0d0c;
+}
+.clase[data-estado='en-curso'] {
+  border-left: 6px solid #fff;
+}
+.clase__guardar {
+  min-height: 44px;
+  margin-top: 0.5rem;
+  background: transparent;
+  border: 1px solid currentColor;
+  color: inherit;
+  cursor: pointer;
+  font-size: 0.875rem;
+}
+.clase__guardar[aria-pressed='true'] {
+  background: var(--color-neon);
+  color: #0b0d0c;
+  border-color: #0b0d0c;
+}
+.clase__intensidad {
+  font-size: 0.8rem;
+}
+.plan-semanal {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  border: 1px solid var(--color-neon);
+}
+.plan-semanal__lista {
+  padding-left: 1.25rem;
+  margin-top: 0.75rem;
+}
+.plan-semanal p {
+  color: var(--color-texto-suave);
+  font-size: 0.875rem;
+}
+.planes {
+  border-left: 0;
+  border-top: 1px solid var(--color-neon);
+  background: #171d17;
+}
+.planes__tabla {
+  font-size: clamp(0.8rem, 1.2vw, 1.125rem);
+}
+.planes__tabla td {
+  padding-inline: 0.3rem;
+}
+.imc {
+  border-left: 0;
+  border-top: 1px solid var(--color-borde);
+}
+.prueba {
+  border-left-width: 8px;
+}
+@media (max-width: 40rem) {
+  .portada {
+    gap: 0.75rem;
+  }
+  .portada__disciplinas {
+    margin-top: 0.25rem;
+    gap: 0.5rem 1.25rem;
+  }
+  .planes {
+    padding-inline: 1rem;
+  }
+}
+
+/* Las celdas de grid pueden encogerse incluso con textos expandidos. */
+.portada > * {
+  min-width: 0;
+  max-width: 100%;
+}
+.portada .llamado {
+  font-stretch: 100%;
+  font-size: clamp(0.95rem, 1.2vw, 1.2rem);
+}
+@media (max-width: 40rem) {
+  .titular {
+    font-stretch: 100%;
+  }
+}
+
+@media (max-width: 40rem) {
+  .seccion-titulo {
+    font-stretch: 100%;
+    font-size: clamp(1.65rem, 7vw, 2.3rem);
+    overflow-wrap: anywhere;
+  }
+}
+
+/* Espacios y disciplinas: composición atlética, fotos grandes y rótulos rectos. */
+.editorial {
+  background: #0b0d0c;
+}
+.editorial__foto img {
+  aspect-ratio: 2.2 / 1;
+}
+.editorial__foto figcaption {
+  padding-inline: 1rem;
+}
+.editorial__texto {
+  padding: 1.5rem;
+  background: var(--color-neon);
+  color: #0b0d0c;
+  --color-foco: #0b0d0c;
+}
+.disciplinas {
+  width: min(100% - 2 * var(--margen-lateral), 76rem);
+  margin: var(--espacio-seccion) auto;
+  padding: clamp(1rem, 3vw, 2.5rem);
+  background: #0b0d0c;
+}
+.disciplinas__lista {
+  display: grid;
+  gap: 1rem;
+  list-style: none;
+  padding: 0;
+}
+.disciplina {
+  min-width: 0;
+  background: #171d17;
+}
+.disciplina img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+.disciplina a {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 1rem;
+  color: var(--color-neon);
+  font-weight: 700;
+  text-underline-offset: 0.3em;
+}
+@media (min-width: 60rem) {
+  .editorial__texto {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 2rem;
+  }
+  .editorial__texto h2 {
+    grid-row: span 2;
+  }
+  .editorial__texto p {
+    margin-top: 0;
+  }
+  .disciplinas__lista {
+    grid-template-columns: 1.35fr 1fr;
+  }
+  .disciplina:first-child {
+    grid-row: span 2;
+    display: grid;
+    grid-template-rows: 1fr auto;
+  }
+  .disciplina:first-child img {
+    height: 100%;
+    aspect-ratio: auto;
+  }
+}
+
+/* Acabado de marca: barras nítidas y respuestas cortas, sin elasticidad. */
+:root {
+  --duracion-rapida: 150ms;
+  --duracion-media: 200ms;
+  --curva-salida: cubic-bezier(0.19, 1, 0.22, 1);
+}
+.boton-flotante {
+  background: var(--color-neon);
+  color: #0b0d0c;
+  border-radius: 0;
+  box-shadow: none;
+}
+.boton-flotante:hover {
+  transform: translateX(-2px);
+}
+.resena {
+  background: #171d17;
+  border-radius: 0;
+  border-left: 3px solid var(--color-neon);
+  box-shadow: none;
+}
+.pie {
+  background: #0b0d0c;
+  color: #f2f5ee;
+  border-top: 2px solid var(--color-neon);
+  --color-fondo: #f2f5ee;
+}
+.mapa__marco {
+  border-radius: 0;
+  border: 1px solid var(--color-neon);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .boton-flotante:hover,
   .llamado:hover {
     transform: none;
   }

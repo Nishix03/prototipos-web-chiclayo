@@ -1,3 +1,4 @@
+import { imagen } from '../../core/componentes/imagen.js';
 import { html } from '../../core/componentes/html.js';
 import { soles } from '../../core/dinero.js';
 import { enlaceWhatsapp } from '../../core/whatsapp.js';
@@ -47,10 +48,12 @@ export function servicios(negocio) {
             </button>`,
         )}
       </div>
+      <p class="muestra-ia">Imágenes generadas con IA · servicios ilustrativos (demo).</p>
       <ul class="servicios__lista" role="list">
         ${lista.map(
           (s) => html`
             <li class="servicio" data-servicio="${s.id}" data-categoria="${s.categoria}">
+              ${s.foto ? html`<figure class="foto-servicio servicio__foto">${imagen(s.foto, { sizes: '(min-width: 60rem) 35vw, 90vw' })}</figure>` : ''}
               <h3 class="servicio__nombre">${s.nombre}</h3>
               <p class="servicio__datos">
                 <span class="servicio__minutos">${s.minutos} min</span>
@@ -79,7 +82,10 @@ export function paquetes(negocio) {
       <ul class="paquetes__lista" role="list">
         ${lista.map(
           (p) => html`
-            <li class="paquete">
+            <li class="paquete" data-franja="${p.franja ?? 'tarde'}">
+              <p class="paquete__franja">
+                ${{ amanecer: 'Por la mañana', tarde: 'Por la tarde', noche: 'Al anochecer' }[p.franja] ?? 'A tu ritmo'}
+              </p>
               <h3 class="paquete__nombre">${p.nombre}</h3>
               <p class="paquete__datos">
                 ${minutosPaquete(p, todos)} min · <strong>${soles(p.precio)}</strong>

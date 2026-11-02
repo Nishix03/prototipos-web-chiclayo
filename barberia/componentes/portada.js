@@ -1,3 +1,4 @@
+import { marca as simboloMarca } from '../../core/componentes/marca.js';
 import { html } from '../../core/componentes/html.js';
 import { estadoHorario } from '../../core/componentes/hero.js';
 
@@ -11,6 +12,7 @@ export function letrero(negocio) {
   return html`
     <header class="letrero">
       <p class="letrero__nombre">
+        ${simboloMarca(negocio)}
         <span translate="no">${marca}</span>
         ${sufijo ? html`<span class="letrero__demo">${sufijo.toLowerCase()}</span>` : ''}
       </p>
@@ -32,12 +34,12 @@ function escena() {
       <picture class="escena__fija">
         <source
           media="(max-aspect-ratio: 1/1)"
-          srcset="img/filo-movil-600.webp 600w, img/filo-movil-900.webp 900w"
+          srcset="img/filo-movil-v5-600.webp 600w, img/filo-movil-v5-900.webp 900w"
           sizes="100vw"
         />
         <img
-          src="img/filo-1440.webp"
-          srcset="img/filo-960.webp 960w, img/filo-1440.webp 1440w"
+          src="img/filo-v5-1440.webp"
+          srcset="img/filo-v5-960.webp 960w, img/filo-v5-1440.webp 1440w"
           sizes="100vw"
           width="1440"
           height="900"
@@ -62,6 +64,11 @@ export function portada(negocio) {
         ${estadoHorario({ enlace: '#horario' })}
         <a class="llamado" href="#turno" data-estrella>Pedir mi turno</a>
       </div>
+      <nav class="portada__oficios" aria-label="Explorar la barbería">
+        <a href="#cortes">Cortes y precios</a>
+        <span aria-hidden="true"></span>
+        <a href="#barberos">Elige a tu barbero</a>
+      </nav>
     </section>
   `;
 }

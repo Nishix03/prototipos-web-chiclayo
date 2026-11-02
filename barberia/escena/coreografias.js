@@ -57,7 +57,7 @@ export function iniciarCoreografias() {
     gsap.from(dias, {
       scale: 0.6,
       duration: 0.25,
-      ease: 'back.out(3)',
+      ease: 'expo.out',
       stagger: 0.04,
       scrollTrigger: { trigger: '.barberos__lista', start: 'top 80%', once: true },
     });

@@ -3,7 +3,7 @@
 // - Con ?poster dibuja la escena quieta en sus encuadres para scripts/poster.js.
 // - Si no, cuando la página está libre: llegan las coreografías (si no hay movimiento reducido)
 //   y la escena (si puede3d()). Three.js y GSAP vienen con import(): no pesan al cargar.
-import { puede3d, cuandoEsteLibre } from './carga3d.js';
+import { puede3d, cuandoExplore } from './carga3d.js';
 
 const reducido = () => matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -38,7 +38,7 @@ export function iniciarEscena({ escena, coreografias, avance, posters, alMontar 
     });
     return;
   }
-  cuandoEsteLibre(async () => {
+  cuandoExplore(async () => {
     if (coreografias && !reducido()) (await coreografias()).iniciarCoreografias();
     if (puede3d()) {
       const { montar } = await escena();

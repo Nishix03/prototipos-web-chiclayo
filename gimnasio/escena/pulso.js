@@ -1,3 +1,5 @@
+import formaMarca from '../img/marca/relieve.json';
+import { relieveMarca } from '../../core/marca3d.js';
 // Escena «Pulso» (identidad del gimnasio): líneas de luz verde neón sobre negro que laten con la
 // velocidad del scroll. Quieto, el pulso es apenas un latido; mientras bajas rápido, las líneas
 // se agitan; al soltar, vuelven a calmarse.
@@ -38,13 +40,13 @@ const fragmento = /* glsl */ `
     float fuerza = 0.15 + uVel;
     float luz = 0.0;
     // 5 líneas horizontales, como un monitor cardíaco, con un latido que las cruza
-      for (int i = 0; i < 5; i++) {
+      for (int i = 0; i < 3; i++) {
         float fi = float(i);
-        float y0 = (fi - 2.0) * 1.15;
+        float y0 = (fi - 1.0) * 1.7;
         float centro = mod(uT * 18.0 + fi * 2.7, 20.0) - 10.0;
         float y = y0 + fuerza * 0.6 * sin(vP.x * (1.1 + fi * 0.3) + uT * 9.0 + fi)
                      + latido(vP.x, centro) * (0.6 + fuerza);
-        luz += brillo(vP.y - y, 0.035) * (fi == 2.0 ? 1.0 : 0.45);
+        luz += brillo(vP.y - y, 0.035) * (fi == 1.0 ? 1.0 : 0.45);
       }
     gl_FragColor = vec4(uFondo + uNeon * clamp(luz, 0.0, 1.6), 1.0);
     #include <colorspace_fragment>
@@ -77,7 +79,16 @@ export function crearPulso() {
         },
       });
       escena.add(new Mesh(new PlaneGeometry(16 * Math.max(1, aspecto), 16), material));
-      return { material };
+      const marca = relieveMarca(formaMarca, {
+        color: '#c6ff3d',
+        ancho: aspecto < 1 ? 0.65 : 3,
+        profundidad: 0.14,
+        bisel: 0.004,
+      });
+      marca.position.set(aspecto < 1 ? 0.85 : 3.3, aspecto < 1 ? 1.85 : -1.1, 0.65);
+      marca.rotation.set(0.08, -0.3, -0.08);
+      escena.add(marca);
+      return { material, marca };
     },
     camara: () => ({ pos: [0, 0, 10], mira: [0, 0, 0] }),
     // La velocidad sale de cuánto avanzó el scroll desde el cuadro anterior (con inercia): al
@@ -86,6 +97,8 @@ export function crearPulso() {
       const u = mundo.material.uniforms;
       u.uVel.value = Math.min(1.2, Math.abs(t - previo) * 120);
       u.uT.value = t;
+      mundo.marca.rotation.y = -0.3 + t * 0.3;
+      mundo.marca.position.z = 0.65 + Math.sin(t * Math.PI) * 0.25;
       previo = t;
     },
   };

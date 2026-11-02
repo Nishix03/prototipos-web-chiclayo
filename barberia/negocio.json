@@ -44,13 +44,38 @@
   },
   "imagenes": {
     "hero": {
-      "src": "img/filo-1440.webp",
-      "alt": "Superficie de cromo líquido con reflejos dorados (ilustración 3D)"
+      "src": "img/filo-v5-1440.webp",
+      "alt": "Cromo líquido y monograma F dorado de Barbería Filo (escena 3D)"
     },
     "og": {
-      "src": "img/filo-1440.webp",
+      "src": "img/filo-v5-1440.webp",
       "alt": "Barbería Filo (demo), Chiclayo"
-    }
+    },
+    "editorial": {
+      "foto": {
+        "src": "img/generadas/ambiente-1440.webp",
+        "variantes": ["img/generadas/ambiente-480.webp", "img/generadas/ambiente-960.webp"],
+        "creditoIA": {
+          "herramienta": "ChatGPT / Codex (image_gen)",
+          "fecha": "2026-11-01"
+        },
+        "alt": "Sillón de barbería de cuero negro, reflejos de cromo y luz dorada"
+      },
+      "titulo": "El detalle hace el corte",
+      "texto": "Clásicos, degradados y barba. Mira los estilos y elige quién se encarga de tu próximo corte.",
+      "enlace": "#cortes",
+      "accion": "Encontrar mi corte"
+    },
+    "logo": {
+      "src": "img/marca/simbolo-192.webp",
+      "variantes": ["img/marca/simbolo-48.webp", "img/marca/simbolo-96.webp"],
+      "alt": "Símbolo de Barbería Filo",
+      "creditoIA": {
+        "herramienta": "ChatGPT / Codex (image_gen)",
+        "fecha": "2026-11-01"
+      }
+    },
+    "icono": "img/marca/favicon.png"
   },
   "cortes": [
     {
@@ -59,7 +84,19 @@
       "estilo": "clásico",
       "precio": 25,
       "minutos": 30,
-      "descripcion": "Corte a tijera con raya al lado y acabado con navaja en la nuca."
+      "descripcion": "Corte a tijera con raya al lado y acabado con navaja en la nuca.",
+      "foto": {
+        "src": "img/generadas/servicio-clasico-960.webp",
+        "variantes": [
+          "img/generadas/servicio-clasico-320.webp",
+          "img/generadas/servicio-clasico-480.webp"
+        ],
+        "creditoIA": {
+          "herramienta": "ChatGPT / Codex (image_gen)",
+          "fecha": "2026-11-01"
+        },
+        "alt": "Corte clásico a tijera con raya al lado, referencia de estilo"
+      }
     },
     {
       "id": "low-fade",
@@ -67,7 +104,19 @@
       "estilo": "degradado",
       "precio": 30,
       "minutos": 40,
-      "descripcion": "Degradado bajo, desde la línea de la oreja, con la parte de arriba a tu gusto."
+      "descripcion": "Degradado bajo, desde la línea de la oreja, con la parte de arriba a tu gusto.",
+      "foto": {
+        "src": "img/generadas/servicio-low-fade-960.webp",
+        "variantes": [
+          "img/generadas/servicio-low-fade-320.webp",
+          "img/generadas/servicio-low-fade-480.webp"
+        ],
+        "creditoIA": {
+          "herramienta": "ChatGPT / Codex (image_gen)",
+          "fecha": "2026-11-01"
+        },
+        "alt": "Degradado bajo alrededor de la oreja con volumen arriba"
+      }
     },
     {
       "id": "mid-fade",
@@ -75,7 +124,19 @@
       "estilo": "degradado",
       "precio": 30,
       "minutos": 40,
-      "descripcion": "Degradado a media altura, limpio a los lados y con volumen arriba."
+      "descripcion": "Degradado a media altura, limpio a los lados y con volumen arriba.",
+      "foto": {
+        "src": "img/generadas/servicio-mid-fade-960.webp",
+        "variantes": [
+          "img/generadas/servicio-mid-fade-320.webp",
+          "img/generadas/servicio-mid-fade-480.webp"
+        ],
+        "creditoIA": {
+          "herramienta": "ChatGPT / Codex (image_gen)",
+          "fecha": "2026-11-01"
+        },
+        "alt": "Degradado a media altura con textura en la parte superior"
+      }
     },
     {
       "id": "mullet",
@@ -83,7 +144,19 @@
       "estilo": "moderno",
       "precio": 35,
       "minutos": 45,
-      "descripcion": "Corto a los lados y arriba, largo atrás, con textura."
+      "descripcion": "Corto a los lados y arriba, largo atrás, con textura.",
+      "foto": {
+        "src": "img/generadas/servicio-mullet-960.webp",
+        "variantes": [
+          "img/generadas/servicio-mullet-320.webp",
+          "img/generadas/servicio-mullet-480.webp"
+        ],
+        "creditoIA": {
+          "herramienta": "ChatGPT / Codex (image_gen)",
+          "fecha": "2026-11-01"
+        },
+        "alt": "Mullet moderno con lados cortos y nuca más larga"
+      }
     },
     {
       "id": "buzz",
@@ -91,7 +164,19 @@
       "estilo": "moderno",
       "precio": 20,
       "minutos": 20,
-      "descripcion": "Corte al ras con máquina, parejo en toda la cabeza."
+      "descripcion": "Corte al ras con máquina, parejo en toda la cabeza.",
+      "foto": {
+        "src": "img/generadas/servicio-buzz-960.webp",
+        "variantes": [
+          "img/generadas/servicio-buzz-320.webp",
+          "img/generadas/servicio-buzz-480.webp"
+        ],
+        "creditoIA": {
+          "herramienta": "ChatGPT / Codex (image_gen)",
+          "fecha": "2026-11-01"
+        },
+        "alt": "Corte muy corto uniforme con máquina"
+      }
     },
     {
       "id": "barba",
@@ -99,7 +184,19 @@
       "estilo": "barba",
       "precio": 15,
       "minutos": 20,
-      "descripcion": "Perfilado con navaja, toalla caliente y aceite para barba."
+      "descripcion": "Perfilado con navaja, toalla caliente y aceite para barba.",
+      "foto": {
+        "src": "img/generadas/servicio-barba-960.webp",
+        "variantes": [
+          "img/generadas/servicio-barba-320.webp",
+          "img/generadas/servicio-barba-480.webp"
+        ],
+        "creditoIA": {
+          "herramienta": "ChatGPT / Codex (image_gen)",
+          "fecha": "2026-11-01"
+        },
+        "alt": "Detalle de barba perfilada con líneas limpias"
+      }
     },
     {
       "id": "corte-barba",
@@ -107,7 +204,19 @@
       "estilo": "barba",
       "precio": 40,
       "minutos": 60,
-      "descripcion": "Cualquier corte de la lista más el perfilado de barba."
+      "descripcion": "Cualquier corte de la lista más el perfilado de barba.",
+      "foto": {
+        "src": "img/generadas/servicio-corte-barba-960.webp",
+        "variantes": [
+          "img/generadas/servicio-corte-barba-320.webp",
+          "img/generadas/servicio-corte-barba-480.webp"
+        ],
+        "creditoIA": {
+          "herramienta": "ChatGPT / Codex (image_gen)",
+          "fecha": "2026-11-01"
+        },
+        "alt": "Corte degradado acompañado de barba perfilada"
+      }
     }
   ],
   "barberos": [
@@ -134,7 +243,9 @@
     "titulo": "Tu 6.º corte es gratis",
     "detalle": "Te sellamos una tarjeta en cada corte. Con 5 sellos, el siguiente corte no se cobra."
   },
-  "turno": { "minutosEntreTurnos": 30 },
+  "turno": {
+    "minutosEntreTurnos": 30
+  },
   "resenas": {
     "fuente": "Reseñas de demostración: textos de ejemplo, no son opiniones reales.",
     "items": [

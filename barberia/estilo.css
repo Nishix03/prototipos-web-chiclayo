@@ -4,6 +4,7 @@
  * Dirección elegida en el paso 2: A «Espejo» (las otras dos quedan en el brief).
  */
 @import '../core/core.css';
+@import '../core/tailwind.css';
 
 /* Fuentes recortadas al español con `npm run fuentes`. Licencia OFL al lado. */
 @font-face {
@@ -525,6 +526,210 @@ h3 {
     transition: none;
   }
 
+  .llamado:hover {
+    transform: none;
+  }
+}
+
+/* Rediseño · espejo abierto: el cromo ocupa el espacio, sin una caja en el centro. */
+.letrero {
+  background: #101012;
+  backdrop-filter: none;
+  padding-inline: clamp(1rem, 4vw, 4rem);
+}
+.letrero__nombre {
+  font-size: clamp(1.5rem, 2vw, 2rem);
+}
+.portada {
+  position: relative;
+  padding: 3rem var(--margen-lateral) 5rem;
+}
+.portada__placa {
+  width: min(100%, 62rem);
+  max-width: 62rem;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  padding: clamp(1.5rem, 4vw, 4rem) 1rem;
+}
+.titular {
+  max-width: 12ch;
+  font-size: clamp(4rem, 10.5vw, 10rem);
+  line-height: 0.88;
+  text-shadow: 0 3px 20px #101012;
+}
+.bajada {
+  max-width: 43ch;
+  background: #101012;
+  padding: 0.75rem 1rem;
+}
+.portada__oficios {
+  align-self: end;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  font-size: 0.875rem;
+}
+.portada__oficios a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  text-underline-offset: 0.4em;
+}
+.portada__oficios span {
+  width: 3rem;
+  height: 1px;
+  background: var(--color-oro);
+}
+.cortes {
+  border: 0;
+  border-top: 6px solid var(--color-oro);
+  background: #101012;
+}
+.cortes .seccion-titulo {
+  font-size: clamp(3rem, 5.5vw, 5.5rem);
+}
+.barberos {
+  background: #1b1b1d;
+  border: 0;
+}
+.barberos__lista {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
+  gap: 1rem;
+}
+.barbero {
+  padding: 1.5rem;
+  background: #101012;
+  border: 1px solid var(--color-borde);
+}
+.barbero:has([aria-pressed='true']) {
+  border-color: var(--color-oro);
+}
+.barbero__elegir {
+  margin-top: 1.5rem;
+  width: 100%;
+  min-height: 44px;
+  border: 1px solid var(--color-oro);
+  background: transparent;
+  color: var(--color-oro);
+  cursor: pointer;
+}
+.barbero__elegir[aria-pressed='true'] {
+  color: #101012;
+  background: var(--color-oro);
+}
+.turno {
+  max-width: 64rem;
+  border: 0;
+  border-top: 1px solid var(--color-oro);
+}
+.fidelidad {
+  max-width: 45rem;
+  border: 1px dashed var(--color-oro);
+  box-shadow: none;
+}
+@media (min-width: 60rem) {
+  .cortes {
+    margin-left: var(--margen-lateral);
+    max-width: 66rem;
+  }
+  .barberos {
+    margin-right: var(--margen-lateral);
+    max-width: 62rem;
+  }
+}
+@media (max-width: 30rem) {
+  .portada {
+    padding-top: 1rem;
+  }
+  .portada__placa {
+    padding-inline: 0;
+    gap: 0.875rem;
+  }
+  .titular {
+    font-size: 4rem;
+  }
+  .portada__oficios {
+    gap: 0.75rem;
+  }
+  .portada__oficios span {
+    width: 1rem;
+  }
+}
+
+/* La silla y los cortes: fotografía de oficio, con el mismo cromo y luz dorada. */
+.editorial {
+  position: relative;
+  background: #101012;
+  border-bottom: 1px solid var(--color-oro);
+}
+.editorial__foto img {
+  aspect-ratio: 16 / 9;
+}
+.editorial__foto figcaption {
+  padding-inline: 1rem;
+  background: #101012;
+}
+.editorial__texto {
+  padding: 1.5rem;
+}
+.corte__foto {
+  grid-column: 1 / -1;
+  grid-row: 1;
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+  margin-bottom: 0.75rem;
+  border-bottom: 2px solid var(--color-oro);
+}
+.corte__foto img {
+  aspect-ratio: 3 / 2;
+}
+@media (min-width: 60rem) {
+  .editorial__texto {
+    position: absolute;
+    left: 2rem;
+    bottom: 4rem;
+    max-width: 27rem;
+    background: rgb(16 16 18 / 0.96);
+    border-left: 3px solid var(--color-oro);
+    padding: 2rem;
+  }
+}
+
+/* Acabado de marca: placas, filo y respuesta seca también en los componentes del núcleo. */
+:root {
+  --curva-salida: var(--curva-filo);
+}
+.boton-flotante {
+  background: #101012;
+  color: var(--color-oro);
+  border: 1px solid var(--color-oro);
+  border-radius: 2px;
+  box-shadow: none;
+}
+.boton-flotante:hover {
+  transform: translateX(-2px);
+}
+.resena {
+  border-radius: 0;
+  border-left: 3px solid var(--color-oro);
+  box-shadow: none;
+  background: #1b1b1d;
+}
+.pie {
+  background: #101012;
+  color: #f3eee4;
+  border-top: 1px solid var(--color-oro);
+  --color-fondo: #f3eee4;
+}
+.mapa__marco {
+  border-radius: 2px;
+  border: 1px solid var(--color-oro);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .boton-flotante:hover,
   .llamado:hover {
     transform: none;
   }

@@ -1,7 +1,7 @@
 /*
- * Restaurante v2 · «El pase» (brief: docs/visual/restaurante-cocina-abierta.md, dirección C).
+ * Restaurante · «La mesa norteña» (brief: docs/visual/restaurante-cocina-abierta.md, dirección C).
  * Frente al mostrador por donde sale la comida: todo lo que se lee cuelga del riel de comandas
- * y la escena 3D (pared, mostrador, bowls, ingredientes) vive detrás de toda la página.
+ * y la escena 3D de una mesa servida vive detrás de toda la página.
  * Los colores de la pared y los botones llegan de negocio.json (tema); el papel, la tinta y la
  * pizarra son materiales del rubro y se definen aquí.
  */
@@ -163,36 +163,6 @@ h3,
 
 .escena[data-viva] canvas {
   opacity: 1;
-}
-
-/* Nombre de cada bowl en celular (en escritorio lo dice la comanda de arriba) */
-.etiquetas {
-  position: fixed;
-  inset: 0;
-  z-index: -1; /* sobre la escena (que va antes en el DOM), debajo de las comandas */
-  pointer-events: none;
-  transition: opacity var(--duracion-media) var(--curva-impresion);
-}
-
-.etiqueta-grupo {
-  position: absolute;
-  left: 0;
-  top: 0;
-  translate: -50% 120%;
-  padding: var(--espacio-1) var(--espacio-2);
-  background: var(--color-papel);
-  color: var(--color-tinta);
-  font-family: var(--fuente-titulos);
-  font-weight: 650;
-  font-size: var(--texto-sm);
-  white-space: nowrap;
-  box-shadow: var(--sombra-papel);
-}
-
-@media (min-width: 60rem) {
-  .etiquetas {
-    display: none;
-  }
 }
 
 /* ── Portada: dos comandas colgadas del riel ── */
@@ -385,7 +355,7 @@ h3,
   }
 }
 
-/* ── La carta: una comanda por categoría, colgada sobre el bowl de sus ingredientes ── */
+/* ── La carta: una comanda por categoría, con platos y precios propios ── */
 .carta {
   padding: var(--espacio-4) var(--margen-lateral) 50svh;
 }
@@ -586,7 +556,7 @@ h3,
     padding-inline: var(--espacio-5);
   }
 
-  /* Escritorio: 4 comandas en fila, cada una sobre su bowl */
+  /* Escritorio: 4 comandas en fila, una por categoría */
   .carta__cuerpo {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -989,5 +959,116 @@ html:active-view-transition .comanda[open] {
   .linea--imprimir,
   .barra-pedido[data-latido] {
     animation: none;
+  }
+}
+
+/* Rediseño · pulido del pase: comanda protagonista y lectura de carta más clara. */
+html:not([data-direccion]) .comanda-colgada--portada {
+  width: min(100%, 36rem);
+  padding: clamp(1.25rem, 3vw, 3rem);
+}
+html:not([data-direccion]) .titular {
+  font-size: clamp(2.5rem, 3.8vw, 3.4rem);
+  max-width: 16ch;
+}
+html:not([data-direccion]) .comanda-colgada--portada .bajada {
+  font-size: clamp(0.875rem, 1.1vw, 1rem);
+}
+.carta__titulo {
+  font-size: clamp(2rem, 3.5vw, 3.5rem);
+}
+.categoria__titulo {
+  padding-block: 0.5rem 1rem;
+  font-size: 1.65rem;
+}
+.plato {
+  padding-block: 1rem;
+}
+.plato__cabeza {
+  gap: 1rem;
+}
+.plato__precio {
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+@media (max-width: 40rem) {
+  html:not([data-direccion]) .comanda-colgada--portada {
+    width: calc(100% - 1.5rem);
+    padding: 1.25rem 1rem;
+  }
+  html:not([data-direccion]) .titular {
+    font-size: 2.5rem;
+  }
+  .portada {
+    gap: 1rem;
+    align-content: space-between;
+  }
+  .comanda-colgada--pedir {
+    font-size: 1.45rem;
+    padding: 1rem 1.25rem;
+  }
+}
+
+/* La foto acompaña al plato: no cambia los controles ni la estructura de la comanda. */
+.editorial {
+  display: grid;
+  gap: 1rem 2rem;
+  align-items: center;
+  background: var(--color-papel);
+  color: var(--color-tinta);
+  padding: clamp(1rem, 3vw, 2.5rem);
+  --color-texto-suave: var(--color-tinta-suave);
+  --color-foco: var(--color-tinta);
+}
+.editorial__foto img {
+  aspect-ratio: 3 / 2;
+}
+.editorial__texto {
+  padding: 1rem;
+  border-top: 2px dashed var(--color-tinta-suave);
+}
+.plato__foto {
+  width: 100%;
+  aspect-ratio: 8 / 5;
+  overflow: hidden;
+  margin-bottom: 0.75rem;
+}
+.plato__foto img {
+  aspect-ratio: 8 / 5;
+}
+@media (min-width: 60rem) {
+  .editorial {
+    grid-template-columns: 1.35fr 1fr;
+  }
+}
+
+/* Acabado de marca: la acción también es una etiqueta de la comanda. */
+:root {
+  --curva-salida: var(--curva-impresion);
+}
+.boton-flotante {
+  background: var(--color-aji);
+  color: var(--color-tinta);
+  border-radius: 2px;
+  border: 1px solid var(--color-tinta);
+  box-shadow: var(--sombra-papel);
+}
+.boton-flotante:hover {
+  transform: translateY(-2px);
+}
+.pie {
+  background: #1f1712;
+  color: #fbf7ef;
+  --color-fondo: #fbf7ef;
+}
+.mapa__marco {
+  border-radius: 2px;
+  border: 1px solid var(--color-papel);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .boton-flotante:hover,
+  .llamado:hover {
+    transform: none;
   }
 }

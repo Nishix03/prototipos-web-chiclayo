@@ -567,3 +567,228 @@ body {
     animation: none;
   }
 }
+
+/* Rediseño · baño de ámbar: agua cálida, carta de tratamientos y fases del día. */
+:root {
+  --color-texto-suave: #635044;
+  --color-hoja: #faf2e5;
+  --color-hoja-borde: #cdbba7;
+  --color-arena: #e8d4b6;
+  --color-borde: #d6c4ad;
+  --radio-boton: 2px;
+}
+.cabecera {
+  background: #faf2e5;
+  border-color: #cdbba7;
+  padding-inline: clamp(1rem, 4vw, 4rem);
+}
+.cabecera__nombre {
+  font-size: clamp(1.5rem, 2.4vw, 2.25rem);
+}
+.portada {
+  position: relative;
+  justify-items: start;
+  align-content: center;
+  text-align: left;
+  padding-inline: clamp(1rem, 9vw, 9rem);
+}
+.titular {
+  margin-inline: 0;
+  max-width: 12ch;
+  font-size: clamp(4.1rem, 9vw, 9rem);
+  letter-spacing: -0.055em;
+}
+.bajada {
+  margin-inline: 0;
+  max-width: 41ch;
+}
+.portada .estado-horario {
+  background: #faf2e5;
+}
+.llamado {
+  min-height: 3.25rem;
+  box-shadow: none;
+  padding-inline: 2rem;
+}
+.portada__rituales {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+  margin-top: 1.5rem;
+  font-size: 0.875rem;
+}
+.portada__rituales a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  text-underline-offset: 0.5em;
+}
+.servicios {
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  border-top: 1px solid var(--color-marca);
+}
+.servicios .seccion-titulo {
+  font-size: clamp(2.5rem, 5.5vw, 5rem);
+}
+.filtros button {
+  border-radius: 0;
+  border: 0;
+  border-bottom: 1px solid var(--color-marca);
+}
+.cita {
+  border: 1px solid var(--color-hoja-borde);
+  box-shadow: none;
+}
+.respiracion {
+  display: none;
+}
+.fases {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+.fase {
+  flex: 1 1 5rem;
+  display: grid;
+  justify-items: center;
+  gap: 0.25rem;
+  min-height: 70px;
+  border: 1px solid var(--color-marca);
+  border-radius: 50% 50% 3px 3px;
+  background: transparent;
+  color: var(--color-texto);
+  font-size: 0.875rem;
+  cursor: pointer;
+  padding: 0.75rem 0.5rem;
+}
+.fase[aria-pressed='true'] {
+  background: var(--color-marca);
+  color: var(--color-sobre-marca);
+}
+.fase:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+.fase svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+.paquetes {
+  max-width: 66rem;
+  border: 0;
+  box-shadow: none;
+  background: #e8d4b6;
+}
+.paquete {
+  background: #faf2e5;
+  border: 0;
+  padding: 1.5rem;
+}
+.paquete + .paquete {
+  margin-top: 2rem;
+}
+.regalo {
+  border-color: var(--color-marca);
+}
+.antes-despues {
+  box-shadow: none;
+  border: 0;
+}
+@media (min-width: 60rem) {
+  .servicios {
+    margin-left: var(--margen-lateral);
+  }
+  .paquetes {
+    margin-right: var(--margen-lateral);
+  }
+  .paquetes__lista {
+    align-items: start;
+  }
+}
+@media (max-width: 40rem) {
+  .portada {
+    gap: 0.875rem;
+  }
+  .portada__rituales {
+    margin-top: 0.5rem;
+  }
+  .titular {
+    font-size: 4.1rem;
+  }
+}
+
+/* Fotografía editorial y carta visual: luz ámbar, recortes amplios, papel arena. */
+.editorial {
+  display: grid;
+  gap: 1rem 3rem;
+  align-items: center;
+  background: #faf2e5;
+  padding: clamp(1rem, 3vw, 2.5rem);
+}
+.editorial__foto img {
+  border-radius: 8rem 8rem 0 0;
+}
+.editorial__texto {
+  padding-inline: 0.5rem;
+}
+.servicio__foto {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+  margin-bottom: 0.75rem;
+}
+.servicio__foto img {
+  aspect-ratio: 3 / 2;
+}
+@media (min-width: 60rem) {
+  .editorial {
+    grid-template-columns: 1.35fr 0.85fr;
+  }
+  .editorial__texto {
+    padding-bottom: 4rem;
+    align-self: end;
+  }
+}
+
+/* Acabado de marca: piedra cálida y ritmo pausado, sin saltos. */
+:root {
+  --duracion-rapida: 200ms;
+  --duracion-media: 300ms;
+  --curva-salida: var(--curva-respira);
+}
+.boton-flotante {
+  background: var(--color-marca);
+  color: var(--color-sobre-marca);
+  border-radius: 999px;
+  box-shadow: none;
+  transition: transform 300ms var(--curva-respira);
+}
+.boton-flotante:hover {
+  transform: translateY(-2px);
+}
+.resena {
+  border-radius: 0;
+  border: 0;
+  border-top: 1px solid var(--color-hoja-borde);
+  background: #faf2e5;
+  box-shadow: none;
+}
+.pie {
+  background: #e8d4b6;
+  color: #35261e;
+  --color-fondo: #35261e;
+}
+.mapa__marco {
+  border-radius: 2px;
+  border: 1px solid var(--color-hoja-borde);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .boton-flotante:hover,
+  .llamado:hover {
+    transform: none;
+  }
+}

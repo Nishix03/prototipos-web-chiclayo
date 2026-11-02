@@ -2,6 +2,7 @@
 // <!-- @componente galeria --> en un index.html llama a galeria(negocio).
 // Los rubros podrán sumar los suyos (carta, servicios…) en la fase 2.
 
+import { editorial } from './editorial.js';
 import { hero } from './hero.js';
 import { galeria } from './galeria.js';
 import { resenas } from './resenas.js';
@@ -11,6 +12,7 @@ import { botonFlotante } from './boton-flotante.js';
 import { asistenteSimulacion } from './asistente-simulacion.js';
 
 export const componentes = {
+  editorial,
   hero,
   galeria,
   resenas,

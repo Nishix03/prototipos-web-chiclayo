@@ -1,3 +1,4 @@
+import { imagen } from '../../core/componentes/imagen.js';
 import { html } from '../../core/componentes/html.js';
 import { soles } from '../../core/dinero.js';
 
@@ -30,10 +31,12 @@ export function cortes(negocio) {
             </button>`,
         )}
       </div>
+      <p class="muestra-ia">Imágenes generadas con IA · estilos ilustrativos (demo).</p>
       <ol class="cortes__lista" role="list">
         ${lista.map(
           (c) => html`
             <li class="corte" data-corte="${c.id}" data-estilo="${c.estilo}">
+              ${c.foto ? html`<figure class="foto-servicio corte__foto">${imagen(c.foto, { sizes: '(min-width: 60rem) 35vw, 90vw' })}</figure>` : ''}
               <div class="corte__cabeza">
                 <h3 class="corte__nombre">${c.nombre}</h3>
                 <span class="corte__guia" aria-hidden="true"></span>

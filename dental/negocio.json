@@ -52,20 +52,45 @@
     "dom": []
   },
   "tema": {
-    "marca": "#0f6b5c",
-    "acento": "#d8f1ea",
-    "fondo": "#f6faf8",
-    "texto": "#13302b"
+    "marca": "#175c91",
+    "acento": "#b9def6",
+    "fondo": "#f5faff",
+    "texto": "#18334b"
   },
   "imagenes": {
     "hero": {
-      "src": "img/calma-1440.webp",
-      "alt": "Formas de vidrio esmerilado color menta alineándose en un arco (ilustración 3D)"
+      "src": "img/calma-v3-1440.webp",
+      "alt": "Sonrisa de vidrio glaciar y símbolo de Sonrisa Clara (escena 3D)"
     },
     "og": {
-      "src": "img/calma-1440.webp",
+      "src": "img/calma-v3-1440.webp",
       "alt": "Sonrisa Clara (demo), clínica dental en Chiclayo"
-    }
+    },
+    "editorial": {
+      "foto": {
+        "src": "img/generadas/ambiente-1440.webp",
+        "variantes": ["img/generadas/ambiente-480.webp", "img/generadas/ambiente-960.webp"],
+        "creditoIA": {
+          "herramienta": "ChatGPT / Codex (image_gen)",
+          "fecha": "2026-11-01"
+        },
+        "alt": "Consultorio dental ilustrativo con sillón blanco y mobiliario azul glaciar"
+      },
+      "titulo": "Tu consulta, con calma",
+      "texto": "Conoce los tratamientos, sus precios desde y la duración orientativa antes de pedir tu evaluación.",
+      "enlace": "#tratamientos",
+      "accion": "Ver los tratamientos"
+    },
+    "logo": {
+      "src": "img/marca/simbolo-192.webp",
+      "variantes": ["img/marca/simbolo-48.webp", "img/marca/simbolo-96.webp"],
+      "alt": "Símbolo de Sonrisa Clara",
+      "creditoIA": {
+        "herramienta": "ChatGPT / Codex (image_gen)",
+        "fecha": "2026-11-01"
+      }
+    },
+    "icono": "img/marca/favicon.png"
   },
   "tratamientos": [
     {
@@ -73,42 +98,114 @@
       "nombre": "Limpieza dental",
       "desde": 80,
       "duracion": "40 min",
-      "descripcion": "Retiro de sarro y placa, y pulido. Incluye revisión de encías."
+      "descripcion": "Retiro de sarro y placa, y pulido. Incluye revisión de encías.",
+      "foto": {
+        "src": "img/generadas/servicio-limpieza-960.webp",
+        "variantes": [
+          "img/generadas/servicio-limpieza-320.webp",
+          "img/generadas/servicio-limpieza-480.webp"
+        ],
+        "creditoIA": {
+          "herramienta": "ChatGPT / Codex (image_gen)",
+          "fecha": "2026-11-01"
+        },
+        "alt": "Espejo, instrumental y pulidor dental en una bandeja azul"
+      }
     },
     {
       "id": "resina",
       "nombre": "Curación con resina",
       "desde": 120,
       "duracion": "45 min por pieza",
-      "descripcion": "Se retira la caries y la pieza se rellena con resina del color del diente."
+      "descripcion": "Se retira la caries y la pieza se rellena con resina del color del diente.",
+      "foto": {
+        "src": "img/generadas/servicio-resina-960.webp",
+        "variantes": [
+          "img/generadas/servicio-resina-320.webp",
+          "img/generadas/servicio-resina-480.webp"
+        ],
+        "creditoIA": {
+          "herramienta": "ChatGPT / Codex (image_gen)",
+          "fecha": "2026-11-01"
+        },
+        "alt": "Modelo de molar y guía de tonos para resina dental"
+      }
     },
     {
       "id": "endodoncia",
       "nombre": "Endodoncia",
       "desde": 450,
       "duracion": "1 a 2 citas",
-      "descripcion": "Tratamiento del nervio de una pieza con dolor o infección, para conservarla."
+      "descripcion": "Tratamiento del nervio de una pieza con dolor o infección, para conservarla.",
+      "foto": {
+        "src": "img/generadas/servicio-endodoncia-960.webp",
+        "variantes": [
+          "img/generadas/servicio-endodoncia-320.webp",
+          "img/generadas/servicio-endodoncia-480.webp"
+        ],
+        "creditoIA": {
+          "herramienta": "ChatGPT / Codex (image_gen)",
+          "fecha": "2026-11-01"
+        },
+        "alt": "Instrumental de endodoncia junto a un modelo dental"
+      }
     },
     {
       "id": "blanqueamiento",
       "nombre": "Blanqueamiento",
       "desde": 600,
       "duracion": "60 min",
-      "descripcion": "Aclarado del color de los dientes en consultorio, después de una limpieza."
+      "descripcion": "Aclarado del color de los dientes en consultorio, después de una limpieza.",
+      "foto": {
+        "src": "img/generadas/servicio-blanqueamiento-960.webp",
+        "variantes": [
+          "img/generadas/servicio-blanqueamiento-320.webp",
+          "img/generadas/servicio-blanqueamiento-480.webp"
+        ],
+        "creditoIA": {
+          "herramienta": "ChatGPT / Codex (image_gen)",
+          "fecha": "2026-11-01"
+        },
+        "alt": "Lámpara y equipo ilustrativo de blanqueamiento dental"
+      }
     },
     {
       "id": "ortodoncia",
       "nombre": "Ortodoncia",
       "desde": 2500,
       "duracion": "18 a 24 meses",
-      "descripcion": "Brackets o alineadores para ordenar los dientes y la mordida."
+      "descripcion": "Brackets o alineadores para ordenar los dientes y la mordida.",
+      "foto": {
+        "src": "img/generadas/servicio-ortodoncia-960.webp",
+        "variantes": [
+          "img/generadas/servicio-ortodoncia-320.webp",
+          "img/generadas/servicio-ortodoncia-480.webp"
+        ],
+        "creditoIA": {
+          "herramienta": "ChatGPT / Codex (image_gen)",
+          "fecha": "2026-11-01"
+        },
+        "alt": "Alineador transparente sobre un modelo de arcada dental"
+      }
     },
     {
       "id": "implante",
       "nombre": "Implante dental",
       "desde": 3500,
       "duracion": "3 a 6 meses",
-      "descripcion": "Reemplazo de una pieza que falta con una raíz de titanio y una corona."
+      "descripcion": "Reemplazo de una pieza que falta con una raíz de titanio y una corona.",
+      "foto": {
+        "src": "img/generadas/servicio-implante-960.webp",
+        "variantes": [
+          "img/generadas/servicio-implante-320.webp",
+          "img/generadas/servicio-implante-480.webp"
+        ],
+        "creditoIA": {
+          "herramienta": "ChatGPT / Codex (image_gen)",
+          "fecha": "2026-11-01"
+        },
+        "alt": "Implante de titanio y corona cerámica de demostración"
+      }
     }
   ],
   "cuestionario": {
@@ -118,34 +215,64 @@
         "id": "dolor",
         "texto": "¿Te duele algún diente?",
         "opciones": [
-          { "texto": "Sí, un dolor fuerte o que no se pasa", "resultado": "endodoncia" },
-          { "texto": "A veces, con frío, calor o dulce", "siguiente": "sensibilidad" },
-          { "texto": "No me duele", "siguiente": "pieza" }
+          {
+            "texto": "Sí, un dolor fuerte o que no se pasa",
+            "resultado": "endodoncia"
+          },
+          {
+            "texto": "A veces, con frío, calor o dulce",
+            "siguiente": "sensibilidad"
+          },
+          {
+            "texto": "No me duele",
+            "siguiente": "pieza"
+          }
         ]
       },
       {
         "id": "sensibilidad",
         "texto": "¿Ves alguna mancha oscura o un agujero en el diente?",
         "opciones": [
-          { "texto": "Sí", "resultado": "resina" },
-          { "texto": "No, o no estoy seguro", "resultado": "limpieza" }
+          {
+            "texto": "Sí",
+            "resultado": "resina"
+          },
+          {
+            "texto": "No, o no estoy seguro",
+            "resultado": "limpieza"
+          }
         ]
       },
       {
         "id": "pieza",
         "texto": "¿Te falta alguna pieza?",
         "opciones": [
-          { "texto": "Sí", "resultado": "implante" },
-          { "texto": "No", "siguiente": "mejorar" }
+          {
+            "texto": "Sí",
+            "resultado": "implante"
+          },
+          {
+            "texto": "No",
+            "siguiente": "mejorar"
+          }
         ]
       },
       {
         "id": "mejorar",
         "texto": "¿Qué te gustaría mejorar?",
         "opciones": [
-          { "texto": "El color de mis dientes", "resultado": "blanqueamiento" },
-          { "texto": "Que estén más alineados", "resultado": "ortodoncia" },
-          { "texto": "Nada en especial: solo un control", "resultado": "limpieza" }
+          {
+            "texto": "El color de mis dientes",
+            "resultado": "blanqueamiento"
+          },
+          {
+            "texto": "Que estén más alineados",
+            "resultado": "ortodoncia"
+          },
+          {
+            "texto": "Nada en especial: solo un control",
+            "resultado": "limpieza"
+          }
         ]
       }
     ]

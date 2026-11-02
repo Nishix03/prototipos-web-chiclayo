@@ -1,0 +1,662 @@
+[
+  {
+    "rubro": "spa",
+    "src": "img/generadas/ambiente-480.webp",
+    "bytes": 22686
+  },
+  {
+    "rubro": "spa",
+    "src": "img/generadas/ambiente-960.webp",
+    "bytes": 80310
+  },
+  {
+    "rubro": "spa",
+    "src": "img/generadas/ambiente-1440.webp",
+    "bytes": 154118
+  },
+  {
+    "rubro": "dental",
+    "src": "img/generadas/ambiente-480.webp",
+    "bytes": 16928
+  },
+  {
+    "rubro": "dental",
+    "src": "img/generadas/ambiente-960.webp",
+    "bytes": 48890
+  },
+  {
+    "rubro": "dental",
+    "src": "img/generadas/ambiente-1440.webp",
+    "bytes": 87768
+  },
+  {
+    "rubro": "barberia",
+    "src": "img/generadas/ambiente-480.webp",
+    "bytes": 29810
+  },
+  {
+    "rubro": "barberia",
+    "src": "img/generadas/ambiente-960.webp",
+    "bytes": 85794
+  },
+  {
+    "rubro": "barberia",
+    "src": "img/generadas/ambiente-1440.webp",
+    "bytes": 155274
+  },
+  {
+    "rubro": "gimnasio",
+    "src": "img/generadas/ambiente-480.webp",
+    "bytes": 29750
+  },
+  {
+    "rubro": "gimnasio",
+    "src": "img/generadas/ambiente-960.webp",
+    "bytes": 106608
+  },
+  {
+    "rubro": "gimnasio",
+    "src": "img/generadas/ambiente-1440.webp",
+    "bytes": 174698
+  },
+  {
+    "rubro": "veterinaria",
+    "src": "img/generadas/ambiente-480.webp",
+    "bytes": 16630
+  },
+  {
+    "rubro": "veterinaria",
+    "src": "img/generadas/ambiente-960.webp",
+    "bytes": 50782
+  },
+  {
+    "rubro": "veterinaria",
+    "src": "img/generadas/ambiente-1440.webp",
+    "bytes": 99376
+  },
+  {
+    "rubro": "restaurante",
+    "src": "img/generadas/ambiente-480.webp",
+    "bytes": 33150
+  },
+  {
+    "rubro": "restaurante",
+    "src": "img/generadas/ambiente-960.webp",
+    "bytes": 100844
+  },
+  {
+    "rubro": "restaurante",
+    "src": "img/generadas/ambiente-1440.webp",
+    "bytes": 182506
+  },
+  {
+    "rubro": "barberia",
+    "src": "img/generadas/servicio-clasico-320.webp",
+    "bytes": 3916
+  },
+  {
+    "rubro": "barberia",
+    "src": "img/generadas/servicio-clasico-480.webp",
+    "bytes": 7492
+  },
+  {
+    "rubro": "barberia",
+    "src": "img/generadas/servicio-clasico-960.webp",
+    "bytes": 27300
+  },
+  {
+    "rubro": "barberia",
+    "src": "img/generadas/servicio-low-fade-320.webp",
+    "bytes": 4468
+  },
+  {
+    "rubro": "barberia",
+    "src": "img/generadas/servicio-low-fade-480.webp",
+    "bytes": 9046
+  },
+  {
+    "rubro": "barberia",
+    "src": "img/generadas/servicio-low-fade-960.webp",
+    "bytes": 34758
+  },
+  {
+    "rubro": "barberia",
+    "src": "img/generadas/servicio-buzz-320.webp",
+    "bytes": 3358
+  },
+  {
+    "rubro": "barberia",
+    "src": "img/generadas/servicio-buzz-480.webp",
+    "bytes": 6908
+  },
+  {
+    "rubro": "barberia",
+    "src": "img/generadas/servicio-buzz-960.webp",
+    "bytes": 30336
+  },
+  {
+    "rubro": "barberia",
+    "src": "img/generadas/servicio-mid-fade-320.webp",
+    "bytes": 4798
+  },
+  {
+    "rubro": "barberia",
+    "src": "img/generadas/servicio-mid-fade-480.webp",
+    "bytes": 9886
+  },
+  {
+    "rubro": "barberia",
+    "src": "img/generadas/servicio-mid-fade-960.webp",
+    "bytes": 41112
+  },
+  {
+    "rubro": "barberia",
+    "src": "img/generadas/servicio-barba-320.webp",
+    "bytes": 4560
+  },
+  {
+    "rubro": "barberia",
+    "src": "img/generadas/servicio-barba-480.webp",
+    "bytes": 9660
+  },
+  {
+    "rubro": "barberia",
+    "src": "img/generadas/servicio-barba-960.webp",
+    "bytes": 43560
+  },
+  {
+    "rubro": "barberia",
+    "src": "img/generadas/servicio-mullet-320.webp",
+    "bytes": 5140
+  },
+  {
+    "rubro": "barberia",
+    "src": "img/generadas/servicio-mullet-480.webp",
+    "bytes": 10356
+  },
+  {
+    "rubro": "barberia",
+    "src": "img/generadas/servicio-mullet-960.webp",
+    "bytes": 37806
+  },
+  {
+    "rubro": "barberia",
+    "src": "img/generadas/servicio-corte-barba-320.webp",
+    "bytes": 4768
+  },
+  {
+    "rubro": "barberia",
+    "src": "img/generadas/servicio-corte-barba-480.webp",
+    "bytes": 9704
+  },
+  {
+    "rubro": "barberia",
+    "src": "img/generadas/servicio-corte-barba-960.webp",
+    "bytes": 39560
+  },
+  {
+    "rubro": "spa",
+    "src": "img/generadas/servicio-piedras-320.webp",
+    "bytes": 11308
+  },
+  {
+    "rubro": "spa",
+    "src": "img/generadas/servicio-piedras-480.webp",
+    "bytes": 23632
+  },
+  {
+    "rubro": "spa",
+    "src": "img/generadas/servicio-piedras-960.webp",
+    "bytes": 77764
+  },
+  {
+    "rubro": "spa",
+    "src": "img/generadas/servicio-relajante-320.webp",
+    "bytes": 12680
+  },
+  {
+    "rubro": "spa",
+    "src": "img/generadas/servicio-relajante-480.webp",
+    "bytes": 24106
+  },
+  {
+    "rubro": "spa",
+    "src": "img/generadas/servicio-relajante-960.webp",
+    "bytes": 68884
+  },
+  {
+    "rubro": "spa",
+    "src": "img/generadas/servicio-limpieza-facial-320.webp",
+    "bytes": 11578
+  },
+  {
+    "rubro": "spa",
+    "src": "img/generadas/servicio-limpieza-facial-480.webp",
+    "bytes": 20804
+  },
+  {
+    "rubro": "spa",
+    "src": "img/generadas/servicio-limpieza-facial-960.webp",
+    "bytes": 54882
+  },
+  {
+    "rubro": "spa",
+    "src": "img/generadas/servicio-descontracturante-320.webp",
+    "bytes": 13676
+  },
+  {
+    "rubro": "spa",
+    "src": "img/generadas/servicio-descontracturante-480.webp",
+    "bytes": 28306
+  },
+  {
+    "rubro": "spa",
+    "src": "img/generadas/servicio-descontracturante-960.webp",
+    "bytes": 89164
+  },
+  {
+    "rubro": "spa",
+    "src": "img/generadas/servicio-hidratacion-320.webp",
+    "bytes": 14538
+  },
+  {
+    "rubro": "spa",
+    "src": "img/generadas/servicio-hidratacion-480.webp",
+    "bytes": 29034
+  },
+  {
+    "rubro": "spa",
+    "src": "img/generadas/servicio-hidratacion-960.webp",
+    "bytes": 82542
+  },
+  {
+    "rubro": "dental",
+    "src": "img/generadas/servicio-limpieza-320.webp",
+    "bytes": 7768
+  },
+  {
+    "rubro": "dental",
+    "src": "img/generadas/servicio-limpieza-480.webp",
+    "bytes": 13760
+  },
+  {
+    "rubro": "dental",
+    "src": "img/generadas/servicio-limpieza-960.webp",
+    "bytes": 35906
+  },
+  {
+    "rubro": "spa",
+    "src": "img/generadas/servicio-manicure-320.webp",
+    "bytes": 10408
+  },
+  {
+    "rubro": "spa",
+    "src": "img/generadas/servicio-manicure-480.webp",
+    "bytes": 20752
+  },
+  {
+    "rubro": "spa",
+    "src": "img/generadas/servicio-manicure-960.webp",
+    "bytes": 63236
+  },
+  {
+    "rubro": "dental",
+    "src": "img/generadas/servicio-resina-320.webp",
+    "bytes": 4348
+  },
+  {
+    "rubro": "dental",
+    "src": "img/generadas/servicio-resina-480.webp",
+    "bytes": 8232
+  },
+  {
+    "rubro": "dental",
+    "src": "img/generadas/servicio-resina-960.webp",
+    "bytes": 21924
+  },
+  {
+    "rubro": "spa",
+    "src": "img/generadas/servicio-pedicure-320.webp",
+    "bytes": 11358
+  },
+  {
+    "rubro": "spa",
+    "src": "img/generadas/servicio-pedicure-480.webp",
+    "bytes": 20828
+  },
+  {
+    "rubro": "spa",
+    "src": "img/generadas/servicio-pedicure-960.webp",
+    "bytes": 59926
+  },
+  {
+    "rubro": "dental",
+    "src": "img/generadas/servicio-blanqueamiento-320.webp",
+    "bytes": 6836
+  },
+  {
+    "rubro": "dental",
+    "src": "img/generadas/servicio-blanqueamiento-480.webp",
+    "bytes": 11836
+  },
+  {
+    "rubro": "dental",
+    "src": "img/generadas/servicio-blanqueamiento-960.webp",
+    "bytes": 29736
+  },
+  {
+    "rubro": "dental",
+    "src": "img/generadas/servicio-endodoncia-320.webp",
+    "bytes": 7080
+  },
+  {
+    "rubro": "dental",
+    "src": "img/generadas/servicio-endodoncia-480.webp",
+    "bytes": 12086
+  },
+  {
+    "rubro": "dental",
+    "src": "img/generadas/servicio-endodoncia-960.webp",
+    "bytes": 28376
+  },
+  {
+    "rubro": "dental",
+    "src": "img/generadas/servicio-ortodoncia-320.webp",
+    "bytes": 5802
+  },
+  {
+    "rubro": "dental",
+    "src": "img/generadas/servicio-ortodoncia-480.webp",
+    "bytes": 10150
+  },
+  {
+    "rubro": "dental",
+    "src": "img/generadas/servicio-ortodoncia-960.webp",
+    "bytes": 24900
+  },
+  {
+    "rubro": "veterinaria",
+    "src": "img/generadas/servicio-vacuna-320.webp",
+    "bytes": 10022
+  },
+  {
+    "rubro": "veterinaria",
+    "src": "img/generadas/servicio-vacuna-480.webp",
+    "bytes": 17592
+  },
+  {
+    "rubro": "veterinaria",
+    "src": "img/generadas/servicio-vacuna-960.webp",
+    "bytes": 48036
+  },
+  {
+    "rubro": "dental",
+    "src": "img/generadas/servicio-implante-320.webp",
+    "bytes": 4524
+  },
+  {
+    "rubro": "dental",
+    "src": "img/generadas/servicio-implante-480.webp",
+    "bytes": 7832
+  },
+  {
+    "rubro": "dental",
+    "src": "img/generadas/servicio-implante-960.webp",
+    "bytes": 20944
+  },
+  {
+    "rubro": "veterinaria",
+    "src": "img/generadas/servicio-desparasitacion-320.webp",
+    "bytes": 9242
+  },
+  {
+    "rubro": "veterinaria",
+    "src": "img/generadas/servicio-desparasitacion-480.webp",
+    "bytes": 16108
+  },
+  {
+    "rubro": "veterinaria",
+    "src": "img/generadas/servicio-desparasitacion-960.webp",
+    "bytes": 43498
+  },
+  {
+    "rubro": "veterinaria",
+    "src": "img/generadas/servicio-consulta-320.webp",
+    "bytes": 9428
+  },
+  {
+    "rubro": "veterinaria",
+    "src": "img/generadas/servicio-consulta-480.webp",
+    "bytes": 16514
+  },
+  {
+    "rubro": "veterinaria",
+    "src": "img/generadas/servicio-consulta-960.webp",
+    "bytes": 46404
+  },
+  {
+    "rubro": "veterinaria",
+    "src": "img/generadas/servicio-cirugia-320.webp",
+    "bytes": 13392
+  },
+  {
+    "rubro": "veterinaria",
+    "src": "img/generadas/servicio-cirugia-480.webp",
+    "bytes": 25564
+  },
+  {
+    "rubro": "veterinaria",
+    "src": "img/generadas/servicio-cirugia-960.webp",
+    "bytes": 73430
+  },
+  {
+    "rubro": "veterinaria",
+    "src": "img/generadas/servicio-bano-320.webp",
+    "bytes": 10322
+  },
+  {
+    "rubro": "veterinaria",
+    "src": "img/generadas/servicio-bano-480.webp",
+    "bytes": 19622
+  },
+  {
+    "rubro": "veterinaria",
+    "src": "img/generadas/servicio-bano-960.webp",
+    "bytes": 60194
+  },
+  {
+    "rubro": "gimnasio",
+    "src": "img/generadas/servicio-funcional-320.webp",
+    "bytes": 15080
+  },
+  {
+    "rubro": "gimnasio",
+    "src": "img/generadas/servicio-funcional-480.webp",
+    "bytes": 29780
+  },
+  {
+    "rubro": "gimnasio",
+    "src": "img/generadas/servicio-funcional-960.webp",
+    "bytes": 87718
+  },
+  {
+    "rubro": "gimnasio",
+    "src": "img/generadas/servicio-spinning-320.webp",
+    "bytes": 16250
+  },
+  {
+    "rubro": "gimnasio",
+    "src": "img/generadas/servicio-spinning-480.webp",
+    "bytes": 30472
+  },
+  {
+    "rubro": "gimnasio",
+    "src": "img/generadas/servicio-spinning-960.webp",
+    "bytes": 85490
+  },
+  {
+    "rubro": "gimnasio",
+    "src": "img/generadas/servicio-box-320.webp",
+    "bytes": 13118
+  },
+  {
+    "rubro": "gimnasio",
+    "src": "img/generadas/servicio-box-480.webp",
+    "bytes": 24848
+  },
+  {
+    "rubro": "gimnasio",
+    "src": "img/generadas/servicio-box-960.webp",
+    "bytes": 73300
+  },
+  {
+    "rubro": "restaurante",
+    "src": "img/generadas/plato-causa-320.webp",
+    "bytes": 7748
+  },
+  {
+    "rubro": "restaurante",
+    "src": "img/generadas/plato-causa-480.webp",
+    "bytes": 12690
+  },
+  {
+    "rubro": "restaurante",
+    "src": "img/generadas/plato-causa-640.webp",
+    "bytes": 17754
+  },
+  {
+    "rubro": "restaurante",
+    "src": "img/generadas/plato-tiradito-320.webp",
+    "bytes": 5650
+  },
+  {
+    "rubro": "restaurante",
+    "src": "img/generadas/plato-tiradito-480.webp",
+    "bytes": 9820
+  },
+  {
+    "rubro": "restaurante",
+    "src": "img/generadas/plato-tiradito-640.webp",
+    "bytes": 14632
+  },
+  {
+    "rubro": "restaurante",
+    "src": "img/generadas/plato-ceviche-320.webp",
+    "bytes": 11098
+  },
+  {
+    "rubro": "restaurante",
+    "src": "img/generadas/plato-ceviche-480.webp",
+    "bytes": 21538
+  },
+  {
+    "rubro": "restaurante",
+    "src": "img/generadas/plato-ceviche-640.webp",
+    "bytes": 32804
+  },
+  {
+    "rubro": "restaurante",
+    "src": "img/generadas/plato-jalea-320.webp",
+    "bytes": 9468
+  },
+  {
+    "rubro": "restaurante",
+    "src": "img/generadas/plato-jalea-480.webp",
+    "bytes": 16140
+  },
+  {
+    "rubro": "restaurante",
+    "src": "img/generadas/plato-jalea-640.webp",
+    "bytes": 23046
+  },
+  {
+    "rubro": "restaurante",
+    "src": "img/generadas/plato-arroz-con-pato-320.webp",
+    "bytes": 9214
+  },
+  {
+    "rubro": "restaurante",
+    "src": "img/generadas/plato-arroz-con-pato-480.webp",
+    "bytes": 16332
+  },
+  {
+    "rubro": "restaurante",
+    "src": "img/generadas/plato-arroz-con-pato-640.webp",
+    "bytes": 24440
+  },
+  {
+    "rubro": "restaurante",
+    "src": "img/generadas/plato-cabrito-320.webp",
+    "bytes": 9892
+  },
+  {
+    "rubro": "restaurante",
+    "src": "img/generadas/plato-cabrito-480.webp",
+    "bytes": 17942
+  },
+  {
+    "rubro": "restaurante",
+    "src": "img/generadas/plato-cabrito-640.webp",
+    "bytes": 27364
+  },
+  {
+    "rubro": "restaurante",
+    "src": "img/generadas/plato-lomo-saltado-320.webp",
+    "bytes": 8106
+  },
+  {
+    "rubro": "restaurante",
+    "src": "img/generadas/plato-lomo-saltado-480.webp",
+    "bytes": 14062
+  },
+  {
+    "rubro": "restaurante",
+    "src": "img/generadas/plato-lomo-saltado-640.webp",
+    "bytes": 21062
+  },
+  {
+    "rubro": "restaurante",
+    "src": "img/generadas/plato-picarones-320.webp",
+    "bytes": 6972
+  },
+  {
+    "rubro": "restaurante",
+    "src": "img/generadas/plato-picarones-480.webp",
+    "bytes": 13268
+  },
+  {
+    "rubro": "restaurante",
+    "src": "img/generadas/plato-picarones-640.webp",
+    "bytes": 20128
+  },
+  {
+    "rubro": "restaurante",
+    "src": "img/generadas/plato-chicha-morada-320.webp",
+    "bytes": 7028
+  },
+  {
+    "rubro": "restaurante",
+    "src": "img/generadas/plato-chicha-morada-480.webp",
+    "bytes": 12050
+  },
+  {
+    "rubro": "restaurante",
+    "src": "img/generadas/plato-chicha-morada-640.webp",
+    "bytes": 17490
+  },
+  {
+    "rubro": "restaurante",
+    "src": "img/generadas/plato-pisco-sour-320.webp",
+    "bytes": 3462
+  },
+  {
+    "rubro": "restaurante",
+    "src": "img/generadas/plato-pisco-sour-480.webp",
+    "bytes": 6378
+  },
+  {
+    "rubro": "restaurante",
+    "src": "img/generadas/plato-pisco-sour-640.webp",
+    "bytes": 9572
+  }
+]

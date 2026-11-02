@@ -185,7 +185,7 @@ function cabecera(negocio, urlPagina) {
     <meta name="description" content="${negocio.descripcion}" />
     <link rel="canonical" href="${urlPagina}" />
     <meta name="theme-color" content="${tema.fondo}" />
-    <link rel="icon" href="${favicon(negocio.nombre, tema.marca)}" />
+    <link rel="icon" href="${imagenes.icono ?? favicon(negocio.nombre, tema.marca)}" />
 
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="es_PE" />

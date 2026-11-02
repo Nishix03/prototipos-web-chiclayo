@@ -1,5 +1,5 @@
 // Coreografías ligadas al scroll de «Juego y urgencia», con GSAP ScrollTrigger. Ritmo de la
-// identidad: juguetón, con un rebote corto (curvas back y elastic suaves), pero rápido: la
+// identidad: cercano y estable, con desplazamientos breves y sin rebotes; la
 // urgencia nunca espera una animación.
 // Nada se oculta con CSS: si este archivo no llega, todo está a la vista.
 import { gsap } from 'gsap';
@@ -8,25 +8,24 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 
 export function iniciarCoreografias() {
-  // 1 · Los títulos entran con un saltito (escala y desplazamiento, sin opacidad: contraste, Axe)
+  // 1 · Los títulos se asientan con suavidad (escala y desplazamiento, sin opacidad: contraste, Axe)
   for (const titulo of document.querySelectorAll('[data-armar]')) {
     gsap.from(titulo, {
       y: 20,
       scale: 0.96,
       duration: 0.5,
-      ease: 'back.out(2.2)',
+      ease: 'power2.out',
       scrollTrigger: { trigger: titulo, start: 'top 88%', once: true },
     });
   }
 
-  // 2 · Los servicios caen en su lugar uno tras otro, como juguetes en la caja
+  // 2 · Los servicios se ordenan en la ficha, sin girar ni rebotar
   const servicios = document.querySelectorAll('.servicio');
   if (servicios.length) {
     gsap.from(servicios, {
-      y: -24,
-      rotation: (i) => (i % 2 ? 4 : -4),
-      duration: 0.55,
-      ease: 'back.out(2)',
+      y: 16,
+      duration: 0.4,
+      ease: 'power2.out',
       stagger: 0.07,
       scrollTrigger: { trigger: '.servicios__lista', start: 'top 82%', once: true },
     });

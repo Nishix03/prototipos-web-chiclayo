@@ -1,0 +1,104 @@
+[
+  {
+    "modo": "movil",
+    "corridas": 5,
+    "scores": {
+      "performance": 98,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 100
+    },
+    "lcp": 1978.633,
+    "cls": 0.0001642122633983482,
+    "tbt": 90.05449999999996,
+    "muestras": [
+      {
+        "scores": {
+          "performance": 98,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "lcp": 1994.1856,
+        "cls": 0.0001642122633983482,
+        "tbt": 88,
+        "bytes": 361625
+      },
+      {
+        "scores": {
+          "performance": 98,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "lcp": 2048.63625,
+        "cls": 0.0003139438255816604,
+        "tbt": 90.05449999999996,
+        "bytes": 361625
+      },
+      {
+        "scores": {
+          "performance": 97,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "lcp": 1974.5279,
+        "cls": 0.0003139438255816604,
+        "tbt": 138.131975,
+        "bytes": 361625
+      },
+      {
+        "scores": {
+          "performance": 94,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "lcp": 1978.633,
+        "cls": 0,
+        "tbt": 189.3164999999999,
+        "bytes": 361625
+      },
+      {
+        "scores": {
+          "performance": 99,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "lcp": 1969.4008,
+        "cls": 0.0001642122633983482,
+        "tbt": 17,
+        "bytes": 361625
+      }
+    ]
+  },
+  {
+    "modo": "escritorio",
+    "corridas": 1,
+    "scores": {
+      "performance": 100,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 100
+    },
+    "lcp": 457.3112,
+    "cls": 0.0008301770349526438,
+    "tbt": 11.327799999999996,
+    "muestras": [
+      {
+        "scores": {
+          "performance": 100,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "lcp": 457.3112,
+        "cls": 0.0008301770349526438,
+        "tbt": 11.327799999999996,
+        "bytes": 295735
+      }
+    ]
+  }
+]

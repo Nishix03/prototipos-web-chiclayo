@@ -26,3 +26,22 @@ export function cuandoEsteLibre(fn) {
   if (document.readyState === 'complete') correr();
   else addEventListener('load', correr, { once: true });
 }
+
+/** En táctiles, el póster resuelve la primera pantalla; el 3D llega al explorar.
+ * El modo forzado de las auditorías y el escritorio conservan la carga en reposo.
+ * Solo difiere mejoras visuales: formularios, horario y navegación ya funcionan.
+ */
+export function cuandoExplore(fn) {
+  if (!matchMedia('(pointer: coarse)').matches || parametros().get('3d') === 'forzar') {
+    cuandoEsteLibre(fn);
+    return;
+  }
+  const eventos = new AbortController();
+  const iniciar = () => {
+    eventos.abort();
+    cuandoEsteLibre(fn);
+  };
+  for (const evento of ['pointerdown', 'keydown', 'scroll']) {
+    addEventListener(evento, iniciar, { passive: true, once: true, signal: eventos.signal });
+  }
+}

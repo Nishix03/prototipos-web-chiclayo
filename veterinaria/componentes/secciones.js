@@ -1,3 +1,4 @@
+import { imagen } from '../../core/componentes/imagen.js';
 import { html } from '../../core/componentes/html.js';
 import { campo, formularioWhatsapp } from '../../core/componentes/formulario.js';
 import { soles } from '../../core/dinero.js';
@@ -10,10 +11,12 @@ export function servicios(negocio) {
     <section class="servicios" id="servicios" aria-labelledby="servicios-titulo">
       <h2 class="seccion-titulo" id="servicios-titulo" data-armar>Servicios y precios</h2>
       <p class="seccion-intro">${textos.introServicios}</p>
+      <p class="muestra-ia">Imágenes generadas con IA · servicios ilustrativos (demo).</p>
       <ul class="servicios__lista" role="list">
         ${lista.map(
           (s) => html`
             <li class="servicio">
+              ${s.foto ? html`<figure class="foto-servicio servicio__foto">${imagen(s.foto, { sizes: '(min-width: 60rem) 240px, 140px' })}</figure>` : ''}
               <h3 class="servicio__nombre">${s.nombre}</h3>
               <p class="servicio__precio">Desde ${soles(s.desde)}</p>
               <p class="servicio__descripcion">${s.descripcion}</p>
@@ -40,6 +43,12 @@ export function vacunas(negocio) {
       <p class="seccion-intro">${textos.introVacunas}</p>
       <div class="vacunas__datos" data-vacunas>
         <div class="campo">
+          <label class="campo__etiqueta" for="vacunas-nombre"
+            >Nombre de tu mascota (opcional)</label
+          >
+          <input id="vacunas-nombre" type="text" maxlength="60" autocomplete="off" />
+        </div>
+        <div class="campo">
           <label class="campo__etiqueta" for="vacunas-especie">Especie</label>
           <select id="vacunas-especie">
             ${v.especies.map((e) => html`<option value="${e.id}">${e.nombre}</option>`)}
@@ -49,6 +58,10 @@ export function vacunas(negocio) {
           <label class="campo__etiqueta" for="vacunas-nacimiento">Fecha de nacimiento</label>
           <input id="vacunas-nacimiento" type="date" />
         </div>
+      </div>
+      <div class="ficha-mascota" aria-label="Ficha de tu mascota">
+        <strong data-ficha-nombre>Tu mascota</strong><span data-ficha-especie></span>
+        <small>Ficha de demostración · los datos no se guardan ni se envían.</small>
       </div>
       <p class="vacunas__resumen" data-vacunas-resumen aria-live="polite"></p>
       ${v.especies.map(
