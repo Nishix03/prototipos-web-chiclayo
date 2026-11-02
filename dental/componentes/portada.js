@@ -1,3 +1,4 @@
+import { marca as simboloMarca } from '../../core/componentes/marca.js';
 import { html } from '../../core/componentes/html.js';
 import { estadoHorario } from '../../core/componentes/hero.js';
 
@@ -7,6 +8,7 @@ export function cabecera(negocio) {
   return html`
     <header class="cabecera">
       <p class="cabecera__nombre">
+        ${simboloMarca(negocio)}
         <span translate="no">${marca}</span>
         ${sufijo ? html`<span class="cabecera__demo">${sufijo.toLowerCase()}</span>` : ''}
       </p>
@@ -22,12 +24,12 @@ function escena() {
       <picture class="escena__fija">
         <source
           media="(max-aspect-ratio: 1/1)"
-          srcset="img/calma-movil-600.webp 600w, img/calma-movil-900.webp 900w"
+          srcset="img/calma-movil-v3-600.webp 600w, img/calma-movil-v3-900.webp 900w"
           sizes="100vw"
         />
         <img
-          src="img/calma-1440.webp"
-          srcset="img/calma-960.webp 960w, img/calma-1440.webp 1440w"
+          src="img/calma-v3-1440.webp"
+          srcset="img/calma-v3-960.webp 960w, img/calma-v3-1440.webp 1440w"
           sizes="100vw"
           width="1440"
           height="900"
@@ -50,6 +52,11 @@ export function portada(negocio) {
       <p class="bajada">${textos.bajada}</p>
       ${estadoHorario({ enlace: '#horario' })}
       <a class="llamado" href="#cuestionario" data-estrella>Empezar el cuestionario</a>
+      <ol class="portada__recorrido" aria-label="Cómo funciona">
+        <li>Responde con calma</li>
+        <li>Conoce tus opciones</li>
+        <li>Agenda tu evaluación</li>
+      </ol>
     </section>
   `;
 }

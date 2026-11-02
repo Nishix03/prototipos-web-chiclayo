@@ -175,16 +175,26 @@ export function montarEscena(contenedor, d, avance, opciones = {}) {
 
   contenedor.append(canvas);
   let actual = -1;
+  let cuadroPendiente = 0;
+  let lista = false;
+  // Sin un bucle permanente: solo despierta por scroll, puntero o cambio de tamaño.
+  // Al acabar la inercia no quedan callbacks ejecutándose cada frame.
+  function despertar() {
+    if (lista && !document.hidden && !cuadroPendiente)
+      cuadroPendiente = requestAnimationFrame(bucle);
+  }
   if (d.puntero)
     addEventListener(
       'pointermove',
       (e) => {
         puntero.x = (e.clientX / innerWidth) * 2 - 1;
         puntero.y = 1 - (e.clientY / innerHeight) * 2;
+        despertar();
       },
       { passive: true },
     );
   const bucle = () => {
+    cuadroPendiente = 0;
     const t = avance();
     const sigue = Math.abs(puntero.x - visto.x) + Math.abs(puntero.y - visto.y) > 0.002;
     if (actual < 0 || sigue || Math.abs(t - actual) > 0.0005) {
@@ -193,15 +203,32 @@ export function montarEscena(contenedor, d, avance, opciones = {}) {
       visto.y += (puntero.y - visto.y) * 0.12;
       dibujar(actual);
       if (!contenedor.hasAttribute('data-viva')) contenedor.setAttribute('data-viva', '');
+      despertar();
     }
   };
-  const encender = () => renderer.setAnimationLoop(document.hidden ? null : bucle);
-  document.addEventListener('visibilitychange', encender);
+  addEventListener('scroll', despertar, { passive: true });
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+      cancelAnimationFrame(cuadroPendiente);
+      cuadroPendiente = 0;
+    } else despertar();
+  });
   new ResizeObserver(() => {
     ajustar();
-    dibujar(Math.max(0, actual));
+    actual = -1;
+    despertar();
   }).observe(contenedor);
   // Los shaders se compilan sin bloquear (si el navegador lo permite); mientras, se ve la imagen fija
-  renderer.compileAsync(escena, camara).then(encender);
+  renderer
+    .compileAsync(escena, camara)
+    .then(() => {
+      lista = true;
+      despertar();
+    })
+    .catch(() => {
+      // Si falla la GPU, el póster sigue visible y el contenido permanece utilizable.
+      renderer.dispose();
+      canvas.remove();
+    });
   return { canvas, centros };
 }

@@ -34,7 +34,7 @@ export function iniciarCoreografias() {
     gsap.from(ahorros, {
       scale: 0.5,
       duration: 0.35,
-      ease: 'back.out(3)',
+      ease: 'power4.out',
       stagger: 0.1,
       scrollTrigger: { trigger: '.planes__tabla', start: 'top 80%', once: true },
     });

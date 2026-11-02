@@ -1,0 +1,93 @@
+/* Fotografías editoriales: espacio reservado, carga diferida y composición por negocio. */
+.editorial {
+  width: min(100% - 2 * var(--margen-lateral), 76rem);
+  margin: var(--espacio-seccion) auto;
+}
+.editorial__foto {
+  min-width: 0;
+}
+.editorial__foto img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+}
+.editorial__foto figcaption {
+  padding-block: 0.75rem;
+  font-size: 0.8125rem;
+  color: var(--color-texto-suave);
+}
+.editorial__texto {
+  min-width: 0;
+  padding: 1.5rem 0;
+}
+.editorial__texto p {
+  max-width: 45ch;
+  margin-top: 1rem;
+}
+.editorial__texto a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  margin-top: 1rem;
+  font-weight: 600;
+  text-underline-offset: 0.3em;
+}
+.muestra-ia {
+  font-size: 0.8125rem;
+  color: var(--color-texto-suave);
+  margin-block: 0.75rem 1.25rem;
+}
+.foto-servicio {
+  min-width: 0;
+}
+.foto-servicio img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Marcas transparentes: el texto del negocio sigue siendo seleccionable y accesible. */
+.marca-simbolo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 2.25rem;
+  width: 2.25rem;
+  height: 2.25rem;
+  vertical-align: middle;
+}
+.marca-simbolo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.cabecera__nombre:has(.marca-simbolo),
+.letrero__nombre:has(.marca-simbolo),
+.comanda-colgada__negocio:has(.marca-simbolo) {
+  display: grid;
+  grid-template-columns: 2.25rem minmax(0, 1fr);
+  column-gap: 0.625rem;
+  align-items: center;
+  min-width: 0;
+}
+.cabecera__nombre .marca-simbolo,
+.letrero__nombre .marca-simbolo,
+.comanda-colgada__negocio .marca-simbolo {
+  grid-column: 1;
+  grid-row: 1 / 3;
+}
+.cabecera__nombre [translate],
+.letrero__nombre [translate],
+.comanda-colgada__negocio [translate] {
+  grid-column: 2;
+}
+.cabecera__nombre .cabecera__demo,
+.letrero__nombre .letrero__demo,
+.comanda-colgada__negocio .comanda-colgada__demo {
+  grid-column: 2;
+  margin-left: 0;
+}
+.pie__nombre .marca-simbolo {
+  margin-right: 0.75rem;
+}

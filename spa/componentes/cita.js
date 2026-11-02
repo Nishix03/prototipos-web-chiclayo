@@ -4,6 +4,25 @@ import { soles } from '../../core/dinero.js';
 import { horasPosibles } from '../../core/horario.js';
 import { minutosPaquete } from './servicios.js';
 
+const FASES = [
+  ['manana', 'Mañana', 6, 12],
+  ['tarde', 'Tarde', 12, 18],
+  ['noche', 'Noche', 18, 24],
+];
+const dial = () =>
+  html`<div class="fases" role="group" aria-label="Franja del día">
+    <button
+      type="button"
+      class="fase transition-transform duration-150 motion-reduce:transition-none active:scale-[0.98]"
+      data-fase="todas"
+      data-desde="0"
+      data-hasta="24"
+      aria-pressed="true"
+    >
+      Cualquier hora
+    </button>
+    ${FASES.map(([id, texto, desde, hasta]) => html`<button type="button" class="fase transition-transform duration-150 motion-reduce:transition-none active:scale-[0.98]" data-fase="${id}" data-desde="${desde}" data-hasta="${hasta}" aria-pressed="false">${texto}</button>`)}
+  </div>`;
 const PASOS = ['Servicio', 'Día y hora', 'Tus datos'];
 
 /**
@@ -38,6 +57,7 @@ export function cita(negocio) {
     ],
     [
       campo({ id: 'cita-dia', etiqueta: 'Día', tipo: 'date', requerido: true }),
+      dial(),
       campo({
         id: 'cita-hora',
         etiqueta: 'Hora',

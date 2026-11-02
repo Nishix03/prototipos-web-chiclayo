@@ -1,3 +1,5 @@
+import formaMarca from '../img/marca/relieve.json';
+import { relieveMarca } from '../../core/marca3d.js';
 // Escena «El pase» (brief: docs/visual/restaurante-cocina-abierta.md, dirección C).
 // A la altura de los ojos frente al mostrador: pared de terracota, mostrador mate y 4 bowls de
 // barro, uno por categoría de la carta. Los ingredientes empiezan en el aire, como recién
@@ -9,10 +11,26 @@ import {
   MeshLambertMaterial,
   PlaneGeometry,
   Vector2,
+  TorusGeometry,
 } from 'three';
 import { GRUPOS, crearPieza } from './ingredientes.js';
 
 const MOSTRADOR_Y = -1.4;
+let relieveCeramico;
+// El sello sigue la curva exterior de la cerámica; no flota delante del recipiente.
+function adaptarSello(geometria) {
+  if (relieveCeramico) return relieveCeramico;
+  relieveCeramico = geometria.clone();
+  const p = relieveCeramico.attributes.position;
+  for (let i = 0; i < p.count; i++) {
+    const y = 0.21 + p.getY(i) * 0.22;
+    const radio = y < 0.12 ? 0.3 + (y / 0.12) * 0.22 : 0.52 + ((y - 0.12) / 0.22) * 0.1;
+    const x = p.getX(i) * 0.22;
+    p.setZ(i, p.getZ(i) + Math.sqrt(Math.max(0, radio * radio - x * x)) / 0.22);
+  }
+  relieveCeramico.computeVertexNormals();
+  return relieveCeramico;
+}
 // En escritorio cada bowl queda bajo una de las 4 columnas de comandas de la carta
 const bowlX = (g, movil) => (g - 1.5) * (movil ? 0.95 : 1.8);
 const esMovil = (aspecto) => aspecto < 1;
@@ -64,13 +82,34 @@ export const pase = {
     frente.position.set(0, MOSTRADOR_Y - 2.3, 1.5);
     escena.add(pared, mostrador, frente);
     const barro = new MeshLambertMaterial({ color: '#c45a33' });
+    const esmalte = new MeshLambertMaterial({ color: '#fbf7ef' });
+    const aji = new MeshLambertMaterial({ color: '#f2b705' });
     for (let g = 0; g < GRUPOS.length; g++) {
-      const bowl = new Mesh(new LatheGeometry(PERFIL_BOWL, 40), barro);
+      const bowl = new Mesh(
+        new LatheGeometry(PERFIL_BOWL, esMovil(aspecto) ? 20 : 32),
+        g % 2 ? esmalte : barro,
+      );
       bowl.position.set(bowlX(g, esMovil(aspecto)), MOSTRADOR_Y, 0.2);
       bowl.scale.setScalar(esMovil(aspecto) ? 0.75 : 1.2);
       bowl.castShadow = sombras;
       bowl.receiveShadow = sombras;
       escena.add(bowl);
+      const escala = esMovil(aspecto) ? 0.75 : 1.2;
+      const borde = new Mesh(
+        new TorusGeometry(0.6 * escala, 0.018, 5, esMovil(aspecto) ? 20 : 32),
+        aji,
+      );
+      borde.rotation.x = Math.PI / 2;
+      borde.position.set(bowl.position.x, MOSTRADOR_Y + 0.355 * escala, 0.2);
+      const sello = relieveMarca(formaMarca, {
+        color: '#b47813',
+        ancho: 0.22 * escala,
+        profundidad: 0.04,
+        bisel: 0.003,
+      });
+      sello.position.set(bowl.position.x, MOSTRADOR_Y + 0.21 * escala, 0.2);
+      sello.geometry = adaptarSello(sello.geometry);
+      escena.add(borde, sello);
     }
   },
   camara(t, aspecto) {

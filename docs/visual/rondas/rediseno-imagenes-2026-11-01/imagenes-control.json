@@ -1,0 +1,74 @@
+{
+  "barberia": {
+    "360": {
+      "desborde": false,
+      "imagenes": 11,
+      "rotas": []
+    },
+    "1440": {
+      "desborde": false,
+      "imagenes": 11,
+      "rotas": []
+    }
+  },
+  "spa": {
+    "360": {
+      "desborde": false,
+      "imagenes": 13,
+      "rotas": []
+    },
+    "1440": {
+      "desborde": false,
+      "imagenes": 13,
+      "rotas": []
+    }
+  },
+  "dental": {
+    "360": {
+      "desborde": false,
+      "imagenes": 10,
+      "rotas": []
+    },
+    "1440": {
+      "desborde": false,
+      "imagenes": 10,
+      "rotas": []
+    }
+  },
+  "veterinaria": {
+    "360": {
+      "desborde": false,
+      "imagenes": 9,
+      "rotas": []
+    },
+    "1440": {
+      "desborde": false,
+      "imagenes": 9,
+      "rotas": []
+    }
+  },
+  "gimnasio": {
+    "360": {
+      "desborde": false,
+      "imagenes": 7,
+      "rotas": []
+    },
+    "1440": {
+      "desborde": false,
+      "imagenes": 7,
+      "rotas": []
+    }
+  },
+  "restaurante": {
+    "360": {
+      "desborde": false,
+      "imagenes": 15,
+      "rotas": []
+    },
+    "1440": {
+      "desborde": false,
+      "imagenes": 15,
+      "rotas": []
+    }
+  }
+}

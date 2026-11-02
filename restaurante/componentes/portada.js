@@ -1,8 +1,9 @@
+import { marca as simboloMarca } from '../../core/componentes/marca.js';
 import { html } from '../../core/componentes/html.js';
 import { estadoHorario } from '../../core/componentes/hero.js';
 
 /**
- * Escena de «El pase» detrás de toda la página (ADR 008): primero la imagen fija de la escena,
+ * Escena de «La mesa norteña» detrás de toda la página (ADR 008): primero la imagen fija de la escena,
  * que es el LCP; el 3D se monta encima cuando la página ya cargó (escena/montar.js).
  * Hay dos encuadres: horizontal para escritorio y vertical para celular.
  */
@@ -10,14 +11,15 @@ function escena() {
   return html`
     <div class="escena" data-escena aria-hidden="true">
       <picture class="escena__fija">
+        <source media="(max-width: 600px)" srcset="img/mesa-nortena-movil-v4-600.webp" />
         <source
           media="(max-aspect-ratio: 1/1)"
-          srcset="img/pase-movil-600.webp 600w, img/pase-movil-900.webp 900w"
+          srcset="img/mesa-nortena-movil-v4-600.webp 600w, img/mesa-nortena-movil-v4-900.webp 900w"
           sizes="100vw"
         />
         <img
-          src="img/pase-1440.webp"
-          srcset="img/pase-960.webp 960w, img/pase-1440.webp 1440w"
+          src="img/mesa-nortena-v4-1440.webp"
+          srcset="img/mesa-nortena-v4-960.webp 960w, img/mesa-nortena-v4-1440.webp 1440w"
           sizes="100vw"
           width="1440"
           height="900"
@@ -44,10 +46,11 @@ export function portada(negocio) {
       <article class="comanda-colgada comanda-colgada--portada">
         <span class="pinza" aria-hidden="true"></span>
         <p class="comanda-colgada__negocio">
+          ${simboloMarca(negocio)}
           <span translate="no">${marca}</span>
           ${sufijo ? html`<span class="comanda-colgada__demo">${sufijo.toLowerCase()}</span>` : ''}
         </p>
-        <h1 class="titular" id="titular">${textos.titular}</h1>
+        <h1 class="titular" id="titular" data-texto="${textos.titular}">${textos.titular}</h1>
         <p class="bajada">${textos.bajada}</p>
         ${estadoHorario({ enlace: '#horario' })}
       </article>

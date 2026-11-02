@@ -1,3 +1,4 @@
+import { marca as simboloMarca } from '../../core/componentes/marca.js';
 import { html } from '../../core/componentes/html.js';
 import { estadoHorario } from '../../core/componentes/hero.js';
 import { iconos } from '../../core/componentes/iconos.js';
@@ -36,6 +37,7 @@ export function cabecera(negocio) {
   return html`
     <header class="cabecera">
       <p class="cabecera__nombre">
+        ${simboloMarca(negocio)}
         <span translate="no">${marca}</span>
         ${sufijo ? html`<span class="cabecera__demo">${sufijo.toLowerCase()}</span>` : ''}
       </p>
@@ -51,12 +53,12 @@ function escena() {
       <picture class="escena__fija">
         <source
           media="(max-aspect-ratio: 1/1)"
-          srcset="img/juego-movil-600.webp 600w, img/juego-movil-900.webp 900w"
+          srcset="img/juego-movil-v3-600.webp 600w, img/juego-movil-v3-900.webp 900w"
           sizes="100vw"
         />
         <img
-          src="img/juego-1440.webp"
-          srcset="img/juego-960.webp 960w, img/juego-1440.webp 1440w"
+          src="img/juego-v3-1440.webp"
+          srcset="img/juego-v3-960.webp 960w, img/juego-v3-1440.webp 1440w"
           sizes="100vw"
           width="1440"
           height="900"
@@ -78,6 +80,9 @@ export function portada(negocio) {
       <p class="bajada">${textos.bajada}</p>
       ${estadoHorario({ enlace: '#horario' })}
       <a class="llamado" href="#cita">Agendar consulta o baño</a>
+      <a class="portada__carne" href="#vacunas"
+        >Su carné de vacunas <span aria-hidden="true">↗</span></a
+      >
     </section>
   `;
 }

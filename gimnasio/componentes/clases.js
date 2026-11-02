@@ -1,3 +1,4 @@
+import { imagen } from '../../core/componentes/imagen.js';
 import { html } from '../../core/componentes/html.js';
 import { nombreDia } from '../../core/horario.js';
 
@@ -54,6 +55,7 @@ export function clases(negocio) {
                       <li
                         class="clase"
                         data-clase
+                        data-sesion="${c.dia}-${c.inicio}-${c.tipo}"
                         data-tipo="${c.tipo}"
                         data-inicio="${c.inicio}"
                         data-minutos="${c.minutos}"
@@ -62,6 +64,16 @@ export function clases(negocio) {
                         <span class="clase__tipo">${nombreTipo[c.tipo]}</span>
                         <span class="clase__entrenador">${c.entrenador}</span>
                         <span class="clase__marca" data-marca></span>
+                        <span class="clase__intensidad">Intensidad ${c.intensidad}/5 · demo</span>
+                        <button
+                          class="clase__guardar transition-transform duration-150 motion-reduce:transition-none active:scale-[0.98]"
+                          type="button"
+                          data-guardar-sesion
+                          aria-pressed="false"
+                          aria-label="Añadir a mi plan: ${nombreTipo[c.tipo]}, ${nombreDia(c.dia)}, ${c.inicio}"
+                        >
+                          Añadir a mi plan
+                        </button>
                       </li>
                     `,
                   )}
@@ -70,6 +82,28 @@ export function clases(negocio) {
           `,
         )}
       </div>
+      <aside class="plan-semanal" aria-labelledby="plan-semanal-titulo">
+        <h3 id="plan-semanal-titulo">Mi plan semanal</h3>
+        <p>Elige sesiones del horario. Se guardan solo en este navegador.</p>
+        <p data-plan-vacio>Todavía no has elegido sesiones.</p>
+        <ul class="plan-semanal__lista" data-plan-lista aria-live="polite"></ul>
+      </aside>
     </section>
   `;
+}
+
+export function disciplinas(negocio) {
+  return html`<section class="disciplinas" aria-labelledby="disciplinas-titulo">
+    <h2 class="seccion-titulo" id="disciplinas-titulo">Encuentra tu disciplina</h2>
+    <p class="muestra-ia">Imágenes generadas con IA · espacios ilustrativos (demo).</p>
+    <ul class="disciplinas__lista" role="list">
+      ${negocio.tiposClase.map(
+        (t) =>
+          html`<li class="disciplina">
+            ${t.foto ? imagen(t.foto, { sizes: '(min-width: 60rem) 50vw, 100vw' }) : ''}
+            <a href="?clase=${t.id}#clases">Ver clases de ${t.nombre}</a>
+          </li>`,
+      )}
+    </ul>
+  </section>`;
 }

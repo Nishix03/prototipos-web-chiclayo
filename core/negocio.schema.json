@@ -16,7 +16,9 @@
     "imagenes"
   ],
   "properties": {
-    "$schema": { "type": "string" },
+    "$schema": {
+      "type": "string"
+    },
     "demo": {
       "type": "boolean",
       "description": "true si los datos son de demostración. La página muestra un aviso visible y nunca presenta el contenido como real."
@@ -24,7 +26,11 @@
     "rubro": {
       "enum": ["ejemplo", "restaurante", "spa", "barberia", "veterinaria", "dental", "gimnasio"]
     },
-    "nombre": { "type": "string", "minLength": 2, "maxLength": 60 },
+    "nombre": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 60
+    },
     "eslogan": {
       "type": "string",
       "minLength": 5,
@@ -63,7 +69,10 @@
           "maxLength": 200,
           "description": "Mensaje que ya viene escrito al tocar el botón de WhatsApp."
         },
-        "correo": { "type": "string", "format": "email" }
+        "correo": {
+          "type": "string",
+          "format": "email"
+        }
       }
     },
     "ubicacion": {
@@ -71,16 +80,33 @@
       "required": ["direccion", "distrito", "ciudad", "region", "lat", "lng"],
       "additionalProperties": false,
       "properties": {
-        "direccion": { "type": "string", "minLength": 5 },
+        "direccion": {
+          "type": "string",
+          "minLength": 5
+        },
         "referencia": {
           "type": "string",
           "description": "Cómo llegar en palabras de la gente: 'a media cuadra del parque principal'."
         },
-        "distrito": { "type": "string" },
-        "ciudad": { "type": "string" },
-        "region": { "type": "string" },
-        "lat": { "type": "number", "minimum": -90, "maximum": 90 },
-        "lng": { "type": "number", "minimum": -180, "maximum": 180 }
+        "distrito": {
+          "type": "string"
+        },
+        "ciudad": {
+          "type": "string"
+        },
+        "region": {
+          "type": "string"
+        },
+        "lat": {
+          "type": "number",
+          "minimum": -90,
+          "maximum": 90
+        },
+        "lng": {
+          "type": "number",
+          "minimum": -180,
+          "maximum": 180
+        }
       }
     },
     "horario": {
@@ -89,13 +115,27 @@
       "required": ["lun", "mar", "mie", "jue", "vie", "sab", "dom"],
       "additionalProperties": false,
       "properties": {
-        "lun": { "$ref": "#/$defs/rangosDia" },
-        "mar": { "$ref": "#/$defs/rangosDia" },
-        "mie": { "$ref": "#/$defs/rangosDia" },
-        "jue": { "$ref": "#/$defs/rangosDia" },
-        "vie": { "$ref": "#/$defs/rangosDia" },
-        "sab": { "$ref": "#/$defs/rangosDia" },
-        "dom": { "$ref": "#/$defs/rangosDia" }
+        "lun": {
+          "$ref": "#/$defs/rangosDia"
+        },
+        "mar": {
+          "$ref": "#/$defs/rangosDia"
+        },
+        "mie": {
+          "$ref": "#/$defs/rangosDia"
+        },
+        "jue": {
+          "$ref": "#/$defs/rangosDia"
+        },
+        "vie": {
+          "$ref": "#/$defs/rangosDia"
+        },
+        "sab": {
+          "$ref": "#/$defs/rangosDia"
+        },
+        "dom": {
+          "$ref": "#/$defs/rangosDia"
+        }
       }
     },
     "tema": {
@@ -104,10 +144,18 @@
       "required": ["marca", "acento", "fondo", "texto"],
       "additionalProperties": false,
       "properties": {
-        "marca": { "$ref": "#/$defs/colorHex" },
-        "acento": { "$ref": "#/$defs/colorHex" },
-        "fondo": { "$ref": "#/$defs/colorHex" },
-        "texto": { "$ref": "#/$defs/colorHex" }
+        "marca": {
+          "$ref": "#/$defs/colorHex"
+        },
+        "acento": {
+          "$ref": "#/$defs/colorHex"
+        },
+        "fondo": {
+          "$ref": "#/$defs/colorHex"
+        },
+        "texto": {
+          "$ref": "#/$defs/colorHex"
+        }
       }
     },
     "imagenes": {
@@ -115,11 +163,15 @@
       "required": ["hero"],
       "additionalProperties": false,
       "properties": {
-        "hero": { "$ref": "#/$defs/imagen" },
+        "hero": {
+          "$ref": "#/$defs/imagen"
+        },
         "galeria": {
           "type": "array",
           "maxItems": 12,
-          "items": { "$ref": "#/$defs/imagen" }
+          "items": {
+            "$ref": "#/$defs/imagen"
+          }
         },
         "og": {
           "$ref": "#/$defs/imagen",
@@ -129,6 +181,39 @@
           "type": "string",
           "maxLength": 120,
           "description": "Pie de la galería, por ejemplo «Imágenes generadas con IA (demo)»."
+        },
+        "editorial": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["foto", "titulo", "texto", "enlace", "accion"],
+          "properties": {
+            "foto": {
+              "$ref": "#/$defs/imagen"
+            },
+            "titulo": {
+              "type": "string",
+              "maxLength": 45
+            },
+            "texto": {
+              "type": "string",
+              "maxLength": 180
+            },
+            "enlace": {
+              "type": "string",
+              "pattern": "^#[a-z][a-z0-9-]*$"
+            },
+            "accion": {
+              "type": "string",
+              "maxLength": 40
+            }
+          }
+        },
+        "logo": {
+          "$ref": "#/$defs/imagen"
+        },
+        "icono": {
+          "type": "string",
+          "pattern": "^img/[a-z0-9/-]+\\.png$"
         }
       }
     },
@@ -150,9 +235,19 @@
             "required": ["texto", "autor", "estrellas"],
             "additionalProperties": false,
             "properties": {
-              "texto": { "type": "string", "minLength": 10, "maxLength": 240 },
-              "autor": { "type": "string" },
-              "estrellas": { "type": "integer", "minimum": 1, "maximum": 5 }
+              "texto": {
+                "type": "string",
+                "minLength": 10,
+                "maxLength": 240
+              },
+              "autor": {
+                "type": "string"
+              },
+              "estrellas": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 5
+              }
             }
           }
         }
@@ -162,9 +257,18 @@
       "type": "object",
       "additionalProperties": false,
       "properties": {
-        "instagram": { "type": "string", "format": "uri" },
-        "facebook": { "type": "string", "format": "uri" },
-        "tiktok": { "type": "string", "format": "uri" }
+        "instagram": {
+          "type": "string",
+          "format": "uri"
+        },
+        "facebook": {
+          "type": "string",
+          "format": "uri"
+        },
+        "tiktok": {
+          "type": "string",
+          "format": "uri"
+        }
       }
     },
     "agente": {
@@ -173,12 +277,18 @@
       "required": ["activo", "estado", "nombre", "simulacion"],
       "additionalProperties": false,
       "properties": {
-        "activo": { "type": "boolean" },
+        "activo": {
+          "type": "boolean"
+        },
         "estado": {
           "const": "proximamente",
           "description": "Por ahora solo existe la simulación. Cuando haya un backend podrá cambiar."
         },
-        "nombre": { "type": "string", "minLength": 5, "maxLength": 60 },
+        "nombre": {
+          "type": "string",
+          "minLength": 5,
+          "maxLength": 60
+        },
         "saludo": {
           "type": "string",
           "maxLength": 160,
@@ -194,8 +304,16 @@
             "required": ["pregunta", "respuesta"],
             "additionalProperties": false,
             "properties": {
-              "pregunta": { "type": "string", "minLength": 5, "maxLength": 60 },
-              "respuesta": { "type": "string", "minLength": 10, "maxLength": 240 }
+              "pregunta": {
+                "type": "string",
+                "minLength": 5,
+                "maxLength": 60
+              },
+              "respuesta": {
+                "type": "string",
+                "minLength": 10,
+                "maxLength": 240
+              }
             }
           }
         }
@@ -218,7 +336,14 @@
       "maxItems": 3,
       "items": {
         "type": "array",
-        "prefixItems": [{ "$ref": "#/$defs/hora" }, { "$ref": "#/$defs/hora" }],
+        "prefixItems": [
+          {
+            "$ref": "#/$defs/hora"
+          },
+          {
+            "$ref": "#/$defs/hora"
+          }
+        ],
         "minItems": 2,
         "maxItems": 2
       }
@@ -245,12 +370,31 @@
           "type": "array",
           "maxItems": 4,
           "description": "Opcional: la misma foto más pequeña (p. ej. img/hero-960.webp) para que el celular no descargue la versión de escritorio. render.js mide su ancho y arma el srcset.",
-          "items": { "type": "string", "pattern": "^img/.+\\.(webp|avif)$" }
+          "items": {
+            "type": "string",
+            "pattern": "^img/.+\\.(webp|avif)$"
+          }
         },
-        "credito": { "$ref": "#/$defs/credito" },
+        "credito": {
+          "$ref": "#/$defs/credito"
+        },
         "marcador": {
           "type": "boolean",
           "description": "true si es un marcador de posición: la imagen definitiva (generada con IA) aún no existe. La página lo rotula a la vista."
+        },
+        "creditoIA": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["herramienta", "fecha"],
+          "properties": {
+            "herramienta": {
+              "type": "string"
+            },
+            "fecha": {
+              "type": "string",
+              "format": "date"
+            }
+          }
         }
       }
     },
@@ -260,14 +404,23 @@
       "required": ["titulo", "autor", "licencia", "urlFuente"],
       "additionalProperties": false,
       "properties": {
-        "titulo": { "type": "string" },
-        "autor": { "type": "string" },
+        "titulo": {
+          "type": "string"
+        },
+        "autor": {
+          "type": "string"
+        },
         "licencia": {
           "enum": ["cc0", "by", "by-sa"],
           "description": "Única lista de licencias permitidas: la usan el build y scripts/fotos.js. Nada NC (no comercial) ni ND (sin derivadas): la web es de un negocio y las fotos se recortan."
         },
-        "version": { "type": "string" },
-        "urlFuente": { "type": "string", "format": "uri" }
+        "version": {
+          "type": "string"
+        },
+        "urlFuente": {
+          "type": "string",
+          "format": "uri"
+        }
       }
     }
   }

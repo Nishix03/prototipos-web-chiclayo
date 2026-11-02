@@ -3,10 +3,16 @@
   "title": "Negocio · gimnasio",
   "description": "Campos propios del gimnasio sobre la base común (ADR 005): textos, planes, el horario semanal de clases, entrenadores, la promoción con fecha de fin y la clase de prueba.",
   "type": "object",
-  "allOf": [{ "$ref": "../core/negocio.schema.json" }],
+  "allOf": [
+    {
+      "$ref": "../core/negocio.schema.json"
+    }
+  ],
   "required": ["textos", "tiposClase", "clases", "planes", "entrenadores", "promocion"],
   "properties": {
-    "rubro": { "const": "gimnasio" },
+    "rubro": {
+      "const": "gimnasio"
+    },
     "textos": {
       "type": "object",
       "additionalProperties": false,
@@ -17,11 +23,26 @@
           "maxLength": 40,
           "description": "6 palabras o menos (exigencia 2)"
         },
-        "bajada": { "type": "string", "maxLength": 200 },
-        "introClases": { "type": "string", "maxLength": 160 },
-        "introPlanes": { "type": "string", "maxLength": 160 },
-        "introImc": { "type": "string", "maxLength": 200 },
-        "introPrueba": { "type": "string", "maxLength": 160 }
+        "bajada": {
+          "type": "string",
+          "maxLength": 200
+        },
+        "introClases": {
+          "type": "string",
+          "maxLength": 160
+        },
+        "introPlanes": {
+          "type": "string",
+          "maxLength": 160
+        },
+        "introImc": {
+          "type": "string",
+          "maxLength": 200
+        },
+        "introPrueba": {
+          "type": "string",
+          "maxLength": 160
+        }
       }
     },
     "tiposClase": {
@@ -32,8 +53,17 @@
         "additionalProperties": false,
         "required": ["id", "nombre"],
         "properties": {
-          "id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
-          "nombre": { "type": "string", "maxLength": 30 }
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z0-9-]+$"
+          },
+          "nombre": {
+            "type": "string",
+            "maxLength": 30
+          },
+          "foto": {
+            "$ref": "../core/negocio.schema.json#/$defs/imagen"
+          }
         }
       }
     },
@@ -43,13 +73,33 @@
       "items": {
         "type": "object",
         "additionalProperties": false,
-        "required": ["dia", "inicio", "minutos", "tipo", "entrenador"],
+        "required": ["dia", "inicio", "minutos", "tipo", "entrenador", "intensidad"],
         "properties": {
-          "dia": { "enum": ["lun", "mar", "mie", "jue", "vie", "sab", "dom"] },
-          "inicio": { "type": "string", "pattern": "^([01][0-9]|2[0-3]):[0-5][0-9]$" },
-          "minutos": { "type": "integer", "minimum": 15, "maximum": 180 },
-          "tipo": { "type": "string", "description": "id de un tipo de clase" },
-          "entrenador": { "type": "string", "maxLength": 40 }
+          "dia": {
+            "enum": ["lun", "mar", "mie", "jue", "vie", "sab", "dom"]
+          },
+          "inicio": {
+            "type": "string",
+            "pattern": "^([01][0-9]|2[0-3]):[0-5][0-9]$"
+          },
+          "minutos": {
+            "type": "integer",
+            "minimum": 15,
+            "maximum": 180
+          },
+          "tipo": {
+            "type": "string",
+            "description": "id de un tipo de clase"
+          },
+          "entrenador": {
+            "type": "string",
+            "maxLength": 40
+          },
+          "intensidad": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 5
+          }
         }
       }
     },
@@ -61,10 +111,22 @@
         "additionalProperties": false,
         "required": ["id", "nombre", "meses", "precio"],
         "properties": {
-          "id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
-          "nombre": { "type": "string", "maxLength": 30 },
-          "meses": { "type": "integer", "minimum": 1, "maximum": 24 },
-          "precio": { "$ref": "../core/negocio.schema.json#/$defs/precio" }
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z0-9-]+$"
+          },
+          "nombre": {
+            "type": "string",
+            "maxLength": 30
+          },
+          "meses": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 24
+          },
+          "precio": {
+            "$ref": "../core/negocio.schema.json#/$defs/precio"
+          }
         }
       }
     },
@@ -76,8 +138,14 @@
         "additionalProperties": false,
         "required": ["nombre", "especialidad"],
         "properties": {
-          "nombre": { "type": "string", "maxLength": 40 },
-          "especialidad": { "type": "string", "maxLength": 80 }
+          "nombre": {
+            "type": "string",
+            "maxLength": 40
+          },
+          "especialidad": {
+            "type": "string",
+            "maxLength": 80
+          }
         }
       }
     },
@@ -86,8 +154,14 @@
       "additionalProperties": false,
       "required": ["titulo", "texto", "fin"],
       "properties": {
-        "titulo": { "type": "string", "maxLength": 40 },
-        "texto": { "type": "string", "maxLength": 200 },
+        "titulo": {
+          "type": "string",
+          "maxLength": 40
+        },
+        "texto": {
+          "type": "string",
+          "maxLength": 200
+        },
         "fin": {
           "type": "string",
           "format": "date-time",

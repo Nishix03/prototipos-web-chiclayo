@@ -21,7 +21,16 @@ export function iniciarCuestionario() {
   const nota = form?.querySelector('[data-cuestionario-resultado]');
   const camino = [recorrido.dataset.inicio];
 
+  const etapas = [...document.querySelectorAll('[data-etapas] li')];
+  function progreso(n) {
+    etapas.forEach((e, i) => {
+      if (i === n) e.setAttribute('aria-current', 'step');
+      else e.removeAttribute('aria-current');
+    });
+  }
+  recorrido.querySelector('[data-agendar]')?.addEventListener('click', () => progreso(2));
   function mostrar(id, resultado) {
+    progreso(resultado ? 1 : 0);
     cambiar(() => {
       for (const [clave, paso] of pasos) paso.hidden = clave !== id;
       panel.hidden = !resultado;

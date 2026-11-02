@@ -1,3 +1,5 @@
+import formaMarca from '../img/marca/relieve.json';
+import { relieveMarca } from '../../core/marca3d.js';
 // Escena «Calma clínica» (identidad de la clínica dental): piezas de vidrio esmerilado color
 // menta que flotan sueltas y, al bajar, se ordenan. La metáfora: una sonrisa que se ordena.
 //
@@ -22,10 +24,10 @@ function matcap() {
   const g = c.getContext('2d');
   const vidrio = g.createRadialGradient(100, 90, 4, 128, 128, 128);
   vidrio.addColorStop(0, '#ffffff');
-  vidrio.addColorStop(0.25, '#eef9f5');
-  vidrio.addColorStop(0.62, '#c6e9df');
-  vidrio.addColorStop(0.86, '#8fcdbd');
-  vidrio.addColorStop(1, '#5fae9b');
+  vidrio.addColorStop(0.25, '#eef7ff');
+  vidrio.addColorStop(0.62, '#c6e2f6');
+  vidrio.addColorStop(0.86, '#8fbce2');
+  vidrio.addColorStop(1, '#5f94c2');
   g.fillStyle = vidrio;
   g.fillRect(0, 0, 256, 256);
   const textura = new CanvasTexture(c);
@@ -48,7 +50,7 @@ const PERFIL = [
 ].map(([x, y]) => new Vector2(x, y));
 const pieza = (ligera) => new LatheGeometry(PERFIL, ligera ? 10 : 20);
 
-const PIEZAS = 12; // por arcada; la versión ligera usa la mitad
+const PIEZAS = 10; // por arcada; la versión ligera usa la mitad
 
 /** Composición final: g = arcada (0 arriba, 1 abajo), k de n. Una sonrisa ancha bajo el titular. */
 function sonrisa(g, k, n, aspecto) {
@@ -71,7 +73,7 @@ export function crearCalma() {
   return {
     semilla: 23,
     fov: 35,
-    cielo: '#f6faf8',
+    cielo: '#f5faff',
     exposicion: 1,
     ligera: (aspecto) => aspecto < 1,
     // El matcap no usa luces: el motor crea una igual, aquí apagada
@@ -84,24 +86,36 @@ export function crearCalma() {
       posicion: [0, 1, 1],
     },
     grupos: [{ piezas: Array(PIEZAS).fill('pieza') }, { piezas: Array(PIEZAS).fill('pieza') }],
-    fondo(_escena, _aspecto, { ligera }) {
+    fondo(escena, aspecto, { ligera }) {
       ligeraActual = ligera;
       material = new MeshMatcapMaterial({ matcap: matcap() });
-      return {};
+      const marca = relieveMarca(formaMarca, {
+        color: '#84bee8',
+        ancho: aspecto < 1 ? 0.9 : 1.9,
+        profundidad: 0.12,
+      });
+      marca.position.set(aspecto < 1 ? 0 : 4.1, aspecto < 1 ? -3 : -0.5, 0.3);
+      marca.rotation.set(0.07, -0.18, 0);
+      escena.add(marca);
+      return { marca };
     },
     crearPieza() {
       return new Mesh(geometria(ligeraActual), material);
     },
     // Sueltas: repartidas por toda la pantalla, a distintas profundidades y giradas
-    inicial(_i, r, aspecto) {
-      const ancho = aspecto < 1 ? 3.4 : 8.5;
+    inicial(i, r, aspecto) {
+      const n = aspecto < 1 ? PIEZAS / 2 : PIEZAS;
+      const base = sonrisa(Math.floor(i / n), i % n, n, aspecto);
       return {
-        pos: [(r[0] - 0.5) * 2 * ancho, (r[1] - 0.5) * 9, (r[2] - 0.6) * 6],
-        rot: [r[3] * Math.PI, r[4] * Math.PI, r[5] * Math.PI],
-        escala: 0.8 + r[2] * 0.7,
+        pos: [base.pos[0], base.pos[1] + (r[1] - 0.5) * 0.4, base.pos[2]],
+        rot: base.rot,
+        escala: base.escala,
       };
     },
     ordenado: sonrisa,
+    cuadro(t, { mundo }) {
+      mundo.marca.rotation.y = -0.18 * (1 - t);
+    },
     camara: (t) => ({ pos: [0, 0.4 - t * 0.6, 13 - t * 1.5], mira: [0, -t * 0.8, 0] }),
   };
 }

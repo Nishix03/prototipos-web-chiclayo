@@ -47,44 +47,129 @@
   },
   "imagenes": {
     "hero": {
-      "src": "img/juego-1440.webp",
-      "alt": "Pelotas, aros y huesos de juguete en turquesa y naranja (ilustración 3D)"
+      "src": "img/juego-v3-1440.webp",
+      "alt": "Chapas de mascota con el símbolo de Trufa y accesorios mate (escena 3D)"
     },
     "og": {
-      "src": "img/juego-1440.webp",
+      "src": "img/juego-v3-1440.webp",
       "alt": "Trufa Veterinaria (demo), veterinaria en Chiclayo"
-    }
+    },
+    "editorial": {
+      "foto": {
+        "src": "img/generadas/ambiente-1440.webp",
+        "variantes": ["img/generadas/ambiente-480.webp", "img/generadas/ambiente-960.webp"],
+        "creditoIA": {
+          "herramienta": "ChatGPT / Codex (image_gen)",
+          "fecha": "2026-11-01"
+        },
+        "alt": "Perro y gato en un ambiente veterinario ilustrativo con asientos turquesa"
+      },
+      "titulo": "Un lugar para cuidarlos",
+      "texto": "Consulta, vacunas y cuidado de tu mascota, con los precios desde y el acceso a urgencias siempre visibles.",
+      "enlace": "#servicios",
+      "accion": "Ver cómo podemos ayudar"
+    },
+    "logo": {
+      "src": "img/marca/simbolo-192.webp",
+      "variantes": ["img/marca/simbolo-48.webp", "img/marca/simbolo-96.webp"],
+      "alt": "Símbolo de Trufa Veterinaria",
+      "creditoIA": {
+        "herramienta": "ChatGPT / Codex (image_gen)",
+        "fecha": "2026-11-01"
+      }
+    },
+    "icono": "img/marca/favicon.png"
   },
   "servicios": [
     {
       "id": "consulta",
       "nombre": "Consulta general",
       "desde": 50,
-      "descripcion": "Revisión completa, peso y temperatura. Te explicamos qué encontramos."
+      "descripcion": "Revisión completa, peso y temperatura. Te explicamos qué encontramos.",
+      "foto": {
+        "src": "img/generadas/servicio-consulta-960.webp",
+        "variantes": [
+          "img/generadas/servicio-consulta-320.webp",
+          "img/generadas/servicio-consulta-480.webp"
+        ],
+        "creditoIA": {
+          "herramienta": "ChatGPT / Codex (image_gen)",
+          "fecha": "2026-11-01"
+        },
+        "alt": "Perro en una sala de consulta veterinaria ilustrativa"
+      }
     },
     {
       "id": "vacuna",
       "nombre": "Vacunación",
       "desde": 60,
-      "descripcion": "Incluye revisión antes de vacunar y el registro en su carné."
+      "descripcion": "Incluye revisión antes de vacunar y el registro en su carné.",
+      "foto": {
+        "src": "img/generadas/servicio-vacuna-960.webp",
+        "variantes": [
+          "img/generadas/servicio-vacuna-320.webp",
+          "img/generadas/servicio-vacuna-480.webp"
+        ],
+        "creditoIA": {
+          "herramienta": "ChatGPT / Codex (image_gen)",
+          "fecha": "2026-11-01"
+        },
+        "alt": "Carné y material de vacunación cerrado sobre una mesa turquesa"
+      }
     },
     {
       "id": "desparasitacion",
       "nombre": "Desparasitación",
       "desde": 30,
-      "descripcion": "Interna o externa, según el peso y la edad."
+      "descripcion": "Interna o externa, según el peso y la edad.",
+      "foto": {
+        "src": "img/generadas/servicio-desparasitacion-960.webp",
+        "variantes": [
+          "img/generadas/servicio-desparasitacion-320.webp",
+          "img/generadas/servicio-desparasitacion-480.webp"
+        ],
+        "creditoIA": {
+          "herramienta": "ChatGPT / Codex (image_gen)",
+          "fecha": "2026-11-01"
+        },
+        "alt": "Gato junto a transportador y material veterinario cerrado"
+      }
     },
     {
       "id": "cirugia",
       "nombre": "Cirugía programada",
       "desde": 350,
-      "descripcion": "Esterilización y otras cirugías con evaluación previa."
+      "descripcion": "Esterilización y otras cirugías con evaluación previa.",
+      "foto": {
+        "src": "img/generadas/servicio-cirugia-960.webp",
+        "variantes": [
+          "img/generadas/servicio-cirugia-320.webp",
+          "img/generadas/servicio-cirugia-480.webp"
+        ],
+        "creditoIA": {
+          "herramienta": "ChatGPT / Codex (image_gen)",
+          "fecha": "2026-11-01"
+        },
+        "alt": "Sala veterinaria preparada sin animales ni procedimientos"
+      }
     },
     {
       "id": "bano",
       "nombre": "Baño y corte",
       "desde": 40,
-      "descripcion": "Baño, secado, corte de uñas y limpieza de oídos."
+      "descripcion": "Baño, secado, corte de uñas y limpieza de oídos.",
+      "foto": {
+        "src": "img/generadas/servicio-bano-960.webp",
+        "variantes": [
+          "img/generadas/servicio-bano-320.webp",
+          "img/generadas/servicio-bano-480.webp"
+        ],
+        "creditoIA": {
+          "herramienta": "ChatGPT / Codex (image_gen)",
+          "fecha": "2026-11-01"
+        },
+        "alt": "Perro recién cepillado junto a una toalla y utensilios de baño"
+      }
     }
   ],
   "vacunas": {
@@ -94,21 +179,48 @@
         "id": "perro",
         "nombre": "Perro",
         "dosis": [
-          { "semanas": 6, "vacuna": "Parvovirus y moquillo" },
-          { "semanas": 9, "vacuna": "Polivalente, 1.ª dosis" },
-          { "semanas": 12, "vacuna": "Polivalente, 2.ª dosis" },
-          { "semanas": 16, "vacuna": "Antirrábica" },
-          { "semanas": 52, "vacuna": "Refuerzo anual" }
+          {
+            "semanas": 6,
+            "vacuna": "Parvovirus y moquillo"
+          },
+          {
+            "semanas": 9,
+            "vacuna": "Polivalente, 1.ª dosis"
+          },
+          {
+            "semanas": 12,
+            "vacuna": "Polivalente, 2.ª dosis"
+          },
+          {
+            "semanas": 16,
+            "vacuna": "Antirrábica"
+          },
+          {
+            "semanas": 52,
+            "vacuna": "Refuerzo anual"
+          }
         ]
       },
       {
         "id": "gato",
         "nombre": "Gato",
         "dosis": [
-          { "semanas": 8, "vacuna": "Triple felina, 1.ª dosis" },
-          { "semanas": 12, "vacuna": "Triple felina, 2.ª dosis" },
-          { "semanas": 16, "vacuna": "Antirrábica" },
-          { "semanas": 52, "vacuna": "Refuerzo anual" }
+          {
+            "semanas": 8,
+            "vacuna": "Triple felina, 1.ª dosis"
+          },
+          {
+            "semanas": 12,
+            "vacuna": "Triple felina, 2.ª dosis"
+          },
+          {
+            "semanas": 16,
+            "vacuna": "Antirrábica"
+          },
+          {
+            "semanas": 52,
+            "vacuna": "Refuerzo anual"
+          }
         ]
       }
     ]

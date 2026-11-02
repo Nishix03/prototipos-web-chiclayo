@@ -1,3 +1,4 @@
+import { marca as simboloMarca } from '../../core/componentes/marca.js';
 import { html } from '../../core/componentes/html.js';
 import { estadoHorario } from '../../core/componentes/hero.js';
 
@@ -7,6 +8,7 @@ export function cabecera(negocio) {
   return html`
     <header class="cabecera">
       <p class="cabecera__nombre">
+        ${simboloMarca(negocio)}
         <span translate="no">${marca}</span>
         ${sufijo ? html`<span class="cabecera__demo">${sufijo.toLowerCase()}</span>` : ''}
       </p>
@@ -22,12 +24,12 @@ function escena() {
       <picture class="escena__fija">
         <source
           media="(max-aspect-ratio: 1/1)"
-          srcset="img/agua-movil-600.webp 600w, img/agua-movil-900.webp 900w"
+          srcset="img/agua-movil-v5-600.webp 600w, img/agua-movil-v5-900.webp 900w"
           sizes="100vw"
         />
         <img
-          src="img/agua-1440.webp"
-          srcset="img/agua-960.webp 960w, img/agua-1440.webp 1440w"
+          src="img/agua-v5-1440.webp"
+          srcset="img/agua-v5-960.webp 960w, img/agua-v5-1440.webp 1440w"
           sizes="100vw"
           width="1440"
           height="900"
@@ -50,6 +52,9 @@ export function portada(negocio) {
       <p class="bajada">${textos.bajada}</p>
       ${estadoHorario({ enlace: '#horario' })}
       <a class="llamado" href="#cita" data-estrella>Armar mi cita</a>
+      <nav class="portada__rituales" aria-label="Explorar el spa">
+        ${negocio.categorias.map((c) => html`<a href="?categoria=${c.id}#servicios">${c.nombre}</a>`)}
+      </nav>
     </section>
   `;
 }

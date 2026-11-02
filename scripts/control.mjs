@@ -14,19 +14,26 @@ import { chromium } from '@playwright/test';
 import { preview } from 'vite';
 
 const raiz = resolve(import.meta.dirname, '..');
-const [rubro, variante] = process.argv.slice(2);
+const [rubro, ...opciones] = process.argv.slice(2);
+const variante = opciones.find((o) => !o.startsWith('--'));
+const ronda = opciones.find((o) => o.startsWith('--ronda='))?.slice(8);
+if (ronda && !/^[a-z0-9-]+$/.test(ronda))
+  throw new Error('La ronda solo admite letras, números y guiones.');
 const config = JSON.parse(readFileSync(resolve(raiz, rubro, 'control.json'), 'utf8'));
-const salida = resolve(raiz, 'docs/visual/control', rubro, variante ?? '');
+const salida = ronda
+  ? resolve(raiz, 'docs/visual/rondas', ronda, rubro)
+  : resolve(raiz, 'docs/visual/control', rubro, variante ?? '');
 mkdirSync(salida, { recursive: true });
 
 const ANCHOS = { 360: 780, 1440: 900 };
 const servidor = await preview({
   root: raiz,
   logLevel: 'error',
-  preview: { port: 4198, strictPort: true },
+  preview: { port: 4198, strictPort: true, host: '127.0.0.1' },
 });
 const base = `${servidor.resolvedUrls.local[0]}${rubro}/?3d=forzar${variante ? `&direccion=${variante}` : ''}`;
 const navegador = await chromium.launch({
+  channel: process.env.PLAYWRIGHT_CHANNEL || undefined,
   args: ['--use-angle=swiftshader', '--enable-unsafe-swiftshader', '--ignore-gpu-blocklist'],
 });
 
@@ -79,6 +86,7 @@ function medir() {
         : 0,
       escenaViva: !!document.querySelector('[data-escena][data-viva] canvas'),
     },
+    e4: { sinDesbordeHorizontal: document.documentElement.scrollWidth <= innerWidth },
     e5: {
       titular: fuente(h1),
       titulosSeccion: [...new Set([...document.querySelectorAll('main h2')].map(fuente))],
@@ -138,6 +146,7 @@ for (const [ancho, alto] of Object.entries(ANCHOS)) {
     ...Object.entries(m.e1)
       .filter(([, v]) => !v)
       .map(([k]) => `1 · ${k}`),
+    ...(!m.e4.sinDesbordeHorizontal ? ['4 · desborde horizontal'] : []),
     ...(m.e2.palabrasTitular > 6 ? ['2 · titular de más de 6 palabras'] : []),
     ...(m.e2.lineasTitular > max
       ? [`2 · titular en ${m.e2.lineasTitular} líneas (máx. ${max})`]

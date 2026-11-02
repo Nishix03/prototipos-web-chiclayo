@@ -1,0 +1,482 @@
+[
+  {
+    "rubro": "spa",
+    "modo": "movil",
+    "corridas": 3,
+    "scores": {
+      "performance": 96,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 100
+    },
+    "lcp": 1821.8034000000002,
+    "cls": 0.0004441956842666426,
+    "tbt": 136.00000000000023,
+    "muestras": [
+      {
+        "scores": {
+          "performance": 99,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "lcp": 1754.9759999999999,
+        "cls": 0.0004441956842666426,
+        "tbt": 53.5,
+        "bytes": 558129
+      },
+      {
+        "scores": {
+          "performance": 93,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "lcp": 2317.4817000000003,
+        "cls": 0.0004441956842666426,
+        "tbt": 175.00000000000023,
+        "bytes": 558129
+      },
+      {
+        "scores": {
+          "performance": 96,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "lcp": 1821.8034000000002,
+        "cls": 0,
+        "tbt": 136.00000000000023,
+        "bytes": 558129
+      }
+    ]
+  },
+  {
+    "rubro": "spa",
+    "modo": "escritorio",
+    "corridas": 1,
+    "scores": {
+      "performance": 100,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 100
+    },
+    "lcp": 427.63539999999995,
+    "cls": 0.00203157554968792,
+    "tbt": 76.49999999999989,
+    "muestras": [
+      {
+        "scores": {
+          "performance": 100,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "lcp": 427.63539999999995,
+        "cls": 0.00203157554968792,
+        "tbt": 76.49999999999989,
+        "bytes": 529892
+      }
+    ]
+  },
+  {
+    "rubro": "dental",
+    "modo": "movil",
+    "corridas": 3,
+    "scores": {
+      "performance": 97,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 100
+    },
+    "lcp": 1707.2189999999998,
+    "cls": 0,
+    "tbt": 31.284400000000005,
+    "muestras": [
+      {
+        "scores": {
+          "performance": 98,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "lcp": 1600.8532,
+        "cls": 0,
+        "tbt": 31.284400000000005,
+        "bytes": 157489
+      },
+      {
+        "scores": {
+          "performance": 96,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "lcp": 1707.2189999999998,
+        "cls": 0,
+        "tbt": 204.92700000000013,
+        "bytes": 157489
+      },
+      {
+        "scores": {
+          "performance": 97,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "lcp": 2029.9430000000002,
+        "cls": 0,
+        "tbt": 0,
+        "bytes": 157489
+      }
+    ]
+  },
+  {
+    "rubro": "dental",
+    "modo": "escritorio",
+    "corridas": 1,
+    "scores": {
+      "performance": 100,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 100
+    },
+    "lcp": 576.752625,
+    "cls": 0,
+    "tbt": 19,
+    "muestras": [
+      {
+        "scores": {
+          "performance": 100,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "lcp": 576.752625,
+        "cls": 0,
+        "tbt": 19,
+        "bytes": 334295
+      }
+    ]
+  },
+  {
+    "rubro": "barberia",
+    "modo": "movil",
+    "corridas": 3,
+    "scores": {
+      "performance": 96,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 100
+    },
+    "lcp": 1927.00135,
+    "cls": 0,
+    "tbt": 9.00045,
+    "muestras": [
+      {
+        "scores": {
+          "performance": 96,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "lcp": 1927.00135,
+        "cls": 0,
+        "tbt": 9.00045,
+        "bytes": 352814
+      },
+      {
+        "scores": {
+          "performance": 98,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "lcp": 1620.337,
+        "cls": 0,
+        "tbt": 4.778999999999996,
+        "bytes": 352814
+      },
+      {
+        "scores": {
+          "performance": 92,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "lcp": 2147.2512500000003,
+        "cls": 0.0001819598195579389,
+        "tbt": 253.83249999999998,
+        "bytes": 352814
+      }
+    ]
+  },
+  {
+    "rubro": "barberia",
+    "modo": "escritorio",
+    "corridas": 1,
+    "scores": {
+      "performance": 100,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 100
+    },
+    "lcp": 458.01962499999996,
+    "cls": 0.0004359411574791611,
+    "tbt": 32.50784999999996,
+    "muestras": [
+      {
+        "scores": {
+          "performance": 100,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "lcp": 458.01962499999996,
+        "cls": 0.0004359411574791611,
+        "tbt": 32.50784999999996,
+        "bytes": 432320
+      }
+    ]
+  },
+  {
+    "rubro": "gimnasio",
+    "modo": "movil",
+    "corridas": 3,
+    "scores": {
+      "performance": 97,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 100
+    },
+    "lcp": 2107.907,
+    "cls": 0,
+    "tbt": 16.2349999999999,
+    "muestras": [
+      {
+        "scores": {
+          "performance": 98,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "lcp": 1965.0697,
+        "cls": 0,
+        "tbt": 48.534850000000006,
+        "bytes": 449117
+      },
+      {
+        "scores": {
+          "performance": 97,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "lcp": 2107.907,
+        "cls": 0,
+        "tbt": 6.7267499999999245,
+        "bytes": 449117
+      },
+      {
+        "scores": {
+          "performance": 96,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "lcp": 2206.94,
+        "cls": 0,
+        "tbt": 16.2349999999999,
+        "bytes": 449117
+      }
+    ]
+  },
+  {
+    "rubro": "gimnasio",
+    "modo": "escritorio",
+    "corridas": 1,
+    "scores": {
+      "performance": 100,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 100
+    },
+    "lcp": 636.24125,
+    "cls": 0,
+    "tbt": 2,
+    "muestras": [
+      {
+        "scores": {
+          "performance": 100,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "lcp": 636.24125,
+        "cls": 0,
+        "tbt": 2,
+        "bytes": 634390
+      }
+    ]
+  },
+  {
+    "rubro": "veterinaria",
+    "modo": "movil",
+    "corridas": 3,
+    "scores": {
+      "performance": 99,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 100
+    },
+    "lcp": 1623.4485,
+    "cls": 0.0002294158646741591,
+    "tbt": 18,
+    "muestras": [
+      {
+        "scores": {
+          "performance": 100,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "lcp": 1529.2417999999998,
+        "cls": 0.0002294158646741591,
+        "tbt": 32,
+        "bytes": 204666
+      },
+      {
+        "scores": {
+          "performance": 98,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "lcp": 1685.1608999999999,
+        "cls": 0,
+        "tbt": 18,
+        "bytes": 204666
+      },
+      {
+        "scores": {
+          "performance": 99,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "lcp": 1623.4485,
+        "cls": 0.0002294158646741591,
+        "tbt": 0,
+        "bytes": 204666
+      }
+    ]
+  },
+  {
+    "rubro": "veterinaria",
+    "modo": "escritorio",
+    "corridas": 1,
+    "scores": {
+      "performance": 100,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 100
+    },
+    "lcp": 462.00937500000003,
+    "cls": 0.002113363088602789,
+    "tbt": 59.703750000000014,
+    "muestras": [
+      {
+        "scores": {
+          "performance": 100,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "lcp": 462.00937500000003,
+        "cls": 0.002113363088602789,
+        "tbt": 59.703750000000014,
+        "bytes": 383130
+      }
+    ]
+  },
+  {
+    "rubro": "restaurante",
+    "modo": "movil",
+    "corridas": 3,
+    "scores": {
+      "performance": 87,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 100
+    },
+    "lcp": 2330.508,
+    "cls": 0.0004348936646747077,
+    "tbt": 345.1640000000002,
+    "muestras": [
+      {
+        "scores": {
+          "performance": 97,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "lcp": 1730.8636499999998,
+        "cls": 0.0001642122633983482,
+        "tbt": 131.5000000000001,
+        "bytes": 662257
+      },
+      {
+        "scores": {
+          "performance": 81,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "lcp": 2523.3365000000003,
+        "cls": 0.0004348936646747077,
+        "tbt": 479.05449999999996,
+        "bytes": 662257
+      },
+      {
+        "scores": {
+          "performance": 87,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "lcp": 2330.508,
+        "cls": 0.0004348936646747077,
+        "tbt": 345.1640000000002,
+        "bytes": 662257
+      }
+    ]
+  },
+  {
+    "rubro": "restaurante",
+    "modo": "escritorio",
+    "corridas": 1,
+    "scores": {
+      "performance": 100,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 100
+    },
+    "lcp": 416.2655,
+    "cls": 0.0008301770349526438,
+    "tbt": 77,
+    "muestras": [
+      {
+        "scores": {
+          "performance": 100,
+          "accessibility": 100,
+          "best-practices": 100,
+          "seo": 100
+        },
+        "lcp": 416.2655,
+        "cls": 0.0008301770349526438,
+        "tbt": 77,
+        "bytes": 473332
+      }
+    ]
+  }
+]

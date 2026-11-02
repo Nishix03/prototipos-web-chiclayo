@@ -44,18 +44,85 @@
   },
   "imagenes": {
     "hero": {
-      "src": "img/pulso-1440.webp",
-      "alt": "Líneas de luz verde neón que laten sobre fondo negro (ilustración 3D)"
+      "src": "img/pulso-v4-1440.webp",
+      "alt": "Monitor de pulso lima y emblema de Latido Gym con profundidad (escena 3D)"
     },
     "og": {
-      "src": "img/pulso-1440.webp",
+      "src": "img/pulso-v4-1440.webp",
       "alt": "Latido Gym (demo), gimnasio en Chiclayo"
-    }
+    },
+    "editorial": {
+      "foto": {
+        "src": "img/generadas/ambiente-1440.webp",
+        "variantes": ["img/generadas/ambiente-480.webp", "img/generadas/ambiente-960.webp"],
+        "creditoIA": {
+          "herramienta": "ChatGPT / Codex (image_gen)",
+          "fecha": "2026-11-01"
+        },
+        "alt": "Zona de entrenamiento con mancuernas negras y pista de suelo lima"
+      },
+      "titulo": "Tu próxima sesión empieza aquí",
+      "texto": "Funcional, spinning y box. Encuentra una clase que encaje en tu semana y añádela a tu plan.",
+      "enlace": "#clases",
+      "accion": "Elegir mi próxima clase"
+    },
+    "logo": {
+      "src": "img/marca/simbolo-192.webp",
+      "variantes": ["img/marca/simbolo-48.webp", "img/marca/simbolo-96.webp"],
+      "alt": "Símbolo de Latido Gym",
+      "creditoIA": {
+        "herramienta": "ChatGPT / Codex (image_gen)",
+        "fecha": "2026-11-01"
+      }
+    },
+    "icono": "img/marca/favicon.png"
   },
   "tiposClase": [
-    { "id": "funcional", "nombre": "Funcional" },
-    { "id": "spinning", "nombre": "Spinning" },
-    { "id": "box", "nombre": "Box" }
+    {
+      "id": "funcional",
+      "nombre": "Funcional",
+      "foto": {
+        "src": "img/generadas/servicio-funcional-960.webp",
+        "variantes": [
+          "img/generadas/servicio-funcional-320.webp",
+          "img/generadas/servicio-funcional-480.webp"
+        ],
+        "creditoIA": {
+          "herramienta": "ChatGPT / Codex (image_gen)",
+          "fecha": "2026-11-01"
+        },
+        "alt": "Zona de funcional con pesas rusas y cuerda de entrenamiento"
+      }
+    },
+    {
+      "id": "spinning",
+      "nombre": "Spinning",
+      "foto": {
+        "src": "img/generadas/servicio-spinning-960.webp",
+        "variantes": [
+          "img/generadas/servicio-spinning-320.webp",
+          "img/generadas/servicio-spinning-480.webp"
+        ],
+        "creditoIA": {
+          "herramienta": "ChatGPT / Codex (image_gen)",
+          "fecha": "2026-11-01"
+        },
+        "alt": "Bicicletas de spinning negras en un estudio de entrenamiento"
+      }
+    },
+    {
+      "id": "box",
+      "nombre": "Box",
+      "foto": {
+        "src": "img/generadas/servicio-box-960.webp",
+        "variantes": ["img/generadas/servicio-box-320.webp", "img/generadas/servicio-box-480.webp"],
+        "creditoIA": {
+          "herramienta": "ChatGPT / Codex (image_gen)",
+          "fecha": "2026-11-01"
+        },
+        "alt": "Saco de box y guantes lima en un espacio de entrenamiento"
+      }
+    }
   ],
   "clases": [
     {
@@ -63,100 +130,171 @@
       "inicio": "07:00",
       "minutos": 50,
       "tipo": "funcional",
-      "entrenador": "Ana (demo)"
+      "entrenador": "Ana (demo)",
+      "intensidad": 3
     },
     {
       "dia": "lun",
       "inicio": "12:30",
       "minutos": 45,
       "tipo": "spinning",
-      "entrenador": "Diego (demo)"
+      "entrenador": "Diego (demo)",
+      "intensidad": 4
     },
-    { "dia": "lun", "inicio": "19:00", "minutos": 60, "tipo": "box", "entrenador": "Rafa (demo)" },
+    {
+      "dia": "lun",
+      "inicio": "19:00",
+      "minutos": 60,
+      "tipo": "box",
+      "entrenador": "Rafa (demo)",
+      "intensidad": 4
+    },
     {
       "dia": "mar",
       "inicio": "07:00",
       "minutos": 45,
       "tipo": "spinning",
-      "entrenador": "Diego (demo)"
+      "entrenador": "Diego (demo)",
+      "intensidad": 4
     },
     {
       "dia": "mar",
       "inicio": "12:30",
       "minutos": 50,
       "tipo": "funcional",
-      "entrenador": "Ana (demo)"
+      "entrenador": "Ana (demo)",
+      "intensidad": 3
     },
     {
       "dia": "mar",
       "inicio": "19:00",
       "minutos": 50,
       "tipo": "funcional",
-      "entrenador": "Ana (demo)"
+      "entrenador": "Ana (demo)",
+      "intensidad": 3
     },
-    { "dia": "mar", "inicio": "20:00", "minutos": 60, "tipo": "box", "entrenador": "Rafa (demo)" },
+    {
+      "dia": "mar",
+      "inicio": "20:00",
+      "minutos": 60,
+      "tipo": "box",
+      "entrenador": "Rafa (demo)",
+      "intensidad": 4
+    },
     {
       "dia": "mie",
       "inicio": "07:00",
       "minutos": 50,
       "tipo": "funcional",
-      "entrenador": "Ana (demo)"
+      "entrenador": "Ana (demo)",
+      "intensidad": 3
     },
     {
       "dia": "mie",
       "inicio": "12:30",
       "minutos": 45,
       "tipo": "spinning",
-      "entrenador": "Diego (demo)"
+      "entrenador": "Diego (demo)",
+      "intensidad": 4
     },
-    { "dia": "mie", "inicio": "19:00", "minutos": 60, "tipo": "box", "entrenador": "Rafa (demo)" },
+    {
+      "dia": "mie",
+      "inicio": "19:00",
+      "minutos": 60,
+      "tipo": "box",
+      "entrenador": "Rafa (demo)",
+      "intensidad": 4
+    },
     {
       "dia": "jue",
       "inicio": "07:00",
       "minutos": 45,
       "tipo": "spinning",
-      "entrenador": "Diego (demo)"
+      "entrenador": "Diego (demo)",
+      "intensidad": 4
     },
     {
       "dia": "jue",
       "inicio": "12:30",
       "minutos": 50,
       "tipo": "funcional",
-      "entrenador": "Ana (demo)"
+      "entrenador": "Ana (demo)",
+      "intensidad": 3
     },
-    { "dia": "jue", "inicio": "20:00", "minutos": 60, "tipo": "box", "entrenador": "Rafa (demo)" },
+    {
+      "dia": "jue",
+      "inicio": "20:00",
+      "minutos": 60,
+      "tipo": "box",
+      "entrenador": "Rafa (demo)",
+      "intensidad": 4
+    },
     {
       "dia": "vie",
       "inicio": "07:00",
       "minutos": 50,
       "tipo": "funcional",
-      "entrenador": "Ana (demo)"
+      "entrenador": "Ana (demo)",
+      "intensidad": 3
     },
     {
       "dia": "vie",
       "inicio": "18:30",
       "minutos": 45,
       "tipo": "spinning",
-      "entrenador": "Diego (demo)"
+      "entrenador": "Diego (demo)",
+      "intensidad": 4
     },
-    { "dia": "sab", "inicio": "09:00", "minutos": 60, "tipo": "box", "entrenador": "Rafa (demo)" },
+    {
+      "dia": "sab",
+      "inicio": "09:00",
+      "minutos": 60,
+      "tipo": "box",
+      "entrenador": "Rafa (demo)",
+      "intensidad": 4
+    },
     {
       "dia": "sab",
       "inicio": "10:30",
       "minutos": 50,
       "tipo": "funcional",
-      "entrenador": "Ana (demo)"
+      "entrenador": "Ana (demo)",
+      "intensidad": 3
     }
   ],
   "planes": [
-    { "id": "mensual", "nombre": "Mensual", "meses": 1, "precio": 120 },
-    { "id": "trimestral", "nombre": "Trimestral", "meses": 3, "precio": 320 },
-    { "id": "anual", "nombre": "Anual", "meses": 12, "precio": 1080 }
+    {
+      "id": "mensual",
+      "nombre": "Mensual",
+      "meses": 1,
+      "precio": 120
+    },
+    {
+      "id": "trimestral",
+      "nombre": "Trimestral",
+      "meses": 3,
+      "precio": 320
+    },
+    {
+      "id": "anual",
+      "nombre": "Anual",
+      "meses": 12,
+      "precio": 1080
+    }
   ],
   "entrenadores": [
-    { "nombre": "Ana (demo)", "especialidad": "Funcional y fuerza" },
-    { "nombre": "Diego (demo)", "especialidad": "Spinning y cardio" },
-    { "nombre": "Rafa (demo)", "especialidad": "Box" }
+    {
+      "nombre": "Ana (demo)",
+      "especialidad": "Funcional y fuerza"
+    },
+    {
+      "nombre": "Diego (demo)",
+      "especialidad": "Spinning y cardio"
+    },
+    {
+      "nombre": "Rafa (demo)",
+      "especialidad": "Box"
+    }
   ],
   "promocion": {
     "titulo": "Matrícula gratis",

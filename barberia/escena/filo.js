@@ -1,8 +1,10 @@
+import formaMarca from '../img/marca/relieve.json';
+import { relieveMarca } from '../../core/marca3d.js';
 // Escena «Filo» (identidad de la barbería), dirección A «Espejo»: una pared de cromo líquido
-// de frente que ondula con el scroll y refleja el titular, con un barrido de luz dorada.
+// de frente que ondula con el scroll y acompaña la F en relieve con un barrido de luz dorada.
 //
 // Material matcap (ADR 008): el cromo es una imagen «capturada» (un canvas con el brillo del
-// metal, barras de luz dorada y el titular) que se pega según la orientación de cada punto de
+// metal y barras de luz dorada) que se pega según la orientación de cada punto de
 // la superficie. Se ve como metal líquido con el shader más barato posible: sin luces, sin
 // mapas de entorno ni cámaras de reflexión. El barrido de luz es girar esa imagen con el scroll.
 import {
@@ -14,8 +16,8 @@ import {
   SRGBColorSpace,
 } from 'three';
 
-/** La «captura» del cromo: metal oscuro con anillos de luz dorada y el titular. */
-function matcap(titular) {
+/** La «captura» del cromo: metal oscuro con anillos de luz dorada. */
+function matcap() {
   const c = document.createElement('canvas');
   c.width = c.height = 512;
   const g = c.getContext('2d');
@@ -44,11 +46,6 @@ function matcap(titular) {
     g.fillStyle = barra;
     g.fillRect(0, y, 512, alto);
   }
-  // El titular en dorado: el cromo lo devuelve deformado
-  g.fillStyle = 'rgba(232,196,106,0.85)';
-  g.font = '800 54px sans-serif';
-  g.textAlign = 'center';
-  g.fillText(titular.toUpperCase(), centro, 262, 470);
   const textura = new CanvasTexture(c);
   textura.colorSpace = SRGBColorSpace;
   textura.center.set(0.5, 0.5);
@@ -60,7 +57,7 @@ const onda = (x, y, t) =>
   0.32 * (1 - t * 0.7) * Math.sin(x * 0.9 + t * 6) * Math.cos(y * 1.1 - t * 4) +
   0.12 * Math.sin((x + y) * 1.7 + t * 9);
 
-export function crearFilo(titular = '') {
+export function crearFilo() {
   return {
     fov: 38,
     cielo: '#101012',
@@ -75,12 +72,20 @@ export function crearFilo(titular = '') {
       posicion: [0, 1, 1],
     },
     fondo(escena, aspecto, { ligera }) {
-      const segX = ligera ? 40 : 140; // celular: malla más gruesa, casi igual en pantalla chica
+      const segX = ligera ? 32 : 96; // celular: malla más gruesa, casi igual en pantalla chica
       const segY = Math.round(segX * 0.62);
       const geo = new PlaneGeometry(aspecto < 1 ? 11 : 16, 10, segX, segY);
-      const textura = matcap(titular);
+      const textura = matcap();
       escena.add(new Mesh(geo, new MeshMatcapMaterial({ matcap: textura, side: DoubleSide })));
-      return { geo, textura, base: Float32Array.from(geo.attributes.position.array) };
+      const marca = relieveMarca(formaMarca, {
+        color: '#d4a937',
+        ancho: aspecto < 1 ? 0.32 : 1.6,
+        profundidad: 0.12,
+      });
+      marca.position.set(aspecto < 1 ? 0.5 : 2.05, aspecto < 1 ? 0.9 : -0.95, 0.7);
+      marca.rotation.set(-0.08, -0.3, -0.13);
+      escena.add(marca);
+      return { marca, geo, textura, base: Float32Array.from(geo.attributes.position.array) };
     },
     camara: (t) => ({ pos: [0, 0.2 - t * 0.6, 6.2], mira: [0, -t * 0.4, 0] }),
     cuadro(t, { mundo }) {
@@ -91,6 +96,7 @@ export function crearFilo(titular = '') {
       geo.computeVertexNormals();
       // El barrido de luz: la captura del cromo gira con el scroll
       textura.rotation = -0.6 + t * 1.6;
+      mundo.marca.rotation.y = -0.3 + t * 0.3;
     },
   };
 }

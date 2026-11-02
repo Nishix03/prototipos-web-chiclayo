@@ -68,7 +68,7 @@
           "descripcion": "Papa amarilla prensada con ají, rellena de pollo, palta y aceituna.",
           "precio": 18,
           "foto": {
-            "src": "img/causa.webp",
+            "src": "img/generadas/plato-causa-640.webp",
             "alt": "Causa de papa amarilla con relleno de pollo y aceitunas",
             "credito": {
               "titulo": "Causa limeña",
@@ -76,7 +76,11 @@
               "licencia": "by-sa",
               "version": "2.0",
               "urlFuente": "https://www.flickr.com/photos/132420112@N06/41405719262"
-            }
+            },
+            "variantes": [
+              "img/generadas/plato-causa-320.webp",
+              "img/generadas/plato-causa-480.webp"
+            ]
           }
         },
         {
@@ -86,7 +90,7 @@
           "precio": 32,
           "etiquetas": ["picante"],
           "foto": {
-            "src": "img/tiradito.webp",
+            "src": "img/generadas/plato-tiradito-640.webp",
             "alt": "Tiradito de pescado bañado en crema de ají amarillo con choclo y camote",
             "credito": {
               "titulo": "Tiradito",
@@ -94,7 +98,11 @@
               "licencia": "by",
               "version": "3.0",
               "urlFuente": "https://commons.wikimedia.org/w/index.php?curid=11368057"
-            }
+            },
+            "variantes": [
+              "img/generadas/plato-tiradito-320.webp",
+              "img/generadas/plato-tiradito-480.webp"
+            ]
           }
         }
       ]
@@ -110,7 +118,7 @@
           "precio": 35,
           "etiquetas": ["de la casa", "picante"],
           "foto": {
-            "src": "img/ceviche.webp",
+            "src": "img/generadas/plato-ceviche-640.webp",
             "alt": "Ceviche de pescado con cebolla roja y choclo en un plato blanco",
             "credito": {
               "titulo": "Peruvian seafood dish in Miami",
@@ -118,7 +126,11 @@
               "licencia": "by",
               "version": "2.0",
               "urlFuente": "https://www.flickr.com/photos/35899785@N00/2345474733"
-            }
+            },
+            "variantes": [
+              "img/generadas/plato-ceviche-320.webp",
+              "img/generadas/plato-ceviche-480.webp"
+            ]
           }
         },
         {
@@ -128,7 +140,7 @@
           "precio": 45,
           "etiquetas": ["para compartir"],
           "foto": {
-            "src": "img/jalea.webp",
+            "src": "img/generadas/plato-jalea-640.webp",
             "alt": "Jalea de mariscos fritos con sarsa criolla y limón",
             "credito": {
               "titulo": "Jalea mixta 25042010",
@@ -136,7 +148,11 @@
               "licencia": "by-sa",
               "version": "4.0",
               "urlFuente": "https://commons.wikimedia.org/w/index.php?curid=10188310"
-            }
+            },
+            "variantes": [
+              "img/generadas/plato-jalea-320.webp",
+              "img/generadas/plato-jalea-480.webp"
+            ]
           }
         }
       ]
@@ -152,7 +168,7 @@
           "precio": 38,
           "etiquetas": ["de la casa"],
           "foto": {
-            "src": "img/arroz-con-pato.webp",
+            "src": "img/generadas/plato-arroz-con-pato-640.webp",
             "alt": "Arroz verde con pato, papa a la huancaína y ensalada",
             "credito": {
               "titulo": "Arroz con pato - Rice with duck",
@@ -160,7 +176,11 @@
               "licencia": "by",
               "version": "2.0",
               "urlFuente": "https://commons.wikimedia.org/wiki/File:Arroz_con_pato_-_Rice_with_duck.jpg"
-            }
+            },
+            "variantes": [
+              "img/generadas/plato-arroz-con-pato-320.webp",
+              "img/generadas/plato-arroz-con-pato-480.webp"
+            ]
           }
         },
         {
@@ -169,7 +189,7 @@
           "descripcion": "Cabrito guisado en chicha de jora y culantro, con frejoles y arroz.",
           "precio": 40,
           "foto": {
-            "src": "img/cabrito.webp",
+            "src": "img/generadas/plato-cabrito-640.webp",
             "alt": "Seco de cabrito con frejoles y arroz blanco",
             "credito": {
               "titulo": "Seco de Cabrito",
@@ -177,7 +197,11 @@
               "licencia": "by-sa",
               "version": "2.0",
               "urlFuente": "https://commons.wikimedia.org/w/index.php?curid=74785707"
-            }
+            },
+            "variantes": [
+              "img/generadas/plato-cabrito-320.webp",
+              "img/generadas/plato-cabrito-480.webp"
+            ]
           }
         },
         {
@@ -186,7 +210,7 @@
           "descripcion": "Lomo al wok con cebolla, tomate y ají amarillo, papas fritas y arroz.",
           "precio": 36,
           "foto": {
-            "src": "img/lomo-saltado.webp",
+            "src": "img/generadas/plato-lomo-saltado-640.webp",
             "alt": "Lomo saltado con papas fritas, arroz y culantro",
             "credito": {
               "titulo": "Lomo Saltado - Lima, Peru Miraflores (Tiendecita Blanca)",
@@ -194,7 +218,11 @@
               "licencia": "by-sa",
               "version": "2.0",
               "urlFuente": "https://commons.wikimedia.org/w/index.php?curid=26914438"
-            }
+            },
+            "variantes": [
+              "img/generadas/plato-lomo-saltado-320.webp",
+              "img/generadas/plato-lomo-saltado-480.webp"
+            ]
           }
         }
       ]
@@ -209,7 +237,7 @@
           "descripcion": "Masa de zapallo y camote frita, con miel de chancaca.",
           "precio": 12,
           "foto": {
-            "src": "img/picarones.webp",
+            "src": "img/generadas/plato-picarones-640.webp",
             "alt": "Dos picarones bañados en miel de chancaca",
             "credito": {
               "titulo": "Que ricos picarones!",
@@ -217,7 +245,11 @@
               "licencia": "by",
               "version": "2.0",
               "urlFuente": "https://commons.wikimedia.org/w/index.php?curid=32205906"
-            }
+            },
+            "variantes": [
+              "img/generadas/plato-picarones-320.webp",
+              "img/generadas/plato-picarones-480.webp"
+            ]
           }
         },
         {
@@ -226,7 +258,7 @@
           "descripcion": "Maíz morado hervido con piña, canela y clavo. Jarra de un litro.",
           "precio": 15,
           "foto": {
-            "src": "img/chicha-morada.webp",
+            "src": "img/generadas/plato-chicha-morada-640.webp",
             "alt": "Jarra de chicha morada con una rodaja de limón",
             "credito": {
               "titulo": "Chicha Morada 2017",
@@ -234,7 +266,11 @@
               "licencia": "by",
               "version": "2.0",
               "urlFuente": "https://commons.wikimedia.org/w/index.php?curid=74246103"
-            }
+            },
+            "variantes": [
+              "img/generadas/plato-chicha-morada-320.webp",
+              "img/generadas/plato-chicha-morada-480.webp"
+            ]
           }
         },
         {
@@ -243,7 +279,7 @@
           "descripcion": "Pisco, limón, jarabe de goma, clara de huevo y amargo de angostura.",
           "precio": 18,
           "foto": {
-            "src": "img/pisco-sour.webp",
+            "src": "img/generadas/plato-pisco-sour-640.webp",
             "alt": "Copa de pisco sour con espuma",
             "credito": {
               "titulo": "Pisco sour 20100613b",
@@ -251,7 +287,11 @@
               "licencia": "by-sa",
               "version": "4.0",
               "urlFuente": "https://commons.wikimedia.org/w/index.php?curid=11004717"
-            }
+            },
+            "variantes": [
+              "img/generadas/plato-pisco-sour-320.webp",
+              "img/generadas/plato-pisco-sour-480.webp"
+            ]
           }
         }
       ]
@@ -261,19 +301,14 @@
     "entrega": ["delivery", "recojo"],
     "notaDelivery": "Delivery dentro de Chiclayo; el costo de envío se confirma por WhatsApp."
   },
-  "reservas": { "maxPersonas": 12 },
+  "reservas": {
+    "maxPersonas": 12
+  },
   "imagenes": {
     "hero": {
-      "src": "img/hero.webp",
-      "variantes": ["img/hero-640.webp", "img/hero-960.webp"],
-      "alt": "Ceviche de pescado con cebolla roja en un plato hondo",
-      "credito": {
-        "titulo": "Best Ceviche Ever (Lima, Peru)",
-        "autor": "Yogma",
-        "licencia": "by",
-        "version": "2.0",
-        "urlFuente": "https://commons.wikimedia.org/w/index.php?curid=26798837"
-      }
+      "src": "img/mesa-nortena-v4-1440.webp",
+      "variantes": ["img/mesa-nortena-v4-960.webp"],
+      "alt": "Mesa norteña con ceviche servido, cerámica de Sabores del Norte y tejido (escena 3D)"
     },
     "galeria": [
       {
@@ -298,7 +333,32 @@
         "version": "2.0",
         "urlFuente": "https://commons.wikimedia.org/w/index.php?curid=26798837"
       }
-    }
+    },
+    "editorial": {
+      "foto": {
+        "src": "img/generadas/ambiente-1440.webp",
+        "variantes": ["img/generadas/ambiente-480.webp", "img/generadas/ambiente-960.webp"],
+        "creditoIA": {
+          "herramienta": "ChatGPT / Codex (image_gen)",
+          "fecha": "2026-11-01"
+        },
+        "alt": "Plato ilustrativo de arroz con pato y salsa criolla sobre mesa terracota"
+      },
+      "titulo": "Así sabe el norte",
+      "texto": "Arroz con pato, cabrito y sabores de la casa. Elige tus platos y arma la comanda para WhatsApp.",
+      "enlace": "#carta",
+      "accion": "Explorar la carta"
+    },
+    "logo": {
+      "src": "img/marca/simbolo-192.webp",
+      "variantes": ["img/marca/simbolo-48.webp", "img/marca/simbolo-96.webp"],
+      "alt": "Símbolo de Sabores del Norte",
+      "creditoIA": {
+        "herramienta": "ChatGPT / Codex (image_gen)",
+        "fecha": "2026-11-01"
+      }
+    },
+    "icono": "img/marca/favicon.png"
   },
   "resenas": {
     "fuente": "Reseñas de demostración: textos de ejemplo, no son opiniones reales.",

@@ -38,6 +38,14 @@ export function barberos(negocio) {
                       </li>`,
                 )}
               </ul>
+              <button
+                class="barbero__elegir transition-transform duration-150 motion-reduce:transition-none active:scale-[0.98]"
+                type="button"
+                data-elegir-barbero="${b.id}"
+                aria-pressed="false"
+              >
+                Elegir a ${b.nombre}
+              </button>
             </li>
           `,
         )}

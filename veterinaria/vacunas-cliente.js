@@ -22,7 +22,12 @@ export function iniciarVacunas() {
   const tablas = [...document.querySelectorAll('.vacunas__tabla')];
   nacimiento.max = hoyEnLima();
 
+  const nombre = document.getElementById('vacunas-nombre');
+  nombre.addEventListener('input', () => {
+    document.querySelector('[data-ficha-nombre]').textContent = nombre.value.trim() || 'Tu mascota';
+  });
   function actualizar() {
+    document.querySelector('[data-ficha-especie]').textContent = especie.selectedOptions[0].text;
     const tabla = tablas.find((t) => t.dataset.especie === especie.value);
     tablas.forEach((t) => (t.hidden = t !== tabla));
     const hoy = fechaUtc(hoyEnLima());

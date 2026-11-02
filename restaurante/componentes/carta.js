@@ -1,3 +1,4 @@
+import { imagen } from '../../core/componentes/imagen.js';
 import { html } from '../../core/componentes/html.js';
 import { soles } from '../../core/dinero.js';
 
@@ -8,8 +9,7 @@ const ETIQUETA = {
 };
 
 /**
- * Un plato, como una línea de la comanda de su categoría (sin foto: en «El pase» los
- * ingredientes 3D hacen ese papel). Nombre, descripción y precio están siempre en el HTML; los controles de cantidad
+ * Un plato, con su foto y los controles de la comanda. Nombre, descripción y precio están siempre en el HTML; los controles de cantidad
  * solo se muestran si hay JavaScript (clase .js en <html>, ver estilo.css): sin JS no habría
  * cómo armar el pedido. Ocupan su espacio desde el primer pintado, así no empujan la página.
  * Los data-* llevan lo que el carrito necesita, para no repetir la carta en otra isla de datos.
@@ -23,6 +23,7 @@ function plato(p) {
       data-nombre="${p.nombre}"
       data-precio="${p.precio}"
     >
+      ${p.foto ? html`<figure class="foto-servicio plato__foto">${imagen(p.foto, { sizes: '(min-width: 60rem) 300px, 250px' })}</figure>` : ''}
       <div class="plato__cuerpo">
         <h4 class="plato__cabeza">
           <span class="plato__nombre">${p.nombre}</span>

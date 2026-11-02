@@ -14,7 +14,8 @@ export default defineConfig({
   timeout: 60_000,
   reporter: [['list']],
   use: {
-    baseURL: `http://localhost:${PUERTO}/prototipos-web-chiclayo/`,
+    channel: process.env.PLAYWRIGHT_CHANNEL || undefined,
+    baseURL: `http://127.0.0.1:${PUERTO}/prototipos-web-chiclayo/`,
     // Hora fija (un martes a las 13:00 en Lima) para que "abierto/cerrado" no dependa del reloj
     timezoneId: 'America/Lima',
     locale: 'es-PE',
@@ -28,8 +29,8 @@ export default defineConfig({
   ],
   // Sirve dist/ (lo construye "npm run test:teclado" antes de llamar a Playwright)
   webServer: {
-    command: `npx vite preview --port ${PUERTO} --strictPort`,
-    port: PUERTO,
+    command: `npx vite preview --port ${PUERTO} --strictPort --host 127.0.0.1`,
+    url: `http://127.0.0.1:${PUERTO}/prototipos-web-chiclayo/`,
     reuseExistingServer: !process.env.CI,
   },
 });

@@ -21,6 +21,11 @@
 
 @source './componentes/asistente-simulacion.js';
 
+@source '../barberia/componentes/barberos.js';
+@source '../dental/componentes/cuestionario.js';
+@source '../gimnasio/componentes/clases.js';
+@source '../spa/componentes/cita.js';
+
 @theme {
   --spacing: 0.25rem; /* la misma escala de 4 px que --espacio-* de tokens.css */
   --breakpoint-md: 48rem;

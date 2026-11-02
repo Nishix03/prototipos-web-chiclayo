@@ -1,4 +1,6 @@
-// Escena «Juego y urgencia» (identidad de la veterinaria): juguetes mate (pelotas, aros y huesos)
+import formaMarca from '../img/marca/relieve.json';
+import { relieveMarca } from '../../core/marca3d.js';
+// Escena «Juego y urgencia» (identidad de la veterinaria): accesorios mate (pelotas, aros y chapas con el símbolo de Trufa)
 // en turquesa, naranja y crema que ruedan sueltos y, al bajar, se ordenan. Siguen al cursor o al
 // dedo: se inclinan hacia él, como una mascota que mira.
 //
@@ -9,7 +11,7 @@
 // ordenan en filas, como en una vitrina.
 import {
   CanvasTexture,
-  CapsuleGeometry,
+  CylinderGeometry,
   Group,
   Mesh,
   MeshMatcapMaterial,
@@ -34,8 +36,8 @@ function matcap(claro, color, sombra) {
   return new MeshMatcapMaterial({ matcap: t });
 }
 
-const TIPOS = ['pelota', 'aro', 'hueso'];
-const POR_TIPO = 8; // la versión ligera usa la mitad
+const TIPOS = ['pelota', 'aro', 'placa'];
+const POR_TIPO = 6; // la versión ligera usa la mitad
 
 /** Composición final: una fila por tipo de juguete, a lo ancho, como en la vitrina de la
  * veterinaria. g = tipo de juguete, k de n. */
@@ -72,14 +74,15 @@ export function crearJuego() {
     fondo(_escena, _aspecto, { ligera }) {
       ligeraActual = ligera;
       materiales = [
-        matcap('#bff3ee', '#1aa7a1', '#0b5d60'), // turquesa
-        matcap('#ffe0b8', '#f28c28', '#a3521a'), // naranja
+        matcap('#bff3ee', '#0b6b6e', '#06484c'), // turquesa
+        matcap('#ffe0b8', '#ce7c35', '#955324'), // naranja
         matcap('#ffffff', '#f3e9d8', '#c9b79a'), // crema
       ];
       return {};
     },
     crearPieza(tipo) {
-      const material = materiales[cuenta++ % 3]; // secuencia fija: la imagen fija y la viva coinciden
+      const indice = cuenta++ % 3;
+      const material = materiales[indice]; // secuencia fija: la imagen fija y la viva coinciden
       let obj;
       if (tipo === 'pelota') {
         obj = new Mesh(
@@ -92,37 +95,47 @@ export function crearJuego() {
           material,
         );
       } else {
-        // Hueso: una barra con dos bolitas en cada punta
+        // Chapa de mascota: el símbolo de Trufa es parte del objeto, no una etiqueta 2D.
         obj = new Group();
-        const barra = new Mesh(
-          geo('barra', (l) => new CapsuleGeometry(0.13, 0.8, 3, l ? 8 : 12)),
+        const base = new Mesh(
+          geo('chapa', (l) => new CylinderGeometry(0.54, 0.54, 0.08, l ? 20 : 32)),
           material,
         );
-        barra.rotation.z = Math.PI / 2;
-        obj.add(barra);
-        for (const [x, y] of [
-          [-0.5, 0.13],
-          [-0.5, -0.13],
-          [0.5, 0.13],
-          [0.5, -0.13],
-        ]) {
-          const bola = new Mesh(
-            geo('bola', (l) => new SphereGeometry(0.17, l ? 8 : 12, l ? 6 : 9)),
-            material,
-          );
-          bola.position.set(x, y, 0);
-          obj.add(bola);
-        }
+        base.rotation.x = Math.PI / 2;
+        const sello = relieveMarca(formaMarca, {
+          ancho: 0.78,
+          profundidad: 0.035,
+          bisel: 0.004,
+          material: materiales[indice === 0 ? 2 : 0],
+        });
+        sello.position.z = 0.065;
+        const argolla = new Mesh(
+          geo('argolla', () => new TorusGeometry(0.12, 0.035, 6, 14)),
+          materiales[0],
+        );
+        argolla.position.y = 0.55;
+        obj.add(base, sello, argolla);
       }
+      obj.userData.tipo = tipo;
       obj.userData.juguete = true;
       return obj;
     },
     // Sueltos: por toda la pantalla, a distintas profundidades y girados
-    inicial(_i, r, aspecto) {
+    inicial(i, r, aspecto, tipo) {
+      const n = aspecto < 1 ? POR_TIPO / 2 : POR_TIPO;
+      if (tipo === 'placa' && i === 2 * n)
+        return {
+          pos: [aspecto < 1 ? 0.85 : 3.2, aspecto < 1 ? -2.2 : 0.3, 0.4],
+          rot: [0.08, -0.18, -0.12],
+          escala: aspecto < 1 ? 0.85 : 1.35,
+        };
       const ancho = aspecto < 1 ? 3.2 : 8.5;
       return {
         pos: [(r[0] - 0.5) * 2 * ancho, (r[1] - 0.5) * 8.5, (r[2] - 0.6) * 5],
-        rot: [r[3] * Math.PI * 2, r[4] * Math.PI * 2, r[5] * Math.PI],
+        rot:
+          tipo === 'placa'
+            ? [0.12, (r[4] - 0.5) * 0.5, (r[5] - 0.5) * 0.3]
+            : [r[3] * Math.PI * 2, r[4] * Math.PI * 2, r[5] * Math.PI],
         escala: 0.9 + r[2] * 0.6,
       };
     },
